@@ -48,14 +48,15 @@ class User:
     def get_xp(self):
         level = calculate_level(self.xp)
         return f"{self.name} has {self.xp}, so they are level {level}."
-    
-    def level_up(self):
-        self.xp += 100
-        return f"{self.name} has leveled up! They are now level {self.xp // 100}."
 
     def award_xp(self, xp):
         self.xp += xp
-        return f"{self.name} has received a medium reward and now has {self.xp} XP."
+        level = calculate_level(self.xp)
+        return f"{self.name} has received {xp} XP and now has a total of {self.xp} XP, making them level {level}."
+    
+    def xp_needed_for_next_level(self):
+        xp_needed = calculate_xp_needed(self.xp)
+        return f"{self.name} needs {xp_needed} XP to reach the next level."
 
 class Armor:
     def __init__(self, name, cost, ac, strength, stealth, weight, doff_time, don_time):
@@ -248,10 +249,13 @@ def main():
     print(user.get_abilities())
     print(user.get_gp())
     print(user.get_xp())
-    user.award_xp(49)
-    print(user.get_xp())
-    user.award_xp(1)
-    print(user.get_xp())
+    print(user.award_xp(49))
+    print(user.award_xp(1))
+    print(user.xp_needed_for_next_level())
+    print(user.award_xp(24))
+    print(user.xp_needed_for_next_level())
+    print(user.award_xp(1))
+    print(user.xp_needed_for_next_level())
 
 def roll_4_sided_dice():
     return random.randint(1, 4)
@@ -310,6 +314,14 @@ def calculate_level(xp):
     level = (-b + math.sqrt(discriminant)) / (2 * a)
 
     return math.floor(level)
+
+def calculate_xp_needed(current_xp):
+    level = calculate_level(current_xp)
+    xp_for_level = 0
+    for i in range(0, level + 1):
+        xp_for_level += i * 5
+    needed_xp = xp_for_level - current_xp
+    return needed_xp
 
 def roll_ability():
     initial_roll = [roll_6_sided_dice(), roll_6_sided_dice(), roll_6_sided_dice(), roll_6_sided_dice()]
