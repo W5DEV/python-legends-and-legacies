@@ -291,6 +291,4 @@ def roll_ability():
     return initial_roll[0] + initial_roll[1] + initial_roll[2]
 
 
-
-
 main()
