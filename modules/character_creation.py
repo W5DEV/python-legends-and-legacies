@@ -13,12 +13,12 @@ def character_creation():
     print("Please choose a race from the following list:")
     races.get_races()
     race = input("Which race would you like to be? ")
-    print(f"Great! You are a {race}.")
 
-    print("Please choose an class from the following list:")
+    print("Great! Now please choose an class from the following list:")
     archetypes.get_archetypes()
-    archetype = input("Which class would you like to be? ")  
-    print(f"Great! You are a {archetype}.")
+    archetype = input("Which class would you like to be? ") 
+
+    print(f"Awesome! You are {name}, a {race} {archetype}.")
 
     xp = 0
 
