@@ -9,6 +9,7 @@ def character_creation():
     player = greeting()
     character_name(player)
     character_race(player)
+    # This is the D&D Class... I'm calling it archetype to avoid confusion with Python classes
     character_archetype(player)
     
     print(f"Your character is called {player.name}, a {player.race} {player.archetype}.")
@@ -92,7 +93,7 @@ def character_equipment(player):
     name = player.name
     gp = player.gp
     player_equipment = []
-    print(f"Now it is time to choose {player.name}'s equipment!")
+    print(f"Now it is time to choose {name}'s equipment!")
     equipment_loop = True
     while equipment_loop:
         print(f"{player.name} currently has the following equipment:")
@@ -103,21 +104,25 @@ def character_equipment(player):
             print(f"{name} does not have enough gold pieces to buy more equipment.")
             equipment_loop = False
             break
+
         print("Would you like to buy additional equipment? (yes/no)")
         buy_equipment = input("> ")
         if buy_equipment.lower() == "no":
             equipment_loop = False
             break
+
         print("Please choose equipment from the following list:")
         for equipment_type in equipment.equipment_types:
             print(equipment_type)
         equipment_choice = input("> ")
         if equipment_choice == "cancel":
             break
+
         equipment_types_lower = [equipment.lower() for equipment in equipment.equipment_types]
         while equipment_choice.lower() not in equipment_types_lower:
             print("Sorry, that is not a valid equipment type. Please try again.")
             equipment_choice = input("> ")
+
         if equipment_choice.lower() == "simple weapons":
             print("Please choose a weapon from the following list:")
             for weapon in equipment.simple_weapons:
@@ -142,6 +147,7 @@ def character_equipment(player):
                         player_equipment.append(weapon)
                         gp -= weapon.cost
                         print(f"{name} now has {gp} gold pieces and a new {weapon.name}.")
+
         elif equipment_choice.lower() == "martial weapons":
             print("Please choose a weapon from the following list:")
             for weapon in equipment.martial_weapons:
@@ -166,6 +172,7 @@ def character_equipment(player):
                         player_equipment.append(weapon)
                         gp -= weapon.cost
                         print(f"{name} now has {gp} gold pieces and a new {weapon.name}.")
+
         elif equipment_choice.lower() == "light armor":
             print("Please choose armor from the following list:")
             for armor in equipment.light_armor:
@@ -190,6 +197,7 @@ def character_equipment(player):
                         player_equipment.append(armor)
                         gp -= armor.cost
                         print(f"{name} now has {gp} gold pieces and new {armor.name}.")
+
         elif equipment_choice.lower() == "medium armor":
             print("Please choose armor from the following list:")
             for armor in equipment.medium_armor:
@@ -214,6 +222,7 @@ def character_equipment(player):
                         player_equipment.append(armor)
                         gp -= armor.cost
                         print(f"{name} now has {gp} gold pieces and new {armor.name}.")
+
         elif equipment_choice.lower() == "heavy armor":
             print(f"Please choose armor from the following list:")
             for armor in equipment.heavy_armor:
@@ -238,12 +247,15 @@ def character_equipment(player):
                         player_equipment.append(armor)
                         gp -= armor.cost
                         print(f"{name} now has {gp} gold pieces and new {armor.name}.")
+
         elif equipment_choice.lower() == "shield":
+            print(f"{name} has {gp} gold pieces.")
             print(f"The {equipment.shield.name} costs {equipment.shield.cost} gold pieces.")
             print(f"Please confirm {name} would like a shield: (yes/no)")
             shield_choice = input("> ")
             while shield_choice.lower() not in ["yes", "no"]:
                 print("Sorry, that is not a valid choice. Please try again.")
+                print(f"{name} has {gp} gold pieces.")
                 print(f"The {equipment.shield.name} costs {equipment.shield.cost} gold pieces.")
                 print(f"Please confirm {name} would like a shield: (yes/no)")
                 shield_choice = input("> ")
@@ -259,6 +271,7 @@ def character_equipment(player):
                     player_equipment.append(equipment.shield)
                     gp -= equipment.shield.cost
                     print(f"{name} now has {gp} gold pieces and a new {equipment.shield.name}.")
+
     player.gp = gp
     player.equipment = player_equipment
     return

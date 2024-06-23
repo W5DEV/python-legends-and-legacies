@@ -26,7 +26,7 @@ xp_thresholds = [
 def calculate_starting_gp(archetype):
     gp = 0
     if archetype.lower() == "cleric":
-        dice_roll = dice_rolls.dice_rolls.roll_4_sided_dice() + dice_rolls.roll_4_sided_dice() + dice_rolls.roll_4_sided_dice() + dice_rolls.roll_4_sided_dice() + dice_rolls.roll_4_sided_dice()
+        dice_roll = dice_rolls.roll_4_sided_dice() + dice_rolls.roll_4_sided_dice() + dice_rolls.roll_4_sided_dice() + dice_rolls.roll_4_sided_dice() + dice_rolls.roll_4_sided_dice()
         gp = dice_roll * 10 
     elif archetype.lower() == "fighter":
         dice_roll = dice_rolls.roll_4_sided_dice() + dice_rolls.roll_4_sided_dice() + dice_rolls.roll_4_sided_dice() + dice_rolls.roll_4_sided_dice() + dice_rolls.roll_4_sided_dice()
