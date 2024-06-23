@@ -40,7 +40,8 @@ class User:
     
     def get_abilities(self):
         for ability, value in self.abilities.items():
-            return f"{ability}: {value}"
+            print(f"{ability}: {value}")
+        return f"{self.name} has the following abilities: {self.abilities}"
     
     def get_gp(self):
         return f"{self.name} has {self.gp} gold pieces."
@@ -199,6 +200,13 @@ def main():
     for ability, value in abilities.items():
         print(f"{ability}: {value}") 
 
+    print(f"Expected Strength: {abilities['Strength']}")
+    print(f"Expected Dexterity: {abilities['Dexterity']}")
+    print(f"Expected Constitution: {abilities['Constitution']}")
+    print(f"Expected Intelligence: {abilities['Intelligence']}")
+    print(f"Expected Wisdom: {abilities['Wisdom']}")
+    print(f"Expected Charisma: {abilities['Charisma']}")
+
     armor = None
 
     has_armor = input("Would you like to wear armor? (yes/no) ")
@@ -275,13 +283,15 @@ def main():
     print(user.get_abilities())
     print(user.get_gp())
     print(user.get_xp())
-    print(user.award_xp(49))
     print(user.award_xp(1))
     print(user.xp_needed_for_next_level())
-    print(user.award_xp(24))
+    print("Expected output: 299")
+    print(user.award_xp(299))
     print(user.xp_needed_for_next_level())
-    print(user.award_xp(1))
+    print("Expected output: 600")
+    print(user.award_xp(600))
     print(user.xp_needed_for_next_level())
+    print("Expected output: 1800")
 
 def roll_4_sided_dice():
     return random.randint(1, 4)
@@ -323,31 +333,59 @@ def calculate_starting_gp(archetype):
 
     return gp
 
+xp_thresholds = [
+        0,      # Level 1
+        300,    # Level 2
+        900,    # Level 3
+        2700,   # Level 4
+        6500,   # Level 5
+        14000,  # Level 6
+        23000,  # Level 7
+        34000,  # Level 8
+        48000,  # Level 9
+        64000,  # Level 10
+        85000,  # Level 11
+        100000, # Level 12
+        120000, # Level 13
+        140000, # Level 14
+        165000, # Level 15
+        195000, # Level 16
+        225000, # Level 17
+        265000, # Level 18
+        305000, # Level 19
+        355000  # Level 20
+    ]
+
 def calculate_level(xp):
-    # Using the quadratic formula to solve for n in the equation: xp = 5 * n * (n - 1) / 2
-    # This simplifies to: n^2 - n - (2 * xp / 5) = 0
-    a = 1
-    b = -1
-    c = -2 * xp / 5
+    # Determine the level based on the XP thresholds
+    level = 1
+    for i in range(len(xp_thresholds)):
+        if xp >= xp_thresholds[i]:
+            level = i + 1
+        else:
+            break
     
-    # Calculate the discriminant
-    discriminant = b**2 - 4 * a * c
-    
-    if discriminant < 0:
-        return 0  # No real solution, should not happen with valid XP
-    
-    # Calculate the positive root of the quadratic equation
-    level = (-b + math.sqrt(discriminant)) / (2 * a)
+    return level
 
-    return math.floor(level)
+def calculate_xp_needed(xp):
+    # Determine the XP needed for the next level based on the XP thresholds
+    next_level_xp = xp_thresholds[1]  # Default to level 2 threshold
 
-def calculate_xp_needed(current_xp):
-    level = calculate_level(current_xp)
-    xp_for_level = 0
-    for i in range(0, level + 1):
-        xp_for_level += i * 5
-    needed_xp = xp_for_level - current_xp
-    return needed_xp
+    for i in range(len(xp_thresholds)):
+        if xp >= xp_thresholds[i]:
+            if i + 1 < len(xp_thresholds):
+                next_level_xp = xp_thresholds[i + 1]
+            else:
+                next_level_xp = None  # No next level, max level reached
+        else:
+            break
+    
+    if next_level_xp is None:
+        return "Max level reached"
+    else:
+        xp_needed = next_level_xp - xp
+
+        return xp_needed
 
 def roll_ability():
     initial_roll = [roll_6_sided_dice(), roll_6_sided_dice(), roll_6_sided_dice(), roll_6_sided_dice()]
