@@ -24,6 +24,8 @@ class Armor:
     def get_info(self):
         return f"{self.name} is {self.description}. It costs {self.cost} gold pieces, has an AC of {self.ac}, requires a strength of {self.strength}, and weighs {self.weight} pounds."
 
+equipment_types = ["Simple Weapons", "Martial Weapons", "Light Armor", "Medium Armor", "Heavy Armor", "Shield"]
+
 club = Weapon("Club", 1, "1d4 bludgeoning", 2, "Light", "Simple")
 dagger = Weapon("Dagger", 2, "1d4 piercing", 1, "Finesse, Light, Thrown", "Simple")
 great_club = Weapon("Great Club", 2, "1d8 bludgeoning", 10, "Two-handed", "Simple")
