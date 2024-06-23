@@ -88,7 +88,7 @@ def define_human():
         print("What is your human's gender? (male/female)")
         gender = input("> ")
     name = names.get_human_name()
-    human = Race(name, gender, "Human", "None", "Medium", 30, "Common", "All ability scores: 1", "None", "None")
+    human = Race(name, gender, "Human", "Human", "Medium", 30, "Common", "All ability scores: 1", "None", "None")
     return human
 
 class Race:

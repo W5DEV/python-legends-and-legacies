@@ -90,3 +90,15 @@ heavy_armor = [ring_mail_heavy_armor, chain_mail_heavy_armor, splint_heavy_armor
 
 def get_info(equipment):
     return equipment.get_info()
+
+class Equipment:
+    def __init__(self, name, cost, weight, properties):
+        self.name = name
+        self.cost = cost
+        self.weight = weight
+        self.properties = properties
+    
+    def get_info(self):
+        return f"{self.name} costs {self.cost} gold pieces, weighs {self.weight} pounds, and has the following properties: {self.properties}."
+    
+explorers_pack = Equipment("Explorer's Pack", 10, 59, "Includes a backpack, a bedroll, a mess kit, a tinderbox, 10 torches, 10 days of rations, and a waterskin.")

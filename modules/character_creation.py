@@ -12,11 +12,14 @@ def character_creation():
     # This is the D&D Class... I'm calling it archetype to avoid confusion with Python classes
     character_archetype(player)
     
-    print(f"Your character is called {player.name}, a {player.race} {player.archetype}.")
+    print(f"Your character is called {player.name}, a {player.race.subrace} {player.archetype.name}.")
 
     player.xp = 0
 
-    player.gp = utils.calculate_starting_gp(player.archetype)
+    if player.archetype.name.lower() == "barbarian":
+        player.gp = utils.calculate_starting_gp(player.archetype.name)
+    else:
+        player.gp = utils.calculate_starting_gp(player.archetype)
 
     print(f"{player.name} has {player.gp} gold pieces.")
 
@@ -78,13 +81,16 @@ def character_archetype(player):
 
     # This loop will continue until the user selects a valid class
     while archetype == None:
-        print(f"Which class is {player.name}?")
+        print("Which class is your character?")
         archetype_choice = input("> ")
-        for archetype_option in archetypes.get_archetypes():
-            if archetype_choice.lower() == archetype_option.lower():
-                archetype = archetype_option
-        if archetype == None:
+        while archetype_choice.lower() not in archetypes.archetypes:
             print("Sorry, that is not a valid class. Please try again.")
+            print("Which class is your character?")
+            archetype_choice = input("> ")
+        archetype = archetype_choice
+        
+    if archetype.lower() == "barbarian":
+        archetype = archetypes.define_barbarian()
     player.archetype = archetype
     return 
 
@@ -113,7 +119,7 @@ def character_abilities(player):
 def character_equipment(player):
     name = player.name
     gp = player.gp
-    player_equipment = []
+    player_equipment = player.archetype.starting_equipment
     print(f"Now it is time to choose {name}'s equipment!")
     equipment_loop = True
 
