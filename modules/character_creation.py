@@ -6,6 +6,7 @@ import modules.archetypes as archetypes
 
 
 def character_creation():
+    # We are calling the functions defined for each section of Character Creation (defined below)
     player = greeting()
     character_name(player)
     character_race(player)
@@ -41,6 +42,8 @@ def character_race(player):
     race = None
     print(f"Please choose {player.name}'s race from the following list:")
     races.display_races()
+
+    # This loop will continue until the user selects a valid race
     while race == None:
         print("Which race is your character?")
         race_choice = input("> ")
@@ -56,6 +59,8 @@ def character_archetype(player):
     archetype = None
     print("Great! Now please choose an class from the following list:")
     archetypes.display_archetypes()
+
+    # This loop will continue until the user selects a valid class
     while archetype == None:
         print(f"Which class is {player.name}?")
         archetype_choice = input("> ")
@@ -95,18 +100,27 @@ def character_equipment(player):
     player_equipment = []
     print(f"Now it is time to choose {name}'s equipment!")
     equipment_loop = True
+
+    # This loop will continue until the user decides to stop buying equipment
     while equipment_loop:
         print(f"{player.name} currently has the following equipment:")
         for item in player_equipment:
             print(item.name)
         print(f"{name} has {gp} gold pieces.")
+
+        # This is our first "out" from the loop. If the player doesn't have enough gold pieces, they can't buy more equipment
         if gp < 1:
             print(f"{name} does not have enough gold pieces to buy more equipment.")
             equipment_loop = False
             break
-
+        
+        # This is our second "out" from the loop. If the player doesn't want to buy more equipment, they can exit the loop
         print("Would you like to buy additional equipment? (yes/no)")
         buy_equipment = input("> ")
+        while buy_equipment.lower() not in ["yes", "no"]:
+            print("Sorry, that is not a valid choice. Please try again.")
+            print("Would you like to buy additional equipment? (yes/no)")
+            buy_equipment = input("> ")
         if buy_equipment.lower() == "no":
             equipment_loop = False
             break
@@ -118,11 +132,13 @@ def character_equipment(player):
         if equipment_choice == "cancel":
             break
 
+        # This is the main equipment selection loop. It will continue until the player selects a valid equipment type
         equipment_types_lower = [equipment.lower() for equipment in equipment.equipment_types]
         while equipment_choice.lower() not in equipment_types_lower:
             print("Sorry, that is not a valid equipment type. Please try again.")
             equipment_choice = input("> ")
 
+        # This is the Simple Weapons selection loop. It will trigger if the player selects "Simple Weapons"
         if equipment_choice.lower() == "simple weapons":
             print("Please choose a weapon from the following list:")
             for weapon in equipment.simple_weapons:
@@ -148,6 +164,7 @@ def character_equipment(player):
                         gp -= weapon.cost
                         print(f"{name} now has {gp} gold pieces and a new {weapon.name}.")
 
+        # This is the Martial Weapons selection loop. It will trigger if the player selects "Martial Weapons"
         elif equipment_choice.lower() == "martial weapons":
             print("Please choose a weapon from the following list:")
             for weapon in equipment.martial_weapons:
@@ -173,6 +190,7 @@ def character_equipment(player):
                         gp -= weapon.cost
                         print(f"{name} now has {gp} gold pieces and a new {weapon.name}.")
 
+        # This is the Light Armor selection loop. It will trigger if the player selects "Light Armor"
         elif equipment_choice.lower() == "light armor":
             print("Please choose armor from the following list:")
             for armor in equipment.light_armor:
@@ -198,6 +216,7 @@ def character_equipment(player):
                         gp -= armor.cost
                         print(f"{name} now has {gp} gold pieces and new {armor.name}.")
 
+        # This is the Medium Armor selection loop. It will trigger if the player selects "Medium Armor"
         elif equipment_choice.lower() == "medium armor":
             print("Please choose armor from the following list:")
             for armor in equipment.medium_armor:
@@ -223,6 +242,7 @@ def character_equipment(player):
                         gp -= armor.cost
                         print(f"{name} now has {gp} gold pieces and new {armor.name}.")
 
+        # This is the Heavy Armor selection loop. It will trigger if the player selects "Heavy Armor"
         elif equipment_choice.lower() == "heavy armor":
             print(f"Please choose armor from the following list:")
             for armor in equipment.heavy_armor:
@@ -248,6 +268,7 @@ def character_equipment(player):
                         gp -= armor.cost
                         print(f"{name} now has {gp} gold pieces and new {armor.name}.")
 
+        # This is the Shield selection loop. It will trigger if the player selects "Shield"
         elif equipment_choice.lower() == "shield":
             print(f"{name} has {gp} gold pieces.")
             print(f"The {equipment.shield.name} costs {equipment.shield.cost} gold pieces.")

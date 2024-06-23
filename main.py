@@ -2,7 +2,8 @@ import modules.character_creation as character_creation
 
 def main():
     player = character_creation.character_creation()
-    
+
+    # This is just a synopsis of the player's character sheet, which was built using the character_creation function.
     print(player.greet())
     print(player.get_info())
     print(player.get_bio())

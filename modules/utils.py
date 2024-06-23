@@ -1,5 +1,6 @@
 import modules.dice_rolls as dice_rolls
 
+# This list contains the XP thresholds for each level. It is set from DnDBeyond's XP thresholds for a standard campaign.
 xp_thresholds = [
         0,      # Level 1
         300,    # Level 2
@@ -23,6 +24,7 @@ xp_thresholds = [
         355000  # Level 20
     ]
 
+# This function will calculate the starting gp based on the archetype
 def calculate_starting_gp(archetype):
     gp = 0
     if archetype.lower() == "cleric":
@@ -42,6 +44,7 @@ def calculate_starting_gp(archetype):
 
     return gp
 
+# This function will calculate the level based on the XP thresholds
 def calculate_level(xp):
     # Determine the level based on the XP thresholds
     level = 1
@@ -53,6 +56,7 @@ def calculate_level(xp):
     
     return level
 
+# This function will calculate the XP needed to reach the next level. It is based on the above thresholds.
 def calculate_xp_needed(xp):
     # Determine the XP needed for the next level based on the XP thresholds
     next_level_xp = xp_thresholds[1]  # Default to level 2 threshold
@@ -73,6 +77,7 @@ def calculate_xp_needed(xp):
 
         return xp_needed
 
+# This function will roll 4 six-sided dice, drop the lowest value, and return the sum of the remaining 3 dice
 def roll_ability():
     initial_roll = [dice_rolls.roll_6_sided_dice(), dice_rolls.roll_6_sided_dice(), dice_rolls.roll_6_sided_dice(), dice_rolls.roll_6_sided_dice()]
     initial_roll.remove(min(initial_roll))
