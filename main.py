@@ -84,6 +84,70 @@ class Weapon:
     def get_info(self):
         return f"{self.name} is {self.description}. It costs {self.cost} gold pieces, deals {self.damage} damage, and weighs {self.weight} pounds."
 
+class Simple_Weapons:
+    club_simple_weapon = Weapon("Club", 1, "1d4 bludgeoning", 2, "Light", "Simple")
+    dagger_simple_weapon = Weapon("Dagger", 2, "1d4 piercing", 1, "Finesse, Light, Thrown", "Simple")
+    greatclub_simple_weapon = Weapon("Greatclub", 2, "1d8 bludgeoning", 10, "Two-handed", "Simple")
+    handaxe_simple_weapon = Weapon("Handaxe", 5, "1d6 slashing", 2, "Light, Thrown", "Simple")
+    javelin_simple_weapon = Weapon("Javelin", 5, "1d6 piercing", 2, "Thrown", "Simple")
+    light_hammer_simple_weapon = Weapon("Light Hammer", 2, "1d4 bludgeoning", 2, "Light, Thrown", "Simple")
+    mace_simple_weapon = Weapon("Mace", 5, "1d6 bludgeoning", 4, "", "Simple")
+    quarterstaff_simple_weapon = Weapon("Quarterstaff", 2, "1d6 bludgeoning", 4, "Versatile", "Simple")
+    sickle_simple_weapon = Weapon("Sickle", 1, "1d4 slashing", 2, "Light", "Simple")
+    spear_simple_weapon = Weapon("Spear", 1, "1d6 piercing", 3, "Thrown, Versatile", "Simple")
+
+    light_crossbow_simple_weapon = Weapon("Light Crossbow", 25, "1d8 piercing", 5, "Ammunition, Loading, Two-handed", "Simple")
+    dart_simple_weapon = Weapon("Dart", 5, "1d4 piercing", 0.25, "Finesse, Thrown", "Simple")
+    shortbow_simple_weapon = Weapon("Shortbow", 25, "1d6 piercing", 2, "Ammunition, Two-handed", "Simple")
+    sling_simple_weapon = Weapon("Sling", 1, "1d4 bludgeoning", 0, "Ammunition", "Simple")
+
+class Martial_Weapons:
+    battleaxe_martial_weapon = Weapon("Battleaxe", 10, "1d8 slashing", 4, "Versatile", "Martial")
+    flail_martial_weapon = Weapon("Flail", 10, "1d8 bludgeoning", 2, "", "Martial")
+    glaive_martial_weapon = Weapon("Glaive", 20, "1d10 slashing", 6, "Heavy, Reach, Two-handed", "Martial")
+    greataxe_martial_weapon = Weapon("Greataxe", 30, "1d12 slashing", 7, "Heavy, Two-handed", "Martial")
+    greatsword_martial_weapon = Weapon("Greatsword", 50, "2d6 slashing", 6, "Heavy, Two-handed", "Martial")
+    halberd_martial_weapon = Weapon("Halberd", 20, "1d10 slashing", 6, "Heavy, Reach, Two-handed", "Martial")
+    lance_martial_weapon = Weapon("Lance", 10, "1d12 piercing", 6, "Reach, Special", "Martial")
+    longsword_martial_weapon = Weapon("Longsword", 15, "1d8 slashing", 3, "Versatile", "Martial")
+    maul_martial_weapon = Weapon("Maul", 10, "2d6 bludgeoning", 10, "Heavy, Two-handed", "Martial")
+    morningstar_martial_weapon = Weapon("Morningstar", 15, "1d8 piercing", 4, "", "Martial")
+    pike_martial_weapon = Weapon("Pike", 5, "1d10 piercing", 18, "Heavy, Reach, Two-handed", "Martial")
+    rapier_martial_weapon = Weapon("Rapier", 25, "1d8 piercing", 2, "Finesse", "Martial")
+    scimitar_martial_weapon = Weapon("Scimitar", 25, "1d6 slashing", 3, "Finesse, Light", "Martial")
+    shortsword_martial_weapon = Weapon("Shortsword", 10, "1d6 piercing", 2, "Finesse, Light", "Martial")
+    trident_martial_weapon = Weapon("Trident", 5, "1d6 piercing", 4, "Thrown, Versatile", "Martial")
+    war_pick_martial_weapon = Weapon("War Pick", 5, "1d8 piercing", 2, "", "Martial")
+    warhammer_martial_weapon = Weapon("Warhammer", 15, "1d8 bludgeoning", 2, "Versatile", "Martial")
+    whip_martial_weapon = Weapon("Whip", 2, "1d4 slashing", 3, "Finesse, Reach", "Martial")
+
+    blowgun_martial_weapon = Weapon("Blowgun", 10, "1 piercing", 1, "Ammunition, Loading", "Martial")
+    hand_crossbow_martial_weapon = Weapon("Hand Crossbow", 75, "1d6 piercing", 3, "Ammunition, Light, Loading", "Martial")
+    heavy_crossbow_martial_weapon = Weapon("Heavy Crossbow", 50, "1d10 piercing", 18, "Ammunition, Heavy, Loading, Two-handed", "Martial")
+    longbow_martial_weapon = Weapon("Longbow", 50, "1d8 piercing", 2, "Ammunition, Heavy, Two-handed", "Martial")
+    net_martial_weapon = Weapon("Net", 1, "", 3, "Special, Thrown", "Martial")
+
+class Light_Armor:
+    padded_light_armor = Armor("Padded Light Armor", 5, 11, 0, -1, 8, 1, 1)
+    leather_light_armor = Armor("Leather Light Armor", 10, 11, 0, 0, 10, 1, 1)
+    studded_light_armor = Armor("Studded Light Armor", 45, 12, 0, 0, 13, 1, 1)
+
+class Medium_Armor:
+    hide_medium_armor = Armor("Hide Medium Armor", 10, 12, 0, 0, 12, 5, 1)
+    chain_shirt_medium_armor = Armor("Chain Shirt Medium Armor", 50, 13, 0, 0, 20, 1, 5)
+    scale_mail_medium_armor = Armor("Scale Mail Medium Armor", 50, 14, 0, -1, 45, 1, 5)
+    breastplate_medium_armor = Armor("Breastplate Medium Armor", 400, 14, 0, 0, 20, 1, 5)
+    half_plate_medium_armor = Armor("Half Plate Medium Armor", 750, 15, 0, -1, 40, 1, 5)
+
+class Heavy_Armor:
+    ring_mail_heavy_armor = Armor("Ring Mail Heavy Armor", 30, 14, 0, -1, 40, 5, 10)
+    chain_mail_heavy_armor = Armor("Chain Mail Heavy Armor", 75, 16, 13, -1, 55, 5, 10)
+    splint_heavy_armor = Armor("Splint Heavy Armor", 200, 17, 15, -1, 60, 5, 10)
+    plate_heavy_armor = Armor("Plate Heavy Armor", 1500, 18, 15, -1, 65, 5, 10)
+
+class Shields:
+    shield = Armor("Shield", 10, 2, 0, 0, 6, 1, 1)
+
 class Coin_Types:
     copper = 1
     silver = 10
@@ -135,27 +199,22 @@ def main():
 
     armor = None
 
-    padded_light_armor = Armor("Padded Light Armor", 5, 11, 0, -1, 8, 1, 1)
-    leather_light_armor = Armor("Leather Light Armor", 10, 11, 0, 0, 10, 1, 1)
-    studded_light_armor = Armor("Studded Light Armor", 45, 12, 0, 0, 13, 1, 1)
-
-    hide_medium_armor = Armor("Hide Medium Armor", 10, 12, 0, 0, 12, 5, 1)
-    chain_shirt_medium_armor = Armor("Chain Shirt Medium Armor", 50, 13, 0, 0, 20, 1, 5)
-    scale_mail_medium_armor = Armor("Scale Mail Medium Armor", 50, 14, 0, -1, 45, 1, 5)
-    breastplate_medium_armor = Armor("Breastplate Medium Armor", 400, 14, 0, 0, 20, 1, 5)
-    half_plate_medium_armor = Armor("Half Plate Medium Armor", 750, 15, 0, -1, 40, 1, 5)
-
-    ring_mail_heavy_armor = Armor("Ring Mail Heavy Armor", 30, 14, 0, -1, 40, 5, 10)
-    chain_mail_heavy_armor = Armor("Chain Mail Heavy Armor", 75, 16, 13, -1, 55, 5, 10)
-    splint_heavy_armor = Armor("Splint Heavy Armor", 200, 17, 15, -1, 60, 5, 10)
-    plate_heavy_armor = Armor("Plate Heavy Armor", 1500, 18, 15, -1, 65, 5, 10)
-
-    shield = Armor("Shield", 10, 2, 0, 0, 6, 1, 1)
-
     has_armor = input("Would you like to wear armor? (yes/no) ")
     if has_armor.lower() == "yes":
         print("Please choose a type of armor from the following list: ")
-        armor_types = [padded_light_armor, leather_light_armor, studded_light_armor, hide_medium_armor, chain_shirt_medium_armor, scale_mail_medium_armor, breastplate_medium_armor, half_plate_medium_armor, ring_mail_heavy_armor, chain_mail_heavy_armor, splint_heavy_armor, plate_heavy_armor, shield]
+        armor_types = []
+        for armor in Light_Armor.__dict__.values():
+            if isinstance(armor, Armor):
+                armor_types.append(armor)
+        for armor in Medium_Armor.__dict__.values():
+            if isinstance(armor, Armor):
+                armor_types.append(armor)
+        for armor in Heavy_Armor.__dict__.values():
+            if isinstance(armor, Armor):
+                armor_types.append(armor)
+        for armor in Shields.__dict__.values():
+            if isinstance(armor, Armor):
+                armor_types.append(armor)
         for armor in armor_types:
             print(armor.name, armor.cost, armor.ac, armor.strength, armor.stealth, armor.weight, armor.doff_time, armor.don_time)
         armor_answer = input("Which armor would you like to wear? ")
@@ -176,51 +235,16 @@ def main():
 
     weapon = None
 
-    club_simple_weapon = Weapon("Club", 1, "1d4 bludgeoning", 2, "Light", "Simple")
-    dagger_simple_weapon = Weapon("Dagger", 2, "1d4 piercing", 1, "Finesse, Light, Thrown", "Simple")
-    greatclub_simple_weapon = Weapon("Greatclub", 2, "1d8 bludgeoning", 10, "Two-handed", "Simple")
-    handaxe_simple_weapon = Weapon("Handaxe", 5, "1d6 slashing", 2, "Light, Thrown", "Simple")
-    javelin_simple_weapon = Weapon("Javelin", 5, "1d6 piercing", 2, "Thrown", "Simple")
-    light_hammer_simple_weapon = Weapon("Light Hammer", 2, "1d4 bludgeoning", 2, "Light, Thrown", "Simple")
-    mace_simple_weapon = Weapon("Mace", 5, "1d6 bludgeoning", 4, "", "Simple")
-    quarterstaff_simple_weapon = Weapon("Quarterstaff", 2, "1d6 bludgeoning", 4, "Versatile", "Simple")
-    sickle_simple_weapon = Weapon("Sickle", 1, "1d4 slashing", 2, "Light", "Simple")
-    spear_simple_weapon = Weapon("Spear", 1, "1d6 piercing", 3, "Thrown, Versatile", "Simple")
-
-    light_crossbow_simple_weapon = Weapon("Light Crossbow", 25, "1d8 piercing", 5, "Ammunition, Loading, Two-handed", "Simple")
-    dart_simple_weapon = Weapon("Dart", 5, "1d4 piercing", 0.25, "Finesse, Thrown", "Simple")
-    shortbow_simple_weapon = Weapon("Shortbow", 25, "1d6 piercing", 2, "Ammunition, Two-handed", "Simple")
-    sling_simple_weapon = Weapon("Sling", 1, "1d4 bludgeoning", 0, "Ammunition", "Simple")
-
-    battleaxe_martial_weapon = Weapon("Battleaxe", 10, "1d8 slashing", 4, "Versatile", "Martial")
-    flail_martial_weapon = Weapon("Flail", 10, "1d8 bludgeoning", 2, "", "Martial")
-    glaive_martial_weapon = Weapon("Glaive", 20, "1d10 slashing", 6, "Heavy, Reach, Two-handed", "Martial")
-    greataxe_martial_weapon = Weapon("Greataxe", 30, "1d12 slashing", 7, "Heavy, Two-handed", "Martial")
-    greatsword_martial_weapon = Weapon("Greatsword", 50, "2d6 slashing", 6, "Heavy, Two-handed", "Martial")
-    halberd_martial_weapon = Weapon("Halberd", 20, "1d10 slashing", 6, "Heavy, Reach, Two-handed", "Martial")
-    lance_martial_weapon = Weapon("Lance", 10, "1d12 piercing", 6, "Reach, Special", "Martial")
-    longsword_martial_weapon = Weapon("Longsword", 15, "1d8 slashing", 3, "Versatile", "Martial")
-    maul_martial_weapon = Weapon("Maul", 10, "2d6 bludgeoning", 10, "Heavy, Two-handed", "Martial")
-    morningstar_martial_weapon = Weapon("Morningstar", 15, "1d8 piercing", 4, "", "Martial")
-    pike_martial_weapon = Weapon("Pike", 5, "1d10 piercing", 18, "Heavy, Reach, Two-handed", "Martial")
-    rapier_martial_weapon = Weapon("Rapier", 25, "1d8 piercing", 2, "Finesse", "Martial")
-    scimitar_martial_weapon = Weapon("Scimitar", 25, "1d6 slashing", 3, "Finesse, Light", "Martial")
-    shortsword_martial_weapon = Weapon("Shortsword", 10, "1d6 piercing", 2, "Finesse, Light", "Martial")
-    trident_martial_weapon = Weapon("Trident", 5, "1d6 piercing", 4, "Thrown, Versatile", "Martial")
-    war_pick_martial_weapon = Weapon("War Pick", 5, "1d8 piercing", 2, "", "Martial")
-    warhammer_martial_weapon = Weapon("Warhammer", 15, "1d8 bludgeoning", 2, "Versatile", "Martial")
-    whip_martial_weapon = Weapon("Whip", 2, "1d4 slashing", 3, "Finesse, Reach", "Martial")
-
-    blowgun_martial_weapon = Weapon("Blowgun", 10, "1 piercing", 1, "Ammunition, Loading", "Martial")
-    hand_crossbow_martial_weapon = Weapon("Hand Crossbow", 75, "1d6 piercing", 3, "Ammunition, Light, Loading", "Martial")
-    heavy_crossbow_martial_weapon = Weapon("Heavy Crossbow", 50, "1d10 piercing", 18, "Ammunition, Heavy, Loading, Two-handed", "Martial")
-    longbow_martial_weapon = Weapon("Longbow", 50, "1d8 piercing", 2, "Ammunition, Heavy, Two-handed", "Martial")
-    net_martial_weapon = Weapon("Net", 1, "", 3, "Special, Thrown", "Martial")
-
     has_weapon = input("Would you like to wield a weapon? (yes/no) ")
     if has_weapon.lower() == "yes":
         print("Please choose a type of weapon from the following list: ")
-        weapon_types = [club_simple_weapon, dagger_simple_weapon, greatclub_simple_weapon, handaxe_simple_weapon, javelin_simple_weapon, light_hammer_simple_weapon, mace_simple_weapon, quarterstaff_simple_weapon, sickle_simple_weapon, spear_simple_weapon, light_crossbow_simple_weapon, dart_simple_weapon, shortbow_simple_weapon, sling_simple_weapon, battleaxe_martial_weapon, flail_martial_weapon, glaive_martial_weapon, greataxe_martial_weapon, greatsword_martial_weapon, halberd_martial_weapon, lance_martial_weapon, longsword_martial_weapon, maul_martial_weapon, morningstar_martial_weapon, pike_martial_weapon, rapier_martial_weapon, scimitar_martial_weapon, shortsword_martial_weapon, trident_martial_weapon, war_pick_martial_weapon, warhammer_martial_weapon, whip_martial_weapon, blowgun_martial_weapon, hand_crossbow_martial_weapon, heavy_crossbow_martial_weapon, longbow_martial_weapon, net_martial_weapon]
+        weapon_types = []
+        for weapon in Simple_Weapons.__dict__.values():
+            if isinstance(weapon, Weapon):
+                weapon_types.append(weapon)
+        for weapon in Martial_Weapons.__dict__.values():
+            if isinstance(weapon, Weapon):
+                weapon_types.append(weapon)
         for weapon in weapon_types:
             print(weapon.name, weapon.cost, weapon.damage, weapon.weight, weapon.properties, weapon.proficiency)    
         weapon_answer = input("Which weapon would you like to wield? ")
