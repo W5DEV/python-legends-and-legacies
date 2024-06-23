@@ -2,7 +2,27 @@
 
 ## Description
 
+This project is maintained and developed by [John Larson (W5DEV)](github.com/W5DEV). Please contact me via my website at [W5DEV.com](https://w5dev.com) for any questions or concerns, or issues with this project.
+
 Legends & Legacies is a text-based role-playing game that allows the player to create a character and explore a world filled with adventure, danger, and mystery. The player will be able to make choices that will affect the outcome of the story, and will have to use their wits and skills to survive in a world where danger lurks around every corner.
+
+This game is currently in the engine/ruleset development phase. The game is being developed in Python, and will be based on the rules outlined at [D&D Beyond](https://www.dndbeyond.com/).
+
+Any contributions are welcome, and can be made by forking the repository and submitting a pull request. It should also be noted that while in the engine/ruleset development phase, the code can and will be constantly changed and refactored as improvements and optimizations are made.
+
+The project development is being broken up in phases:
+
+- Phase 1: Character Creation
+- Phase 2: Storytelling
+- Phase 3: Combat
+- Phase 4: Leveling Up
+- Phase 5: Testing
+- Phase 6: UI Implementation
+- Phase 7: Modularity and Customization
+
+Each phase will be broken down into smaller tasks, which will be tracked in the project board. To see the current status of the project, please visit the [Official Legends and Legacies Asana Board](https://app.asana.com/0/1207330598140022/1207330707711688)
+
+Current phase ***Phase 1: Character Creation***.
 
 ## Features
 
@@ -53,7 +73,7 @@ Currently, the game is in the early stages of development, with the basic framew
 - Gather feedback from players and make necessary changes
 - Optimize the game for performance and stability
 
-### UI Improvements
+### Phase 6: UI Implementation
 
 - Convert game from console-based to GUI-based
 - Create user-selectable options based on the current state of the game, equipment, and abilities
@@ -62,8 +82,14 @@ Currently, the game is in the early stages of development, with the basic framew
 - Add a system for displaying combat stats, health, and damage
 - Add a system for displaying experience points, level, and abilities
 
-### Phase 6: Customization
+### Phase 7: Modularity and Customization
 
 - Break out existing story into a separate module
 - Implement a system for adding custom story paths
 - Implement modularity for characters, classes, races, and equipment
+
+## Notices
+
+*This project is not affiliated with Wizards of the Coast, Dungeons & Dragons or D&D Beyond. Dungeons & Dragons is a registered trademark of Wizards of the Coast, LLC.*
+
+*Good faith effort and attempts have been made to ensure that this project does not infringe on any copyrights or trademarks. If you believe that this project infringes on any copyrights or trademarks, please contact me immediately at [W5DEV.com](https://w5dev.com) so that I may address your concerns.*
