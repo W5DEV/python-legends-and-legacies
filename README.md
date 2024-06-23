@@ -45,8 +45,9 @@ Currently, the game is in the early stages of development, with the basic framew
 - Determine ability modifiers
 - Create an option to take equipment based on class and background
 - Flesh out equipment options other than weapons and armor
-- Allow player to equip weapons, equipment and armor
+- Allow player to equip/ready weapons, equipment and armor
 - Calculate armor class based on currently equipped armor
+- Calculate weight based on current equipment and implement encumbrance
 
 ### Phase 2: Storytelling
 
