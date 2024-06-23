@@ -21,7 +21,7 @@ class Character:
         return f"Hello, {self.name}!"
     
     def get_info(self):
-        return f"{self.name} is a {self.race} {self.archetype}"
+        return f"{self.name} is a {self.race.subrace} {self.archetype}"
     
     def get_bio(self):
         return self.bio

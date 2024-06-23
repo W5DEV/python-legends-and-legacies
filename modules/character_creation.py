@@ -8,7 +8,6 @@ import modules.archetypes as archetypes
 def character_creation():
     # We are calling the functions defined for each section of Character Creation (defined below)
     player = greeting()
-    character_name(player)
     character_race(player)
     # This is the D&D Class... I'm calling it archetype to avoid confusion with Python classes
     character_archetype(player)
@@ -33,11 +32,6 @@ def greeting():
     player = character.Character("", "", "", "", [], [], 0, 0)
     return player
 
-def character_name(player):
-    print(f"What is your character's name?")
-    player.name = input("> ")
-    return
-
 def character_race(player):
     race = None
     print(f"Please choose {player.name}'s race from the following list:")
@@ -47,12 +41,34 @@ def character_race(player):
     while race == None:
         print("Which race is your character?")
         race_choice = input("> ")
-        for race_option in races.get_races():
-            if race_choice.lower() == race_option.lower():
-                race = race_option
-        if race == None:
+        while race_choice.lower() not in races.races:
             print("Sorry, that is not a valid race. Please try again.")
+            print("Which race is your character?")
+            race_choice = input("> ")
+        if race_choice.lower() == "hill dwarf":
+            print("Please choose a tool proficiency from the following list:")
+            tool_proficiency = input("> ")
+            race = races.define_hill_dwarf(tool_proficiency)
+        if race_choice.lower() == "mountain dwarf":
+            print("Please choose a tool proficiency from the following list:")
+            tool_proficiency = input
+            race = races.define_mountain_dwarf(tool_proficiency)
+        if race_choice.lower() == "high elf":
+            print("Please choose a language from the following list:")
+            language = input("> ")
+            race = races.define_high_elf(language)
+        if race_choice.lower() == "wood elf":
+            race = races.define_wood_elf()
+        if race_choice.lower() == "lightfoot halfling":
+            race = races.define_lightfoot_halfling()
+        if race_choice.lower() == "stout halfling":
+            race = races.define_stout_halfling()
+        if race_choice.lower() == "human":
+            race = races.define_human()
+    
     player.race = race
+    player.name = race.name
+
     return
 
 def character_archetype(player):
