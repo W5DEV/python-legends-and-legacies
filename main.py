@@ -1,4 +1,5 @@
 import random
+import math
 
 class User:
     def __init__(self, name, race, archetype, bio, armor, weapon, abilities, xp, gp):
@@ -28,22 +29,25 @@ class User:
         return f"{self.bio}"
     
     def get_armor(self):
-        return f"{self.armor}"
+        if self.armor == None:
+            return f"{self.name} is not wearing armor."
+        return f"{self.name} is wearing {self.armor}"
     
     def get_weapon(self):
-        return f"{self.weapon}"
+        if self.weapon == None:
+            return f"{self.name} is not wielding a weapon."
+        return f"{self.name} is wielding {self.weapon}"
     
     def get_abilities(self):
-        return f"{self.abilities}"
-    
-    def get_stats(self):
-        return f"{self.stats}"
+        for ability, value in self.abilities.items():
+            return f"{ability}: {value}"
     
     def get_gp(self):
-        return f"{self.gp} gold pieces"
+        return f"{self.name} has {self.gp} gold pieces."
     
     def get_xp(self):
-        return f"{self.name} has {self.xp}, so they are level {self.xp // 100}."
+        level = calculate_level(self.xp)
+        return f"{self.name} has {self.xp}, so they are level {level}."
     
     def level_up(self):
         self.xp += 100
@@ -244,6 +248,10 @@ def main():
     print(user.get_abilities())
     print(user.get_gp())
     print(user.get_xp())
+    user.award_xp(49)
+    print(user.get_xp())
+    user.award_xp(1)
+    print(user.get_xp())
 
 def roll_4_sided_dice():
     return random.randint(1, 4)
@@ -268,22 +276,40 @@ def roll_100_sided_dice():
 
 def calculate_starting_gp(archetype):
     gp = 0
-    if archetype == "Cleric":
+    if archetype.lower() == "cleric":
         dice_roll = roll_4_sided_dice() + roll_4_sided_dice() + roll_4_sided_dice() + roll_4_sided_dice() + roll_4_sided_dice()
         gp = dice_roll * 10 
-    elif archetype == "Fighter":
+    elif archetype.lower() == "fighter":
         dice_roll = roll_4_sided_dice() + roll_4_sided_dice() + roll_4_sided_dice() + roll_4_sided_dice() + roll_4_sided_dice()
         gp = dice_roll * 10
-    elif archetype == "Rogue":
+    elif archetype.lower() == "rogue":
         dice_roll = roll_4_sided_dice() + roll_4_sided_dice() + roll_4_sided_dice() + roll_4_sided_dice()
         gp = dice_roll * 10
-    elif archetype == "Wizard":
+    elif archetype.lower() == "wizard":
         dice_roll = roll_4_sided_dice() + roll_4_sided_dice() + roll_4_sided_dice() + roll_4_sided_dice()
         gp = dice_roll * 10
     else:
         gp = 0
 
     return gp
+
+def calculate_level(xp):
+    # Using the quadratic formula to solve for n in the equation: xp = 5 * n * (n - 1) / 2
+    # This simplifies to: n^2 - n - (2 * xp / 5) = 0
+    a = 1
+    b = -1
+    c = -2 * xp / 5
+    
+    # Calculate the discriminant
+    discriminant = b**2 - 4 * a * c
+    
+    if discriminant < 0:
+        return 0  # No real solution, should not happen with valid XP
+    
+    # Calculate the positive root of the quadratic equation
+    level = (-b + math.sqrt(discriminant)) / (2 * a)
+
+    return math.floor(level)
 
 def roll_ability():
     initial_roll = [roll_6_sided_dice(), roll_6_sided_dice(), roll_6_sided_dice(), roll_6_sided_dice()]
