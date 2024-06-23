@@ -6,9 +6,9 @@ This project is maintained and developed by [John Larson (W5DEV)](github.com/W5D
 
 Legends & Legacies is a text-based role-playing game that allows the player to create a character and explore a world filled with adventure, danger, and mystery. The player will be able to make choices that will affect the outcome of the story, and will have to use their wits and skills to survive in a world where danger lurks around every corner.
 
-This game is currently in the engine/ruleset development phase. The game is being developed in Python, and will be based on the rules outlined at [D&D Beyond](https://www.dndbeyond.com/).
+This game is currently in the engine/rules development phase. The game is being developed in Python, and will be based on the rules outlined at [D&D Beyond](https://www.dndbeyond.com/).
 
-Any contributions are welcome, and can be made by forking the repository and submitting a pull request. It should also be noted that while in the engine/ruleset development phase, the code can and will be constantly changed and refactored as improvements and optimizations are made.
+Any contributions are welcome, and can be made by forking the repository and submitting a pull request. It should also be noted that while in the engine/rules development phase, the code can and will be constantly changed and refactored as improvements and optimizations are made.
 
 The project development is being broken up in phases:
 
@@ -41,11 +41,11 @@ Currently, the game is in the early stages of development, with the basic framew
 - ~~Create a basic character creation system~~
 - Add rules and traits for character races
 - Add benefits, features and proficiencies for character classes
-- Determine proficency bonus
+- Determine proficiency bonus
 - Determine ability modifiers
 - Create an option to take equipment based on class and background
 - Flesh out equipment options other than weapons and armor
-- Make weapons, equipment and armor equipable
+- Allow player to equip weapons, equipment and armor
 - Calculate armor class based on currently equipped armor
 
 ### Phase 2: Storytelling
