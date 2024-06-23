@@ -2,6 +2,7 @@ import modules.character_creation as character_creation
 
 def main():
     player = character_creation.character_creation()
+    
     print(player.greet())
     print(player.get_info())
     print(player.get_bio())
