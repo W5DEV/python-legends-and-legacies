@@ -156,7 +156,7 @@ class Coin_Types:
     platinum = 1000
 
 def main():
-    print("Greetings traveller! Welcome to the world of D&D!")
+    print("Greetings traveler! Welcome to the world of D&D!")
     name = input("What is your name? ")
     print(f"Hello, {name}!")
 
