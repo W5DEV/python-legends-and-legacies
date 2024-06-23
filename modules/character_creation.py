@@ -1,27 +1,22 @@
 import modules.character as character
 import modules.utils as utils
 import modules.equipment as equipment
+import modules.races as races
+import modules.archetypes as archetypes
+
 
 def character_creation():
     print("Greetings traveler! Welcome to the world of D&D!")
     name = input("What is your name? ")
     print(f"Hello, {name}!")
 
-    # Need to break up these races into their own classes, with bios, abilities, etc.
-    races = ["Dwarf", "Elf", "Halfling", "Human", "Dragonborn", "Gnome", "Half-Elf", "Half-Orc", "Tiefling"]
     print("Please choose a race from the following list:")
-    for race in races:
-        print(race)
-    
+    races.get_races()
     race = input("Which race would you like to be? ")
     print(f"Great! You are a {race}.")
 
-    # Need to break up these archetypes into their own classes, with bios, abilities, etc.
-    archetypes = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"]
     print("Please choose an class from the following list:")
-    for archetype in archetypes:
-        print(archetype)
-
+    archetypes.get_archetypes()
     archetype = input("Which class would you like to be? ")  
     print(f"Great! You are a {archetype}.")
 
