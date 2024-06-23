@@ -1,6 +1,18 @@
 import modules.character_creation as character_creation
 
 def main():
-    character_creation.character_creation()
+    player = character_creation.character_creation()
+    print(player.greet())
+    print(player.get_info())
+    print(player.get_bio())
+    print(f"{player.name} has the following equipment items:")
+    for item in player.get_equipment():
+        print(item.name)
+    print(f"{player.name} has the following abilities:")
+    for ability, value in player.get_abilities().items():
+        print(f"{ability}: {value}")
+    print(f"{player.name} has {player.get_gp()} gold pieces.")
+    print(player.get_xp())
+    print(player.xp_needed_for_next_level())
 
 main()

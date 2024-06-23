@@ -6,13 +6,39 @@ import modules.archetypes as archetypes
 
 
 def character_creation():
-    print("Greetings traveler! Welcome to the world of D&D!")
-    print("What is your character's name?")
-    name = input("> ")
-    print(f"Hello, {name}!")
+    player = greeting()
+    character_name(player)
+    character_race(player)
+    character_archetype(player)
+    
+    print(f"Your character is called {player.name}, a {player.race} {player.archetype}.")
 
+    player.xp = 0
+
+    player.gp = utils.calculate_starting_gp(player.archetype)
+
+    print(f"{player.name} has {player.gp} gold pieces.")
+
+    character_bio(player)
+    character_abilities(player)
+    character_equipment(player)
+
+    return player
+
+
+def greeting():
+    print("Greetings traveler! Welcome to the magical world of Legends & Legacies!")
+    player = character.Character("", "", "", "", [], [], 0, 0)
+    return player
+
+def character_name(player):
+    print(f"What is your character's name?")
+    player.name = input("> ")
+    return
+
+def character_race(player):
     race = None
-    print("Please choose your character's race from the following list:")
+    print(f"Please choose {player.name}'s race from the following list:")
     races.display_races()
     while race == None:
         print("Which race is your character?")
@@ -22,34 +48,30 @@ def character_creation():
                 race = race_option
         if race == None:
             print("Sorry, that is not a valid race. Please try again.")
-        
+    player.race = race
+    return
 
-
+def character_archetype(player):
     archetype = None
     print("Great! Now please choose an class from the following list:")
     archetypes.display_archetypes()
     while archetype == None:
-        print("Which class is your character?")
+        print(f"Which class is {player.name}?")
         archetype_choice = input("> ")
         for archetype_option in archetypes.get_archetypes():
             if archetype_choice.lower() == archetype_option.lower():
                 archetype = archetype_option
         if archetype == None:
             print("Sorry, that is not a valid class. Please try again.")
-    
-    
+    player.archetype = archetype
+    return 
 
-    print(f"Awesome! Your character is called {name}, a {race} {archetype}.")
+def character_bio(player):
+    print(f"Tell me about your {player.name}'s background story.")
+    player.bio = input("> ")
+    return
 
-    xp = 0
-
-    gp = utils.calculate_starting_gp(archetype)
-
-    print(f"{name} has {gp} gold pieces.")
-
-    print(f"Tell me about {name}'s background story.")
-    bio = input("> ")
-
+def character_abilities(player):
     abilities = {}
 
     abilities["Strength"] = utils.roll_ability()
@@ -59,15 +81,21 @@ def character_creation():
     abilities["Wisdom"] = utils.roll_ability()
     abilities["Charisma"] = utils.roll_ability()
 
-    print(f"Here are {name}'s abilities: ")
+    print(f"Here are {player.name}'s abilities: ")
     for ability, value in abilities.items():
         print(f"{ability}: {value}") 
 
+    player.abilities = abilities
+    return
+
+def character_equipment(player):
+    name = player.name
+    gp = player.gp
     player_equipment = []
-    print("Now it is time to choose your character's equipment!")
+    print(f"Now it is time to choose {player.name}'s equipment!")
     equipment_loop = True
     while equipment_loop:
-        print(f"{name} currently has the following equipment:")
+        print(f"{player.name} currently has the following equipment:")
         for item in player_equipment:
             print(item.name)
         print(f"{name} has {gp} gold pieces.")
@@ -231,18 +259,6 @@ def character_creation():
                     player_equipment.append(equipment.shield)
                     gp -= equipment.shield.cost
                     print(f"{name} now has {gp} gold pieces and a new {equipment.shield.name}.")
-
-    player = character.Character(name, race, archetype, bio, player_equipment, abilities, xp, gp)
-
-    print(player.greet())
-    print(player.get_info())
-    print(player.get_bio())
-    print(f"{name} has the following equipment items:")
-    for item in player.get_equipment():
-        print(item.name)
-    print(f"{name} has the following abilities:")
-    for ability, value in player.get_abilities().items():
-        print(f"{ability}: {value}")
-    print(f"{name} has {player.get_gp()} gold pieces.")
-    print(player.get_xp())
-    print(player.xp_needed_for_next_level())
+    player.gp = gp
+    player.equipment = player_equipment
+    return
