@@ -195,7 +195,9 @@ def main():
     abilities["Wisdom"] = roll_ability()
     abilities["Charisma"] = roll_ability()
 
-    print(f"Your abilities are as follows: {abilities}")
+    print("Here are your abilities: ")
+    for ability, value in abilities.items():
+        print(f"{ability}: {value}") 
 
     armor = None
 
