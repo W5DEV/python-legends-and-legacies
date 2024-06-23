@@ -1,4 +1,4 @@
-import modules.user as user
+import modules.character as character
 import modules.utils as utils
 import modules.equipment as equipment
 
@@ -89,7 +89,7 @@ def character_creation():
     else:
         print("You have chosen not to start with a shield.")
 
-    player = user.User(name, race, archetype, bio, player_equipment, abilities, xp, gp)
+    player = character.Character(name, race, archetype, bio, player_equipment, abilities, xp, gp)
 
     print(player.greet())
     print(player.get_info())
@@ -100,7 +100,7 @@ def character_creation():
     print("You have the following abilities:")
     for ability, value in player.get_abilities().items():
         print(f"{ability}: {value}")
-    print(f"You have {player.get_gp()} gp.")
+    print(f"You have {player.get_gp()} gold pieces.")
     print({player.get_xp()})
     print(player.award_xp(1))
     print(player.xp_needed_for_next_level())

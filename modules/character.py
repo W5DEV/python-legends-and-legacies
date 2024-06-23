@@ -1,6 +1,6 @@
 import modules.utils as utils
 
-class User:
+class Character:
     def __init__(self, name, race, archetype, bio, equipment, abilities, xp, gp):
         self.name = name
         self.race = race
