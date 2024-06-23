@@ -27,8 +27,6 @@ def character_creation():
 
     xp = 0
 
-    gp = 0
-
     gp = utils.calculate_starting_gp(archetype)
 
     print(f"You have {gp} gold pieces.")
