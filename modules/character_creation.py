@@ -16,7 +16,7 @@ def character_creation():
 
     player.xp = 0
 
-    completed_archetypes = ["barbarian", "bard"]
+    completed_archetypes = ["barbarian", "bard", "cleric"]
     if player.archetype.name.lower() in completed_archetypes:
         player.gp = utils.calculate_starting_gp(player.archetype.name)
     else:
@@ -90,7 +90,7 @@ def character_archetype(player):
             archetype_choice = input("> ")
         archetype = archetype_choice
         
-    completed_archetypes = ["barbarian", "bard"]
+    completed_archetypes = ["barbarian", "bard", "cleric"]
     if archetype.lower() in completed_archetypes:
         archetype = archetypes.create_archetype(archetype.lower())
     player.archetype = archetype

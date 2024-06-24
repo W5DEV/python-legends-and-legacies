@@ -3,6 +3,7 @@
 
 import archetypes.barbarian as Barbarian
 import archetypes.bard as Bard
+import archetypes.cleric as Cleric
 
 displayed_archetypes = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"]
 
@@ -19,6 +20,9 @@ def create_archetype(archetype_name):
     elif archetype_name == "bard":
         bard = Bard.define_bard()
         return bard
+    elif archetype_name == "cleric":
+        cleric = Cleric.define_cleric()
+        return cleric
     else: 
         return archetype_name
    

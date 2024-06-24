@@ -21,14 +21,13 @@ def display_bard_spells():
         print(spell)
 
 class Bard:
-    
     def __init__(self):
         name = "Bard"
-        description = "A fierce warrior of primitive background who can enter a battle rage"
-        hit_die = "1d8 for first level, then 1d8 (or 5, whichever is higher) + your Constitution modifier per bard level after that"
-        primary_ability = ""
-        saving_throw_proficiencies = "Dexterity, Charisma"
-        armor_proficiencies = "Light Armors"
+        description = "An inspiring magician whose power echoes the music of creation."
+        hit_die = "1d8 for first level, then 1d8 (or 5, whichever is higher) per level after 1 + your Constitution modifier"
+        primary_ability = "Charisma"
+        saving_throw_proficiencies = ["Dexterity", "Charisma"]
+        armor_proficiencies = ["Light Armor"]
         weapon_proficiencies = "Simple Weapons, Hand Crossbows, Longswords, Rapiers, Shortswords"
         tool_proficiencies = "Three musical instruments of your choice"
         skill_proficiencies = []
