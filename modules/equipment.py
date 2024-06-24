@@ -133,3 +133,5 @@ instruments = [bagpipes, drum, dulcimer, flute, lute, lyre, horn, pan_flute, sha
 holy_symbol_amulet = Equipment("Holy Symbol Amulet", 5, 1, "Holy Symbol")
 holy_symbol_emblem = Equipment("Holy Symbol Emblem", 5, 0, "Holy Symbol")
 holy_symbol_reliquary = Equipment("Holy Symbol Reliquary", 5, 2, "Holy Symbol")
+
+druidic_focus = Equipment("Druidic Focus", 0, 0, "Sprig of Mistletoe")
