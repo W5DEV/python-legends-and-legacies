@@ -1,5 +1,5 @@
 # This module contains a list of all the races DndBeyond has for character creation.
-# We will eventually expand the races to include rare and uncommon races, as well as logic to determine if they are available to the player.
+
 import modules.names as names
 
 displayed_races = ["Hill Dwarf", "Mountain Dwarf", "High Elf", "Wood Elf", "Lightfoot Halfling", "Stout Halfling", "Human"]

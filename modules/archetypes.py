@@ -1,3 +1,4 @@
+# This module contains a list of all the classes DndBeyond has for character creation.
 # Since the word "class" is reserved in Python, we will use the term "archetype" to refer to the D&D classes.
 
 import modules.equipment as equipment
