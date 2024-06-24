@@ -1,7 +1,13 @@
 # We still need to create methods for druids for the following:
+# - update_spells_known
+# - update_cantrips_known
+# - update_spell_slots
 # - level_up
 # - proficiency_bonus
+# - spell_save_dc
 # - spell_attack_bonus
+# - ritual_casting
+# - spellcasting_focus
 
 import modules.equipment as equipment
 

@@ -5,7 +5,7 @@ class Barbarian:
     def __init__(self):
         name = "Barbarian"
         description = "A fierce warrior of primitive background who can enter a battle rage"
-        hit_die = "1d12 per Barbarian level"
+        hit_die = "1d12 for first level, then 1d12 (or 7, whichever is higher) per level after 1 + your Constitution modifier."
         primary_ability = "Strength"
         saving_throw_proficiencies = "Strength, Constitution"
         armor_proficiencies = "Light Armor, Medium Armor, Shields"
