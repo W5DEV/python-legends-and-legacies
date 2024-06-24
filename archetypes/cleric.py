@@ -9,6 +9,8 @@
 # - ritual_casting
 # - spellcasting_focus
 
+# Do clerics start with all spells and just "prepare" them? How does that work? Figure this out
+
 import modules.equipment as equipment
 
 cleric_cantrips = ["Guidance", "Light", "Mending", "Resistance", "Sacred Flame", "Spare the Dying", "Thaumaturgy"]
