@@ -217,8 +217,12 @@ def define_cleric():
         print("Please enter a valid weapon choice:")
         weapon_choice1 = input("> ")
     if weapon_choice1.lower() == "mace":
+        print("You have chosen a Mace.")
+        print("A Mace has been added to your starting equipment.")
         cleric.starting_equipment.append(equipment.mace)
     elif weapon_choice1.lower() == "warhammer":
+        print("You have chosen a Warhammer.")
+        print("A Warhammer has been added to your starting equipment.")
         cleric.starting_equipment.append(equipment.warhammer)
 
     print("Please choose between Scale Mail, Leather Armor, or Chain Mail:")
@@ -227,10 +231,16 @@ def define_cleric():
         print("Please enter a valid armor choice:")
         armor_choice = input("> ")
     if armor_choice.lower() == "scale mail":
+        print("You have chosen Scale Mail.")
+        print("Scale Mail has been added to your starting equipment.")
         cleric.starting_equipment.append(equipment.scale_mail_medium_armor)
     elif armor_choice.lower() == "leather armor":
+        print("You have chosen Leather Armor.")
+        print("Leather Armor has been added to your starting equipment.")
         cleric.starting_equipment.append(equipment.leather_light_armor)
     elif armor_choice.lower() == "chain mail":
+        print("You have chosen Chain Mail.")
+        print("Chain Mail has been added to your starting equipment.")
         cleric.starting_equipment.append(equipment.chain_mail_heavy_armor)
     
     print("Please choose between a Light Crossbow and 20 bolts or any simple weapon:")
@@ -240,6 +250,8 @@ def define_cleric():
         print("Please enter a valid weapon choice:")
         weapon_choice2 = input()
     if weapon_choice2.lower() == "light crossbow":
+        print("You have chosen a Light Crossbow and 20 bolts.")
+        print("A Light Crossbow and 20 bolts have been added to your starting equipment.")
         cleric.starting_equipment.append(equipment.light_crossbow)
     elif weapon_choice2.lower() == "other simple weapon":
         valid_weapons = []
@@ -253,6 +265,8 @@ def define_cleric():
             other_weapon = input("> ")
         for weapon in equipment.simple_weapons:
             if other_weapon.lower() == weapon.name.lower():
+                print(f"You have chosen a {weapon.name}.")
+                print(f"A {weapon.name} has been added to your starting equipment.")
                 cleric.starting_equipment.append(weapon)
                 break
     
@@ -262,11 +276,16 @@ def define_cleric():
         print("Please enter a valid pack choice:")
         pack_choice = input("> ")
     if pack_choice.lower() == "priest's pack":
+        print("You have chosen a Priest's Pack.")
+        print("A Priest's Pack has been added to your starting equipment.")
         cleric.starting_equipment.append(equipment.priests_pack)
     elif pack_choice.lower() == "explorer's pack":
+        print("You have chosen an Explorer's Pack.")
+        print("An Explorer's Pack has been added to your starting equipment.")
         cleric.starting_equipment.append(equipment.explorers_pack)
 
     print("You will also receive a Shield and a Holy Symbol Emblem.")
+    print("A Shield and a Holy Symbol Emblem have been added to your starting equipment.")
     cleric.starting_equipment.append(equipment.shield)
     cleric.starting_equipment.append(equipment.holy_symbol_emblem)
 

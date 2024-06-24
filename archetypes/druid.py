@@ -194,6 +194,8 @@ def define_druid():
         print("Please enter either 'shield' or 'other weapon choice':")
         weapon_choice1 = input("> ")
     if weapon_choice1.lower() == "shield":
+        print("You have chosen a Shield.")
+        print("A Shield has been added to your starting equipment.")
         druid.starting_equipment.append(equipment.shield)
     else:
         print("Please choose a simple weapon from the list below:")
@@ -205,6 +207,8 @@ def define_druid():
             other_weapon1 = input("> ")
         for weapon in equipment.simple_weapons:
             if other_weapon1.lower() == weapon.name.lower():
+                print(f"You have chosen {weapon.name}.")
+                print(f"One {weapon.name} has been added to your starting equipment.")
                 druid.starting_equipment.append(weapon)
                 break
 
@@ -214,6 +218,8 @@ def define_druid():
         print("Please enter a valid armor choice:")
         weapon_choice2 = input("> ")
     if weapon_choice2.lower() == "scimitar":
+        print("You have chosen a Scimitar.")
+        print("A Scimitar has been added to your starting equipment.")
         druid.starting_equipment.append(equipment.scimitar)
     else:
         print("Please choose a simple weapon from the list below:")
@@ -225,10 +231,13 @@ def define_druid():
             other_weapon2 = input("> ")
         for weapon in equipment.simple_melee_weapons:
             if other_weapon2.lower() == weapon.name.lower():
+                print(f"You have chosen {weapon.name}.")
+                print(f"One {weapon.name} has been added to your starting equipment.")
                 druid.starting_equipment.append(weapon)
                 break
 
     print("You will also receive Leather Armor, an Explorer's Pack, and a Druidic Focus.")
+    print("Leather Armor, an Explorer's Pack, and a Druidic Focus have been added to your starting equipment.")
     druid.starting_equipment.append(equipment.leather_light_armor)
     druid.starting_equipment.append(equipment.explorers_pack)
     druid.starting_equipment.append(equipment.druidic_focus)
