@@ -223,36 +223,55 @@ def define_cleric():
     print("Clerics start with 3 Cantrips. Choose 3 Cantrips from the following list:")
     for cantrip in displayed_cleric_cantrips:
         print(cantrip)
-    selected_cantrips = []
-    for i in range(3):
-        print(f"Please choose Cantrip {i + 1}:")
-        cantrip_choice = input("> ")
-        while (cantrip_choice.lower() not in cleric_cantrips) or (cantrip_choice.lower() in selected_cantrips):
-            print("Please enter a valid Cantrip choice, not previously selected:")
-            cantrip_choice = input("> ")
-        selected_cantrips.append(cantrip_choice)
+    print("Please choose your first Cantrip:")
+    cantrip_choice1 = input("> ")
+    while (cantrip_choice1.lower() not in cleric_cantrips):
+        print("Please enter a valid Cantrip choice:")
+        cantrip_choice1 = input("> ")
+    for cantrip in displayed_cleric_cantrips:
+        if cantrip.lower() == cantrip_choice1.lower():
+            cleric.cantrips.append(cantrip)
+            break
+    print("Please choose your second Cantrip:")
+    cantrip_choice2 = input("> ")
+    while (cantrip_choice2.lower() not in cleric_cantrips) or (cantrip_choice2.lower() in [cantrip_choice1.lower()]):
+        print("You should not choose the same Cantrip twice.")
+        print("Please enter a valid Cantrip choice:")
+        cantrip_choice2 = input("> ")
+    for cantrip in displayed_cleric_cantrips:
+        if cantrip.lower() == cantrip_choice2.lower():
+            cleric.cantrips.append(cantrip)
+            break
+    print("Please choose your third Cantrip:")
+    cantrip_choice3 = input("> ")
+    while (cantrip_choice3.lower() not in cleric_cantrips) or (cantrip_choice3.lower() in [cantrip_choice1.lower(), cantrip_choice2.lower()]):
+        print("You should not choose the same Cantrip twice.")
+        print("Please enter a valid Cantrip choice:")
+        cantrip_choice3 = input("> ")
+    for cantrip in displayed_cleric_cantrips:
+        if cantrip.lower() == cantrip_choice3.lower():
+            cleric.cantrips.append(cantrip)
+            break
     print(f"You have chosen the following Cantrips:")
-    for cantrip in selected_cantrips:
+    for cantrip in cleric.cantrips:
         print(cantrip)
-    cleric.cantrips = selected_cantrips
 
     # Starting Spells
     print("Clerics can prepare 1 spell. Choose 1 spell from the following list:")
-    for spell in cleric_spells:
+    for spell in displayed_cleric_cantrips:
         print(spell)
-    selected_spells = []
-    for i in range(1):
-        print(f"Please choose Spell {i + 1}:")
+    print("Please choose your spell:")
+    spell_choice = input("> ")
+    while spell_choice.lower() not in cleric_spells:
+        print("Please enter a valid spell choice:")
         spell_choice = input("> ")
-        while (spell_choice.lower() not in cleric_spells) or (spell_choice.lower() in selected_spells):
-            print("You should not choose the same spell twice.")
-            print("Please enter a valid Spell choice:")
-            spell_choice = input("> ")
-        selected_spells.append(spell_choice)
-    print(f"You have chosen the following Spells:")
-    for spell in selected_spells:
+    for spell in displayed_cleric_spells:
+        if spell.lower() == spell_choice.lower():
+            cleric.spells.append(spell)
+            break
+    print(f"You have chosen the following Spell:")
+    for spell in cleric.spells:
         print(spell)
-    cleric.spells = selected_spells
 
     return cleric
 
