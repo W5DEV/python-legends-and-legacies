@@ -15,6 +15,8 @@ import modules.instruments as instruments
 
 displayed_bard_spells = ["Animal Friendship", "Bane", "Charm Person", "Comprehend Languages", "Cure Wounds", "Detect Magic", "Disguise Self", "Faerie Fire", "Feather Fall", "Healing Word", "Heroism", "Hideous Laughter", "Identify", "Illusory Script", "Longstrider", "Silent Image", "Sleep", "Speak with Animals", "Thunderwave", "Unseen Servant"]
 bard_spells = ["animal friendship", "bane", "charm person", "comprehend languages", "cure wounds", "detect magic", "disguise self", "faerie fire", "feather fall", "healing word", "heroism", "hideous laughter", "identify", "illusory script", "longstrider", "silent image", "sleep", "speak with animals", "thunderwave", "unseen servant"]
+displayed_bard_cantrips = ["Dancing Lights", "Light", "Mage Hand", "Mending", "Message", "Minor Illusion", "Prestidigitation", "True Strike", "Vicious Mockery"]
+bard_cantrips = ["dancing lights", "light", "mage hand", "mending", "message", "minor illusion", "prestidigitation", "true strike", "vicious mockery"]
 
 def display_bard_spells():
     for spell in displayed_bard_spells:
@@ -51,6 +53,7 @@ class Bard:
         self.spells = []
         self.expertise = []
         self.bard_spells = []
+        self.cantrips_known = 2
         self.spell_slots_level_1 = 2
         self.spell_slots_level_2 = 0
         self.spell_slots_level_3 = 0
