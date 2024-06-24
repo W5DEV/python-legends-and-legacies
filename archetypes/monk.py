@@ -167,10 +167,6 @@ def define_monk():
     print("10 Darts have been added to your starting equipment.")
     # Add darts to starting equipment
 
-    print(f"You have chosen the following starting equipment:")
-    for item in monk.starting_equipment:
-        print(item.name)
-
     # Starting Tools
     tool_choice = ""
     print("You can choose one type of artisan's tools or one musical instrument.")
@@ -215,5 +211,10 @@ def define_monk():
                 print(f"{instrument.name} has been added to your starting equipment.")
                 monk.tool_proficiencies.append(instrument)
                 break
+    
+    print(f"You have chosen the following starting equipment:")
+    for item in monk.starting_equipment:
+        print(item.name)
+    
 
     return monk
