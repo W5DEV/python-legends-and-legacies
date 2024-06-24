@@ -3,6 +3,8 @@ import modules.equipment as equipment
 displayed_fighter_skills = ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"]
 fighter_skills = ["acrobatics", "animal handling", "athletics", "history", "insight", "intimidation", "perception", "survival"]
 
+potential_starting_equipment = ["Chain Mail or Leather Armor, Longbow, and 20 Arrows", "Any Martial Weapon and a Shield or Two Martial Weapons", "Light Crossbow and 20 Bolts or Two Handaxes", "Dungeoneer's Pack or Explorer's Pack"]
+        
 class Fighter:
     
     def __init__(self):
@@ -14,11 +16,6 @@ class Fighter:
         armor_proficiencies = "All Armor, Shields"
         weapon_proficiencies = "All Simple Weapons and Martial Weapons"
         tool_proficiencies = "None"
-        skill_proficiencies = []
-        potential_starting_equipment = ["Chain Mail or Leather Armor, Longbow, and 20 Arrows", "Any Martial Weapon and a Shield or Two Martial Weapons", "Light Crossbow and 20 Bolts or Two Handaxes", "Dungeoneer's Pack or Explorer's Pack"]
-        special_abilities = []
-        self.fighting_style = []
-        self.marital_archetype = ""
         self.name = name
         self.bio = bio
         self.hit_die = hit_die
@@ -27,10 +24,11 @@ class Fighter:
         self.armor_proficiencies = armor_proficiencies
         self.weapon_proficiencies = weapon_proficiencies
         self.tool_proficiencies = tool_proficiencies
-        self.skill_proficiencies = skill_proficiencies
-        self.potential_starting_equipment = potential_starting_equipment
+        self.skill_proficiencies = []
         self.starting_equipment = []
-        self.special_abilities = special_abilities
+        self.fighting_style = []
+        self.marital_archetype = ""
+        self.special_abilities = []
 
     def get_info(self):
         print(f"The {self.name}: {self.description}")
@@ -147,7 +145,7 @@ def define_fighter():
     equipment_choice3 = ""
     equipment_choice4 = ""
     print("Choose your starting equipment:")
-    for item in fighter.potential_starting_equipment:
+    for item in potential_starting_equipment:
         print(item)
 
     print("Please enter your choice of 'Chain Mail' or 'Leather Armor, Longbow, and 20 Arrows':")
