@@ -9,6 +9,7 @@ import archetypes.fighter as Fighter
 import archetypes.monk as Monk
 import archetypes.paladin as Paladin
 import archetypes.ranger as Ranger
+import archetypes.rogue as Rogue
 
 displayed_archetypes = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"]
 
@@ -43,6 +44,9 @@ def create_archetype(archetype_name):
     elif archetype_name == "ranger":
         ranger = Ranger.define_ranger()
         return ranger
+    elif archetype_name == "rogue":
+        rogue = Rogue.define_rogue()
+        return rogue
     else: 
         return archetype_name
    
