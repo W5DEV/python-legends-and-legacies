@@ -39,8 +39,8 @@ Currently, the game is in the early stages of development, with the basic framew
 ### Phase 1: Character Creation
 
 - ~~Create a basic character creation system~~
-- Add rules and traits for character races
-- Add benefits, features and proficiencies for character classes
+- ~~Add rules and traits for character races~~
+- ~~Add benefits, features and proficiencies for character classes~~
 - Determine proficiency bonus
 - Determine ability modifiers
 - Create an option to take equipment based on class and background
