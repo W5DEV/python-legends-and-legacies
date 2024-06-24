@@ -17,6 +17,8 @@ class Fighter:
         skill_proficiencies = []
         potential_starting_equipment = ["Chain Mail or Leather Armor, Longbow, and 20 Arrows", "Any Martial Weapon and a Shield or Two Martial Weapons", "Light Crossbow and 20 Bolts or Two Handaxes", "Dungeoneer's Pack or Explorer's Pack"]
         special_abilities = []
+        self.fighting_style = []
+        self.marital_archetype = ""
         self.name = name
         self.description = description
         self.hit_die = hit_die
@@ -45,47 +47,72 @@ class Fighter:
     
     def update_special_abilities(self, level):
         if level >= 1:
-            self.special_abilities.append("Fighting Style")
+            print("You have reached level 1 and now have the following fighting styles:")
+            for style in ["Archery", "Defense", "Dueling", "Great Weapon Fighting", "Protection", "Two-Weapon Fighting"]:
+                print(style)
+            print("Please enter your choice of fighting style:")
+            fighting_style_choice = input("> ")
+            while fighting_style_choice.lower() not in ["archery", "defense", "dueling", "great weapon fighting", "protection", "two-weapon fighting"]:
+                print("That is not a valid choice. Please choose from the list.")
+                fighting_style_choice = input("> ")
+            self.fighting_style.append(fighting_style_choice)
+            print(f"You have chosen the {fighting_style_choice} fighting style.")
+            print("You cannot specialize in this fighting style in the future.")
+            print("You have also gained the following special abilities:")
             self.special_abilities.append("Second Wind")
         if level >= 2:
-            self.special_abilities.append("Action Surge (1 use)")
+            self.special_abilities.append("Action Surge (1/rest)")
         if level >= 3:
-            self.special_abilities.append("Martial Archetype")
+            self.marital_archetype = "Champion"
+            self.special_abilities.append("Improved Critical (crit range 19-20)")
         if level >= 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
         if level >= 5:
-            self.special_abilities.append("Extra Attack (1)")
+            self.special_abilities.append("Extra Attack (1 extra attack)")
         if level >= 6:
             self.special_abilities.append("Ability Score Improvement 6th Level")
         if level >= 7:
-            self.special_abilities.append("Martial Archetype Feature")
+            self.special_abilities.append("Remarkable Athlete")
         if level >= 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
         if level >= 9:
-            self.special_abilities.append("Indomitable (1 use)")
+            self.special_abilities.append("Indomitable (1/rest)")
         if level >= 10:
-            self.special_abilities.append("Martial Archetype Feature")
+            self.special_abilities.append("Additional Fighting Style")
+            print("You have reached level 10 and now have the following fighting styles:")
+            for style in ["Archery", "Defense", "Dueling", "Great Weapon Fighting", "Protection", "Two-Weapon Fighting"]:
+                print(style)
+            print("Please enter your choice of fighting style:")
+            fighting_style_choice = input("> ")
+            while (fighting_style_choice.lower() not in ["archery", "defense", "dueling", "great weapon fighting", "protection", "two-weapon fighting"]) and (fighting_style_choice not in self.fighting_style):
+                print("That is not a valid choice. Please choose an unused style from the list.")
+                print("Your current fighting styles are:")
+                for style in self.fighting_style:
+                    print(style)
+                fighting_style_choice = input("> ")
+            self.fighting_style.append(fighting_style_choice)
+            print(f"You have chosen the {fighting_style_choice} fighting style.")
         if level >= 11:
-            self.special_abilities.append("Extra Attack (2)")
+            self.special_abilities.append("Extra Attack (2 extra attacks)")
         if level >= 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
         if level >= 13:
-            self.special_abilities.append("Indomitable (2 uses)")
+            self.special_abilities.append("Indomitable (2/rest)")
         if level >= 14:
             self.special_abilities.append("Ability Score Improvement 14th Level")
         if level >= 15:
-            self.special_abilities.append("Martial Archetype Feature")
+            self.special_abilities.append("Superior Critical (crit range 18-20)")
         if level >= 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
         if level >= 17:
-            self.special_abilities.append("Action Surge (2 uses)")
-            self.special_abilities.append("Indomitable (3 uses)")
+            self.special_abilities.append("Action Surge (2/rest)")
+            self.special_abilities.append("Indomitable (3/rest)")
         if level >= 18:
-            self.special_abilities.append("Martial Archetype Feature")
+            self.special_abilities.append("Survivor")
         if level >= 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
         if level >= 20:
-            self.special_abilities.append("Extra Attack (3)")
+            self.special_abilities.append("Extra Attack (3 extra attacks)")
 
 def define_fighter():
     fighter = Fighter()
