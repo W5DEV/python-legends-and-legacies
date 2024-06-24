@@ -13,8 +13,10 @@
 
 import modules.equipment as equipment
 
-cleric_cantrips = ["Guidance", "Light", "Mending", "Resistance", "Sacred Flame", "Spare the Dying", "Thaumaturgy"]
-cleric_spells = ["Bane", "Bless", "Command", "Create or Destroy Water", "Cure Wounds", "Detect Evil and Good", "Detect Magic", "Detect Poison and Disease", "Guiding Bolt", "Healing Word", "Inflict Wounds", "Protection from Evil and Good", "Purify Food and Drink", "Sanctuary", "Shield of Faith"]
+displayed_cleric_cantrips = ["Guidance", "Light", "Mending", "Resistance", "Sacred Flame", "Spare the Dying", "Thaumaturgy"]
+cleric_cantrips = ["guidance", "light", "mending", "resistance", "sacred flame", "spare the dying", "thaumaturgy"]
+displayed_cleric_spells = ["Bane", "Bless", "Command", "Create or Destroy Water", "Cure Wounds", "Detect Evil and Good", "Detect Magic", "Detect Poison and Disease", "Guiding Bolt", "Healing Word", "Inflict Wounds", "Protection from Evil and Good", "Purify Food and Drink", "Sanctuary", "Shield of Faith"]
+cleric_spells = ["bane", "bless", "command", "create or destroy water", "cure wounds", "detect evil and good", "detect magic", "detect poison and disease", "guiding bolt", "healing word", "inflict wounds", "protection from evil and good", "purify food and drink", "sanctuary", "shield of faith"]
 
 displayed_cleric_skills = ["History", "Insight", "Medicine", "Persuasion", "Religion"]
 cleric_skills = ["history", "insight", "medicine", "persuasion", "religion"]
@@ -75,13 +77,15 @@ class Cleric():
             self.divine_domain = "Life Domain"
             self.armor_proficiencies.append("Heavy Armor")
             self.special_abilities = ["Spellcasting", "Divine Domain"]
-            self.special_abilities.append("Bless", "Cure Wounds")
+            self.special_abilities.append("Bless")
+            self.special_abilities.append("Cure Wounds")
             self.special_abilities.append("Disciple of Life")
         if level >= 2:
             self.special_abilities.append("Channel Divinity 2/rest")
             self.special_abilities.append("Channel Divinity: Preserve Life")
         if level >= 3:
-            self.special_abilities.append("Lesser Restoration", "Spiritual Weapon")
+            self.special_abilities.append("Lesser Restoration")
+            self.special_abilities.append("Spiritual Weapon")
         if level >= 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
         if level >= 5:
@@ -91,13 +95,15 @@ class Cleric():
             self.special_abilities.append("Channel Divinity 2/rest")
             self.special_abilities.append("Blessed Healer")
         if level >= 7:
-            self.special_abilities.append("Death Ward", "Guardian of Faith")
+            self.special_abilities.append("Death Ward")
+            self.special_abilities.append("Guardian of Faith")
         if level >= 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
             self.special_abilities.append("Destroy Undead (CR 1)")
             self.special_abilities.append("Divine Strike (1d8)")
         if level >= 9:
-            self.special_abilities.append("Mass Cure Wounds", "Raise Dead")
+            self.special_abilities.append("Mass Cure Wounds")
+            self.special_abilities.append("Raise Dead")
         if level >= 10:
             self.special_abilities.append("Divine Intervention")
         if level >= 11:
@@ -131,13 +137,13 @@ def define_cleric():
         print(skill)
     print("Please enter your first skill choice:")
     skill_choice_1 = input("> ")
-    while skill_choice_1 not in cleric_skills:
+    while skill_choice_1.lower() not in cleric_skills:
         print("Please enter a valid skill choice:")
         skill_choice_1 = input("> ")
 
     print("Please enter your second skill choice:")
     skill_choice_2 = input("> ")
-    while skill_choice_2 not in cleric_skills:
+    while skill_choice_2.lower() not in cleric_skills:
         print("Please enter a valid skill choice:")
         skill_choice_2 = input("> ")
     
@@ -215,17 +221,19 @@ def define_cleric():
 
     # Starting Cantrips
     print("Clerics start with 3 Cantrips. Choose 3 Cantrips from the following list:")
-    for cantrip in cleric_cantrips:
+    for cantrip in displayed_cleric_cantrips:
         print(cantrip)
     selected_cantrips = []
     for i in range(3):
         print(f"Please choose Cantrip {i + 1}:")
         cantrip_choice = input("> ")
-        while cantrip_choice not in cleric_cantrips:
-            print("Please enter a valid Cantrip choice:")
+        while (cantrip_choice.lower() not in cleric_cantrips) or (cantrip_choice.lower() in selected_cantrips):
+            print("Please enter a valid Cantrip choice, not previously selected:")
             cantrip_choice = input("> ")
         selected_cantrips.append(cantrip_choice)
-    print(f"You have chosen the following Cantrips: {selected_cantrips}")
+    print(f"You have chosen the following Cantrips:")
+    for cantrip in selected_cantrips:
+        print(cantrip)
     cleric.cantrips = selected_cantrips
 
     # Starting Spells
@@ -236,14 +244,17 @@ def define_cleric():
     for i in range(1):
         print(f"Please choose Spell {i + 1}:")
         spell_choice = input("> ")
-        while (spell_choice not in cleric_spells) or (spell_choice in selected_spells):
+        while (spell_choice.lower() not in cleric_spells) or (spell_choice.lower() in selected_spells):
             print("You should not choose the same spell twice.")
             print("Please enter a valid Spell choice:")
             spell_choice = input("> ")
         selected_spells.append(spell_choice)
-    print(f"You have chosen the following Spells: {selected_spells}")
+    print(f"You have chosen the following Spells:")
+    for spell in selected_spells:
+        print(spell)
     cleric.spells = selected_spells
 
+    return cleric
 
 
 
