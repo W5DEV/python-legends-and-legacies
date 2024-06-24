@@ -207,7 +207,7 @@ def define_cleric():
 
     print("You will also receive a Shield and a Holy Symbol.")
     cleric.starting_equipment.append(equipment.shield)
-    cleric.starting_equipment.append(equipment.holy_symbol)
+    cleric.starting_equipment.append(equipment.holy_symbol_emblem)
 
     print("You will start with the following equipment:")
     for item in cleric.starting_equipment:
