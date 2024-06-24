@@ -94,7 +94,7 @@ def character_archetype(player):
     if archetype.lower() in completed_archetypes:
         archetype = archetypes.create_archetype(archetype.lower())
     player.archetype = archetype
-    player.archetype.update_special_abilities(1)
+    player.sync_level(1)
     return 
 
 def character_bio(player):

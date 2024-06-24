@@ -21,6 +21,8 @@ cleric_spells = ["bane", "bless", "command", "create or destroy water", "cure wo
 displayed_cleric_skills = ["History", "Insight", "Medicine", "Persuasion", "Religion"]
 cleric_skills = ["history", "insight", "medicine", "persuasion", "religion"]
 
+potential_starting_equipment = ["a Mace or a Warhammer (if proficient)", "Scale Mail, Leather Armor, or Chain Mail (if proficient)", "a Light Crossbow and 20 bolts or any simple weapon", "a Priest's Pack or an Explorer's Pack", "a Shield and a Holy Symbol"]
+
 class Cleric:
     def __init__(self):
         name = "Cleric"
@@ -30,10 +32,6 @@ class Cleric:
         saving_throw_proficiencies = ["Wisdom", "Charisma"]
         armor_proficiencies = ["Light Armor", "Medium Armor", "Shields"]
         weapon_proficiencies = ["Simple Weapons"]
-        tool_proficiencies = []
-        skill_proficiencies = []
-        potential_starting_equipment = ["a Mace or a Warhammer (if proficient)", "Scale Mail, Leather Armor, or Chain Mail (if proficient)", "a Light Crossbow and 20 bolts or any simple weapon", "a Priest's Pack or an Explorer's Pack", "a Shield and a Holy Symbol"]
-        starting_equipment = []
         self.name = name
         self.description = description
         self.hit_die = hit_die
@@ -41,10 +39,9 @@ class Cleric:
         self.saving_throw_proficiencies = saving_throw_proficiencies
         self.armor_proficiencies = armor_proficiencies
         self.weapon_proficiencies = weapon_proficiencies
-        self.tool_proficiencies = tool_proficiencies
-        self.skill_proficiencies = skill_proficiencies
-        self.potential_starting_equipment = potential_starting_equipment
-        self.starting_equipment = starting_equipment
+        self.tool_proficiencies = []
+        self.skill_proficiencies = []
+        self.starting_equipment = []
         self.divine_domain = ""
         self.cantrips = []
         self.spells = []
@@ -67,12 +64,12 @@ class Cleric:
         print(f"Armor Proficiencies: {self.armor_proficiencies}")
         print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
         print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies: {self.displayed_skill_proficiencies}")
-        print(f"Starting Equipment: {self.potential_starting_equipment}")
+        print(f"Skill Proficiencies: {self.skill_proficiencies}")
+        print(f"Starting Equipment: {self.starting_equipment}")
         print(f"Special Abilities: {self.special_abilities}")
         return self
 
-    def update_special_abilities(self, level):
+    def sync_level(self, level):
         if level >= 1:
             self.divine_domain = "Life Domain"
             self.armor_proficiencies.append("Heavy Armor")
@@ -206,18 +203,22 @@ def define_cleric():
         print(spell)
 
     # Starting Equipment
+    weapon_choice1 = ""
+    armor_choice = ""
+    weapon_choice2 = ""
+    pack_choice = ""
     print("Cerics are able to choose from the following starting equipment:")
-    for item in cleric.potential_starting_equipment:
+    for item in potential_starting_equipment:
         print(item)
     
     print("Please choose between a Mace or a Warhammer:")
-    weapon_answer1 = input("> ")
-    while weapon_answer1.lower() not in ["mace", "warhammer"]:
+    weapon_choice1 = input("> ")
+    while weapon_choice1.lower() not in ["mace", "warhammer"]:
         print("Please enter a valid weapon choice:")
-        weapon_answer1 = input("> ")
-    if weapon_answer1.lower() == "mace":
+        weapon_choice1 = input("> ")
+    if weapon_choice1.lower() == "mace":
         cleric.starting_equipment.append(equipment.mace)
-    elif weapon_answer1.lower() == "warhammer":
+    elif weapon_choice1.lower() == "warhammer":
         cleric.starting_equipment.append(equipment.warhammer)
 
     print("Please choose between Scale Mail, Leather Armor, or Chain Mail:")
@@ -234,24 +235,24 @@ def define_cleric():
     
     print("Please choose between a Light Crossbow and 20 bolts or any simple weapon:")
     print("Please enter either 'Light Crossbow' or 'Other Simple Weapon'")
-    weapon_selection2 = input("> ")
-    while weapon_selection2.lower() not in ["light crossbow", "other simple weapon"]:
+    weapon_choice2 = input("> ")
+    while weapon_choice2.lower() not in ["light crossbow", "other simple weapon"]:
         print("Please enter a valid weapon choice:")
-        weapon_selection2 = input()
-    if weapon_selection2.lower() == "light crossbow":
+        weapon_choice2 = input()
+    if weapon_choice2.lower() == "light crossbow":
         cleric.starting_equipment.append(equipment.light_crossbow)
-    elif weapon_selection2.lower() == "other simple weapon":
+    elif weapon_choice2.lower() == "other simple weapon":
         valid_weapons = []
         print("Please choose a simple weapon from the list below:")
         for weapon in equipment.simple_weapons:
             valid_weapons.append(weapon.name.lower())
             print(weapon.name)
-        weapon_choice2 = input("> ")
-        while weapon_choice2.lower() not in valid_weapons:
-            print("Please enter a valid weapon choice:")
-            weapon_choice2 = input("> ")
+        other_weapon = input("> ")
+        while other_weapon.lower() not in valid_weapons:
+            print("Please enter a valid weapon choice")
+            other_weapon = input("> ")
         for weapon in equipment.simple_weapons:
-            if weapon_choice2.lower() == weapon.name.lower():
+            if other_weapon.lower() == weapon.name.lower():
                 cleric.starting_equipment.append(weapon)
                 break
     

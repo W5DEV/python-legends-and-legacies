@@ -7,7 +7,7 @@ class Fighter:
     
     def __init__(self):
         name = "Fighter"
-        description = "A master of martial combat, skilled with a variety of weapons and armor"
+        bio = "A master of martial combat, skilled with a variety of weapons and armor"
         hit_die = "1d10 for first level, then 1d10 (or 6, whichever is higher) per level after 1 + your Constitution modifier."
         primary_ability = "Strength or Dexterity"
         saving_throw_proficiencies = "Strength, Constitution"
@@ -20,7 +20,7 @@ class Fighter:
         self.fighting_style = []
         self.marital_archetype = ""
         self.name = name
-        self.description = description
+        self.bio = bio
         self.hit_die = hit_die
         self.primary_ability = primary_ability
         self.saving_throw_proficiencies = saving_throw_proficiencies
@@ -40,12 +40,12 @@ class Fighter:
         print(f"Armor Proficiencies: {self.armor_proficiencies}")
         print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
         print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies: {self.displayed_skill_proficiencies}")
-        print(f"Starting Equipment: {self.potential_starting_equipment}")
+        print(f"Skill Proficiencies: {self.skill_proficiencies}")
+        print(f"Starting Equipment: {self.starting_equipment}")
         print(f"Special Abilities: {self.special_abilities}")
         return self
     
-    def update_special_abilities(self, level):
+    def sync_level(self, level):
         if level >= 1:
             print("You have reached level 1 and now have the following fighting styles:")
             for style in ["Archery", "Defense", "Dueling", "Great Weapon Fighting", "Protection", "Two-Weapon Fighting"]:
@@ -147,8 +147,8 @@ def define_fighter():
     equipment_choice3 = ""
     equipment_choice4 = ""
     print("Choose your starting equipment:")
-    for option in fighter.potential_starting_equipment:
-        print(option)
+    for item in fighter.potential_starting_equipment:
+        print(item)
 
     print("Please enter your choice of 'Chain Mail' or 'Leather Armor, Longbow, and 20 Arrows':")
     equipment_choice1 = input("> ")

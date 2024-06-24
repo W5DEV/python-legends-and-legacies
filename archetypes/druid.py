@@ -19,6 +19,8 @@ displayed_druid_spells = ["Animal Friendship", "Charm Person", "Create or Destro
 druid_cantrips = ["druidcraft", "guidance", "mending", "poison spray", "produce flame", "resistance", "shillelagh"]
 druid_spells = ["animal friendship", "charm person", "create or destroy water", "cure wounds", "detect magic", "detect poison and disease", "entangle", "faerie fire", "fog cloud", "goodberry", "healing word", "jump", "longstrider", "purify food and drink", "speak with animals", "thunderwave"]
 
+potential_starting_equipment = ["A Wooden Shield or any Simple Weapon", "Scimitar or any Simple Melee Weapon", "Leather Armor", "Explorer's Pack", "Druidic Focus"]
+
 class Druid:
     def __init__(self):
         name = "Druid"
@@ -29,9 +31,6 @@ class Druid:
         armor_proficiencies = ["Non-metal Light Armor", "Non-metal Medium Armor", "Non-metal Shields"]
         weapon_proficiencies = ["Clubs", "Daggers", "Darts", "Javelins", "Maces", "Quarterstaffs", "Scimitars", "Sickles", "Slings", "Spears"]
         tool_proficiencies = ["Herbalism Kit"]
-        skill_proficiencies = []
-        potential_starting_equipment = ["A Wooden Shield or any Simple Weapon", "Scimitar or any Simple Melee Weapon", "Leather Armor", "Explorer's Pack", "Druidic Focus"]
-        special_abilities = []
         self.name = name
         self.description = description
         self.hit_die = hit_die
@@ -40,10 +39,9 @@ class Druid:
         self.armor_proficiencies = armor_proficiencies
         self.weapon_proficiencies = weapon_proficiencies
         self.tool_proficiencies = tool_proficiencies
-        self.skill_proficiencies = skill_proficiencies
-        self.potential_starting_equipment = potential_starting_equipment
+        self.skill_proficiencies = []
         self.starting_equipment = []
-        self.special_abilities = special_abilities
+        self.special_abilities = []
         self.circle = ""
         self.cantrips = []
         self.spells = []
@@ -66,12 +64,12 @@ class Druid:
         print(f"Armor Proficiencies: {self.armor_proficiencies}")
         print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
         print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies: {self.displayed_skill_proficiencies}")
-        print(f"Starting Equipment: {self.potential_starting_equipment}")
+        print(f"Skill Proficiencies: {self.skill_proficiencies}")
+        print(f"Starting Equipment: {self.starting_equipment}")
         print(f"Special Abilities: {self.special_abilities}")
         return self
     
-    def update_special_abilities(self, level):
+    def sync_level(self, level):
         if level >= 1:
             self.special_abilities.append("Druidic")
             self.special_abilities.append("Spellcasting")
@@ -182,48 +180,51 @@ def define_druid():
     for spell in druid.spells:
         print(spell)
 
-     # Starting Equipment
+    # Starting Equipment
+    weapon_choice1 = ""
+    weapon_choice2 = ""
+    armor_choice = ""
     print("Druids are able to choose from the following starting equipment:")
-    for item in druid.potential_starting_equipment:
+    for item in potential_starting_equipment:
         print(item)
     
     print("Please choose between a Shield or any Simple Weapon:")
-    weapon_answer1 = input("> ")
-    while weapon_answer1.lower() not in ["shield", "other simple weapon"]:
+    weapon_choice1 = input("> ")
+    while weapon_choice1.lower() not in ["shield", "other simple weapon"]:
         print("Please enter either 'shield' or 'other weapon choice':")
-        weapon_answer1 = input("> ")
-    if weapon_answer1.lower() == "shield":
+        weapon_choice1 = input("> ")
+    if weapon_choice1.lower() == "shield":
         druid.starting_equipment.append(equipment.shield)
     else:
         print("Please choose a simple weapon from the list below:")
         for weapon in equipment.simple_weapons:
             print(weapon.name)
-        weapon_choice1 = input("> ")
-        while weapon_choice1.lower() not in [weapon.name.lower() for weapon in equipment.simple_weapons]:
+        other_weapon1 = input("> ")
+        while other_weapon1.lower() not in [weapon.name.lower() for weapon in equipment.simple_weapons]:
             print("Please enter a valid weapon choice:")
-            weapon_choice1 = input("> ")
+            other_weapon1 = input("> ")
         for weapon in equipment.simple_weapons:
-            if weapon_choice1.lower() == weapon.name.lower():
+            if other_weapon1.lower() == weapon.name.lower():
                 druid.starting_equipment.append(weapon)
                 break
 
     print("Please choose between Scimitar or any Simple Melee Weapon:")
-    armor_choice = input("> ")
-    while armor_choice.lower() not in ["scimitar", "other simple melee weapon"]:
+    weapon_choice2 = input("> ")
+    while weapon_choice2.lower() not in ["scimitar", "other simple melee weapon"]:
         print("Please enter a valid armor choice:")
-        armor_choice = input("> ")
-    if armor_choice.lower() == "scimitar":
+        weapon_choice2 = input("> ")
+    if weapon_choice2.lower() == "scimitar":
         druid.starting_equipment.append(equipment.scimitar)
     else:
         print("Please choose a simple weapon from the list below:")
         for weapon in equipment.simple_melee_weapons:
             print(weapon.name)
-        weapon_choice1 = input("> ")
-        while weapon_choice1.lower() not in [weapon.name.lower() for weapon in equipment.simple_weapons]:
+        other_weapon2 = input("> ")
+        while other_weapon2.lower() not in [weapon.name.lower() for weapon in equipment.simple_weapons]:
             print("Please enter a valid weapon choice:")
-            weapon_choice1 = input("> ")
+            other_weapon2 = input("> ")
         for weapon in equipment.simple_melee_weapons:
-            if weapon_choice1.lower() == weapon.name.lower():
+            if other_weapon2.lower() == weapon.name.lower():
                 druid.starting_equipment.append(weapon)
                 break
 

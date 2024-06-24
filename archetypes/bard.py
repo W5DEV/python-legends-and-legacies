@@ -18,6 +18,8 @@ bard_spells = ["animal friendship", "bane", "charm person", "comprehend language
 displayed_bard_cantrips = ["Dancing Lights", "Light", "Mage Hand", "Mending", "Message", "Minor Illusion", "Prestidigitation", "True Strike", "Vicious Mockery"]
 bard_cantrips = ["dancing lights", "light", "mage hand", "mending", "message", "minor illusion", "prestidigitation", "true strike", "vicious mockery"]
 
+potential_starting_equipment = ["a rapier, a longsword, or any simple weapon", "a diplomat's pack or an entertainer's pack", "a lute or any other musical instrument", "Lether Armor", "Dagger"]
+
 def display_bard_spells():
     for spell in displayed_bard_spells:
         print(spell)
@@ -32,9 +34,6 @@ class Bard:
         armor_proficiencies = ["Light Armor"]
         weapon_proficiencies = "Simple Weapons, Hand Crossbows, Longswords, Rapiers, Shortswords"
         tool_proficiencies = "Three musical instruments of your choice"
-        skill_proficiencies = []
-        potential_starting_equipment = ["a rapier, a longsword, or any simple weapon", "a diplomat's pack or an entertainer's pack", "a lute or any other musical instrument", "Lether Armor", "Dagger"]
-        special_abilities = []
         self.name = name
         self.description = description
         self.hit_die = hit_die
@@ -43,11 +42,10 @@ class Bard:
         self.armor_proficiencies = armor_proficiencies
         self.weapon_proficiencies = weapon_proficiencies
         self.tool_proficiencies = tool_proficiencies
-        self.skill_proficiencies = skill_proficiencies
+        self.skill_proficiencies = []
         self.instrument_proficiencies = []
-        self.potential_starting_equipment = potential_starting_equipment
         self.starting_equipment = []
-        self.special_abilities = special_abilities
+        self.special_abilities = []
         self.college = ""
         self.cantrips = []
         self.spells = []
@@ -72,12 +70,12 @@ class Bard:
         print(f"Armor Proficiencies: {self.armor_proficiencies}")
         print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
         print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies: {self.displayed_skill_proficiencies}")
-        print(f"Starting Equipment: {self.potential_starting_equipment}")
+        print(f"Skill Proficiencies: {self.skill_proficiencies}")
+        print(f"Starting Equipment: {self.starting_equipment}")
         print(f"Special Abilities: {self.special_abilities}")
         return self
     
-    def update_special_abilities(self, level):
+    def sync_level(self, level):
         if level >= 1:
             self.special_abilities.append("Spellcasting")
             self.special_abilities.append("Bardic Inspiration (d6)")
@@ -224,19 +222,20 @@ def define_bard():
     bard.instrument_proficiencies = selected_instrument_proficiencies
     
     # Starting Equipment
-    first_weapon = ""
-    second_weapon = ""
+    weapon_choice1 = ""
     print(f"Bard's are able to choose between a few different starting equipment options.")
-    print(f'You will start with the following equipment: {bard.starting_equipment}')
+    for item in potential_starting_equipment:
+        print(item)
+    
     print("Would you like to start with a Rapier, Longsword, or any other simple weapon?")
     print("Please enter your either 'Rapier' or 'Longsword', 'Other Simple Weapon':")
-    first_weapon_preference = input("> ")
-    while first_weapon_preference.lower() not in ["rapier", "longsword", "other simple weapon"]:
+    weapon_choice1 = input("> ")
+    while weapon_choice1.lower() not in ["rapier", "longsword", "other simple weapon"]:
         print("That is not a valid choice. Please choose from the list.")
-        first_weapon_preference = input("> ")
-    if first_weapon_preference.lower() == "rapier":
+        weapon_choice1 = input("> ")
+    if weapon_choice1.lower() == "rapier":
         first_weapon = equipment.rapier
-    elif first_weapon_preference.lower() == "longsword":
+    elif weapon_choice1.lower() == "longsword":
         first_weapon = equipment.long_sword
     else:
         print("Please choose a simple weapon from the following list:")
@@ -244,15 +243,15 @@ def define_bard():
         for weapon in equipment.simple_weapons:
             valid_weapons.append(weapon.name.lower())
             print(weapon.name)
-        first_weapon_choice = input("> ")
-        while first_weapon_choice.lower() not in valid_weapons:
+        other_weapon = input("> ")
+        while other_weapon.lower() not in valid_weapons:
             print("That is not a valid choice. Please choose from the list.")
-            first_weapon_choice = input("> ")
+            other_weapon = input("> ")
         for weapon in equipment.simple_weapons:
-            if first_weapon_choice.lower() == weapon.name.lower():
+            if other_weapon.lower() == weapon.name.lower():
                 first_weapon = weapon
                 break
-    print(f"You have chosen {first_weapon.name} as your first weapon.")
+    print(f"You have chosen {first_weapon.name} as your weapon.")
     print(f"One {first_weapon.name} has been added to your starting equipment.")
     bard.starting_equipment.append(first_weapon)
 

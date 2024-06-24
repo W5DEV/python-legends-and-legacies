@@ -16,6 +16,9 @@ class Character:
         self.equippped_weapon = equipped_weapon
         self.readied_weapon = readied_weapon
 
+    def sync_level(self, level):
+        self.archetype.sync_level(level)
+
     def add_armor(self, armor):
         self.armor = armor
 
