@@ -44,6 +44,10 @@ class Character:
         level = utils.calculate_level(self.xp)
         return f"{self.name} has received {xp} XP and now has a total of {self.xp} XP, making them level {level}."
     
+    def get_level(self):
+        level = utils.calculate_level(self.xp)
+        return level
+    
     def xp_needed_for_next_level(self):
         xp_needed = utils.calculate_xp_needed(self.xp)
         return f"{self.name} needs {xp_needed} XP to reach the next level."

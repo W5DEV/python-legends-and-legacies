@@ -96,7 +96,7 @@ def character_archetype(player):
     return 
 
 def character_bio(player):
-    print(f"Tell me about your {player.name}'s background story.")
+    print(f"Tell me about {player.name}'s background story.")
     player.bio = input("> ")
     return
 
