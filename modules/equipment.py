@@ -129,3 +129,7 @@ shawm = Equipment("Shawm", 2, 1, "Musical Instrument")
 viol = Equipment("Viol", 30, 1, "Musical Instrument")
 
 instruments = [bagpipes, drum, dulcimer, flute, lute, lyre, horn, pan_flute, shawm, viol]
+
+holy_symbol_amulet = Equipment("Holy Symbol Amulet", 5, 1, "Holy Symbol")
+holy_symbol_emblem = Equipment("Holy Symbol Emblem", 5, 0, "Holy Symbol")
+holy_symbol_reliquary = Equipment("Holy Symbol Reliquary", 5, 2, "Holy Symbol")
