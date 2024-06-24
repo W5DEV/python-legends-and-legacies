@@ -28,7 +28,20 @@ class Armor:
     def get_info(self):
         return f"{self.name} is {self.description}. It costs {self.cost} gold pieces, has an AC of {self.ac}, requires a strength of {self.strength}, and weighs {self.weight} pounds."
 
-equipment_types = ["Simple Weapons", "Martial Weapons", "Light Armor", "Medium Armor", "Heavy Armor", "Shield"]
+def get_info(equipment):
+    return equipment.get_info()
+
+class Equipment:
+    def __init__(self, name, cost, weight, properties):
+        self.name = name
+        self.cost = cost
+        self.weight = weight
+        self.properties = properties
+    
+    def get_info(self):
+        return f"{self.name} costs {self.cost} gold pieces, weighs {self.weight} pounds, and has the following properties: {self.properties}."
+
+equipment_types = ["Simple Weapons", "Martial Weapons", "Light Armor", "Medium Armor", "Heavy Armor", "Shield", "Packs", "Instruments", "Holy Symbols", "Druidic Focus", "Artisan Tools", "Other Tools"]
 
 club = Weapon("Club", 1, "1d4 bludgeoning", 2, "Light", "Simple", False, True)
 dagger = Weapon("Dagger", 2, "1d4 piercing", 1, "Finesse, Light, Thrown", "Simple", True, True)
@@ -96,19 +109,6 @@ light_armor = [padded_light_armor, leather_light_armor, studded_light_armor]
 medium_armor = [hide_medium_armor, chain_shirt_medium_armor, scale_mail_medium_armor, breastplate_medium_armor, half_plate_medium_armor]
 heavy_armor = [ring_mail_heavy_armor, chain_mail_heavy_armor, splint_heavy_armor, plate_heavy_armor]
 
-def get_info(equipment):
-    return equipment.get_info()
-
-class Equipment:
-    def __init__(self, name, cost, weight, properties):
-        self.name = name
-        self.cost = cost
-        self.weight = weight
-        self.properties = properties
-    
-    def get_info(self):
-        return f"{self.name} costs {self.cost} gold pieces, weighs {self.weight} pounds, and has the following properties: {self.properties}."
-    
 explorers_pack = Equipment("Explorer's Pack", 10, 59, "Includes a backpack, a bedroll, a mess kit, a tinderbox, 10 torches, 10 days of rations, and a waterskin.")
 diplomats_pack = Equipment("Diplomat's Pack", 39, 46, "Includes a chest, 2 cases for maps and scrolls, a set of fine clothes, a bottle of ink, an ink pen, a lamp, 2 flasks of oil, 5 sheets of paper, a vial of perfume, sealing wax, and soap.")
 entertainers_pack = Equipment("Entertainer's Pack", 40, 38, "Includes a backpack, a bedroll, 2 costumes, 5 candles, 5 days of rations, a waterskin, and a disguise kit.")
