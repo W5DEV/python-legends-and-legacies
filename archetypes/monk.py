@@ -216,5 +216,4 @@ def define_monk():
     for item in monk.starting_equipment:
         print(item.name)
     
-
     return monk
