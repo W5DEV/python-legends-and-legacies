@@ -16,7 +16,8 @@ def character_creation():
 
     player.xp = 0
 
-    if player.archetype.name.lower() == "barbarian":
+    completed_archetypes = ["barbarian", "bard"]
+    if player.archetype.name.lower() in completed_archetypes:
         player.gp = utils.calculate_starting_gp(player.archetype.name)
     else:
         player.gp = utils.calculate_starting_gp(player.archetype)
@@ -89,8 +90,9 @@ def character_archetype(player):
             archetype_choice = input("> ")
         archetype = archetype_choice
         
-    if archetype.lower() == "barbarian":
-        archetype = archetypes.define_barbarian()
+    completed_archetypes = ["barbarian", "bard"]
+    if archetype.lower() in completed_archetypes:
+        archetype = archetypes.create_archetype(archetype.lower())
     player.archetype = archetype
     player.archetype.update_special_abilities(1)
     return 
