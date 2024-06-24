@@ -135,3 +135,23 @@ holy_symbol_emblem = Equipment("Holy Symbol Emblem", 5, 0, "Holy Symbol")
 holy_symbol_reliquary = Equipment("Holy Symbol Reliquary", 5, 2, "Holy Symbol")
 
 druidic_focus = Equipment("Druidic Focus", 0, 0, "Sprig of Mistletoe")
+
+alchemists_supplies = Equipment("Alchemist's Supplies", 50, 8, "Artisan Tools")
+brewers_supplies = Equipment("Brewer's Supplies", 20, 9, "Artisan Tools")
+calligraphers_supplies = Equipment("Calligrapher's Supplies", 10, 5, "Artisan Tools")
+carpenters_tools = Equipment("Carpenter's Tools", 8, 6, "Artisan Tools")
+cartographers_tools = Equipment("Cartographer's Tools", 15, 6, "Artisan Tools")
+cobblers_tools = Equipment("Cobbler's Tools", 5, 5, "Artisan Tools")
+cooks_utensils = Equipment("Cook's Utensils", 1, 8, "Artisan Tools")
+glassblowers_tools = Equipment("Glassblower's Tools", 30, 5, "Artisan Tools")
+jewelers_tools = Equipment("Jeweler's Tools", 25, 2, "Artisan Tools")
+leatherworkers_tools = Equipment("Leatherworker's Tools", 5, 5, "Artisan Tools")
+masons_tools = Equipment("Mason's Tools", 10, 8, "Artisan Tools")
+painters_supplies = Equipment("Painter's Supplies", 10, 5, "Artisan Tools")
+potters_tools = Equipment("Potter's Tools", 10, 3, "Artisan Tools")
+smiths_tools = Equipment("Smith's Tools", 20, 8, "Artisan Tools")
+tinkers_tools = Equipment("Tinker's Tools", 50, 10, "Artisan Tools")
+weavers_tools = Equipment("Weaver's Tools", 1, 5, "Artisan Tools")
+woodcarvers_tools = Equipment("Woodcarver's Tools", 1, 5, "Artisan Tools")
+
+artisans_tools = [alchemists_supplies, brewers_supplies, calligraphers_supplies, carpenters_tools, cartographers_tools, cobblers_tools, cooks_utensils, glassblowers_tools, jewelers_tools, leatherworkers_tools, masons_tools, painters_supplies, potters_tools, smiths_tools, tinkers_tools, weavers_tools, woodcarvers_tools]
