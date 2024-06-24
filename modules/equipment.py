@@ -155,3 +155,12 @@ weavers_tools = Equipment("Weaver's Tools", 1, 5, "Artisan Tools")
 woodcarvers_tools = Equipment("Woodcarver's Tools", 1, 5, "Artisan Tools")
 
 artisans_tools = [alchemists_supplies, brewers_supplies, calligraphers_supplies, carpenters_tools, cartographers_tools, cobblers_tools, cooks_utensils, glassblowers_tools, jewelers_tools, leatherworkers_tools, masons_tools, painters_supplies, potters_tools, smiths_tools, tinkers_tools, weavers_tools, woodcarvers_tools]
+
+disguise_kit = Equipment("Disguise Kit", 25, 3, "Other Tools")
+forgery_kit = Equipment("Forgery Kit", 15, 5, "Other Tools")
+herbalism_kit = Equipment("Herbalism Kit", 5, 3, "Other Tools")
+navigator_tools = Equipment("Navigator's Tools", 25, 2, "Other Tools")
+poisoners_kit = Equipment("Poisoner's Kit", 50, 2, "Other Tools")
+thieves_tools = Equipment("Thieves' Tools", 25, 1, "Other Tools")
+
+other_tools = [disguise_kit, forgery_kit, herbalism_kit, navigator_tools, poisoners_kit, thieves_tools]
