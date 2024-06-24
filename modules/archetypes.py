@@ -12,7 +12,7 @@ def display_archetypes():
         print(archetype)
 
 class Archetype:
-    def __init__(self, name, description, hit_die, primary_ability, saving_throw_proficiencies, armor_proficiencies, weapon_proficiencies, tool_proficiencies, skill_proficiencies, starting_equipment):
+    def __init__(self, name, description, hit_die, primary_ability, saving_throw_proficiencies, armor_proficiencies, weapon_proficiencies, tool_proficiencies, skill_proficiencies, starting_equipment, special_abilities):
         self.name = name
         self.description = description
         self.hit_die = hit_die
@@ -23,6 +23,8 @@ class Archetype:
         self.tool_proficiencies = tool_proficiencies
         self.skill_proficiencies = skill_proficiencies
         self.starting_equipment = starting_equipment
+        self.special_abilities = special_abilities
+
     
     def get_info(self):
         return f"{self.name} is a {self.hit_die} archetype that uses {self.primary_ability} as their primary ability."
@@ -39,6 +41,7 @@ def define_barbarian():
     displayed_skill_proficiencies = ["Animal Handling", "Athletics", "Intimidation", "Nature", "Perception", "Survival"]
     skill_proficiencies = ["animal handling", "athletics", "intimidation", "nature", "perception", "survival"]
     starting_equipment = ["Greataxe or any martial melee weapon", "Two Handaxes or Any Simple Weapon", "Explorer's Pack", "Four Javelins"]
+    special_abilities = ["Rage", "Unarmored Defense", "Reckless Attack", "Danger Sense", "Primal Path"]
     print(f'You have chosen the {name} class.')
     print(description)
 
@@ -122,7 +125,7 @@ def define_barbarian():
 
     selected_starting_equipment = [first_weapon, second_weapon, second_weapon, equipment.explorers_pack, equipment.javelin, equipment.javelin, equipment.javelin, equipment.javelin]
 
-    barbarian = Archetype(name, description, hit_die, primary_ability, saving_throw_proficiencies, armor_proficiencies, weapon_proficiencies, tool_proficiencies, selected_skill_proficiencies, selected_starting_equipment)
+    barbarian = Archetype(name, description, hit_die, primary_ability, saving_throw_proficiencies, armor_proficiencies, weapon_proficiencies, tool_proficiencies, selected_skill_proficiencies, selected_starting_equipment, special_abilities)
 
     return barbarian
         
