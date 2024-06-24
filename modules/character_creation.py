@@ -4,7 +4,7 @@ import modules.equipment as equipment
 import modules.races as races
 import modules.archetypes as archetypes
 
-completed_archetypes = ["barbarian", "bard", "cleric", "druid", "fighter"]
+completed_archetypes = ["barbarian", "bard", "cleric", "druid", "fighter", "monk"]
 
 
 def character_creation():
