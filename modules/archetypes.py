@@ -76,14 +76,14 @@ def define_barbarian():
     else:
         print("Please choose a martial melee weapon from the following list:")
         valid_weapons = []
-        for weapon in equipment.martial_weapons:
+        for weapon in equipment.martial_melee_weapons:
             valid_weapons.append(weapon.name.lower())
             print(weapon.name)
         first_weapon_choice = input("> ")
         while first_weapon_choice.lower() not in valid_weapons:
             print("That is not a valid choice. Please choose from the list.")
             first_weapon_choice = input("> ")
-        for weapon in equipment.martial_weapons:
+        for weapon in equipment.martial_melee_weapons:
             if first_weapon_choice.lower() == weapon.name.lower():
                 first_weapon = weapon
                 break
