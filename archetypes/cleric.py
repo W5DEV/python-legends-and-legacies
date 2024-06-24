@@ -205,7 +205,7 @@ def define_cleric():
     elif pack_choice.lower() == "explorer's pack":
         cleric.starting_equipment.append(equipment.explorers_pack)
 
-    print("You will also receive a Shield and a Holy Symbol.")
+    print("You will also receive a Shield and a Holy Symbol Emblem.")
     cleric.starting_equipment.append(equipment.shield)
     cleric.starting_equipment.append(equipment.holy_symbol_emblem)
 
