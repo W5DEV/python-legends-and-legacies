@@ -1,21 +1,21 @@
 import modules.equipment as equipment
 
+displayed_barbarian_skills = ["Animal Handling", "Athletics", "Intimidation", "Nature", "Perception", "Survival"]
+barbarian_skills = ["animal handling", "athletics", "intimidation", "nature", "perception", "survival"]
+
+potential_starting_equipment = ["Greataxe or any martial melee weapon", "Two Handaxes or Any Simple Weapon", "Explorer's Pack", "Four Javelins"]
+        
 class Barbarian:
     
     def __init__(self):
         name = "Barbarian"
         description = "A fierce warrior of primitive background who can enter a battle rage"
-        hit_die = "1d12 per Barbarian level"
+        hit_die = "1d12 for first level, then 1d12 (or 7, whichever is higher) per level after 1 + your Constitution modifier."
         primary_ability = "Strength"
         saving_throw_proficiencies = "Strength, Constitution"
         armor_proficiencies = "Light Armor, Medium Armor, Shields"
         weapon_proficiencies = "Simple Weapons, Martial Weapons"
         tool_proficiencies = "None"
-        displayed_skill_proficiencies = ["Animal Handling", "Athletics", "Intimidation", "Nature", "Perception", "Survival"]
-        available_skill_proficiencies = ["animal handling", "athletics", "intimidation", "nature", "perception", "survival"]
-        skill_proficiencies = []
-        potential_starting_equipment = ["Greataxe or any martial melee weapon", "Two Handaxes or Any Simple Weapon", "Explorer's Pack", "Four Javelins"]
-        special_abilities = []
         self.name = name
         self.description = description
         self.hit_die = hit_die
@@ -24,12 +24,9 @@ class Barbarian:
         self.armor_proficiencies = armor_proficiencies
         self.weapon_proficiencies = weapon_proficiencies
         self.tool_proficiencies = tool_proficiencies
-        self.displayed_skill_proficiencies = displayed_skill_proficiencies
-        self.available_skill_proficiencies = available_skill_proficiencies
-        self.skill_proficiencies = skill_proficiencies
-        self.potential_starting_equipment = potential_starting_equipment
+        self.skill_proficiencies = []
         self.starting_equipment = []
-        self.special_abilities = special_abilities
+        self.special_abilities = []
         self.primal_path = ""
     
     def get_info(self):
@@ -40,12 +37,12 @@ class Barbarian:
         print(f"Armor Proficiencies: {self.armor_proficiencies}")
         print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
         print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies: {self.displayed_skill_proficiencies}")
-        print(f"Starting Equipment: {self.potential_starting_equipment}")
+        print(f"Skill Proficiencies: {self.skill_proficiencies}")
+        print(f"Starting Equipment: {self.starting_equipment}")
         print(f"Special Abilities: {self.special_abilities}")
         return self
     
-    def update_special_abilities(self, level):
+    def sync_level(self, level):
         if level >= 1:
             self.special_abilities.append("Rage")
             self.special_abilities.append("Unarmored Defense")
@@ -104,16 +101,16 @@ def define_barbarian():
 
     # Skill Proficiencies
     print("Choose 2 skills from the following list, which you will be proficient in:")
-    for skill in barbarian.displayed_skill_proficiencies:
+    for skill in displayed_barbarian_skills:
         print(skill)
     print("Please enter your first skill choice:")
     skill_choice1 = input("> ")
-    while skill_choice1.lower() not in barbarian.available_skill_proficiencies:
+    while skill_choice1.lower() not in barbarian_skills:
         print("That is not a valid choice. Please choose from the list.")
         skill_choice1 = input("> ")
     print("Please enter your second skill choice:")
     skill_choice2 = input("> ")
-    while skill_choice2.lower() not in barbarian.available_skill_proficiencies:
+    while skill_choice2.lower() not in barbarian_skills:
         print("That is not a valid choice. Please choose from the list.")
         skill_choice2 = input("> ")
     selected_skill_proficiencies = [skill_choice1, skill_choice2]
@@ -121,17 +118,19 @@ def define_barbarian():
     barbarian.skill_proficiencies = selected_skill_proficiencies
     
     # Starting Equipment
-    first_weapon = ""
-    second_weapon = ""
+    weapon_choice1 = ""
+    weapon_choice2 = ""
     print(f"Barbarian's are able to choose between a few different starting equipment options.")
-    print(f'You will start with the following equipment: {barbarian.starting_equipment}')
+    for item in potential_starting_equipment:
+        print(item)
+
     print("Would you like to start with a Greataxe or any martial melee weapon?")
     print("Please enter your either 'Greataxe' or 'Other Weapon':")
-    first_weapon_preference = input("> ")
-    while first_weapon_preference.lower() not in ["greataxe", "other weapon"]:
+    weapon_choice1 = input("> ")
+    while weapon_choice1.lower() not in ["greataxe", "other weapon"]:
         print("That is not a valid choice. Please choose from the list.")
-        first_weapon_preference = input("> ")
-    if first_weapon_preference.lower() == "greataxe":
+        weapon_choice1 = input("> ")
+    if weapon_choice1.lower() == "greataxe":
         first_weapon = equipment.great_axe
     else:
         print("Please choose a martial melee weapon from the following list:")
@@ -139,12 +138,12 @@ def define_barbarian():
         for weapon in equipment.martial_melee_weapons:
             valid_weapons.append(weapon.name.lower())
             print(weapon.name)
-        first_weapon_choice = input("> ")
-        while first_weapon_choice.lower() not in valid_weapons:
+        other_weapon1 = input("> ")
+        while other_weapon1.lower() not in valid_weapons:
             print("That is not a valid choice. Please choose from the list.")
-            first_weapon_choice = input("> ")
+            other_weapon1 = input("> ")
         for weapon in equipment.martial_melee_weapons:
-            if first_weapon_choice.lower() == weapon.name.lower():
+            if other_weapon1.lower() == weapon.name.lower():
                 first_weapon = weapon
                 break
     print(f"You have chosen {first_weapon.name} as your first weapon.")
@@ -152,11 +151,11 @@ def define_barbarian():
 
     print("Would you like to start with Two Handaxes or any Other Simple Weapon?")
     print("Please enter your either 'Two Handaxes' or 'Other Simple Weapon':")
-    second_weapon_preference = input("> ")
-    while second_weapon_preference.lower() not in ["two handaxes", "other weapon"]:
+    weapon_choice2 = input("> ")
+    while weapon_choice2.lower() not in ["two handaxes", "other weapon"]:
         print("That is not a valid choice. Please choose from the list.")
-        second_weapon_preference = input("> ")
-    if second_weapon_preference.lower() == "two handaxes":
+        weapon_choice2 = input("> ")
+    if weapon_choice2.lower() == "two handaxes":
         second_weapon = equipment.hand_axe
     else:
         print("Please choose a martial melee weapon from the following list:")
@@ -164,12 +163,12 @@ def define_barbarian():
         for weapon in equipment.simple_weapons:
             valid_weapons.append(weapon.name.lower())
             print(weapon.name)
-        second_weapon_choice = input("> ")
-        while second_weapon_choice.lower() not in valid_weapons:
+        other_weapon2 = input("> ")
+        while other_weapon2.lower() not in valid_weapons:
                 print("That is not a valid choice. Please choose from the list.")
-                second_weapon_choice = input("> ")
+                other_weapon2 = input("> ")
         for weapon in equipment.simple_weapons:
-            if second_weapon_choice.lower() == weapon.name.lower():
+            if other_weapon2.lower() == weapon.name.lower():
                 second_weapon = weapon
                 break
    
