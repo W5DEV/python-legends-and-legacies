@@ -48,16 +48,49 @@ def character_race(player):
             print("Which race is your character?")
             race_choice = input("> ")
         if race_choice.lower() == "hill dwarf":
+            tool_proficiencies = ["Smith's Tools", "Brewer's Supplies", "Mason's Tools"]
+            valid_tools = []
             print("Please choose a tool proficiency from the following list:")
+            for tool in tool_proficiencies:
+                print(tool)
+                valid_tools.append(tool.lower())
             tool_proficiency = input("> ")
+            while tool_proficiency.lower() not in valid_tools:
+                print("Sorry, that is not a valid tool proficiency. Please try again.")
+                print("Please choose a tool proficiency from the following list:")
+                for tool in tool_proficiencies:
+                    print(tool)
+                tool_proficiency = input
             race = races.define_hill_dwarf(tool_proficiency)
         if race_choice.lower() == "mountain dwarf":
+            tool_proficiencies = ["Smith's Tools", "Brewer's Supplies", "Mason's Tools"]
+            valid_tools = []
             print("Please choose a tool proficiency from the following list:")
-            tool_proficiency = input
+            for tool in tool_proficiencies:
+                print(tool)
+                valid_tools.append(tool.lower())
+            tool_proficiency = input("> ")
+            while tool_proficiency.lower() not in valid_tools:
+                print("Sorry, that is not a valid tool proficiency. Please try again.")
+                print("Please choose a tool proficiency from the following list:")
+                for tool in tool_proficiencies:
+                    print(tool)
+                tool_proficiency = input
             race = races.define_mountain_dwarf(tool_proficiency)
         if race_choice.lower() == "high elf":
+            languages = ["Arakora", "Abyssal/Infernal", "Aquan", "Auran", "Celestial", "Deep Speech", "Draconic", "Druidic", "Dwarvish", "Giant/Jotun", "Gith", "Gnoll", "Gnomish", "Goblin", "Halfling", "Orcish", "Primordial", "Sylvan", "Terran"]
+            valid_languages = []
             print("Please choose a language from the following list:")
+            for language in languages:
+                print(language)
+                valid_languages.append(language.lower())
             language = input("> ")
+            while language.lower() not in valid_languages:
+                print("Sorry, that is not a valid language. Please try again.")
+                print("Please choose a language from the following list:")
+                for language in languages:
+                    print(language)
+                language = input("> ")
             race = races.define_high_elf(language)
         if race_choice.lower() == "wood elf":
             race = races.define_wood_elf()
@@ -100,19 +133,5 @@ def character_bio(player):
     return
 
 def character_abilities(player):
-    player.strength = utils.roll_ability()
-    player.dexterity = utils.roll_ability()
-    player.constitution = utils.roll_ability()
-    player.intelligence = utils.roll_ability()
-    player.wisdom = utils.roll_ability()
-    player.charisma = utils.roll_ability()
-
-    print(f"{player.name}'s ability scores are as follows:")
-    print(f"Strength: {player.strength}")
-    print(f"Dexterity: {player.dexterity}")
-    print(f"Constitution: {player.constitution}")
-    print(f"Intelligence: {player.intelligence}")
-    print(f"Wisdom: {player.wisdom}")
-    print(f"Charisma: {player.charisma}")
-
+    player.strength, player.dexterity, player.constitution, player.intelligence, player.wisdom, player.charisma = utils.calculate_abilities()
     return

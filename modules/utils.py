@@ -83,3 +83,12 @@ def roll_ability():
     initial_roll.remove(min(initial_roll))
     return initial_roll[0] + initial_roll[1] + initial_roll[2]
 
+def calculate_abilities():
+    str = roll_ability()
+    dex = roll_ability()
+    con = roll_ability()
+    int = roll_ability()
+    wis = roll_ability()
+    cha = roll_ability()
+    return str, dex, con, int, wis, cha
+
