@@ -42,6 +42,7 @@ class Cleric:
         self.tool_proficiencies = []
         self.skill_proficiencies = []
         self.starting_equipment = []
+        self.special_abilities = []
         self.divine_domain = ""
         self.cantrips = []
         self.spells = []
@@ -187,7 +188,7 @@ def define_cleric():
 
     # Starting Spells
     print("Clerics can prepare 1 spell. Choose 1 spell from the following list:")
-    for spell in displayed_cleric_cantrips:
+    for spell in displayed_cleric_spells:
         print(spell)
     print("Please choose your spell:")
     spell_choice = input("> ")

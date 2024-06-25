@@ -91,6 +91,34 @@ def define_human():
     human = Race(name, gender, "Human", "Human", "Medium", 30, "Common", "All ability scores: 1", "None", "None")
     return human
 
+def test_races():
+    print("Testing Races...")
+    display_races()
+    print("Testing Hill Dwarf... ")
+    hill_dwarf_test = define_hill_dwarf("Pickaxe")
+    print(hill_dwarf_test.get_info())
+    print("Testing Mountain Dwarf... ")
+    mountain_dwarf_test = define_mountain_dwarf("Pickaxe")
+    print(mountain_dwarf_test.get_info())
+    print("Testing High Elf... ")
+    high_elf_test = define_high_elf("Sylvan")
+    print(high_elf_test.get_info())
+    print("Testing Wood Elf... ")
+    wood_elf_test = define_wood_elf()
+    print(wood_elf_test.get_info())
+    print("Testing Lightfoot Halfling... ")
+    lightfoot_halfling_test = define_lightfoot_halfling()
+    print(lightfoot_halfling_test.get_info())
+    print("Testing Stout Halfling... ")
+    stout_halfling_test = define_stout_halfling()
+    print(stout_halfling_test.get_info())
+    print("Testing Human... ")
+    human_test = define_human()
+    print(human_test.get_info())
+    print("Race Tests Completed...")
+    print("Please report any bugs or errors.")
+    return 
+
 class Race:
     def __init__(self, name, gender, race, subrace, size, speed, languages, ability_score_increase, traits, proficiencies):
         self.name = name

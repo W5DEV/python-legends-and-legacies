@@ -11,8 +11,9 @@ class Weapon:
         self.is_versatile = is_versatile
         self.versatile_damage = versatile_damage
     
-    def get_info(self, lookup_name):
-        return f"{self.name} is a {self.proficiency} weapon. It costs {self.cost} gold pieces, does {self.damage} damage, weighs {self.weight} pounds, and has the following properties: {self.properties}."
+    def get_info(self):
+        print(f"{self.name} is a {self.proficiency} weapon. It costs {self.cost} gold pieces, does {self.damage} damage, weighs {self.weight} pounds, and has the following properties: {self.properties}.")
+        return
 
 class Armor:
     def __init__(self, name, cost, ac, strength, stealth, weight, doff_time, don_time):
@@ -26,7 +27,8 @@ class Armor:
         self.don_time = don_time
     
     def get_info(self):
-        return f"{self.name} is {self.description}. It costs {self.cost} gold pieces, has an AC of {self.ac}, requires a strength of {self.strength}, and weighs {self.weight} pounds."
+        print(f"{self.name} is {self.description}. It costs {self.cost} gold pieces, has an AC of {self.ac}, requires a strength of {self.strength}, and weighs {self.weight} pounds.")
+        return
 
 def get_info(equipment):
     return equipment.get_info()
@@ -39,7 +41,8 @@ class Equipment:
         self.properties = properties
     
     def get_info(self):
-        return f"{self.name} costs {self.cost} gold pieces, weighs {self.weight} pounds, and has the following properties: {self.properties}."
+        print(f"{self.name} costs {self.cost} gold pieces, weighs {self.weight} pounds, and has the following properties: {self.properties}.")
+        return
 
 equipment_types = ["Simple Weapons", "Martial Weapons", "Light Armor", "Medium Armor", "Heavy Armor", "Shield", "Packs", "Instruments", "Holy Symbols", "Druidic Focus", "Artisan Tools", "Other Tools"]
 
