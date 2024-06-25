@@ -28,7 +28,6 @@ class Barbarian:
         self.starting_equipment = []
         self.special_abilities = []
         self.primal_path = ""
-        self.proficiency_bonus = 2
     
     def get_info(self):
         print(f"The {self.name}: {self.bio}")

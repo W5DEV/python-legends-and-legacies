@@ -59,7 +59,6 @@ class Wizard:
         self.spell_slots_level_7 = 0
         self.spell_slots_level_8 = 0
         self.spell_slots_level_9 = 0
-        self.proficiency_bonus = 2
     
     def get_info(self):
         print(f"The {self.name}: {self.bio}")
