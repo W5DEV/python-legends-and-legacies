@@ -29,7 +29,7 @@ def display_warlock_spells():
 class Warlock:
     def __init__(self):
         name = "Warlock"
-        description = "A wielder of magic that is derived from a bargain with an extraplanar entity"
+        bio = "A wielder of magic that is derived from a bargain with an extraplanar entity."
         hit_die = "8 for first level, then 1d8 (or 5, whichever is higher) per level after 1 + your Constitution modifier"
         primary_ability = "Charisma"
         saving_throw_proficiencies = "Wisdom, Charisma"
@@ -37,7 +37,7 @@ class Warlock:
         weapon_proficiencies = "Simple Weapons"
         tool_proficiencies = "None"
         self.name = name
-        self.description = description
+        self.bio = bio
         self.hit_die = hit_die
         self.primary_ability = primary_ability
         self.saving_throw_proficiencies = saving_throw_proficiencies
@@ -57,16 +57,22 @@ class Warlock:
         self.invocations_known = 0
     
     def get_info(self):
-        print(f"The {self.name}: {self.description}")
+        print(f"The {self.name}: {self.bio}")
         print(f"Hit Die: {self.hit_die}")
         print(f"Primary Ability: {self.primary_ability}")
         print(f"Saving Throw Proficiencies: {self.saving_throw_proficiencies}")
         print(f"Armor Proficiencies: {self.armor_proficiencies}")
         print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
         print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies: {self.skill_proficiencies}")
-        print(f"Starting Equipment: {self.starting_equipment}")
-        print(f"Special Abilities: {self.special_abilities}")
+        print(f"Skill Proficiencies:")
+        for skill in self.skill_proficiencies:
+            print(skill.name)
+        print(f"Starting Equipment:")
+        for item in self.starting_equipment:
+            print(item.name)
+        print(f"Special Abilities:")
+        for ability in self.special_abilities:
+            print(ability)
         return self
     
     def sync_level(self, level):
@@ -120,7 +126,7 @@ class Warlock:
 def define_warlock():
     warlock = Warlock()
     print(f'You have chosen the warlock class.')
-    print(warlock.description)
+    print(warlock.bio)
 
     # Skill Proficiencies
     print("Choose 2 skills from the following list, which you will be proficient in:")

@@ -26,14 +26,14 @@ potential_starting_equipment = ["a Mace or a Warhammer (if proficient)", "Scale 
 class Cleric:
     def __init__(self):
         name = "Cleric"
-        description = "A priestly champion who wields divine magic in service of a higher power."
+        bio = "A priestly champion who wields divine magic in service of a higher power."
         hit_die = "1d8 for first level, then 1d8 (or 5, whichever is higher) per level after 1 + your Constitution modifier."
         primary_ability = "Wisdom"
-        saving_throw_proficiencies = ["Wisdom", "Charisma"]
-        armor_proficiencies = ["Light Armor", "Medium Armor", "Shields"]
-        weapon_proficiencies = ["Simple Weapons"]
+        saving_throw_proficiencies = "Wisdom, Charisma"
+        armor_proficiencies = "Light Armor, Medium Armor, Shields"
+        weapon_proficiencies = "Simple Weapons"
         self.name = name
-        self.description = description
+        self.bio = bio
         self.hit_die = hit_die
         self.primary_ability = primary_ability
         self.saving_throw_proficiencies = saving_throw_proficiencies
@@ -58,16 +58,22 @@ class Cleric:
         self.spell_slots_level_9 = 0
 
     def get_info(self):
-        print(f"The {self.name}: {self.description}")
+        print(f"The {self.name}: {self.bio}")
         print(f"Hit Die: {self.hit_die}")
         print(f"Primary Ability: {self.primary_ability}")
         print(f"Saving Throw Proficiencies: {self.saving_throw_proficiencies}")
         print(f"Armor Proficiencies: {self.armor_proficiencies}")
         print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
         print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies: {self.skill_proficiencies}")
-        print(f"Starting Equipment: {self.starting_equipment}")
-        print(f"Special Abilities: {self.special_abilities}")
+        print(f"Skill Proficiencies:")
+        for skill in self.skill_proficiencies:
+            print(skill.name)
+        print(f"Starting Equipment:")
+        for item in self.starting_equipment:
+            print(item.name)
+        print(f"Special Abilities:")
+        for ability in self.special_abilities:
+            print(ability)
         return self
 
     def sync_level(self, level):
@@ -127,7 +133,7 @@ class Cleric:
 def define_cleric():
     cleric = Cleric()
     print(f"You have chosen the Cleric class.")
-    print(cleric.description)
+    print(cleric.bio)
 
     # Skill Proficiencies
     print("A Cleric is proficient in 2 skills. Choose two skills from the following:")
@@ -208,7 +214,7 @@ def define_cleric():
     armor_choice = ""
     weapon_choice2 = ""
     pack_choice = ""
-    print("Cerics are able to choose from the following starting equipment:")
+    print("Clerics are able to choose from the following starting equipment:")
     for item in potential_starting_equipment:
         print(item)
     

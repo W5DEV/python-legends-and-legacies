@@ -36,16 +36,22 @@ class Ranger:
         self.spell_slots_level_5 = 0
 
     def get_info(self):
-        print(f"The {self.name}: {self.description}")
+        print(f"The {self.name}: {self.bio}")
         print(f"Hit Die: {self.hit_die}")
         print(f"Primary Ability: {self.primary_ability}")
         print(f"Saving Throw Proficiencies: {self.saving_throw_proficiencies}")
         print(f"Armor Proficiencies: {self.armor_proficiencies}")
         print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
         print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies: {self.skill_proficiencies}")
-        print(f"Starting Equipment: {self.starting_equipment}")
-        print(f"Special Abilities: {self.special_abilities}")
+        print(f"Skill Proficiencies:")
+        for skill in self.skill_proficiencies:
+            print(skill.name)
+        print(f"Starting Equipment:")
+        for item in self.starting_equipment:
+            print(item.name)
+        print(f"Special Abilities:")
+        for ability in self.special_abilities:
+            print(ability)
         return self
     
     def sync_level(self, level):

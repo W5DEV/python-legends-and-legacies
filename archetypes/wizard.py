@@ -10,7 +10,6 @@
 # - spellcasting_focus
 
 import modules.equipment as equipment
-import modules.instruments as instruments
 
 displayed_wizard_spells = ["Alarm", "Burning Hands", "Charm Person", "Color Spray", "Comprehend Languages", "Detect Magic", "Disguise Self", "Expeditious Retreat", "False Life", "Feather Fall", "Find Familiar", "Fog Cloud", "Grease", "Hideous Laughter", "Identify", "Illusory Script", "Jump", "Longstrider", "Mage Armor", "Magic Missile", "Protection from Evil and Good", "Shield", "Silent Image", "Sleep", "Thunderwave", "Unseen Servant"]
 wizard_spells = ["alarm", "burning hands", "charm person", "color spray", "comprehend languages", "detect magic", "disguise self", "expeditious retreat", "false life", "feather fall", "find familiar", "fog cloud", "grease", "hideous laughter", "identify", "illusory script", "jump", "longstrider", "mage armor", "magic missile", "protection from evil and good", "shield", "silent image", "sleep", "thunderwave", "unseen servant"]
@@ -29,7 +28,7 @@ def display_wizard_spells():
 class Wizard:
     def __init__(self):
         name = "Wizard"
-        description = "A scholarly magic-user capable of manipulating the structures of reality"
+        bio = "A scholarly magic-user capable of manipulating the structures of reality."
         hit_die = "6 for first level, then 1d6 (or 4, whichever is higher) per level after 1 + your Constitution modifier"
         primary_ability = "Intelligence"
         saving_throw_proficiencies = "Intelligence, Wisdom"
@@ -37,7 +36,7 @@ class Wizard:
         weapon_proficiencies = "Daggers, Darts, Slings, Quarterstaffs, Light Crossbows"
         tool_proficiencies = "None"
         self.name = name
-        self.description = description
+        self.bio = bio
         self.hit_die = hit_die
         self.primary_ability = primary_ability
         self.saving_throw_proficiencies = saving_throw_proficiencies
@@ -62,16 +61,22 @@ class Wizard:
         self.spell_slots_level_9 = 0
     
     def get_info(self):
-        print(f"The {self.name}: {self.description}")
+        print(f"The {self.name}: {self.bio}")
         print(f"Hit Die: {self.hit_die}")
         print(f"Primary Ability: {self.primary_ability}")
         print(f"Saving Throw Proficiencies: {self.saving_throw_proficiencies}")
         print(f"Armor Proficiencies: {self.armor_proficiencies}")
         print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
         print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies: {self.skill_proficiencies}")
-        print(f"Starting Equipment: {self.starting_equipment}")
-        print(f"Special Abilities: {self.special_abilities}")
+        print(f"Skill Proficiencies:")
+        for skill in self.skill_proficiencies:
+            print(skill.name)
+        print(f"Starting Equipment:")
+        for item in self.starting_equipment:
+            print(item.name)
+        print(f"Special Abilities:")
+        for ability in self.special_abilities:
+            print(ability)
         return self
     
     def sync_level(self, level):
@@ -122,7 +127,7 @@ class Wizard:
 def define_wizard():
     wizard = Wizard()
     print(f'You have chosen the wizard class.')
-    print(wizard.description)
+    print(wizard.bio)
 
     # Skill Proficiencies
     print("Choose 2 skills from the following list, which you will be proficient in:")

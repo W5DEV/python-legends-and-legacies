@@ -29,7 +29,7 @@ def display_sorcerer_spells():
 class Sorcerer:
     def __init__(self):
         name = "Sorcerer"
-        description = "A spellcaster who draws on inherent magic from a gift or bloodline"
+        bio = "A spellcaster who draws on inherent magic from a gift or bloodline."
         hit_die = "1d6 for first level, then 1d6 (or 4, whichever is higher) per level after 1 + your Constitution modifier"
         primary_ability = "Charisma"
         saving_throw_proficiencies = "Constitution, Charisma"
@@ -37,7 +37,7 @@ class Sorcerer:
         weapon_proficiencies = "Daggers, Darts, Slings, Quarterstaffs, Light Crossbows"
         tool_proficiencies = "None"
         self.name = name
-        self.description = description
+        self.bio = bio
         self.hit_die = hit_die
         self.primary_ability = primary_ability
         self.saving_throw_proficiencies = saving_throw_proficiencies
@@ -64,16 +64,22 @@ class Sorcerer:
         self.spell_slots_level_9 = 0
     
     def get_info(self):
-        print(f"The {self.name}: {self.description}")
+        print(f"The {self.name}: {self.bio}")
         print(f"Hit Die: {self.hit_die}")
         print(f"Primary Ability: {self.primary_ability}")
         print(f"Saving Throw Proficiencies: {self.saving_throw_proficiencies}")
         print(f"Armor Proficiencies: {self.armor_proficiencies}")
         print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
         print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies: {self.skill_proficiencies}")
-        print(f"Starting Equipment: {self.starting_equipment}")
-        print(f"Special Abilities: {self.special_abilities}")
+        print(f"Skill Proficiencies:")
+        for skill in self.skill_proficiencies:
+            print(skill.name)
+        print(f"Starting Equipment:")
+        for item in self.starting_equipment:
+            print(item.name)
+        print(f"Special Abilities:")
+        for ability in self.special_abilities:
+            print(ability)
         return self
     
     def sync_level(self, level):
@@ -124,7 +130,7 @@ class Sorcerer:
 def define_sorcerer():
     sorcerer = Sorcerer()
     print(f'You have chosen the sorcerer class.')
-    print(sorcerer.description)
+    print(sorcerer.bio)
 
     # Skill Proficiencies
     print("Choose 2 skills from the following list, which you will be proficient in:")

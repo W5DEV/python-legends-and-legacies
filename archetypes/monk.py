@@ -9,7 +9,7 @@ class Monk:
     
     def __init__(self):
         name = "Monk"
-        bio = "A master of martial arts, harnessing the power of the body in pursuit of physical and spiritual perfection"
+        bio = "A master of martial arts, harnessing the power of the body in pursuit of physical and spiritual perfection."
         hit_die = "1d8 for first level, then 1d8 (or 5, whichever is higher) per level after 1 + your Constitution modifier."
         primary_ability = "Dexterity, Wisdom"
         saving_throw_proficiencies = "Strength, Dexterity"
@@ -29,16 +29,22 @@ class Monk:
         self.special_abilities = []
 
     def get_info(self):
-        print(f"The {self.name}: {self.description}")
+        print(f"The {self.name}: {self.bio}")
         print(f"Hit Die: {self.hit_die}")
         print(f"Primary Ability: {self.primary_ability}")
         print(f"Saving Throw Proficiencies: {self.saving_throw_proficiencies}")
         print(f"Armor Proficiencies: {self.armor_proficiencies}")
         print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
         print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies: {self.skill_proficiencies}")
-        print(f"Starting Equipment: {self.starting_equipment}")
-        print(f"Special Abilities: {self.special_abilities}")
+        print(f"Skill Proficiencies:")
+        for skill in self.skill_proficiencies:
+            print(skill.name)
+        print(f"Starting Equipment:")
+        for item in self.starting_equipment:
+            print(item.name)
+        print(f"Special Abilities:")
+        for ability in self.special_abilities:
+            print(ability)
         return self
     
     def sync_level(self, level):

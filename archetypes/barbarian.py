@@ -9,7 +9,7 @@ class Barbarian:
     
     def __init__(self):
         name = "Barbarian"
-        description = "A fierce warrior of primitive background who can enter a battle rage"
+        bio = "A fierce warrior of primitive background who can enter a battle rage."
         hit_die = "1d12 for first level, then 1d12 (or 7, whichever is higher) per level after 1 + your Constitution modifier."
         primary_ability = "Strength"
         saving_throw_proficiencies = "Strength, Constitution"
@@ -17,7 +17,7 @@ class Barbarian:
         weapon_proficiencies = "Simple Weapons, Martial Weapons"
         tool_proficiencies = "None"
         self.name = name
-        self.description = description
+        self.bio = bio
         self.hit_die = hit_die
         self.primary_ability = primary_ability
         self.saving_throw_proficiencies = saving_throw_proficiencies
@@ -30,16 +30,22 @@ class Barbarian:
         self.primal_path = ""
     
     def get_info(self):
-        print(f"The {self.name}: {self.description}")
+        print(f"The {self.name}: {self.bio}")
         print(f"Hit Die: {self.hit_die}")
         print(f"Primary Ability: {self.primary_ability}")
         print(f"Saving Throw Proficiencies: {self.saving_throw_proficiencies}")
         print(f"Armor Proficiencies: {self.armor_proficiencies}")
         print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
         print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies: {self.skill_proficiencies}")
-        print(f"Starting Equipment: {self.starting_equipment}")
-        print(f"Special Abilities: {self.special_abilities}")
+        print(f"Skill Proficiencies:")
+        for skill in self.skill_proficiencies:
+            print(skill.name)
+        print(f"Starting Equipment:")
+        for item in self.starting_equipment:
+            print(item.name)
+        print(f"Special Abilities:")
+        for ability in self.special_abilities:
+            print(ability)
         return self
     
     def sync_level(self, level):
@@ -97,7 +103,7 @@ class Barbarian:
 def define_barbarian():
     barbarian = Barbarian()
     print(f'You have chosen the Barbarian class.')
-    print(barbarian.description)
+    print(barbarian.bio)
 
     # Skill Proficiencies
     print("Choose 2 skills from the following list, which you will be proficient in:")
@@ -146,7 +152,7 @@ def define_barbarian():
             if other_weapon1.lower() == weapon.name.lower():
                 first_weapon = weapon
                 break
-    print(f"You have chosen {first_weapon.name} as your first weapon.")
+    print(f"You have chosen {first_weapon.name}.")
     print(f"One {first_weapon.name} has been added to your starting equipment.")
 
     print("Would you like to start with Two Handaxes or any Other Simple Weapon?")
@@ -173,11 +179,10 @@ def define_barbarian():
                 break
    
     if second_weapon == equipment.hand_axe:
-        print("You have also chosen Two Handaxes as your secon weapon.")
-        print("You will have two handaxes in your inventory, which can be dual weilded or used individually for melee or throwing attacks.")
+        print("You have chosen Two Handaxes.")
         print("Two Handaxes have been added to your starting equipment.")
     else:
-         print(f"You have chosen one {second_weapon.name} as your second weapon.")
+         print(f"You have chosen one {second_weapon.name}.")
          print(f"One {second_weapon.name} has been added to your starting equipment.")
 
     selected_starting_equipment = [first_weapon, second_weapon, second_weapon, equipment.explorers_pack, equipment.javelin, equipment.javelin, equipment.javelin, equipment.javelin]
