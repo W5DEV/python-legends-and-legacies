@@ -9,7 +9,7 @@ class Fighter:
     
     def __init__(self):
         name = "Fighter"
-        bio = "A master of martial combat, skilled with a variety of weapons and armor"
+        bio = "A master of martial combat, skilled with a variety of weapons and armor."
         hit_die = "1d10 for first level, then 1d10 (or 6, whichever is higher) per level after 1 + your Constitution modifier."
         primary_ability = "Strength or Dexterity"
         saving_throw_proficiencies = "Strength, Constitution"
@@ -38,9 +38,15 @@ class Fighter:
         print(f"Armor Proficiencies: {self.armor_proficiencies}")
         print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
         print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies: {self.skill_proficiencies}")
-        print(f"Starting Equipment: {self.starting_equipment}")
-        print(f"Special Abilities: {self.special_abilities}")
+        print(f"Skill Proficiencies:")
+        for skill in self.skill_proficiencies:
+            print(skill.name)
+        print(f"Starting Equipment:")
+        for item in self.starting_equipment:
+            print(item.name)
+        print(f"Special Abilities:")
+        for ability in self.special_abilities:
+            print(ability)
         return self
     
     def sync_level(self, level):
