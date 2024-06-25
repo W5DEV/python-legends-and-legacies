@@ -6,7 +6,7 @@ This project is maintained and developed by [John Larson (W5DEV)](github.com/W5D
 
 Legends & Legacies is a text-based role-playing game that allows the player to create a character and explore a world filled with adventure, danger, and mystery. The player will be able to make choices that will affect the outcome of the story, and will have to use their wits and skills to survive in a world where danger lurks around every corner.
 
-This game is currently in the engine/rules development phase. The game is being developed in Python, and will be based on the rules outlined at [D&D Beyond](https://www.dndbeyond.com/).
+This game is currently in the engine/rules development phase. The game is being developed in Python, and will be loosely based on rules commonly found in popular RPG games.
 
 Any contributions are welcome, and can be made by forking the repository and submitting a pull request. It should also be noted that while in the engine/rules development phase, the code can and will be constantly changed and refactored as improvements and optimizations are made.
 
@@ -41,10 +41,10 @@ Currently, the game is in the early stages of development, with the basic framew
 - ~~Create a basic character creation system~~
 - ~~Add rules and traits for character races~~
 - ~~Add benefits, features and proficiencies for character classes~~
-- Determine proficiency bonus
-- Determine ability modifiers
-- Create an option to take equipment based on class and background
-- Flesh out equipment options other than weapons and armor
+- ~~Determine proficiency bonus~~
+- ~~Determine ability modifiers~~
+- ~~Create an option to take equipment based on class and background~~
+- ~~Flesh out equipment options other than weapons and armor~~
 - Allow player to equip/ready weapons, equipment and armor
 - Calculate armor class based on currently equipped armor
 - Calculate weight based on current equipment and implement encumbrance
@@ -60,7 +60,7 @@ Currently, the game is in the early stages of development, with the basic framew
 - Create a basic combat system which allows the player to make moves based on their class, race, equipment, and abilities
 - Make combat turn-based, which accounts for player and enemy actions
 - Add a system for calculating damage based on weapons, abilities, and armor
-- Add a system for calculating hit points and health
+- ~~Add a system for calculating hit points and health~~
 
 ### Phase 4: Leveling Up
 
@@ -91,6 +91,6 @@ Currently, the game is in the early stages of development, with the basic framew
 
 ## Notices
 
-*This project is not affiliated with Wizards of the Coast, Dungeons & Dragons or D&D Beyond. Dungeons & Dragons is a registered trademark of Wizards of the Coast, LLC.*
+*This project is not affiliated with Wizards of the Coast, Dungeons & Dragons or D&D Beyond.*
 
 *Good faith effort and attempts have been made to ensure that this project does not infringe on any copyrights or trademarks. If you believe that this project infringes on any copyrights or trademarks, please contact me immediately at [W5DEV.com](https://w5dev.com) so that I may address your concerns.*
