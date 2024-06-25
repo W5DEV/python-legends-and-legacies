@@ -26,14 +26,14 @@ potential_starting_equipment = ["a Mace or a Warhammer (if proficient)", "Scale 
 class Cleric:
     def __init__(self):
         name = "Cleric"
-        description = "A priestly champion who wields divine magic in service of a higher power."
+        bio = "A priestly champion who wields divine magic in service of a higher power."
         hit_die = "1d8 for first level, then 1d8 (or 5, whichever is higher) per level after 1 + your Constitution modifier."
         primary_ability = "Wisdom"
         saving_throw_proficiencies = ["Wisdom", "Charisma"]
         armor_proficiencies = ["Light Armor", "Medium Armor", "Shields"]
         weapon_proficiencies = ["Simple Weapons"]
         self.name = name
-        self.description = description
+        self.bio = bio
         self.hit_die = hit_die
         self.primary_ability = primary_ability
         self.saving_throw_proficiencies = saving_throw_proficiencies
@@ -58,7 +58,7 @@ class Cleric:
         self.spell_slots_level_9 = 0
 
     def get_info(self):
-        print(f"The {self.name}: {self.description}")
+        print(f"The {self.name}: {self.bio}")
         print(f"Hit Die: {self.hit_die}")
         print(f"Primary Ability: {self.primary_ability}")
         print(f"Saving Throw Proficiencies: {self.saving_throw_proficiencies}")
@@ -127,7 +127,7 @@ class Cleric:
 def define_cleric():
     cleric = Cleric()
     print(f"You have chosen the Cleric class.")
-    print(cleric.description)
+    print(cleric.bio)
 
     # Skill Proficiencies
     print("A Cleric is proficient in 2 skills. Choose two skills from the following:")

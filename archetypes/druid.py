@@ -24,7 +24,7 @@ potential_starting_equipment = ["A Wooden Shield or any Simple Weapon", "Scimita
 class Druid:
     def __init__(self):
         name = "Druid"
-        description = "A priest of the Old Faith, wielding the powers of nature — moonlight and plant growth, fire and lightning — and adopting animal forms"
+        bio = "A priest of the Old Faith, wielding the powers of nature — moonlight and plant growth, fire and lightning — and adopting animal forms"
         hit_die = "1d8 for first level, then 1d8 (or 5, whichever is higher) per level after 1 + your Constitution modifier."
         primary_ability = "Wisdom"
         saving_throw_proficiencies = ["Intelligence", "Wisdom"]
@@ -32,7 +32,7 @@ class Druid:
         weapon_proficiencies = ["Clubs", "Daggers", "Darts", "Javelins", "Maces", "Quarterstaffs", "Scimitars", "Sickles", "Slings", "Spears"]
         tool_proficiencies = ["Herbalism Kit"]
         self.name = name
-        self.description = description
+        self.bio = bio
         self.hit_die = hit_die
         self.primary_ability = primary_ability
         self.saving_throw_proficiencies = saving_throw_proficiencies
@@ -57,7 +57,7 @@ class Druid:
         self.spell_slots_level_9 = 0
 
     def get_info(self):
-        print(f"The {self.name}: {self.description}")
+        print(f"The {self.name}: {self.bio}")
         print(f"Hit Die: {self.hit_die}")
         print(f"Primary Ability: {self.primary_ability}")
         print(f"Saving Throw Proficiencies: {self.saving_throw_proficiencies}")
@@ -114,7 +114,7 @@ class Druid:
 def define_druid():
     druid = Druid()
     print("You have chosen the Druid class.")
-    print(druid.description)
+    print(druid.bio)
 
     # Skill Proficiencies
     print("Choose two skills from the following:")

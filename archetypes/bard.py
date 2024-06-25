@@ -27,7 +27,7 @@ def display_bard_spells():
 class Bard:
     def __init__(self):
         name = "Bard"
-        description = "An inspiring magician whose power echoes the music of creation."
+        bio = "An inspiring magician whose power echoes the music of creation."
         hit_die = "1d8 for first level, then 1d8 (or 5, whichever is higher) per level after 1 + your Constitution modifier"
         primary_ability = "Charisma"
         saving_throw_proficiencies = ["Dexterity", "Charisma"]
@@ -35,7 +35,7 @@ class Bard:
         weapon_proficiencies = "Simple Weapons, Hand Crossbows, Longswords, Rapiers, Shortswords"
         tool_proficiencies = "Three musical instruments of your choice"
         self.name = name
-        self.description = description
+        self.bio = bio
         self.hit_die = hit_die
         self.primary_ability = primary_ability
         self.saving_throw_proficiencies = saving_throw_proficiencies
@@ -63,7 +63,7 @@ class Bard:
         self.spell_slots_level_9 = 0
     
     def get_info(self):
-        print(f"The {self.name}: {self.description}")
+        print(f"The {self.name}: {self.bio}")
         print(f"Hit Die: {self.hit_die}")
         print(f"Primary Ability: {self.primary_ability}")
         print(f"Saving Throw Proficiencies: {self.saving_throw_proficiencies}")
@@ -174,7 +174,7 @@ class Bard:
 def define_bard():
     bard = Bard()
     print(f'You have chosen the Bard class.')
-    print(bard.description)
+    print(bard.bio)
 
     # Skill Proficiencies
     print("Choose 3 skills from the following list, which you will be proficient in:")

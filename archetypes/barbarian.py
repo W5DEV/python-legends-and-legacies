@@ -9,7 +9,7 @@ class Barbarian:
     
     def __init__(self):
         name = "Barbarian"
-        description = "A fierce warrior of primitive background who can enter a battle rage"
+        bio = "A fierce warrior of primitive background who can enter a battle rage"
         hit_die = "1d12 for first level, then 1d12 (or 7, whichever is higher) per level after 1 + your Constitution modifier."
         primary_ability = "Strength"
         saving_throw_proficiencies = "Strength, Constitution"
@@ -17,7 +17,7 @@ class Barbarian:
         weapon_proficiencies = "Simple Weapons, Martial Weapons"
         tool_proficiencies = "None"
         self.name = name
-        self.description = description
+        self.bio = bio
         self.hit_die = hit_die
         self.primary_ability = primary_ability
         self.saving_throw_proficiencies = saving_throw_proficiencies
@@ -97,7 +97,7 @@ class Barbarian:
 def define_barbarian():
     barbarian = Barbarian()
     print(f'You have chosen the Barbarian class.')
-    print(barbarian.description)
+    print(barbarian.bio)
 
     # Skill Proficiencies
     print("Choose 2 skills from the following list, which you will be proficient in:")
