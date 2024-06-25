@@ -44,8 +44,6 @@ class Equipment:
         print(f"{self.name} costs {self.cost} gold pieces, weighs {self.weight} pounds, and has the following properties: {self.properties}.")
         return
 
-equipment_types = ["Simple Weapons", "Martial Weapons", "Light Armor", "Medium Armor", "Heavy Armor", "Shield"]
-
 club = Weapon("Club", 1, "1d4 bludgeoning", 2, "Light", "Simple", False, True)
 dagger = Weapon("Dagger", 2, "1d4 piercing", 1, "Finesse, Light, Thrown", "Simple", True, True)
 great_club = Weapon("Great Club", 2, "1d8 bludgeoning", 10, "Two-handed", "Simple", False, True)
@@ -111,6 +109,7 @@ martial_weapons = martial_melee_weapons + martial_ranged_weapons
 light_armor = [padded_light_armor, leather_light_armor, studded_light_armor]
 medium_armor = [hide_medium_armor, chain_shirt_medium_armor, scale_mail_medium_armor, breastplate_medium_armor, half_plate_medium_armor]
 heavy_armor = [ring_mail_heavy_armor, chain_mail_heavy_armor, splint_heavy_armor, plate_heavy_armor]
+shields = [shield]
 
 explorers_pack = Equipment("Explorer's Pack", 10, 59, "Includes a backpack, a bedroll, a mess kit, a tinderbox, 10 torches, 10 days of rations, and a waterskin.")
 diplomats_pack = Equipment("Diplomat's Pack", 39, 46, "Includes a chest, 2 cases for maps and scrolls, a set of fine clothes, a bottle of ink, an ink pen, a lamp, 2 flasks of oil, 5 sheets of paper, a vial of perfume, sealing wax, and soap.")
@@ -138,6 +137,8 @@ instruments = [bagpipes, drum, dulcimer, flute, lute, lyre, horn, pan_flute, sha
 holy_symbol_amulet = Equipment("Holy Symbol Amulet", 5, 1, "Holy Symbol")
 holy_symbol_emblem = Equipment("Holy Symbol Emblem", 5, 0, "Holy Symbol")
 holy_symbol_reliquary = Equipment("Holy Symbol Reliquary", 5, 2, "Holy Symbol")
+
+holy_symbols = [holy_symbol_amulet, holy_symbol_emblem, holy_symbol_reliquary]
 
 druidic_focus = Equipment("Druidic Focus", 0, 0, "Sprig of Mistletoe")
 
@@ -180,4 +181,6 @@ arcane_focus_wand = Equipment("Arcane Focus Wand", 10, 1, "Arcane Focus")
 
 spellbook = Equipment("Spellbook", 50, 3, "Contains a variety of spells.")
 
-other_gear = [component_pouch, arcane_focus_crystal, arcane_focus_orb, arcane_focus_rod, arcane_focus_staff, arcane_focus_wand, spellbook]
+class_equipment = [component_pouch, arcane_focus_crystal, arcane_focus_orb, arcane_focus_rod, arcane_focus_staff, arcane_focus_wand, druidic_focus, spellbook]
+
+equipment_types = ["Simple Melee Weapons", "Simple Ranged Weapons", "Martial Melee Weapons", "Martial Ranged Weapons", "Light Armor", "Medium Armor", "Heavy Armor", "Shields", "Packs", "Instruments", "Holy Symbols", "Artisan's Tools", "Other Tools", "Class Equipment"]
