@@ -1,5 +1,4 @@
-import modules.equipment as equipment
-import modules.dice_rolls as dice_rolls
+import modules.starting_equipment as starting_equipment
 
 displayed_barbarian_skills = ["Animal Handling", "Athletics", "Intimidation", "Nature", "Perception", "Survival"]
 barbarian_skills = ["animal handling", "athletics", "intimidation", "nature", "perception", "survival"]
@@ -139,74 +138,35 @@ def define_barbarian():
     barbarian.skill_proficiencies = selected_skill_proficiencies
     
     # Starting Equipment
-    weapon_choice1 = ""
-    weapon_choice2 = ""
-    print(f"Barbarian's are able to choose between a few different starting equipment options.")
-    for item in potential_starting_equipment:
-        print(item)
-
-    print("Would you like to start with a Greataxe or any martial melee weapon?")
-    print("Please enter your either 'Greataxe' or 'Other Weapon':")
-    weapon_choice1 = input("> ")
-    while weapon_choice1.lower() not in ["greataxe", "other weapon"]:
-        print("That is not a valid choice. Please choose from the list.")
-        weapon_choice1 = input("> ")
-    if weapon_choice1.lower() == "greataxe":
-        first_weapon = equipment.great_axe
+    weapon_choice_1 = starting_equipment.starting_equipment_choice("Greataxe", "Any Martial Melee Weapon")
+    if weapon_choice_1.lower() == "greataxe":
+        starting_weapon = starting_equipment.starting_equipment("Great Axe")
     else:
-        print("Please choose a martial melee weapon from the following list:")
-        valid_weapons = []
-        for weapon in equipment.martial_melee_weapons:
-            valid_weapons.append(weapon.name.lower())
-            print(weapon.name)
-        other_weapon1 = input("> ")
-        while other_weapon1.lower() not in valid_weapons:
-            print("That is not a valid choice. Please choose from the list.")
-            other_weapon1 = input("> ")
-        for weapon in equipment.martial_melee_weapons:
-            if other_weapon1.lower() == weapon.name.lower():
-                first_weapon = weapon
-                break
-    print(f"You have chosen {first_weapon.name}.")
-    print(f"One {first_weapon.name} has been added to your starting equipment.")
+        starting_weapon = starting_equipment.select_equipment_from_category("Martial Melee Weapons")
+    print(f"One {starting_weapon.name} has been added to your starting equipment.")
+    barbarian.starting_equipment.append(starting_weapon)
 
-    print("Would you like to start with Two Handaxes or any Other Simple Weapon?")
-    print("Please enter your either 'Two Handaxes' or 'Other Simple Weapon':")
-    weapon_choice2 = input("> ")
-    while weapon_choice2.lower() not in ["two handaxes", "other weapon"]:
-        print("That is not a valid choice. Please choose from the list.")
-        weapon_choice2 = input("> ")
-    if weapon_choice2.lower() == "two handaxes":
-        second_weapon = equipment.hand_axe
+    weapon_choice_2 = starting_equipment.starting_equipment_choice("Two Handaxes", "Any Simple Weapon")
+    if weapon_choice_2.lower() == "two handaxes":
+        starting_weapon = starting_equipment.starting_equipment("Hand Axe")
+        print(f"Two {starting_weapon.name}'s have been added to your starting equipment.")
+        barbarian.starting_equipment.append(starting_weapon)
+        barbarian.starting_equipment.append(starting_weapon)
     else:
-        print("Please choose a martial melee weapon from the following list:")
-        valid_weapons = []
-        for weapon in equipment.simple_weapons:
-            valid_weapons.append(weapon.name.lower())
-            print(weapon.name)
-        other_weapon2 = input("> ")
-        while other_weapon2.lower() not in valid_weapons:
-                print("That is not a valid choice. Please choose from the list.")
-                other_weapon2 = input("> ")
-        for weapon in equipment.simple_weapons:
-            if other_weapon2.lower() == weapon.name.lower():
-                second_weapon = weapon
-                break
-   
-    if second_weapon == equipment.hand_axe:
-        print("You have chosen Two Handaxes.")
-        print("Two Handaxes have been added to your starting equipment.")
-    else:
-         print(f"You have chosen one {second_weapon.name}.")
-         print(f"One {second_weapon.name} has been added to your starting equipment.")
+        starting_weapon = starting_equipment.select_equipment_from_category("Simple Weapons")
+        print(f"One {starting_weapon.name} has been added to your starting equipment.")
+        barbarian.starting_equipment.append(starting_weapon)
+    
+    explorer_pack = starting_equipment.starting_equipment("Explorer's Pack")
+    print(f"An {explorer_pack.name} has been added to your starting equipment.")
+    barbarian.starting_equipment.append(explorer_pack)
 
-    selected_starting_equipment = [first_weapon, second_weapon, second_weapon, equipment.explorers_pack, equipment.javelin, equipment.javelin, equipment.javelin, equipment.javelin]
-    barbarian.starting_equipment = selected_starting_equipment
-
-    print("Your starting equipment is as follows:")
-    for item in selected_starting_equipment:
-        print(item.name)
-
+    javelin = starting_equipment.starting_equipment("Javelin")
+    print(f"Four {javelin.name}'s have been added to your starting equipment.")
+    barbarian.starting_equipment.append(javelin)
+    barbarian.starting_equipment.append(javelin)
+    barbarian.starting_equipment.append(javelin)
+    barbarian.starting_equipment.append(javelin)
     return barbarian
         
 
