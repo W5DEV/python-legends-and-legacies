@@ -164,3 +164,11 @@ poisoners_kit = Equipment("Poisoner's Kit", 50, 2, "Other Tools")
 thieves_tools = Equipment("Thieves' Tools", 25, 1, "Other Tools")
 
 other_tools = [disguise_kit, forgery_kit, herbalism_kit, navigator_tools, poisoners_kit, thieves_tools]
+
+component_pouch = Equipment("Component Pouch", 25, 2, "Contains a variety of components needed for spellcasting.")
+
+arcane_focus_crystal = Equipment("Arcane Focus Crystal", 10, 1, "Arcane Focus")
+arcane_focus_orb = Equipment("Arcane Focus Orb", 20, 3, "Arcane Focus")
+arcane_focus_rod = Equipment("Arcane Focus Rod", 10, 2, "Arcane Focus")
+arcane_focus_staff = Equipment("Arcane Focus Staff", 5, 4, "Arcane Focus")
+arcane_focus_wand = Equipment("Arcane Focus Wand", 10, 1, "Arcane Focus")

@@ -10,6 +10,9 @@ import archetypes.monk as Monk
 import archetypes.paladin as Paladin
 import archetypes.ranger as Ranger
 import archetypes.rogue as Rogue
+import archetypes.sorcerer as Sorcerer
+import archetypes.warlock as Warlock
+import archetypes.wizard as Wizard
 
 displayed_archetypes = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"]
 
@@ -47,6 +50,15 @@ def create_archetype(archetype_name):
     elif archetype_name == "rogue":
         rogue = Rogue.define_rogue()
         return rogue
+    elif archetype_name == "sorcerer":
+        sorcerer = Sorcerer.define_sorcerer()
+        return sorcerer
+    elif archetype_name == "warlock":
+        warlock = Warlock.define_warlock()
+        return warlock
+    elif archetype_name == "wizard":
+        wizard = Wizard.define_wizard()
+        return wizard
     else: 
-        return archetype_name
+        return "archetype_name not found"
    

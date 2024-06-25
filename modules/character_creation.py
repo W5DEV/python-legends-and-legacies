@@ -4,8 +4,6 @@ import modules.equipment as equipment
 import modules.races as races
 import modules.archetypes as archetypes
 
-completed_archetypes = ["barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue"]
-
 
 def character_creation():
     # We are calling the functions defined for each section of Character Creation (defined below)
@@ -18,10 +16,7 @@ def character_creation():
 
     player.xp = 0
 
-    if player.archetype.name.lower() in completed_archetypes:
-        player.gp = utils.calculate_starting_gp(player.archetype.name)
-    else:
-        player.gp = utils.calculate_starting_gp(player.archetype)
+    player.gp = utils.calculate_starting_gp(player.archetype.name)
 
     print(f"{player.name} has {player.gp} gold pieces.")
 
@@ -91,8 +86,8 @@ def character_archetype(player):
             archetype_choice = input("> ")
         archetype = archetype_choice
         
-    if archetype.lower() in completed_archetypes:
-        archetype = archetypes.create_archetype(archetype.lower())
+    
+    archetype = archetypes.create_archetype(archetype.lower())
     player.archetype = archetype
     player.sync_level(1)
     return 
