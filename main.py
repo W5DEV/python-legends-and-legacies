@@ -6,6 +6,8 @@ def main():
     # This is just a synopsis of the player's character sheet, which was built using the character_creation function.
     
     print(f"{player.name} is a {player.race.subrace} {player.archetype.name}.")
+    print(f"{player.name}'s bio is as follows:")
+    print(player.bio)
     print(f"{player.name} has the following starting equipment:")
     for item in player.equipment:
         print(item.name)
