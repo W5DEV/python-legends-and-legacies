@@ -17,7 +17,7 @@ sorcerer_spells = ["burning hands", "charm person", "color spray", "comprehend l
 displayed_sorcerer_cantrips = ["Acid Splash", "Chill Touch", "Dancing Lights", "Fire Bolt", "Light", "Mage Hand", "Mending", "Message", "Minor Illusion", "Poison Spray", "Prestidigitation", "Ray of Frost", "Shocking Grasp", "True Strike"]
 sorcerer_cantrips = ["acid splash", "chill touch", "dancing lights", "fire bolt", "light", "mage hand", "mending", "message", "minor illusion", "poison spray", "prestidigitation", "ray of frost", "shocking grasp", "true strike"]
 
-potential_starting_equipment = ["A Light Crossbow and 20 Bolts or Any Simple Weapon", "A Component Pouch or an Arcane Focus", "A Dungeoneer's Pack or and Explorer's Pack", "Two Daggers"]
+potential_starting_equipment = ["A Light Crossbow and 20 Bolts or Any Simple Weapon", "A Component Pouch or an Arcane Focus", "A Dungeoneer's Pack or an Explorer's Pack", "Two Daggers"]
 
 displayed_sorcerer_skills = ["Arcana", "Deception", "Insight", "Intimidation", "Persuasion", "Religion"]
 sorcerer_skills = ["arcana", "deception", "insight", "intimidation", "persuasion", "religion"]
@@ -146,7 +146,7 @@ def define_sorcerer():
 
     # Starting Cantrips
     print("You have reached level 1 and can now choose 4 cantrips from the sorcerer spell list.")
-    print("Please choose two cantrips from the following list:")
+    print("Please choose four cantrips from the following list:")
     for cantrip in displayed_sorcerer_cantrips:
         print(cantrip)
     print("Please enter your first cantrip choice:")
@@ -256,7 +256,7 @@ def define_sorcerer():
         print("An Explorer's Pack has been added to your starting equipment.")
         sorcerer.starting_equipment.append(equipment.explorers_pack)
 
-    print("You also start with 2 Daggerss.")
+    print("You also start with 2 Daggers.")
     print("2 Daggers have been added to your starting equipment.")
     sorcerer.starting_equipment.append(equipment.dagger)
     sorcerer.starting_equipment.append(equipment.dagger)

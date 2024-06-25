@@ -172,3 +172,5 @@ arcane_focus_orb = Equipment("Arcane Focus Orb", 20, 3, "Arcane Focus")
 arcane_focus_rod = Equipment("Arcane Focus Rod", 10, 2, "Arcane Focus")
 arcane_focus_staff = Equipment("Arcane Focus Staff", 5, 4, "Arcane Focus")
 arcane_focus_wand = Equipment("Arcane Focus Wand", 10, 1, "Arcane Focus")
+
+spellbook = Equipment("Spellbook", 50, 3, "Contains a variety of spells.")

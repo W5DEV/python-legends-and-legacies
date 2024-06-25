@@ -12,15 +12,15 @@
 import modules.equipment as equipment
 import modules.instruments as instruments
 
-displayed_wizard_spells = ["Burning Hands", "Charm Person", "Color Spray", "Comprehend Languages", "Detect Magic", "Disguise Self", "Expeditious Retreat", "False Life", "Feather Fall", "Fog Cloud", "Jump", "Mage Armor", "Magic Missile", "Shield", "Silent Image", "Sleep", "Thunderwave"]
-wizard_spells = ["burning hands", "charm person", "color spray", "comprehend languages", "detect magic", "disguise self", "expeditious retreat", "false life", "feather fall", "fog cloud", "jump", "mage armor", "magic missile", "shield", "silent image", "sleep", "thunderwave"]
+displayed_wizard_spells = ["Alarm", "Burning Hands", "Charm Person", "Color Spray", "Comprehend Languages", "Detect Magic", "Disguise Self", "Expeditious Retreat", "False Life", "Feather Fall", "Find Familiar", "Fog Cloud", "Grease", "Hideous Laughter", "Identify", "Illusory Script", "Jump", "Longstrider", "Mage Armor", "Magic Missile", "Protection from Evil and Good", "Shield", "Silent Image", "Sleep", "Thunderwave", "Unseen Servant"]
+wizard_spells = ["alarm", "burning hands", "charm person", "color spray", "comprehend languages", "detect magic", "disguise self", "expeditious retreat", "false life", "feather fall", "find familiar", "fog cloud", "grease", "hideous laughter", "identify", "illusory script", "jump", "longstrider", "mage armor", "magic missile", "protection from evil and good", "shield", "silent image", "sleep", "thunderwave", "unseen servant"]
 displayed_wizard_cantrips = ["Acid Splash", "Chill Touch", "Dancing Lights", "Fire Bolt", "Light", "Mage Hand", "Mending", "Message", "Minor Illusion", "Poison Spray", "Prestidigitation", "Ray of Frost", "Shocking Grasp", "True Strike"]
 wizard_cantrips = ["acid splash", "chill touch", "dancing lights", "fire bolt", "light", "mage hand", "mending", "message", "minor illusion", "poison spray", "prestidigitation", "ray of frost", "shocking grasp", "true strike"]
 
-potential_starting_equipment = ["A Light Crossbow and 20 Bolts or Any Simple Weapon", "A Component Pouch or an Arcane Focus", "A Dungeoneer's Pack or and Explorer's Pack", "Two Daggers"]
+potential_starting_equipment = ["A Quarterstaff or a Dagger", "A Component Pouch or an Arcane Focus", "A Scholar's Pack or and Explorer's Pack", "A Spellbook"]
 
-displayed_wizard_skills = ["Arcana", "Deception", "Insight", "Intimidation", "Persuasion", "Religion"]
-wizard_skills = ["arcana", "deception", "insight", "intimidation", "persuasion", "religion"]
+displayed_wizard_skills = ["Arcana", "History", "Insight", "Investigation", "Medicine", "Religion"]
+wizard_skills = ["arcana", "history", "insight", "investigation", "medicine", "religion"]
 
 def display_wizard_spells():
     for spell in displayed_wizard_spells:
@@ -29,10 +29,10 @@ def display_wizard_spells():
 class Wizard:
     def __init__(self):
         name = "Wizard"
-        description = "A spellcaster who draws on inherent magic from a gift or bloodline"
-        hit_die = "1d6 for first level, then 1d6 (or 4, whichever is higher) per level after 1 + your Constitution modifier"
-        primary_ability = "Charisma"
-        saving_throw_proficiencies = "Constitution, Charisma"
+        description = "A scholarly magic-user capable of manipulating the structures of reality"
+        hit_die = "6 for first level, then 1d6 (or 4, whichever is higher) per level after 1 + your Constitution modifier"
+        primary_ability = "Intelligence"
+        saving_throw_proficiencies = "Intelligence, Wisdom"
         armor_proficiencies = "None"
         weapon_proficiencies = "Daggers, Darts, Slings, Quarterstaffs, Light Crossbows"
         tool_proficiencies = "None"
@@ -47,12 +47,10 @@ class Wizard:
         self.skill_proficiencies = []
         self.starting_equipment = []
         self.special_abilities = []
-        self.sorcerous_origin = ""
+        self.arcane_tradition = ""
         self.cantrips = []
         self.spells = []
-        self.sorcery_points = 0
-        self.cantrips_known = 4
-        self.spells_known = 2
+        self.cantrips_known = 3
         self.spell_slots_level_1 = 2
         self.spell_slots_level_2 = 0
         self.spell_slots_level_3 = 0
@@ -79,19 +77,19 @@ class Wizard:
     def sync_level(self, level):
         if level >= 1:
             self.special_abilities.append("Spellcasting")
-            self.sorcerous_origin = "Dragon Bloodline"
-            self.special_abilities.append("Dragon Ancestor")
-            self.special_abilities.append("Dracoic Resilience")
+            self.special_abilities.append("Arcane Recovery")
         if level >= 2:
-            self.special_abilities.append("Font of Magic")
+            self.arcane_tradition = "School of Evocation"
+            self.special_abilities.append("Evocation Savant")
+            self.special_abilities.append("Sculpt Spells")
         if level >= 3:
-            self.special_abilities.append("Metamagic")
+            pass
         if level >= 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
         if level >= 5:
             pass
         if level >= 6:
-            self.special_abilities.append("Elemental Affinity")
+            self.special_abilities.append("Potent Cantrip")
         if level >= 7:
             pass
         if level >= 8:
@@ -99,7 +97,7 @@ class Wizard:
         if level >= 9:
             pass
         if level >= 10:
-            self.special_abilities.append("Metamagic")
+            self.special_abilities.append("Empowered Evocation")
         if level >= 11:
             pass
         if level >= 12:
@@ -107,19 +105,19 @@ class Wizard:
         if level >= 13:
             pass
         if level >= 14:
-            self.special_abilities.append("Dragon Wings")
+            self.special_abilities.append("Overchannel")
         if level >= 15:
             pass
         if level >= 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
         if level >= 17:
-            self.special_abilities.append("Metamagic")
+            pass
         if level >= 18:
-            self.special_abilities.append("Draconic Presence")
+            self.special_abilities.append("Spell Mastery")
         if level >= 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
         if level >= 20:
-            self.special_abilities.append("Sorcerous Restoration")
+            self.special_abilities.append("Signature Spells")
 
 def define_wizard():
     wizard = Wizard()
@@ -145,8 +143,8 @@ def define_wizard():
     wizard.skill_proficiencies = selected_skill_proficiencies
 
     # Starting Cantrips
-    print("You have reached level 1 and can now choose 4 cantrips from the wizard spell list.")
-    print("Please choose two cantrips from the following list:")
+    print("You have reached level 1 and can now choose 3 cantrips from the wizard spell list.")
+    print("Please choose three cantrips from the following list:")
     for cantrip in displayed_wizard_cantrips:
         print(cantrip)
     print("Please enter your first cantrip choice:")
@@ -159,16 +157,13 @@ def define_wizard():
     while cantrip_choice2.lower() not in wizard_cantrips:
         print("That is not a valid choice. Please choose from the list.")
         cantrip_choice2 = input("> ")
+    print("Please enter your third cantrip choice:")
     cantrip_choice3 = input("> ")
     while cantrip_choice3.lower() not in wizard_cantrips:
         print("That is not a valid choice. Please choose from the list.")
         cantrip_choice3 = input("> ")
-    cantrip_choice4 = input("> ")
-    while cantrip_choice4.lower() not in wizard_cantrips:
-        print("That is not a valid choice. Please choose from the list.")
-        cantrip_choice4 = input("> ")
-    selected_cantrips = [cantrip_choice1, cantrip_choice2, cantrip_choice3, cantrip_choice4]
-    print(f"You have chosen {cantrip_choice1}, {cantrip_choice2}, {cantrip_choice3}, and {cantrip_choice4} as your cantrips.")
+    selected_cantrips = [cantrip_choice1, cantrip_choice2, cantrip_choice3]
+    print(f"You have chosen {cantrip_choice1}, {cantrip_choice2} and {cantrip_choice3} as your cantrips.")
     wizard.cantrips = selected_cantrips
 
     # Starting Spells
@@ -202,29 +197,19 @@ def define_wizard():
     for item in potential_starting_equipment:
         print(item)
 
-    print("Please enter your choice of a 'Light Crossbow and 20 Bolts' or 'any Simple Weapon':")
+    print("Please enter your choice of a 'Quarterstaff' or 'Dagger':")
     equipment_choice1 = input("> ")
-    while equipment_choice1.lower() not in ["light crossbow and 20 bolts", "any simple weapon"]:
+    while equipment_choice1.lower() not in ["quarterstaff", "dagger"]:
         print("That is not a valid choice. Please choose from the list.")
         equipment_choice1 = input("> ")
-    if equipment_choice1.lower() == "light crossbow and 20 bolts":
-        print("You have chosen a Light Crossbow and 20 Bolts.")
-        print("A Light Crossbow and 20 Bolts has been added to your starting equipment.")
-        wizard.starting_equipment.append(equipment.light_crossbow)
-    else:
-        for weapon in equipment.simple_weapons:
-            print(weapon.name)
-        print("Please enter your choice of simple weapon:")
-        weapon_choice = input("> ")
-        while weapon_choice.lower() not in [weapon.name.lower() for weapon in equipment.simple_weapons]:
-            print("That is not a valid choice. Please choose from the list.")
-            weapon_choice = input("> ")
-        for weapon in equipment.simple_weapons:
-            if weapon_choice.lower() == weapon.name.lower():
-                print(f"You have chosen {weapon.name}.")
-                print(f"{weapon.name} has been added to your starting equipment.")
-                wizard.starting_equipment.append(weapon)
-                break
+    if equipment_choice1.lower() == "quarterstaff":
+        print("You have chosen a Quarterstaff.")
+        print("A Quarterstaff has been added to your starting equipment.")
+        wizard.starting_equipment.append(equipment.quarter_staff)
+    elif equipment_choice1.lower() == "dagger":
+        print("You have chosen a Dagger.")
+        print("A Dagger has been added to your starting equipment.")
+        wizard.starting_equipment.append(equipment.dagger)
 
     print("Please enter your choice of a 'Component Pouch' or an 'Arcane Focus':")
     equipment_choice2 = input("> ")
@@ -240,24 +225,23 @@ def define_wizard():
         print("An Arcane Focus has been added to your starting equipment.")
         wizard.starting_equipment.append(equipment.arcane_focus_crystal)
 
-    print("Please enter your choice of a 'Dungeoneer's Pack' or an 'Explorer's Pack':")
+    print("Please enter your choice of a 'Scholar's Pack' or an 'Explorer's Pack':")
     equipment_choice3 = input("> ")
-    while equipment_choice3.lower() not in ["priest's pack", "explorer's pack"]:
+    while equipment_choice3.lower() not in ["scholar's pack", "explorer's pack"]:
         print("That is not a valid choice. Please choose from the list.")
         equipment_choice3 = input("> ")
-    if equipment_choice3.lower() == "priest's pack":
-        print("You have chosen a Priest's Pack.")
-        print("A priest's Pack has been added to your starting equipment.")
-        wizard.starting_equipment.append(equipment.priests_pack)
+    if equipment_choice3.lower() == "scholar's pack":
+        print("You have chosen a Scholar's Pack.")
+        print("A Scholar's Pack has been added to your starting equipment.")
+        wizard.starting_equipment.append(equipment.scholars_pack)
     elif equipment_choice3.lower() == "explorer's pack":
         print("You have chosen an Explorer's Pack.")
         print("An Explorer's Pack has been added to your starting equipment.")
         wizard.starting_equipment.append(equipment.explorers_pack)
 
-    print("You also start with 2 Daggerss.")
-    print("2 Daggers have been added to your starting equipment.")
-    wizard.starting_equipment.append(equipment.dagger)
-    wizard.starting_equipment.append(equipment.dagger)
+    print("You also start with a Spellbook.")
+    print("A Spellbook has been added to your starting equipment.")
+    wizard.starting_equipment.append(equipment.spellbook)
     
     print(f"You have chosen the following starting equipment:")
     for item in wizard.starting_equipment:
