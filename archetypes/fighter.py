@@ -29,6 +29,7 @@ class Fighter:
         self.fighting_style = []
         self.marital_archetype = ""
         self.special_abilities = []
+        self.proficiency_bonus = 2
 
     def get_info(self):
         print(f"The {self.name}: {self.bio}")
