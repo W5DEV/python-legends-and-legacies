@@ -31,8 +31,9 @@ class Character:
     def get_bio(self):
         return self.bio
     
-    def get_equipment(self):
-        return self.equipment
+    def sync_equipment(self):
+        self.equipment = self.archetype.starting_equipment
+        return
     
     def get_abilities(self):
         return self.abilities

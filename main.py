@@ -8,7 +8,7 @@ def main():
     print(player.get_info())
     print(player.get_bio())
     print(f"{player.name} has the following equipment items:")
-    for item in player.get_equipment():
+    for item in player.equipment:
         print(item.name)
     print(f"{player.name} has the following abilities:")
     for ability, value in player.get_abilities().items():
