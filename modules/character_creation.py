@@ -8,23 +8,27 @@ import modules.archetypes as archetypes
 def character_creation():
     # We are calling the functions defined for each section of Character Creation (defined below)
     player = greeting()
+
     character_race(player)
+
     # This is the D&D Class... I'm calling it archetype to avoid confusion with Python classes
     character_archetype(player)
-    
+    player.sync_equipment()
     print(f"Your character is called {player.name}, a {player.race.subrace} {player.archetype.name}.")
 
-    player.sync_equipment()
+    character_bio(player)
+
+    character_abilities(player)
 
     player.xp = 0
+    player.calculate_proficiency_bonus()
+    print(f"{player.name} has a proficiency bonus of {player.proficiency_bonus}.")
 
     player.gp = utils.calculate_starting_gp(player.archetype.name)
-
     print(f"{player.name} has {player.gp} gold pieces.")
 
-    character_bio(player)
-    character_abilities(player)
-    equipment_shop.equipment_shop(player)
+    if player.gp > 0:
+        equipment_shop.equipment_shop(player)
 
     return player
 

@@ -12,47 +12,41 @@ class Character:
         self.gp = gp
         self.hp = hp
         self.max_hp = max_hp
+        self.player_level = 0
         self.equipped_armor = equipped_armor
         self.equippped_weapon = equipped_weapon
         self.readied_weapon = readied_weapon
+        self.proficincy_bonus = 0
+
+    def calculate_level(self):
+        level = utils.calculate_level(self.xp)
+        self.player_level = level
+        return 
+
+    def calculate_proficiency_bonus(self):
+        self.calculate_level()
+        level = self.player_level
+        proficiency_bonus = (-(-level // 4)) + 1
+        self.proficiency_bonus = proficiency_bonus
+        return
+    
+    def get_level(self):
+        return self.player_level
+    
+    def get_proficiency_bonus(self):
+        return self.proficiency_bonus
 
     def sync_level(self, level):
         self.archetype.sync_level(level)
 
-    def add_armor(self, armor):
-        self.armor = armor
-
-    def greet(self):
-        return f"Hello, {self.name}!"
-    
-    def get_info(self):
-        return f"{self.name} is a {self.race.subrace} {self.archetype.name}"
-    
-    def get_bio(self):
-        return self.bio
-    
     def sync_equipment(self):
         self.equipment = self.archetype.starting_equipment
         return
-    
-    def get_abilities(self):
-        return self.abilities
-    
-    def get_gp(self):
-        return self.gp
-    
-    def get_xp(self):
-        level = utils.calculate_level(self.xp)
-        return f"{self.name} has {self.xp} xp, so they are level {level}."
 
     def award_xp(self, xp):
         self.xp += xp
         level = utils.calculate_level(self.xp)
         return f"{self.name} has received {xp} XP and now has a total of {self.xp} XP, making them level {level}."
-    
-    def get_level(self):
-        level = utils.calculate_level(self.xp)
-        return level
     
     def xp_needed_for_next_level(self):
         xp_needed = utils.calculate_xp_needed(self.xp)
