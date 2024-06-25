@@ -34,6 +34,7 @@ class Ranger:
         self.spell_slots_level_3 = 0
         self.spell_slots_level_4 = 0
         self.spell_slots_level_5 = 0
+        self.proficiency_bonus = 2
 
     def get_info(self):
         print(f"The {self.name}: {self.bio}")
