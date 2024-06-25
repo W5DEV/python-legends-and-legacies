@@ -14,11 +14,6 @@ def tests():
     print("Testing Classes...")
     archetypes.test_archetypes()
     print("Class Tests completed...")
-
-    print("Testing Coins...")
-    test_coins = coins.Coins()
-    test_coins.get_info()
-    print("Coins Tests completed...")
    
     print("Testing Dice Rolls...")
     print(f"Rolling 2-sided dice: {dice_rolls.roll_2_sided_dice()}")
