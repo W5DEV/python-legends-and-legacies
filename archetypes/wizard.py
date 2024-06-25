@@ -189,7 +189,7 @@ def define_wizard():
     print(f"You have chosen {selected_spells[0]} and {selected_spells[1]} as your spells.")
     wizard.spells = selected_spells
 
-     # Starting Equipment
+    # Starting Equipment
     equipment_choice1 = ""
     equipment_choice2 = ""
     equipment_choice3 = ""
