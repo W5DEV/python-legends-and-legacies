@@ -1,7 +1,8 @@
 import modules.starting_equipment as starting_equipment
+import modules.skills as skills
 
-displayed_barbarian_skills = ["Animal Handling", "Athletics", "Intimidation", "Nature", "Perception", "Survival"]
-barbarian_skills = ["animal handling", "athletics", "intimidation", "nature", "perception", "survival"]
+displayed_barbarian_skills = skills.get_barbarian_skills("displayed")
+barbarian_skills = skills.get_barbarian_skills("logical")
 
 potential_starting_equipment = ["Greataxe or any martial melee weapon", "Two Handaxes or Any Simple Weapon", "Explorer's Pack", "Four Javelins"]
         

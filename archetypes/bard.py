@@ -20,9 +20,9 @@ bard_cantrips = ["dancing lights", "light", "mage hand", "mending", "message", "
 
 potential_starting_equipment = ["a rapier, a longsword, or any simple weapon", "a diplomat's pack or an entertainer's pack", "a lute or any other musical instrument", "Lether Armor", "Dagger"]
 
-def display_bard_spells():
-    for spell in displayed_bard_spells:
-        print(spell)
+displayed_bard_skills = skills.get_bard_skills("displayed")
+bard_skills = skills.get_bard_skills("logical")
+
 
 class Bard:
     def __init__(self):
@@ -221,21 +221,21 @@ def define_bard():
 
     # Skill Proficiencies
     print("Choose 3 skills from the following list, which you will be proficient in:")
-    for skill in skills.displayed_skills:
+    for skill in displayed_bard_skills:
         print(skill)
     print("Please enter your first skill choice:")
     skill_choice1 = input("> ")
-    while skill_choice1.lower() not in skills.skills:
+    while skill_choice1.lower() not in bard_skills:
         print("That is not a valid choice. Please choose from the list.")
         skill_choice1 = input("> ")
     print("Please enter your second skill choice:")
     skill_choice2 = input("> ")
-    while skill_choice2.lower() not in skills.skills:
+    while skill_choice2.lower() not in bard_skills:
         print("That is not a valid choice. Please choose from the list.")
         skill_choice2 = input("> ")
     print("Please enter your third skill choice:")
     skill_choice3 = input("> ")
-    while skill_choice3.lower() not in skills.skills:
+    while skill_choice3.lower() not in bard_skills:
         print("That is not a valid choice. Please choose from the list.")
         skill_choice3 = input("> ")
     selected_skill_proficiencies = [skill_choice1, skill_choice2, skill_choice3]
@@ -347,15 +347,16 @@ def define_bard():
     # Starting Cantrips
     print("You have reached level 1 and can now choose 2 cantrips from the bard spell list.")
     print("Please choose two cantrips from the following list:")
-    display_bard_spells()
+    for cantrip in displayed_bard_cantrips:
+        print(cantrip)
     print("Please enter your first cantrip choice:")
     cantrip_choice1 = input("> ")
-    while cantrip_choice1.lower() not in bard_spells:
+    while cantrip_choice1.lower() not in bard_cantrips:
         print("That is not a valid choice. Please choose from the list.")
         cantrip_choice1 = input("> ")
     print("Please enter your second cantrip choice:")
     cantrip_choice2 = input("> ")
-    while cantrip_choice2.lower() not in bard_spells:
+    while cantrip_choice2.lower() not in bard_cantrips:
         print("That is not a valid choice. Please choose from the list.")
         cantrip_choice2 = input("> ")
     selected_cantrips = [cantrip_choice1, cantrip_choice2]
@@ -365,7 +366,8 @@ def define_bard():
     # Starting Spells
     print("You have reached level 1 and can now choose 4 spells from the bard spell list.")
     print("Please choose four spells from the following list:")
-    display_bard_spells()
+    for spell in displayed_bard_spells:
+        print(spell)
     print("Please enter your first spell choice:")
     spell_choice1 = input("> ")
     while (spell_choice1.lower() not in bard_spells) or (spell_choice1.lower() in bard.cantrips):
