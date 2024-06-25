@@ -19,15 +19,11 @@ def character_creation():
     character_bio(player)
 
     character_abilities(player)
-
-    player.xp = 0
-    player.calculate_proficiency_bonus()
-    print(f"{player.name} has a proficiency bonus of {player.proficiency_bonus}.")
+    player.initialize_player()
 
     player.gp = utils.calculate_starting_gp(player.archetype.name)
-    print(f"{player.name} has {player.gp} gold pieces.")
-
     if player.gp > 0:
+        print(f"You have {player.gp} gold pieces to spend on additional equipment.")
         equipment_shop.equipment_shop(player)
 
     return player
@@ -104,18 +100,19 @@ def character_bio(player):
     return
 
 def character_abilities(player):
-    abilities = {}
+    player.strength = utils.roll_ability()
+    player.dexterity = utils.roll_ability()
+    player.constitution = utils.roll_ability()
+    player.intelligence = utils.roll_ability()
+    player.wisdom = utils.roll_ability()
+    player.charisma = utils.roll_ability()
 
-    abilities["Strength"] = utils.roll_ability()
-    abilities["Dexterity"] = utils.roll_ability()
-    abilities["Constitution"] = utils.roll_ability()
-    abilities["Intelligence"] = utils.roll_ability()
-    abilities["Wisdom"] = utils.roll_ability()
-    abilities["Charisma"] = utils.roll_ability()
+    print(f"{player.name}'s ability scores are as follows:")
+    print(f"Strength: {player.strength}")
+    print(f"Dexterity: {player.dexterity}")
+    print(f"Constitution: {player.constitution}")
+    print(f"Intelligence: {player.intelligence}")
+    print(f"Wisdom: {player.wisdom}")
+    print(f"Charisma: {player.charisma}")
 
-    print(f"Here are {player.name}'s abilities: ")
-    for ability, value in abilities.items():
-        print(f"{ability}: {value}") 
-
-    player.abilities = abilities
     return

@@ -1,4 +1,5 @@
 import modules.equipment as equipment
+import modules.dice_rolls as dice_rolls
 
 displayed_barbarian_skills = ["Animal Handling", "Athletics", "Intimidation", "Nature", "Perception", "Survival"]
 barbarian_skills = ["animal handling", "athletics", "intimidation", "nature", "perception", "survival"]
@@ -10,7 +11,7 @@ class Barbarian:
     def __init__(self):
         name = "Barbarian"
         bio = "A fierce warrior of primitive background who can enter a battle rage."
-        hit_die = "1d12 for first level, then 1d12 (or 7, whichever is higher) per level after 1 + your Constitution modifier."
+        hit_die = "1d12"
         primary_ability = "Strength"
         saving_throw_proficiencies = "Strength, Constitution"
         armor_proficiencies = "Light Armor, Medium Armor, Shields"
@@ -19,6 +20,7 @@ class Barbarian:
         self.name = name
         self.bio = bio
         self.hit_die = hit_die
+        self.base_hp = 12
         self.primary_ability = primary_ability
         self.saving_throw_proficiencies = saving_throw_proficiencies
         self.armor_proficiencies = armor_proficiencies
@@ -28,6 +30,9 @@ class Barbarian:
         self.starting_equipment = []
         self.special_abilities = []
         self.primal_path = ""
+        self.rages = 0
+        self.rage_damage_bonus = 0
+
     
     def get_info(self):
         print(f"The {self.name}: {self.bio}")
@@ -52,6 +57,8 @@ class Barbarian:
         if level >= 1:
             self.special_abilities.append("Rage")
             self.special_abilities.append("Unarmored Defense")
+            self.rages = 1
+            self.rage_damage_bonus = 2
         if level >= 2:
             self.special_abilities.append("Reckless Attack")
             self.special_abilities.append("Danger Sense")
@@ -59,6 +66,7 @@ class Barbarian:
             print("You have reached level 3 and can now choose your Primal Path: Path of the Berserker")
             self.primal_path = "Path of the Berserker"
             self.special_abilities.append("Frenzy")
+            self.rages = 3
         if level >= 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
         if level >= 5:
@@ -66,12 +74,14 @@ class Barbarian:
             self.special_abilities.append("Fast Movement")
         if level >= 6:
             self.special_abilities.append("Mindless Rage")
+            self.rages = 4
         if level >= 7:
             self.special_abilities.append("Feral Instinct")
         if level >= 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
         if level >= 9:
             self.special_abilities.append("Brutal Critical")
+            self.rage_damage_bonus = 3
         if level >= 10:
             self.special_abilities.append("Intimidating Presence")
         if level >= 11:
@@ -79,6 +89,7 @@ class Barbarian:
             self.special_abilities.append("Relentless Rage")
         if level >= 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
+            self.rages = 5
         if level >= 13:
             self.special_abilities.append("Bear Totem")
         if level >= 14:
@@ -87,12 +98,16 @@ class Barbarian:
             self.special_abilities.append("Persistent Rage")
         if level >= 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
+            self.rage_damage_bonus = 4
+        if level >= 17:
+            self.rages = 6
         if level >= 18:
             self.special_abilities.append("Indomitable Might")
         if level >= 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
         if level >= 20:
             self.special_abilities.append("Primal Champion")
+            self.rages = 9999
         print(f"Special Abilities for level {level}:")
         i = 1
         for ability in self.special_abilities:
@@ -187,6 +202,10 @@ def define_barbarian():
 
     selected_starting_equipment = [first_weapon, second_weapon, second_weapon, equipment.explorers_pack, equipment.javelin, equipment.javelin, equipment.javelin, equipment.javelin]
     barbarian.starting_equipment = selected_starting_equipment
+
+    print("Your starting equipment is as follows:")
+    for item in selected_starting_equipment:
+        print(item.name)
 
     return barbarian
         

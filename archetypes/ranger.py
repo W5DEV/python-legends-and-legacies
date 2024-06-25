@@ -10,7 +10,7 @@ class Ranger:
     def __init__(self):
         name = "Ranger"
         bio = "A warrior who uses martial prowess and nature magic to combat threats on the edges of civilization"
-        hit_die = "1d10 for first level, then 1d10 (or 6, whichever is higher) per level after 1 + your Constitution modifier."
+        hit_die = "1d10"
         primary_ability = "Dexterity, Wisdom"
         saving_throw_proficiencies = "Strength, Dexterity"
         armor_proficiencies = "Light Armor, Medium Armor, Shields"
@@ -18,6 +18,7 @@ class Ranger:
         self.name = name
         self.bio = bio
         self.hit_die = hit_die
+        self.base_hp = 10
         self.primary_ability = primary_ability
         self.saving_throw_proficiencies = saving_throw_proficiencies
         self.armor_proficiencies = armor_proficiencies
@@ -72,46 +73,65 @@ class Ranger:
             print("You cannot specialize in this fighting style in the future.")
             print("You have also gained the following special abilities:")
             self.special_abilities.append("Spellcasting")
+            self.spells_known = 2
+            self.spell_slots_level_1 = 2
         if level >= 3:
             self.ranger_archetype = "Hunter"
             self.special_abilities.append("Hunter's Prey")
             self.special_abilities.append("Primeval Awareness")
+            self.spells_known = 3
+            self.spell_slots_level_1 = 3
         if level >= 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
         if level >= 5:
             self.special_abilities.append("Extra Attack")
+            self.spells_known = 4
+            self.spell_slots_level_1 = 4
+            self.spell_slots_level_2 = 2
         if level >= 6:
             self.special_abilities.append("Favorite Enemy Improvement")
             self.special_abilities.append("Natural Explorer Improvement")
         if level >= 7:
             self.special_abilities.append("Defensive Tactics")
+            self.spells_known = 5
+            self.spell_slots_level_3 = 3
         if level >= 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
             self.special_abilities.append("Land's Stride")
         if level >= 9:
-            pass
+            self.spells_known = 6
+            self.spell_slots_level_3 = 2
         if level >= 10:
             self.special_abilities.append("Natural Explorer Improvement")
             self.special_abilities.append("Hide in Plain Sight")
         if level >= 11:
             self.special_abilities.append("Multiattack")
+            self.spells_known = 7
+            self.spell_slots_level_3 = 3
         if level >= 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
         if level >= 13:
-            pass
+            self.spells_known = 8
+            self.spell_slots_level_4 = 1
         if level >= 14:
             self.special_abilities.append("Favored Enemy Improvement")
             self.special_abilities.append("Vanish")
         if level >= 15:
             self.special_abilities.append("Superior Hunter's Defense")
+            self.spells_known = 9
+            self.spell_slots_level_4 = 2
         if level >= 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
         if level >= 17:
-            pass
+            self.spells_known = 10
+            self.spell_slots_level_4 = 3
+            self.spell_slots_level_5 = 1
         if level >= 18:
             self.special_abilities.append("Fereal Senses")
         if level >= 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
+            self.spells_known = 11
+            self.spell_slots_level_5 = 2
         if level >= 20:
             self.special_abilities.append("Foe Slayer")
 

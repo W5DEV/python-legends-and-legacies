@@ -10,7 +10,7 @@ class Fighter:
     def __init__(self):
         name = "Fighter"
         bio = "A master of martial combat, skilled with a variety of weapons and armor."
-        hit_die = "1d10 for first level, then 1d10 (or 6, whichever is higher) per level after 1 + your Constitution modifier."
+        hit_die = "1d10"
         primary_ability = "Strength or Dexterity"
         saving_throw_proficiencies = "Strength, Constitution"
         armor_proficiencies = "All Armor, Shields"
@@ -19,6 +19,7 @@ class Fighter:
         self.name = name
         self.bio = bio
         self.hit_die = hit_die
+        self.base_hp = 10
         self.primary_ability = primary_ability
         self.saving_throw_proficiencies = saving_throw_proficiencies
         self.armor_proficiencies = armor_proficiencies
