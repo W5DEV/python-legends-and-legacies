@@ -179,7 +179,7 @@ def define_barbarian():
                 break
    
     if second_weapon == equipment.hand_axe:
-        print("You have also chosen Two Handaxes as your secon weapon.")
+        print("You have also chosen Two Handaxes as your second weapon.")
         print("You will have two handaxes in your inventory, which can be dual weilded or used individually for melee or throwing attacks.")
         print("Two Handaxes have been added to your starting equipment.")
     else:

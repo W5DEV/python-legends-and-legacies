@@ -133,4 +133,4 @@ class Race:
         self.proficiencies = proficiencies
     
     def get_info(self):
-        return f"A {self.name} is a {self.size} creature. They have a speed of {self.speed} and can speak {self.languages}. They have the following ability score increases: {self.ability_score_increase}. They have the following traits: {self.traits}. They are proficient with the following weapons: {self.proficiencies}."
+        return f"{self.name} is a {self.size} {self.race}, in the {self.subrace} subrace. They have a speed of {self.speed} and can speak {self.languages}. They have the following ability score increases: {self.ability_score_increase}. They have the following traits: {self.traits}. They hold the following proficiencies: {self.proficiencies}."

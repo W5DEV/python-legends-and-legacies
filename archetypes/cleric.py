@@ -214,7 +214,7 @@ def define_cleric():
     armor_choice = ""
     weapon_choice2 = ""
     pack_choice = ""
-    print("Cerics are able to choose from the following starting equipment:")
+    print("Clerics are able to choose from the following starting equipment:")
     for item in potential_starting_equipment:
         print(item)
     
