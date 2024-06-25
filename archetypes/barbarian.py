@@ -152,7 +152,7 @@ def define_barbarian():
             if other_weapon1.lower() == weapon.name.lower():
                 first_weapon = weapon
                 break
-    print(f"You have chosen {first_weapon.name} as your first weapon.")
+    print(f"You have chosen {first_weapon.name}.")
     print(f"One {first_weapon.name} has been added to your starting equipment.")
 
     print("Would you like to start with Two Handaxes or any Other Simple Weapon?")
@@ -179,11 +179,10 @@ def define_barbarian():
                 break
    
     if second_weapon == equipment.hand_axe:
-        print("You have also chosen Two Handaxes as your second weapon.")
-        print("You will have two handaxes in your inventory, which can be dual weilded or used individually for melee or throwing attacks.")
+        print("You have chosen Two Handaxes.")
         print("Two Handaxes have been added to your starting equipment.")
     else:
-         print(f"You have chosen one {second_weapon.name} as your second weapon.")
+         print(f"You have chosen one {second_weapon.name}.")
          print(f"One {second_weapon.name} has been added to your starting equipment.")
 
     selected_starting_equipment = [first_weapon, second_weapon, second_weapon, equipment.explorers_pack, equipment.javelin, equipment.javelin, equipment.javelin, equipment.javelin]
