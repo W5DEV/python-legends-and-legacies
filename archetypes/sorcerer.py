@@ -74,7 +74,7 @@ class Sorcerer:
         print(f"Tool Proficiencies: {self.tool_proficiencies}")
         print(f"Skill Proficiencies:")
         for skill in self.skill_proficiencies:
-            print(skill.name)
+            print(skill)
         print(f"Starting Equipment:")
         for item in self.starting_equipment:
             print(item.name)
