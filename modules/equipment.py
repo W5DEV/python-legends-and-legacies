@@ -27,7 +27,7 @@ class Armor:
         self.don_time = don_time
     
     def get_info(self):
-        print(f"{self.name} is costs {self.cost} gold pieces, has an AC of {self.ac}, requires a strength of {self.strength}, and weighs {self.weight} pounds.")
+        print(f"{self.name} costs {self.cost} gold pieces, has an AC of {self.ac}, requires a strength of {self.strength}, and weighs {self.weight} pounds.")
         return
 
 def get_info(equipment):
