@@ -111,13 +111,13 @@ medium_armor = [hide_medium_armor, chain_shirt_medium_armor, scale_mail_medium_a
 heavy_armor = [ring_mail_heavy_armor, chain_mail_heavy_armor, splint_heavy_armor, plate_heavy_armor]
 shields = [shield]
 
-explorers_pack = Equipment("Explorer's Pack", 10, 59, "Includes a backpack, a bedroll, a mess kit, a tinderbox, 10 torches, 10 days of rations, and a waterskin.")
-diplomats_pack = Equipment("Diplomat's Pack", 39, 46, "Includes a chest, 2 cases for maps and scrolls, a set of fine clothes, a bottle of ink, an ink pen, a lamp, 2 flasks of oil, 5 sheets of paper, a vial of perfume, sealing wax, and soap.")
-entertainers_pack = Equipment("Entertainer's Pack", 40, 38, "Includes a backpack, a bedroll, 2 costumes, 5 candles, 5 days of rations, a waterskin, and a disguise kit.")
-priests_pack = Equipment("Priest's Pack", 19, 25, "Includes a backpack, a blanket, 10 candles, a tinderbox, an alms box, 2 blocks of incense, a censer, vestments, 2 days of rations, and a waterskin.")
-scholars_pack = Equipment("Scholar's Pack", 40, 11, "Includes a backpack, a book of lore, a bottle of ink, an ink pen, 10 sheets of parchment, a little bag of sand, and a small knife.")
-burglars_pack = Equipment("Burglar's Pack", 16, 46.5, "Includes a backpack, a bag of 1000 ball bearings, 10 feet of string, a bell, 5 candles, a crowbar, a hammer, 10 pitons, a hooded lantern, 2 flasks of oil, 5 days of rations, a tinderbox, and a waterskin.")
-dungeoneers_pack = Equipment("Dungeoneer's Pack", 12, 61.5, "Includes a backpack, a crowbar, a hammer, 10 pitons, 10 torches, a tinderbox, 10 days of rations, and a waterskin.")
+explorers_pack = Equipment("Explorer's Pack", 10, 59, "Includes a backpack, a bedroll, a mess kit, a tinderbox, 10 torches, 10 days of rations, and a waterskin")
+diplomats_pack = Equipment("Diplomat's Pack", 39, 46, "Includes a chest, 2 cases for maps and scrolls, a set of fine clothes, a bottle of ink, an ink pen, a lamp, 2 flasks of oil, 5 sheets of paper, a vial of perfume, sealing wax, and soap")
+entertainers_pack = Equipment("Entertainer's Pack", 40, 38, "Includes a backpack, a bedroll, 2 costumes, 5 candles, 5 days of rations, a waterskin, and a disguise kit")
+priests_pack = Equipment("Priest's Pack", 19, 25, "Includes a backpack, a blanket, 10 candles, a tinderbox, an alms box, 2 blocks of incense, a censer, vestments, 2 days of rations, and a waterskin")
+scholars_pack = Equipment("Scholar's Pack", 40, 11, "Includes a backpack, a book of lore, a bottle of ink, an ink pen, 10 sheets of parchment, a little bag of sand, and a small knife")
+burglars_pack = Equipment("Burglar's Pack", 16, 46.5, "Includes a backpack, a bag of 1000 ball bearings, 10 feet of string, a bell, 5 candles, a crowbar, a hammer, 10 pitons, a hooded lantern, 2 flasks of oil, 5 days of rations, a tinderbox, and a waterskin")
+dungeoneers_pack = Equipment("Dungeoneer's Pack", 12, 61.5, "Includes a backpack, a crowbar, a hammer, 10 pitons, 10 torches, a tinderbox, 10 days of rations, and a waterskin")
 
 packs = [explorers_pack, diplomats_pack, entertainers_pack, priests_pack, scholars_pack, burglars_pack, dungeoneers_pack]
 
@@ -171,7 +171,7 @@ thieves_tools = Equipment("Thieves' Tools", 25, 1, "Other Tools")
 
 other_tools = [disguise_kit, forgery_kit, herbalism_kit, navigator_tools, poisoners_kit, thieves_tools]
 
-component_pouch = Equipment("Component Pouch", 25, 2, "Contains a variety of components needed for spellcasting.")
+component_pouch = Equipment("Component Pouch", 25, 2, "Contains a variety of components needed for spellcasting")
 
 arcane_focus_crystal = Equipment("Arcane Focus Crystal", 10, 1, "Arcane Focus")
 arcane_focus_orb = Equipment("Arcane Focus Orb", 20, 3, "Arcane Focus")
@@ -179,7 +179,7 @@ arcane_focus_rod = Equipment("Arcane Focus Rod", 10, 2, "Arcane Focus")
 arcane_focus_staff = Equipment("Arcane Focus Staff", 5, 4, "Arcane Focus")
 arcane_focus_wand = Equipment("Arcane Focus Wand", 10, 1, "Arcane Focus")
 
-spellbook = Equipment("Spellbook", 50, 3, "Contains a variety of spells.")
+spellbook = Equipment("Spellbook", 50, 3, "Contains a variety of spells")
 
 class_equipment = [component_pouch, arcane_focus_crystal, arcane_focus_orb, arcane_focus_rod, arcane_focus_staff, arcane_focus_wand, druidic_focus, spellbook]
 
