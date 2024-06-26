@@ -9,20 +9,16 @@
 # - ritual_casting
 # - spellcasting_focus
 
-import modules.equipment as equipment
+import modules.starting_equipment as starting_equipment
 import modules.skills as skills
+import modules.spells as spells
+import modules.cantrips as cantrips
 import modules.instruments as instruments
 
-displayed_bard_spells = ["Animal Friendship", "Bane", "Charm Person", "Comprehend Languages", "Cure Wounds", "Detect Magic", "Disguise Self", "Faerie Fire", "Feather Fall", "Healing Word", "Heroism", "Hideous Laughter", "Identify", "Illusory Script", "Longstrider", "Silent Image", "Sleep", "Speak with Animals", "Thunderwave", "Unseen Servant"]
-bard_spells = ["animal friendship", "bane", "charm person", "comprehend languages", "cure wounds", "detect magic", "disguise self", "faerie fire", "feather fall", "healing word", "heroism", "hideous laughter", "identify", "illusory script", "longstrider", "silent image", "sleep", "speak with animals", "thunderwave", "unseen servant"]
-displayed_bard_cantrips = ["Dancing Lights", "Light", "Mage Hand", "Mending", "Message", "Minor Illusion", "Prestidigitation", "True Strike", "Vicious Mockery"]
-bard_cantrips = ["dancing lights", "light", "mage hand", "mending", "message", "minor illusion", "prestidigitation", "true strike", "vicious mockery"]
-
-potential_starting_equipment = ["a rapier, a longsword, or any simple weapon", "a diplomat's pack or an entertainer's pack", "a lute or any other musical instrument", "Lether Armor", "Dagger"]
-
-displayed_bard_skills = skills.get_bard_skills("displayed")
-bard_skills = skills.get_bard_skills("logical")
-
+displayed_bard_skills, bard_skills = skills.get_bard_skills()
+displayed_bard_spells, bard_spells = spells.get_bard_spells()
+displayed_bard_cantrips, bard_cantrips = cantrips.get_bard_cantrips()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Bard")
 
 class Bard:
     def __init__(self):

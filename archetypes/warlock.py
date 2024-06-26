@@ -9,22 +9,15 @@
 # - ritual_casting
 # - spellcasting_focus
 
-import modules.equipment as equipment
-import modules.instruments as instruments
+import modules.starting_equipment as starting_equipment
+import modules.skills as skills
+import modules.spells as spells
+import modules.cantrips as cantrips
 
-displayed_warlock_spells = ["Charm Person", "Comprehend Languages", "Expeditious Retreat", "Hellish Rebuke", "Illusory Script", "Protection from Evil and Good", "Unseen Servant"]
-warlock_spells = ["charm person", "comprehend languages", "expeditious retreat", "hellish rebuke", "illusory script", "protection from evil and good", "unseen servant"]
-displayed_warlock_cantrips = ["Chill Touch", "Eldrich Blast", "Mage Hand", "Minor Illusion", "Poison Spray", "Prestidigitation", "True Strike"]
-warlock_cantrips = ["chill touch", "eldrich blast", "mage hand", "minor illusion", "poison spray", "prestidigitation", "true strike"]
-
-potential_starting_equipment = ["A Light Crossbow and 20 Bolts or Any Simple Weapon", "A Component Pouch or an Arcane Focus", "A Dungeoneer's Pack or a Scholar's Pack", "Leather Armor, Any Simple Weapon, and Two Daggers"]
-
-displayed_warlock_skills = ["Arcana", "Deception", "History", "Intimidation", "Investigation", "Nature", "Religion"]
-warlock_skills = ["arcana", "deception", "history", "intimidation", "investigation", "nature", "religion"]
-
-def display_warlock_spells():
-    for spell in displayed_warlock_spells:
-        print(spell)
+displayed_warlock_skills, warlock_skills = skills.get_warlock_skills()
+displayed_warlock_spells, warlock_spells = spells.get_warlock_spells()
+displayed_warlock_cantrips, warlock_cantrips = cantrips.get_warlock_cantrips()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Warlock")
 
 class Warlock:
     def __init__(self):

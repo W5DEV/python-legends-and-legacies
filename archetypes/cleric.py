@@ -11,17 +11,15 @@
 
 # Do clerics start with all spells and just "prepare" them? How does that work? Figure this out
 
-import modules.equipment as equipment
+import modules.starting_equipment as starting_equipment
+import modules.skills as skills
+import modules.spells as spells
+import modules.cantrips as cantrips
 
-displayed_cleric_cantrips = ["Guidance", "Light", "Mending", "Resistance", "Sacred Flame", "Spare the Dying", "Thaumaturgy"]
-cleric_cantrips = ["guidance", "light", "mending", "resistance", "sacred flame", "spare the dying", "thaumaturgy"]
-displayed_cleric_spells = ["Bane", "Bless", "Command", "Create or Destroy Water", "Cure Wounds", "Detect Evil and Good", "Detect Magic", "Detect Poison and Disease", "Guiding Bolt", "Healing Word", "Inflict Wounds", "Protection from Evil and Good", "Purify Food and Drink", "Sanctuary", "Shield of Faith"]
-cleric_spells = ["bane", "bless", "command", "create or destroy water", "cure wounds", "detect evil and good", "detect magic", "detect poison and disease", "guiding bolt", "healing word", "inflict wounds", "protection from evil and good", "purify food and drink", "sanctuary", "shield of faith"]
-
-displayed_cleric_skills = ["History", "Insight", "Medicine", "Persuasion", "Religion"]
-cleric_skills = ["history", "insight", "medicine", "persuasion", "religion"]
-
-potential_starting_equipment = ["a Mace or a Warhammer (if proficient)", "Scale Mail, Leather Armor, or Chain Mail (if proficient)", "a Light Crossbow and 20 bolts or any simple weapon", "a Priest's Pack or an Explorer's Pack", "a Shield and a Holy Symbol"]
+displayed_cleric_skills, cleric_skills = skills.get_cleric_skills()
+displayed_cleric_cantrips, cleric_cantrips = cantrips.get_cleric_cantrips()
+displayed_cleric_spells, cleric_spells = spells.get_cleric_spells()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Cleric")
 
 class Cleric:
     def __init__(self):

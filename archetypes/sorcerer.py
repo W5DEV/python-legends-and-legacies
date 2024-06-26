@@ -9,22 +9,15 @@
 # - ritual_casting
 # - spellcasting_focus
 
-import modules.equipment as equipment
-import modules.instruments as instruments
+import modules.starting_equipment as starting_equipment
+import modules.skills as skills
+import modules.spells as spells
+import modules.cantrips as cantrips
 
-displayed_sorcerer_spells = ["Burning Hands", "Charm Person", "Color Spray", "Comprehend Languages", "Detect Magic", "Disguise Self", "Expeditious Retreat", "False Life", "Feather Fall", "Fog Cloud", "Jump", "Mage Armor", "Magic Missile", "Shield", "Silent Image", "Sleep", "Thunderwave"]
-sorcerer_spells = ["burning hands", "charm person", "color spray", "comprehend languages", "detect magic", "disguise self", "expeditious retreat", "false life", "feather fall", "fog cloud", "jump", "mage armor", "magic missile", "shield", "silent image", "sleep", "thunderwave"]
-displayed_sorcerer_cantrips = ["Acid Splash", "Chill Touch", "Dancing Lights", "Fire Bolt", "Light", "Mage Hand", "Mending", "Message", "Minor Illusion", "Poison Spray", "Prestidigitation", "Ray of Frost", "Shocking Grasp", "True Strike"]
-sorcerer_cantrips = ["acid splash", "chill touch", "dancing lights", "fire bolt", "light", "mage hand", "mending", "message", "minor illusion", "poison spray", "prestidigitation", "ray of frost", "shocking grasp", "true strike"]
-
-potential_starting_equipment = ["A Light Crossbow and 20 Bolts or Any Simple Weapon", "A Component Pouch or an Arcane Focus", "A Dungeoneer's Pack or an Explorer's Pack", "Two Daggers"]
-
-displayed_sorcerer_skills = ["Arcana", "Deception", "Insight", "Intimidation", "Persuasion", "Religion"]
-sorcerer_skills = ["arcana", "deception", "insight", "intimidation", "persuasion", "religion"]
-
-def display_sorcerer_spells():
-    for spell in displayed_sorcerer_spells:
-        print(spell)
+displayed_sorcerer_skills, sorcerer_skills = skills.get_sorcerer_skills()
+displayed_sorcerer_spells, sorcerer_spells = spells.get_sorcerer_spells()
+displayed_sorcerer_cantrips, sorcerer_cantrips = cantrips.get_sorcerer_cantrips()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Sorcerer")
 
 class Sorcerer:
     def __init__(self):

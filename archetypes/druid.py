@@ -9,17 +9,15 @@
 # - ritual_casting
 # - spellcasting_focus
 
-import modules.equipment as equipment
+import modules.starting_equipment as starting_equipment
+import modules.skills as skills
+import modules.spells as spells
+import modules.cantrips as cantrips
 
-displayed_druid_skills = ["Arcana", "Animal Handling", "Insight", "Medicine", "Nature", "Perception", "Religion", "Survival"]
-druid_skills = ["arcana", "animal handling", "insight", "medicine", "nature", "perception", "religion", "survival"]
-
-displayed_druid_cantrips = ["Druidcraft", "Guidance", "Mending", "Poison Spray", "Produce Flame", "Resistance", "Shillelagh"]
-displayed_druid_spells = ["Animal Friendship", "Charm Person", "Create or Destroy Water", "Cure Wounds", "Detect Magic", "Detect Poison and Disease", "Entangle", "Faerie Fire", "Fog Cloud", "Goodberry", "Healing Word", "Jump", "Longstrider", "Purify Food and Drink", "Speak with Animals", "Thunderwave"]
-druid_cantrips = ["druidcraft", "guidance", "mending", "poison spray", "produce flame", "resistance", "shillelagh"]
-druid_spells = ["animal friendship", "charm person", "create or destroy water", "cure wounds", "detect magic", "detect poison and disease", "entangle", "faerie fire", "fog cloud", "goodberry", "healing word", "jump", "longstrider", "purify food and drink", "speak with animals", "thunderwave"]
-
-potential_starting_equipment = ["A Wooden Shield or any Simple Weapon", "Scimitar or any Simple Melee Weapon", "Leather Armor", "Explorer's Pack", "Druidic Focus"]
+displayed_druid_skills, druid_skills = skills.get_druid_skills()
+displayed_druid_spells, druid_spells = spells.get_druid_spells()
+displayed_druid_cantrips, druid_cantrips = cantrips.get_druid_cantrips()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Druid")
 
 class Druid:
     def __init__(self):

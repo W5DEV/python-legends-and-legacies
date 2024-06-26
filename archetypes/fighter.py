@@ -1,10 +1,9 @@
-import modules.equipment as equipment
+import modules.starting_equipment as starting_equipment
+import modules.skills as skills
 
-displayed_fighter_skills = ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"]
-fighter_skills = ["acrobatics", "animal handling", "athletics", "history", "insight", "intimidation", "perception", "survival"]
-
-potential_starting_equipment = ["Chain Mail or Leather Armor, Longbow, and 20 Arrows", "Any Martial Weapon and a Shield or Two Martial Weapons", "Light Crossbow and 20 Bolts or Two Handaxes", "Dungeoneer's Pack or Explorer's Pack"]
-        
+displayed_fighter_skills, fighter_skills = skills.get_fighter_skills()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Fighter")
+     
 class Fighter:
     
     def __init__(self):

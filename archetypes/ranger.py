@@ -1,10 +1,9 @@
-import modules.equipment as equipment
+import modules.starting_equipment as starting_equipment
+import modules.skills as skills
 
-displayed_ranger_skills = ["Animal Handling", "Athletics", "Insight", "Investigation", "Nature", "Perception", "Stealth", "Survival"]
-ranger_skills = ["animal handling", "athletics", "insight", "investigation", "nature", "perception", "stealth", "survival"]
+displayed_ranger_skills, ranger_skills = skills.get_ranger_skills()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Ranger")       
 
-potential_starting_equipment = ["Scale Mail or Leather Armor", "Two Shortswords or Two Simple Melee Weapons" "A Dungeoneer's Pack or an Explorer's Pack", "A Longbow and a quiver of 20 arrows"]
-        
 class Ranger:
     
     def __init__(self):

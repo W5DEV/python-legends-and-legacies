@@ -9,21 +9,15 @@
 # - ritual_casting
 # - spellcasting_focus
 
-import modules.equipment as equipment
+import modules.starting_equipment as starting_equipment
+import modules.skills as skills
+import modules.spells as spells
+import modules.cantrips as cantrips
 
-displayed_wizard_spells = ["Alarm", "Burning Hands", "Charm Person", "Color Spray", "Comprehend Languages", "Detect Magic", "Disguise Self", "Expeditious Retreat", "False Life", "Feather Fall", "Find Familiar", "Fog Cloud", "Grease", "Hideous Laughter", "Identify", "Illusory Script", "Jump", "Longstrider", "Mage Armor", "Magic Missile", "Protection from Evil and Good", "Shield", "Silent Image", "Sleep", "Thunderwave", "Unseen Servant"]
-wizard_spells = ["alarm", "burning hands", "charm person", "color spray", "comprehend languages", "detect magic", "disguise self", "expeditious retreat", "false life", "feather fall", "find familiar", "fog cloud", "grease", "hideous laughter", "identify", "illusory script", "jump", "longstrider", "mage armor", "magic missile", "protection from evil and good", "shield", "silent image", "sleep", "thunderwave", "unseen servant"]
-displayed_wizard_cantrips = ["Acid Splash", "Chill Touch", "Dancing Lights", "Fire Bolt", "Light", "Mage Hand", "Mending", "Message", "Minor Illusion", "Poison Spray", "Prestidigitation", "Ray of Frost", "Shocking Grasp", "True Strike"]
-wizard_cantrips = ["acid splash", "chill touch", "dancing lights", "fire bolt", "light", "mage hand", "mending", "message", "minor illusion", "poison spray", "prestidigitation", "ray of frost", "shocking grasp", "true strike"]
-
-potential_starting_equipment = ["A Quarterstaff or a Dagger", "A Component Pouch or an Arcane Focus", "A Scholar's Pack or and Explorer's Pack", "A Spellbook"]
-
-displayed_wizard_skills = ["Arcana", "History", "Insight", "Investigation", "Medicine", "Religion"]
-wizard_skills = ["arcana", "history", "insight", "investigation", "medicine", "religion"]
-
-def display_wizard_spells():
-    for spell in displayed_wizard_spells:
-        print(spell)
+displayed_wizard_skills, wizard_skills = skills.get_wizard_skills()
+displayed_wizard_spells, wizard_spells = spells.get_wizard_spells()
+displayed_wizard_cantrips, wizard_cantrips = cantrips.get_wizard_cantrips()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Wizard")
 
 class Wizard:
     def __init__(self):

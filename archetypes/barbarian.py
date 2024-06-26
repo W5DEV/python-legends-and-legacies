@@ -1,11 +1,9 @@
 import modules.starting_equipment as starting_equipment
 import modules.skills as skills
 
-displayed_barbarian_skills = skills.get_barbarian_skills("displayed")
-barbarian_skills = skills.get_barbarian_skills("logical")
-
-potential_starting_equipment = ["Greataxe or any martial melee weapon", "Two Handaxes or Any Simple Weapon", "Explorer's Pack", "Four Javelins"]
-        
+displayed_barbarian_skills, barbarian_skills = skills.get_barbarian_skills()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Barbarian")
+   
 class Barbarian:
     
     def __init__(self):

@@ -1,5 +1,45 @@
 import modules.equipment as equipment
 
+def get_starting_equipment(archetype):
+    if archetype == "Barbarian":
+        potential_starting_equipment = ["Greataxe or any martial melee weapon", "Two Handaxes or Any Simple Weapon", "Explorer's Pack", "Four Javelins"]
+        return potential_starting_equipment
+    if archetype == "Bard":
+        potential_starting_equipment = ["a rapier, a longsword, or any simple weapon", "a diplomat's pack or an entertainer's pack", "a lute or any other musical instrument", "Lether Armor", "Dagger"]
+        return potential_starting_equipment
+    if archetype == "Cleric":
+        potential_starting_equipment = ["a Mace or a Warhammer (if proficient)", "Scale Mail, Leather Armor, or Chain Mail (if proficient)", "a Light Crossbow and 20 bolts or any simple weapon", "a Priest's Pack or an Explorer's Pack", "a Shield and a Holy Symbol"]
+        return potential_starting_equipment
+    if archetype == "Druid":
+        potential_starting_equipment = ["A Wooden Shield or any Simple Weapon", "Scimitar or any Simple Melee Weapon", "Leather Armor", "Explorer's Pack", "Druidic Focus"]
+        return potential_starting_equipment
+    if archetype == "Fighter":
+        potential_starting_equipment = ["Chain Mail or Leather Armor, Longbow, and 20 Arrows", "Any Martial Weapon and a Shield or Two Martial Weapons", "Light Crossbow and 20 Bolts or Two Handaxes", "Dungeoneer's Pack or Explorer's Pack"]
+        return potential_starting_equipment
+    if archetype == "Monk":
+        potential_starting_equipment = ["A Shortsword or any simple weapon", "A Dungeoneer's Pack or an Explorer's Pack", "10 Darts"]
+        return potential_starting_equipment
+    if archetype == "Paladin":
+        potential_starting_equipment = ["A Martial Weapon and a Shield or Two Martial Weapons", "Five Javelins or Any Simple Melee Weapon", "A Priest's Pack or an Explorer's Pack", "Chain Mail and a Holy Symbol Emblem"]
+        return potential_starting_equipment
+    if archetype == "Ranger":
+        potential_starting_equipment = ["Scale Mail or Leather Armor", "Two Shortswords or Two Simple Melee Weapons" "A Dungeoneer's Pack or an Explorer's Pack", "A Longbow and a quiver of 20 arrows"]
+        return potential_starting_equipment
+    if archetype == "Rogue":
+        potential_starting_equipment = ["A Rapier or a Shortsword", "A Shortbow and Quiver of 20 Arrows or a Shortsword", "A Burglar's Pack, a Dungeoneer's Pack or an Explorer's Pack", "Leather Armor, Two Daggers, and Thieves' Tools"]
+        return potential_starting_equipment
+    if archetype == "Sorcerer":
+        potential_starting_equipment = ["A Light Crossbow and 20 Bolts or Any Simple Weapon", "A Component Pouch or an Arcane Focus", "A Dungeoneer's Pack or an Explorer's Pack", "Two Daggers"]
+        return potential_starting_equipment
+    if archetype == "Warlock":
+        potential_starting_equipment = ["A Light Crossbow and 20 Bolts or Any Simple Weapon", "A Component Pouch or an Arcane Focus", "A Dungeoneer's Pack or a Scholar's Pack", "Leather Armor, Any Simple Weapon, and Two Daggers"]
+        return potential_starting_equipment
+    if archetype == "Wizard":
+        potential_starting_equipment = ["A Quarterstaff or a Dagger", "A Component Pouch or an Arcane Focus", "A Scholar's Pack or and Explorer's Pack", "A Spellbook"]
+        return potential_starting_equipment
+
+
+
 def starting_equipment_choice(choice_1, choice_2):
     print(f"Please choose one of either {choice_1} or {choice_2}.")
     print("> ", end="")

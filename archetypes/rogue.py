@@ -1,10 +1,9 @@
-import modules.equipment as equipment
+import modules.starting_equipment as starting_equipment
+import modules.skills as skills
 
-displayed_rogue_skills = ["Acrobatics", "Athletics", "Deception", "Insight", "Intimidation", "Investigation", "Perception", "Performance", "Persuasion", "Sleight of Hand", "Stealth"]
-rogue_skills = ["acrobatics", "athletics", "deception", "insight", "intimidation", "investigation", "perception", "performance", "persuasion", "sleight of hand", "stealth"]
-
-potential_starting_equipment = ["A Rapier or a Shortsword", "A Shortbow and Quiver of 20 Arrows or a Shortsword", "A Burglar's Pack, a Dungeoneer's Pack or an Explorer's Pack", "Leather Armor, Two Daggers, and Thieves' Tools"]
-        
+displayed_rogue_skills, rogue_skills = skills.get_rogue_skills()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Rogue")
+      
 class Rogue:
     
     def __init__(self):

@@ -1,10 +1,9 @@
-import modules.equipment as equipment
+import modules.starting_equipment as starting_equipment
+import modules.skills as skills
 
-displayed_monk_skills = ["Acrobatics", "Athletics", "History", "Insight", "Religion", "Stealth"]
-monk_skills = ["acrobatics", "athletics", "history", "insight", "religion", "stealth"]
+displayed_monk_skills, monk_skills = skills.get_monk_skills()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Monk")
 
-potential_starting_equipment = ["A Shortsword or any simple weapon", "A Dungeoneer's Pack or an Explorer's Pack", "10 Darts"]
-        
 class Monk:
     
     def __init__(self):

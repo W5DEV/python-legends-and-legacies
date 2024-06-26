@@ -1,13 +1,11 @@
-import modules.equipment as equipment
+import modules.starting_equipment as starting_equipment
+import modules.skills as skills
+import modules.spells as spells
 
-displayed_paladin_skills = ["Athletics", "Insight", "Intimidation", "Medicine", "Persuasion", "Religion"]
-paladin_skills = ["athletics", "insight", "intimidation", "medicine", "persuasion", "religion"]
-
-displayed_paladin_spells = ["Bless", "Command", "Cure Wounds", "Detect Evil and Good", "Detect Magic", "Detect Poison and Disease", "Divine Favor", "Heroism", "Protection from Evil and Good", "Purify Food and Drink", "Searing Smite", "Shield of Faith"]
-paladin_spells = ["bless", "command", "cure wounds", "detect evil and good", "detect magic", "detect poison and disease", "divine favor", "heroism", "protection from evil and good", "purify food and drink", "searing smite", "shield of faith"]
-
-potential_starting_equipment = ["A Martial Weapon and a Shield or Two Martial Weapons", "Five Javelins or Any Simple Melee Weapon", "A Priest's Pack or an Explorer's Pack", "Chain Mail and a Holy Symbol Emblem"]
-        
+displayed_paladin_skills, paladin_skills = skills.get_paladin_skills()
+displayed_paladin_spells, paladin_spells = spells.get_paladin_spells()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Paladin")
+    
 class Paladin:
     
     def __init__(self):
