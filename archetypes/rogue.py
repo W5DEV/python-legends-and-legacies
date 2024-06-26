@@ -143,11 +143,12 @@ def define_rogue():
     equipment_choice_2 = starting_equipment.starting_equipment_choice("Shortbow and Quiver of 20 Arrows", "Shortsword")
     if equipment_choice_2.lower() == "shortbow and quiver of 20 arrows":
         weapon_choice = starting_equipment.starting_equipment("Short Bow")
+        print(f"One {weapon_choice.name} has been added to your starting equipment.")
+        rogue.starting_equipment.append(weapon_choice)
+        print("A Quiver of 20 Arrows has been added to your starting equipment.")
+        # Add a Quiver of 20 Arrows to the starting equipment
     else:
         weapon_choice = starting_equipment.starting_equipment("Short Sword")
-    print(f"One {weapon_choice.name} has been added to your starting equipment.")
-    rogue.starting_equipment.append(weapon_choice)
-    # Add a Quiver of 20 Arrows to the starting equipment if selected
 
     equipment_choice_3 = starting_equipment.starting_equipment_choice_three("Burglar's Pack", "Dungeoneer's Pack", "Explorer's Pack")
     if equipment_choice_3.lower() == "burglar's pack":
