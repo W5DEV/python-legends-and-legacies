@@ -58,11 +58,9 @@ def get_elf_name(gender):
             for name in elf_male_names:
                 print(name)
             name = input("> ")
-            family_name = random.choice(elf_family_names)
             while name not in elf_male_names:
                 print("That name is not compatible with male elves.")
                 print("Please choose a name from the list.")
-                family_name = random.choice(elf_family_names)
                 name = input("> ")
         elif gender.lower() == "female":
             for name in elf_female_names:
@@ -71,9 +69,9 @@ def get_elf_name(gender):
             while name not in elf_female_names:
                 print("That name is not compatible with female elves.")
                 print("Please choose a name from the list.")
-                family_name = random.choice(elf_family_names)
                 name = input("> ")
 
+        family_name = random.choice(elf_family_names)
     print(f"Your elf's name is {name} of the family {family_name}.")
     return name + " " + family_name
             
