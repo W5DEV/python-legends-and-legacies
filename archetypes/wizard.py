@@ -9,21 +9,15 @@
 # - ritual_casting
 # - spellcasting_focus
 
-import modules.equipment as equipment
+import modules.starting_equipment as starting_equipment
+import modules.skills as skills
+import modules.spells as spells
+import modules.cantrips as cantrips
 
-displayed_wizard_spells = ["Alarm", "Burning Hands", "Charm Person", "Color Spray", "Comprehend Languages", "Detect Magic", "Disguise Self", "Expeditious Retreat", "False Life", "Feather Fall", "Find Familiar", "Fog Cloud", "Grease", "Hideous Laughter", "Identify", "Illusory Script", "Jump", "Longstrider", "Mage Armor", "Magic Missile", "Protection from Evil and Good", "Shield", "Silent Image", "Sleep", "Thunderwave", "Unseen Servant"]
-wizard_spells = ["alarm", "burning hands", "charm person", "color spray", "comprehend languages", "detect magic", "disguise self", "expeditious retreat", "false life", "feather fall", "find familiar", "fog cloud", "grease", "hideous laughter", "identify", "illusory script", "jump", "longstrider", "mage armor", "magic missile", "protection from evil and good", "shield", "silent image", "sleep", "thunderwave", "unseen servant"]
-displayed_wizard_cantrips = ["Acid Splash", "Chill Touch", "Dancing Lights", "Fire Bolt", "Light", "Mage Hand", "Mending", "Message", "Minor Illusion", "Poison Spray", "Prestidigitation", "Ray of Frost", "Shocking Grasp", "True Strike"]
-wizard_cantrips = ["acid splash", "chill touch", "dancing lights", "fire bolt", "light", "mage hand", "mending", "message", "minor illusion", "poison spray", "prestidigitation", "ray of frost", "shocking grasp", "true strike"]
-
-potential_starting_equipment = ["A Quarterstaff or a Dagger", "A Component Pouch or an Arcane Focus", "A Scholar's Pack or and Explorer's Pack", "A Spellbook"]
-
-displayed_wizard_skills = ["Arcana", "History", "Insight", "Investigation", "Medicine", "Religion"]
-wizard_skills = ["arcana", "history", "insight", "investigation", "medicine", "religion"]
-
-def display_wizard_spells():
-    for spell in displayed_wizard_spells:
-        print(spell)
+displayed_wizard_skills, wizard_skills = skills.get_wizard_skills()
+displayed_wizard_spells, wizard_spells = spells.get_wizard_spells()
+displayed_wizard_cantrips, wizard_cantrips = cantrips.get_wizard_cantrips()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Wizard")
 
 class Wizard:
     def __init__(self):
@@ -208,63 +202,34 @@ def define_wizard():
     wizard.spells = selected_spells
 
     # Starting Equipment
-    equipment_choice1 = ""
-    equipment_choice2 = ""
-    equipment_choice3 = ""
-    print("Choose your starting equipment:")
-    for item in potential_starting_equipment:
-        print(item)
+    equipment_choice_1 = starting_equipment.starting_equipment_choice("Quarterstaff", "Dagger")
+    if equipment_choice_1.lower() == "quarterstaff":
+        weapon_choice = starting_equipment.starting_equipment("Quarterstaff")
+    else:
+        weapon_choice = starting_equipment.starting_equipment("Dagger")
+    print(f"One {weapon_choice.name} has been added to your starting equipment.")
+    wizard.starting_equipment.append(weapon_choice)
 
-    print("Please enter your choice of a 'Quarterstaff' or 'Dagger':")
-    equipment_choice1 = input("> ")
-    while equipment_choice1.lower() not in ["quarterstaff", "dagger"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice1 = input("> ")
-    if equipment_choice1.lower() == "quarterstaff":
-        print("You have chosen a Quarterstaff.")
-        print("A Quarterstaff has been added to your starting equipment.")
-        wizard.starting_equipment.append(equipment.quarter_staff)
-    elif equipment_choice1.lower() == "dagger":
-        print("You have chosen a Dagger.")
-        print("A Dagger has been added to your starting equipment.")
-        wizard.starting_equipment.append(equipment.dagger)
+    equipment_choice_2 = starting_equipment.starting_equipment_choice("Component Pouch", "Arcane Focus")
+    if equipment_choice_2.lower() == "component pouch":
+        focus_choice = starting_equipment.starting_equipment("Component Pouch")
+    else:
+        focus_choice = starting_equipment.starting_equipment("Arcane Focus")
+    print(f"One {focus_choice.name} has been added to your starting equipment.")
+    wizard.starting_equipment.append(focus_choice)
 
-    print("Please enter your choice of a 'Component Pouch' or an 'Arcane Focus':")
-    equipment_choice2 = input("> ")
-    while equipment_choice2.lower() not in ["component pouch", "arcane focus"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice2 = input("> ")
-    if equipment_choice2.lower() == "component pouch":
-        print("You have chosen a Component Pouch.")
-        print("A Component Pouch has been added to your starting equipment.")
-        wizard.starting_equipment.append(equipment.component_pouch)
-    elif equipment_choice2.lower() == "arcane focus":
-        print("You have chosen an Arcane Focus.")
-        print("An Arcane Focus has been added to your starting equipment.")
-        wizard.starting_equipment.append(equipment.arcane_focus_crystal)
+    equipment_choice_3 = starting_equipment.starting_equipment_choice("Scholar's Pack", "Explorer's Pack")
+    if equipment_choice_3.lower() == "scholar's pack":
+        pack_choice = starting_equipment.starting_equipment("Scholar's Pack")
+    else:
+        pack_choice = starting_equipment.starting_equipment("Explorer's Pack")
+    print(f"One {pack_choice.name} has been added to your starting equipment.")
+    wizard.starting_equipment.append(pack_choice)
 
-    print("Please enter your choice of a 'Scholar's Pack' or an 'Explorer's Pack':")
-    equipment_choice3 = input("> ")
-    while equipment_choice3.lower() not in ["scholar's pack", "explorer's pack"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice3 = input("> ")
-    if equipment_choice3.lower() == "scholar's pack":
-        print("You have chosen a Scholar's Pack.")
-        print("A Scholar's Pack has been added to your starting equipment.")
-        wizard.starting_equipment.append(equipment.scholars_pack)
-    elif equipment_choice3.lower() == "explorer's pack":
-        print("You have chosen an Explorer's Pack.")
-        print("An Explorer's Pack has been added to your starting equipment.")
-        wizard.starting_equipment.append(equipment.explorers_pack)
-
-    print("You also start with a Spellbook.")
+    spellbook = starting_equipment.starting_equipment("Spellbook")
     print("A Spellbook has been added to your starting equipment.")
-    wizard.starting_equipment.append(equipment.spellbook)
+    wizard.starting_equipment.append(spellbook)
     
-    print(f"You have chosen the following starting equipment:")
-    for item in wizard.starting_equipment:
-        print(item.name)
-
     return wizard
         
 

@@ -9,17 +9,15 @@
 # - ritual_casting
 # - spellcasting_focus
 
-import modules.equipment as equipment
+import modules.starting_equipment as starting_equipment
+import modules.skills as skills
+import modules.spells as spells
+import modules.cantrips as cantrips
 
-displayed_druid_skills = ["Arcana", "Animal Handling", "Insight", "Medicine", "Nature", "Perception", "Religion", "Survival"]
-druid_skills = ["arcana", "animal handling", "insight", "medicine", "nature", "perception", "religion", "survival"]
-
-displayed_druid_cantrips = ["Druidcraft", "Guidance", "Mending", "Poison Spray", "Produce Flame", "Resistance", "Shillelagh"]
-displayed_druid_spells = ["Animal Friendship", "Charm Person", "Create or Destroy Water", "Cure Wounds", "Detect Magic", "Detect Poison and Disease", "Entangle", "Faerie Fire", "Fog Cloud", "Goodberry", "Healing Word", "Jump", "Longstrider", "Purify Food and Drink", "Speak with Animals", "Thunderwave"]
-druid_cantrips = ["druidcraft", "guidance", "mending", "poison spray", "produce flame", "resistance", "shillelagh"]
-druid_spells = ["animal friendship", "charm person", "create or destroy water", "cure wounds", "detect magic", "detect poison and disease", "entangle", "faerie fire", "fog cloud", "goodberry", "healing word", "jump", "longstrider", "purify food and drink", "speak with animals", "thunderwave"]
-
-potential_starting_equipment = ["A Wooden Shield or any Simple Weapon", "Scimitar or any Simple Melee Weapon", "Leather Armor", "Explorer's Pack", "Druidic Focus"]
+displayed_druid_skills, druid_skills = skills.get_druid_skills()
+displayed_druid_spells, druid_spells = spells.get_druid_spells()
+displayed_druid_cantrips, druid_cantrips = cantrips.get_druid_cantrips()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Druid")
 
 class Druid:
     def __init__(self):
@@ -210,69 +208,28 @@ def define_druid():
         print(spell)
 
     # Starting Equipment
-    weapon_choice1 = ""
-    weapon_choice2 = ""
-    armor_choice = ""
-    print("Druids are able to choose from the following starting equipment:")
-    for item in potential_starting_equipment:
-        print(item)
-    
-    print("Please choose between a Shield or any Simple Weapon:")
-    weapon_choice1 = input("> ")
-    while weapon_choice1.lower() not in ["shield", "other simple weapon"]:
-        print("Please enter either 'shield' or 'other weapon choice':")
-        weapon_choice1 = input("> ")
-    if weapon_choice1.lower() == "shield":
-        print("You have chosen a Shield.")
-        print("A Shield has been added to your starting equipment.")
-        druid.starting_equipment.append(equipment.shield)
+    equipment_choice_1 = starting_equipment.starting_equipment_choice("Shield", "Any Simple Weapon")
+    if equipment_choice_1.lower() == "shield":
+        starting_weapon = starting_equipment.starting_equipment("Shield")
     else:
-        print("Please choose a simple weapon from the list below:")
-        for weapon in equipment.simple_weapons:
-            print(weapon.name)
-        other_weapon1 = input("> ")
-        while other_weapon1.lower() not in [weapon.name.lower() for weapon in equipment.simple_weapons]:
-            print("Please enter a valid weapon choice:")
-            other_weapon1 = input("> ")
-        for weapon in equipment.simple_weapons:
-            if other_weapon1.lower() == weapon.name.lower():
-                print(f"You have chosen {weapon.name}.")
-                print(f"One {weapon.name} has been added to your starting equipment.")
-                druid.starting_equipment.append(weapon)
-                break
+        starting_weapon = starting_equipment.select_equipment_from_category("Simple Weapons")
+    print(f"One {starting_weapon.name} has been added to your starting equipment.")
+    druid.starting_equipment.append(starting_weapon)
 
-    print("Please choose between Scimitar or any Simple Melee Weapon:")
-    weapon_choice2 = input("> ")
-    while weapon_choice2.lower() not in ["scimitar", "other simple melee weapon"]:
-        print("Please enter a valid armor choice:")
-        weapon_choice2 = input("> ")
-    if weapon_choice2.lower() == "scimitar":
-        print("You have chosen a Scimitar.")
-        print("A Scimitar has been added to your starting equipment.")
-        druid.starting_equipment.append(equipment.scimitar)
+    equipment_choice_2 = starting_equipment.starting_equipment_choice("Scimitar", "Any Simple Melee Weapon")
+    if equipment_choice_2.lower() == "scimitar":
+        starting_weapon = starting_equipment.starting_equipment("Scimitar")
     else:
-        print("Please choose a simple weapon from the list below:")
-        for weapon in equipment.simple_melee_weapons:
-            print(weapon.name)
-        other_weapon2 = input("> ")
-        while other_weapon2.lower() not in [weapon.name.lower() for weapon in equipment.simple_weapons]:
-            print("Please enter a valid weapon choice:")
-            other_weapon2 = input("> ")
-        for weapon in equipment.simple_melee_weapons:
-            if other_weapon2.lower() == weapon.name.lower():
-                print(f"You have chosen {weapon.name}.")
-                print(f"One {weapon.name} has been added to your starting equipment.")
-                druid.starting_equipment.append(weapon)
-                break
+        starting_weapon = starting_equipment.select_equipment_from_category("Simple Melee Weapons")
+    print(f"One {starting_weapon.name} has been added to your starting equipment.")
+    druid.starting_equipment.append(starting_weapon)
 
-    print("You will also receive Leather Armor, an Explorer's Pack, and a Druidic Focus.")
+    leather_armor = starting_equipment.starting_equipment("Leather Light Armor")
+    explorers_pack = starting_equipment.starting_equipment("Explorer's Pack")
+    druidic_focus = starting_equipment.starting_equipment("Druidic Focus")
     print("Leather Armor, an Explorer's Pack, and a Druidic Focus have been added to your starting equipment.")
-    druid.starting_equipment.append(equipment.leather_light_armor)
-    druid.starting_equipment.append(equipment.explorers_pack)
-    druid.starting_equipment.append(equipment.druidic_focus)
-
-    print("You will start with the following equipment:")
-    for item in druid.starting_equipment:
-        print(item.name)
+    druid.starting_equipment.append(leather_armor)
+    druid.starting_equipment.append(explorers_pack)
+    druid.starting_equipment.append(druidic_focus)
 
     return druid

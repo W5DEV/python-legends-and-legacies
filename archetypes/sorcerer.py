@@ -9,22 +9,15 @@
 # - ritual_casting
 # - spellcasting_focus
 
-import modules.equipment as equipment
-import modules.instruments as instruments
+import modules.starting_equipment as starting_equipment
+import modules.skills as skills
+import modules.spells as spells
+import modules.cantrips as cantrips
 
-displayed_sorcerer_spells = ["Burning Hands", "Charm Person", "Color Spray", "Comprehend Languages", "Detect Magic", "Disguise Self", "Expeditious Retreat", "False Life", "Feather Fall", "Fog Cloud", "Jump", "Mage Armor", "Magic Missile", "Shield", "Silent Image", "Sleep", "Thunderwave"]
-sorcerer_spells = ["burning hands", "charm person", "color spray", "comprehend languages", "detect magic", "disguise self", "expeditious retreat", "false life", "feather fall", "fog cloud", "jump", "mage armor", "magic missile", "shield", "silent image", "sleep", "thunderwave"]
-displayed_sorcerer_cantrips = ["Acid Splash", "Chill Touch", "Dancing Lights", "Fire Bolt", "Light", "Mage Hand", "Mending", "Message", "Minor Illusion", "Poison Spray", "Prestidigitation", "Ray of Frost", "Shocking Grasp", "True Strike"]
-sorcerer_cantrips = ["acid splash", "chill touch", "dancing lights", "fire bolt", "light", "mage hand", "mending", "message", "minor illusion", "poison spray", "prestidigitation", "ray of frost", "shocking grasp", "true strike"]
-
-potential_starting_equipment = ["A Light Crossbow and 20 Bolts or Any Simple Weapon", "A Component Pouch or an Arcane Focus", "A Dungeoneer's Pack or an Explorer's Pack", "Two Daggers"]
-
-displayed_sorcerer_skills = ["Arcana", "Deception", "Insight", "Intimidation", "Persuasion", "Religion"]
-sorcerer_skills = ["arcana", "deception", "insight", "intimidation", "persuasion", "religion"]
-
-def display_sorcerer_spells():
-    for spell in displayed_sorcerer_spells:
-        print(spell)
+displayed_sorcerer_skills, sorcerer_skills = skills.get_sorcerer_skills()
+displayed_sorcerer_spells, sorcerer_spells = spells.get_sorcerer_spells()
+displayed_sorcerer_cantrips, sorcerer_cantrips = cantrips.get_sorcerer_cantrips()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Sorcerer")
 
 class Sorcerer:
     def __init__(self):
@@ -249,73 +242,37 @@ def define_sorcerer():
     sorcerer.spells = selected_spells
 
     # Starting Equipment
-    equipment_choice1 = ""
-    equipment_choice2 = ""
-    equipment_choice3 = ""
-    print("Choose your starting equipment:")
-    for item in potential_starting_equipment:
-        print(item)
-
-    print("Please enter your choice of a 'Light Crossbow and 20 Bolts' or 'any Simple Weapon':")
-    equipment_choice1 = input("> ")
-    while equipment_choice1.lower() not in ["light crossbow and 20 bolts", "any simple weapon"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice1 = input("> ")
-    if equipment_choice1.lower() == "light crossbow and 20 bolts":
-        print("You have chosen a Light Crossbow and 20 Bolts.")
-        print("A Light Crossbow and 20 Bolts has been added to your starting equipment.")
-        sorcerer.starting_equipment.append(equipment.light_crossbow)
+    equipment_choice_1 = starting_equipment.starting_equipment_choice("Light Crossbow and 20 Bolts", "Any Simple Weapon")
+    if equipment_choice_1.lower() == "light crossbow and 20 bolts":
+        weapon_choice = starting_equipment.starting_equipment("Light Crossbow")
+        print(f"One {weapon_choice.name} has been added to your starting equipment.")
+        sorcerer.starting_equipment.append(weapon_choice)
+        # Add 20 bolts
     else:
-        for weapon in equipment.simple_weapons:
-            print(weapon.name)
-        print("Please enter your choice of simple weapon:")
-        weapon_choice = input("> ")
-        while weapon_choice.lower() not in [weapon.name.lower() for weapon in equipment.simple_weapons]:
-            print("That is not a valid choice. Please choose from the list.")
-            weapon_choice = input("> ")
-        for weapon in equipment.simple_weapons:
-            if weapon_choice.lower() == weapon.name.lower():
-                print(f"You have chosen {weapon.name}.")
-                print(f"{weapon.name} has been added to your starting equipment.")
-                sorcerer.starting_equipment.append(weapon)
-                break
+        weapon_choice = starting_equipment.select_equipment_from_category("Simple Weapons")
+        print(f"One {weapon_choice.name} has been added to your starting equipment.")
+        sorcerer.starting_equipment.append(weapon_choice)
 
-    print("Please enter your choice of a 'Component Pouch' or an 'Arcane Focus':")
-    equipment_choice2 = input("> ")
-    while equipment_choice2.lower() not in ["component pouch", "arcane focus"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice2 = input("> ")
-    if equipment_choice2.lower() == "component pouch":
-        print("You have chosen a Component Pouch.")
-        print("A Component Pouch has been added to your starting equipment.")
-        sorcerer.starting_equipment.append(equipment.component_pouch)
-    elif equipment_choice2.lower() == "arcane focus":
-        print("You have chosen an Arcane Focus.")
-        print("An Arcane Focus has been added to your starting equipment.")
-        sorcerer.starting_equipment.append(equipment.arcane_focus_crystal)
+    equipment_choice_2 = starting_equipment.starting_equipment_choice("Component Pouch", "Arcane Focus")
+    if equipment_choice_2.lower() == "component pouch":
+        equipment_choice = starting_equipment.starting_equipment("Component Pouch")
+    else:
+        equipment_choice = starting_equipment.starting_equipment("Arcane Focus")
+    print(f"One {equipment_choice.name} has been added to your starting equipment.")
+    sorcerer.starting_equipment.append(equipment_choice)
 
-    print("Please enter your choice of a 'Dungeoneer's Pack' or an 'Explorer's Pack':")
-    equipment_choice3 = input("> ")
-    while equipment_choice3.lower() not in ["dungeoneer's pack", "explorer's pack"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice3 = input("> ")
-    if equipment_choice3.lower() == "dungeoneer's pack":
-        print("You have chosen a Dungeoneer's Pack.")
-        print("A Dungeoneer's Pack has been added to your starting equipment.")
-        sorcerer.starting_equipment.append(equipment.dungeoneers_pack)
-    elif equipment_choice3.lower() == "explorer's pack":
-        print("You have chosen an Explorer's Pack.")
-        print("An Explorer's Pack has been added to your starting equipment.")
-        sorcerer.starting_equipment.append(equipment.explorers_pack)
+    equipment_choice_3 = starting_equipment.starting_equipment_choice("Dungeoneer's Pack", "Explorer's Pack")
+    if equipment_choice_3.lower() == "dungeoneer's pack":
+        pack_choice = starting_equipment.starting_equipment("Dungeoneer's Pack")
+    else:
+        pack_choice = starting_equipment.starting_equipment("Explorer's Pack")
+    print(f"One {pack_choice.name} has been added to your starting equipment.")
+    sorcerer.starting_equipment.append(pack_choice)
 
-    print("You also start with 2 Daggers.")
+    dagger = starting_equipment.starting_equipment("Dagger")
     print("2 Daggers have been added to your starting equipment.")
-    sorcerer.starting_equipment.append(equipment.dagger)
-    sorcerer.starting_equipment.append(equipment.dagger)
-    
-    print(f"You have chosen the following starting equipment:")
-    for item in sorcerer.starting_equipment:
-        print(item.name)
+    sorcerer.starting_equipment.append(dagger)
+    sorcerer.starting_equipment.append(dagger)
 
     return sorcerer
         

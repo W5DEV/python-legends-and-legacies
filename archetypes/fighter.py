@@ -1,10 +1,9 @@
-import modules.equipment as equipment
+import modules.starting_equipment as starting_equipment
+import modules.skills as skills
 
-displayed_fighter_skills = ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"]
-fighter_skills = ["acrobatics", "animal handling", "athletics", "history", "insight", "intimidation", "perception", "survival"]
-
-potential_starting_equipment = ["Chain Mail or Leather Armor, Longbow, and 20 Arrows", "Any Martial Weapon and a Shield or Two Martial Weapons", "Light Crossbow and 20 Bolts or Two Handaxes", "Dungeoneer's Pack or Explorer's Pack"]
-        
+displayed_fighter_skills, fighter_skills = skills.get_fighter_skills()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Fighter")
+     
 class Fighter:
     
     def __init__(self):
@@ -147,112 +146,54 @@ def define_fighter():
         print(skill)
 
     # Starting Equipment
-    equipment_choice1 = ""
-    equipment_choice2 = ""
-    equipment_choice3 = ""
-    equipment_choice4 = ""
-    print("Choose your starting equipment:")
-    for item in potential_starting_equipment:
-        print(item)
-
-    print("Please enter your choice of 'Chain Mail' or 'Leather Armor, Longbow, and 20 Arrows':")
-    equipment_choice1 = input("> ")
-    while equipment_choice1.lower() not in ["chain mail", "leather armor, longbow, and 20 arrows"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice1 = input("> ")
-    if equipment_choice1.lower() == "chain mail":
-        print("You have chosen Chain Mail.")
-        print("Chain Mail has been added to your starting equipment.")
-        fighter.starting_equipment.append(equipment.chain_mail_heavy_armor)
+    equipment_choice_1 = starting_equipment.starting_equipment_choice("Chain Mail", "Leather Armor, Longbow, and 20 Arrows")
+    if equipment_choice_1.lower() == "chain mail":
+        starting_weapon = starting_equipment.starting_equipment("Chain Mail Heavy Armor")
+        print(f"{starting_weapon.name} has been added to your starting equipment.")
+        fighter.starting_equipment.append(starting_weapon)
     else:
-        print("You have chosen Leather Armor, Longbow, and 20 Arrows.")
-        print("Leather Armor, Longbow, and 20 Arrows have been added to your starting equipment.")
-        fighter.starting_equipment.append(equipment.leather_light_armor)
-        fighter.starting_equipment.append(equipment.longbow)
-        # Need to add 20 arrows here.
+        starting_weapon = starting_equipment.starting_equipment("Leather Light Armor")
+        print(f"{starting_weapon.name} has been added to your starting equipment.")
+        fighter.starting_equipment.append(starting_weapon)
+        starting_weapon = starting_equipment.starting_equipment("Longbow")
+        print(f"{starting_weapon.name} has been added to your starting equipment.")
+        fighter.starting_equipment.append(starting_weapon)
+        # Add 20 arrows here.
 
-    print("Please enter your choice of 'Any Martial Weapon and a Shield' or 'Two Martial Weapons':")
-    equipment_choice2 = input("> ")
-    while equipment_choice2.lower() not in ["any martial weapon and a shield", "two martial weapons"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice2 = input("> ")
-    if equipment_choice2.lower() == "any martial weapon and a shield":
-        for weapon in equipment.martial_weapons:
-            print(weapon.name)
-        print("Please enter your choice of martial weapon:")
-        weapon_choice = input("> ")
-        while weapon_choice.lower() not in [weapon.name.lower() for weapon in equipment.martial_weapons]:
-            print("That is not a valid choice. Please choose from the list.")
-            weapon_choice = input("> ")
-        for weapon in equipment.martial_weapons:
-            if weapon_choice.lower() == weapon.name.lower():
-                print(f"You have chosen {weapon.name}.")
-                print(f"{weapon.name} has been added to your starting equipment.")
-                fighter.starting_equipment.append(weapon)
-                break
-        print("You have chosen a shield.")
-        print("A shield has been added to your starting equipment.")
-        fighter.starting_equipment.append(equipment.shield)
-
+    equipment_choice_2 = starting_equipment.starting_equipment_choice("Any Martial Weapon and a Shield", "Two Martial Weapons")
+    if equipment_choice_2.lower() == "any martial weapon and a shield":
+        starting_weapon = starting_equipment.select_equipment_from_category("Martial Weapons")
+        print(f"{starting_weapon.name} has been added to your starting equipment.")
+        fighter.starting_equipment.append(starting_weapon)
+        starting_weapon = starting_equipment.starting_equipment("Shield")
+        print(f"{starting_weapon.name} has been added to your starting equipment.")
+        fighter.starting_equipment.append(starting_weapon)
     else:
-        for weapon in equipment.martial_weapons:
-            print(weapon.name)
-        print("Please enter your choice of first martial weapon:")
-        weapon_choice1 = input("> ")
-        while weapon_choice1.lower() not in [weapon.name.lower() for weapon in equipment.martial_weapons]:
-            print("That is not a valid choice. Please choose from the list.")
-            weapon_choice1 = input("> ")
-        for weapon in equipment.martial_weapons:
-            if weapon_choice1.lower() == weapon.name.lower():
-                print(f"You have chosen {weapon.name}.")
-                print(f"{weapon.name} has been added to your starting equipment.")
-                fighter.starting_equipment.append(weapon)
-                break
+        starting_weapon = starting_equipment.select_equipment_from_category("Martial Weapons")
+        print(f"{starting_weapon.name} has been added to your starting equipment.")
+        fighter.starting_equipment.append(starting_weapon)
+        starting_weapon = starting_equipment.select_equipment_from_category("Martial Weapons")
+        print(f"{starting_weapon.name} has been added to your starting equipment.")
+        fighter.starting_equipment.append(starting_weapon)
 
-        print("Please enter your choice of second martial weapon:")
-        weapon_choice2 = input("> ")
-        while weapon_choice2.lower() not in [weapon.name.lower() for weapon in equipment.martial_weapons]:
-            print("That is not a valid choice. Please choose from the list.")
-            weapon_choice2 = input("> ")
-        for weapon in equipment.martial_weapons:
-            if weapon_choice2.lower() == weapon.name.lower():
-                print(f"You have chosen {weapon.name}.")
-                print(f"{weapon.name} has been added to your starting equipment.")
-                fighter.starting_equipment.append(weapon)
-                break
-
-    print("Please enter your choice of 'Light Crossbow and 20 Bolts' or 'Two Handaxes':")
-    equipment_choice3 = input("> ")
-    while equipment_choice3.lower() not in ["light crossbow and 20 bolts", "two handaxes"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice3 = input("> ")
-    if equipment_choice3.lower() == "light crossbow and 20 bolts":
-        print("You have chosen Light Crossbow and 20 Bolts.")
-        print("Light Crossbow and 20 Bolts have been added to your starting equipment.")
-        fighter.starting_equipment.append(equipment.light_crossbow)
-        # Need to add 20 bolts here.
+    equipment_choice_3 = starting_equipment.starting_equipment_choice("Light Crossbow and 20 Bolts", "Two Handaxes")
+    if equipment_choice_3.lower() == "light crossbow and 20 bolts":
+        starting_weapon = starting_equipment.starting_equipment("Light Crossbow")
+        print(f"{starting_weapon.name} has been added to your starting equipment.")
+        fighter.starting_equipment.append(starting_weapon)
+        # Add 20 bolts here.
     else:
-        print("You have chosen Two Handaxes.")
-        print("Two Handaxes have been added to your starting equipment.")
-        fighter.starting_equipment.append(equipment.hand_axe)
-        fighter.starting_equipment.append(equipment.hand_axe)
-    
-    print("Please enter your choice of 'Dungeoneer's Pack' or 'Explorer's Pack':")
-    equipment_choice4 = input("> ")
-    while equipment_choice4.lower() not in ["dungeoneer's pack", "explorer's pack"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice4 = input("> ")
-    if equipment_choice4.lower() == "dungeoneer's pack":
-        print("You have chosen Dungeoneer's Pack.")
-        print("Dungeoneer's Pack has been added to your starting equipment.")
-        fighter.starting_equipment.append(equipment.dungeoneers_pack)
-    else:
-        print("You have chosen Explorer's Pack.")
-        print("Explorer's Pack has been added to your starting equipment.")
-        fighter.starting_equipment.append(equipment.explorers_pack)
+        starting_weapon = starting_equipment.starting_equipment("Hand Axe")
+        print(f"Two {starting_weapon.name}'s have been added to your starting equipment.")
+        fighter.starting_equipment.append(starting_weapon)
+        fighter.starting_equipment.append(starting_weapon)
 
-    print(f"You have chosen the following starting equipment:")
-    for item in fighter.starting_equipment:
-        print(item.name)
+    equipment_choice_3 = starting_equipment.starting_equipment_choice("Dungeoneer's Pack", "Explorer's Pack")
+    if equipment_choice_3.lower() == "dungeoneer's pack":
+        starting_pack = starting_equipment.starting_equipment("Dungeoneer's Pack")
+    else:
+        starting_pack = starting_equipment.starting_equipment("Explorer's Pack")
+    print(f"{starting_pack.name} has been added to your starting equipment.")
+    fighter.starting_equipment.append(starting_pack)
 
     return fighter

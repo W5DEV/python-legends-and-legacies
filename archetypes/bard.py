@@ -9,20 +9,16 @@
 # - ritual_casting
 # - spellcasting_focus
 
-import modules.equipment as equipment
+import modules.starting_equipment as starting_equipment
 import modules.skills as skills
+import modules.spells as spells
+import modules.cantrips as cantrips
 import modules.instruments as instruments
 
-displayed_bard_spells = ["Animal Friendship", "Bane", "Charm Person", "Comprehend Languages", "Cure Wounds", "Detect Magic", "Disguise Self", "Faerie Fire", "Feather Fall", "Healing Word", "Heroism", "Hideous Laughter", "Identify", "Illusory Script", "Longstrider", "Silent Image", "Sleep", "Speak with Animals", "Thunderwave", "Unseen Servant"]
-bard_spells = ["animal friendship", "bane", "charm person", "comprehend languages", "cure wounds", "detect magic", "disguise self", "faerie fire", "feather fall", "healing word", "heroism", "hideous laughter", "identify", "illusory script", "longstrider", "silent image", "sleep", "speak with animals", "thunderwave", "unseen servant"]
-displayed_bard_cantrips = ["Dancing Lights", "Light", "Mage Hand", "Mending", "Message", "Minor Illusion", "Prestidigitation", "True Strike", "Vicious Mockery"]
-bard_cantrips = ["dancing lights", "light", "mage hand", "mending", "message", "minor illusion", "prestidigitation", "true strike", "vicious mockery"]
-
-potential_starting_equipment = ["a rapier, a longsword, or any simple weapon", "a diplomat's pack or an entertainer's pack", "a lute or any other musical instrument", "Lether Armor", "Dagger"]
-
-displayed_bard_skills = skills.get_bard_skills("displayed")
-bard_skills = skills.get_bard_skills("logical")
-
+displayed_bard_skills, bard_skills = skills.get_bard_skills()
+displayed_bard_spells, bard_spells = spells.get_bard_spells()
+displayed_bard_cantrips, bard_cantrips = cantrips.get_bard_cantrips()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Bard")
 
 class Bard:
     def __init__(self):
@@ -265,84 +261,37 @@ def define_bard():
     bard.instrument_proficiencies = selected_instrument_proficiencies
     
     # Starting Equipment
-    weapon_choice1 = ""
-    print(f"Bard's are able to choose between a few different starting equipment options.")
-    for item in potential_starting_equipment:
-        print(item)
-    
-    print("Would you like to start with a Rapier, Longsword, or any other simple weapon?")
-    print("Please enter your either 'Rapier' or 'Longsword', 'Other Simple Weapon':")
-    weapon_choice1 = input("> ")
-    while weapon_choice1.lower() not in ["rapier", "longsword", "other simple weapon"]:
-        print("That is not a valid choice. Please choose from the list.")
-        weapon_choice1 = input("> ")
-    if weapon_choice1.lower() == "rapier":
-        first_weapon = equipment.rapier
-    elif weapon_choice1.lower() == "longsword":
-        first_weapon = equipment.long_sword
+    equipment_choice_1 = starting_equipment.starting_equipment_choice_three("Rapier", "Longsword", "Any Other Simple Weapon")
+    if equipment_choice_1.lower() == "rapier":
+        starting_weapon = starting_equipment.starting_equipment("Rapier")
+    elif equipment_choice_1.lower() == "longsword":
+        starting_weapon = starting_equipment.starting_equipment("Longsword")
     else:
-        print("Please choose a simple weapon from the following list:")
-        valid_weapons = []
-        for weapon in equipment.simple_weapons:
-            valid_weapons.append(weapon.name.lower())
-            print(weapon.name)
-        other_weapon = input("> ")
-        while other_weapon.lower() not in valid_weapons:
-            print("That is not a valid choice. Please choose from the list.")
-            other_weapon = input("> ")
-        for weapon in equipment.simple_weapons:
-            if other_weapon.lower() == weapon.name.lower():
-                first_weapon = weapon
-                break
-    print(f"You have chosen {first_weapon.name} as your weapon.")
-    print(f"One {first_weapon.name} has been added to your starting equipment.")
-    bard.starting_equipment.append(first_weapon)
+        starting_weapon = starting_equipment.starting_equipment_from_category("Simple Weapons")
+    print(f"One {starting_weapon.name} has been added to your starting equipment.")
+    bard.starting_equipment.append(starting_weapon)
 
-    print("Would you like to start with a Diplomat's Pack or an Entertainer's Pack?")
-    print("Please enter your either 'Diplomat's Pack' or 'Entertainer's Pack':")
-    pack_choice = input("> ")
-    while pack_choice.lower() not in ["diplomat's pack", "entertainer's pack"]:
-        print("That is not a valid choice. Please choose from the list.")
-        pack_choice = input("> ")
-    if pack_choice.lower() == "diplomat's pack":
-        print("You have chosen the Diplomat's Pack.")
-        bard.starting_equipment.append(equipment.diplomats_pack)
+    equipment_choice_2 = starting_equipment.starting_equipment_choice("Diplomat's Pack", "Entertainer's Pack")
+    if equipment_choice_2.lower() == "diplomat's pack":
+        starting_pack = starting_equipment.starting_equipment("Diplomat's Pack")
     else:
-        print("You have chosen the Entertainer's Pack.")
-        bard.starting_equipment.append(equipment.entertainers_pack)
-    
-    print("Would you like to start with a Lute or another musical instrument?")
-    print("Please enter your either 'Lute' or 'Other Musical Instrument':")
-    instrument_choice = input("> ")
-    while instrument_choice.lower() not in ["lute", "other musical instrument"]:
-        print("That is not a valid choice. Please choose from the list.")
-        instrument_choice = input("> ")
-    if instrument_choice.lower() == "lute":
-        print("You have chosen the Lute.")
-        bard.starting_equipment.append(equipment.lute)
-    else:
-        print("Please choose a musical instrument from the following list:")
-        valid_instruments = []
-        for instrument in instruments.instruments:
-            valid_instruments.append(instrument.name.lower())
-            print(instrument.name)
-        instrument_choice = input("> ")
-        while instrument_choice.lower() not in valid_instruments:
-            print("That is not a valid choice. Please choose from the list.")
-            instrument_choice = input("> ")
-        for instrument in equipment.instruments:
-            if instrument_choice.lower() == instrument.name.lower():
-                print(f"You have chosen the {instrument.name}.")
-                bard.starting_equipment.append(instrument)
-                break
-    
-    print("You will also start with Leather Armor and a Dagger.")
-    bard.starting_equipment.append(equipment.leather_light_armor)
-    bard.starting_equipment.append(equipment.dagger)
+        starting_pack = starting_equipment.starting_equipment("Entertainer's Pack")
+    print(f"One {starting_pack.name} has been added to your starting equipment.")
+    bard.starting_equipment.append(starting_pack)
 
-    print(f'You will start with the following equipment:')
-    for item in bard.starting_equipment:
-        print(item.name)
+    equipment_choice_3 = starting_equipment.starting_equipment_choice("Lute", "Any Other Musical Instrument")
+    if equipment_choice_3.lower() == "lute":
+        starting_instrument = starting_equipment.starting_equipment("Lute")
+    else:
+        starting_instrument = starting_equipment.select_equipment_from_category("Musical Instruments")
+    print(f"One {starting_instrument.name} has been added to your starting equipment.")
+    bard.starting_equipment.append(starting_instrument)
+
+    leather_armor = starting_equipment.starting_equipment("Leather Light Armor")
+    dagger = starting_equipment.starting_equipment("Dagger")
+    print(f"Leather Armor and One Dagger has been added to your starting equipment.")
+    bard.starting_equipment.append(leather_armor)
+    bard.starting_equipment.append(dagger)
 
     # Starting Cantrips
     print("You have reached level 1 and can now choose 2 cantrips from the bard spell list.")

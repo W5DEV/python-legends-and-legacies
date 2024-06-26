@@ -9,22 +9,15 @@
 # - ritual_casting
 # - spellcasting_focus
 
-import modules.equipment as equipment
-import modules.instruments as instruments
+import modules.starting_equipment as starting_equipment
+import modules.skills as skills
+import modules.spells as spells
+import modules.cantrips as cantrips
 
-displayed_warlock_spells = ["Charm Person", "Comprehend Languages", "Expeditious Retreat", "Hellish Rebuke", "Illusory Script", "Protection from Evil and Good", "Unseen Servant"]
-warlock_spells = ["charm person", "comprehend languages", "expeditious retreat", "hellish rebuke", "illusory script", "protection from evil and good", "unseen servant"]
-displayed_warlock_cantrips = ["Chill Touch", "Eldrich Blast", "Mage Hand", "Minor Illusion", "Poison Spray", "Prestidigitation", "True Strike"]
-warlock_cantrips = ["chill touch", "eldrich blast", "mage hand", "minor illusion", "poison spray", "prestidigitation", "true strike"]
-
-potential_starting_equipment = ["A Light Crossbow and 20 Bolts or Any Simple Weapon", "A Component Pouch or an Arcane Focus", "A Dungeoneer's Pack or a Scholar's Pack", "Leather Armor, Any Simple Weapon, and Two Daggers"]
-
-displayed_warlock_skills = ["Arcana", "Deception", "History", "Intimidation", "Investigation", "Nature", "Religion"]
-warlock_skills = ["arcana", "deception", "history", "intimidation", "investigation", "nature", "religion"]
-
-def display_warlock_spells():
-    for spell in displayed_warlock_spells:
-        print(spell)
+displayed_warlock_skills, warlock_skills = skills.get_warlock_skills()
+displayed_warlock_spells, warlock_spells = spells.get_warlock_spells()
+displayed_warlock_cantrips, warlock_cantrips = cantrips.get_warlock_cantrips()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Warlock")
 
 class Warlock:
     def __init__(self):
@@ -216,92 +209,43 @@ def define_warlock():
     warlock.spells = selected_spells
 
     # Starting Equipment
-    equipment_choice1 = ""
-    equipment_choice2 = ""
-    equipment_choice3 = ""
-    print("Choose your starting equipment:")
-    for item in potential_starting_equipment:
-        print(item)
-
-    print("Please enter your choice of a 'Light Crossbow and 20 Bolts' or 'any Simple Weapon':")
-    equipment_choice1 = input("> ")
-    while equipment_choice1.lower() not in ["light crossbow and 20 bolts", "any simple weapon"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice1 = input("> ")
-    if equipment_choice1.lower() == "light crossbow and 20 bolts":
-        print("You have chosen a Light Crossbow and 20 Bolts.")
-        print("A Light Crossbow and 20 Bolts has been added to your starting equipment.")
-        warlock.starting_equipment.append(equipment.light_crossbow)
+    equipment_choice_1 = starting_equipment.starting_equipment_choice("Light Crossbow and 20 Bolts", "Any Simple Weapon")
+    if equipment_choice_1.lower() == "light crossbow and 20 bolts":
+        starting_weapon = starting_equipment.starting_equipment("Light Crossbow")
+        print(f"One {starting_weapon.name} has been added to your starting equipment.")
+        warlock.starting_equipment.append(starting_weapon)
+        # Add 20 bolts to starting equipment
     else:
-        for weapon in equipment.simple_weapons:
-            print(weapon.name)
-        print("Please enter your choice of simple weapon:")
-        weapon_choice = input("> ")
-        while weapon_choice.lower() not in [weapon.name.lower() for weapon in equipment.simple_weapons]:
-            print("That is not a valid choice. Please choose from the list.")
-            weapon_choice = input("> ")
-        for weapon in equipment.simple_weapons:
-            if weapon_choice.lower() == weapon.name.lower():
-                print(f"You have chosen {weapon.name}.")
-                print(f"{weapon.name} has been added to your starting equipment.")
-                warlock.starting_equipment.append(weapon)
-                break
-
-    print("Please enter your choice of a 'Component Pouch' or an 'Arcane Focus':")
-    equipment_choice2 = input("> ")
-    while equipment_choice2.lower() not in ["component pouch", "arcane focus"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice2 = input("> ")
-    if equipment_choice2.lower() == "component pouch":
-        print("You have chosen a Component Pouch.")
-        print("A Component Pouch has been added to your starting equipment.")
-        warlock.starting_equipment.append(equipment.component_pouch)
-    elif equipment_choice2.lower() == "arcane focus":
-        print("You have chosen an Arcane Focus.")
-        print("An Arcane Focus has been added to your starting equipment.")
-        warlock.starting_equipment.append(equipment.arcane_focus_crystal)
-
-    print("Please enter your choice of a 'Dungeoneer's Pack' or an 'Scholar's Pack':")
-    equipment_choice3 = input("> ")
-    while equipment_choice3.lower() not in ["dungeoneer's pack", "scholar's pack"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice3 = input("> ")
-    if equipment_choice3.lower() == "dungeoneer's pack":
-        print("You have chosen a Dungeoneer's Pack.")
-        print("A Dungeoneer's Pack has been added to your starting equipment.")
-        warlock.starting_equipment.append(equipment.dungeoneers_pack)
-    elif equipment_choice3.lower() == "scholar's pack":
-        print("You have chosen an Scholar's Pack.")
-        print("An Scholar's Pack has been added to your starting equipment.")
-        warlock.starting_equipment.append(equipment.scholars_pack)
-
-    print("You may also choose any Simple Weapon as part of your starting equipment.")
-    print("Please enter your choice of simple weapon from the list below:")
-    valid_weapon_choices = []
-    for weapon in equipment.simple_weapons:
-        valid_weapon_choices.append(weapon.name.lower())
-        print(weapon.name)
-    weapon_choice = input("> ")
-    while weapon_choice.lower() not in valid_weapon_choices:
-        print("That is not a valid choice. Please choose from the list.")
-        weapon_choice = input("> ")
-    for weapon in equipment.simple_weapons:
-        if weapon_choice.lower() == weapon.name.lower():
-            print(f"You have chosen {weapon.name}.")
-            print(f"{weapon.name} has been added to your starting equipment.")
-            warlock.starting_equipment.append(weapon)
-            break
-
-    print("You also start with Leather Armor and Two Daggers.")
-    print("Leather Armor has been added to your starting equipment.")
-    warlock.starting_equipment.append(equipment.leather_light_armor)
-    print("Two Daggers have been added to your starting equipment.")
-    warlock.starting_equipment.append(equipment.dagger)
-    warlock.starting_equipment.append(equipment.dagger)
+        starting_weapon = starting_equipment.select_equipment_from_category("Simple Weapons")
+        print(f"One {starting_weapon.name} has been added to your starting equipment.")
+        warlock.starting_equipment.append(starting_weapon)
     
-    print(f"You have chosen the following starting equipment:")
-    for item in warlock.starting_equipment:
-        print(item.name)
+    equipment_choice_2 = starting_equipment.starting_equipment_choice("Component Pouch", "Arcane Focus")
+    if equipment_choice_2.lower() == "component pouch":
+        starting_equipment_choice = starting_equipment.starting_equipment("Component Pouch")
+    else:
+        starting_equipment_choice = starting_equipment.starting_equipment("Arcane Focus")
+    print(f"One {starting_equipment_choice.name} has been added to your starting equipment.")
+    warlock.starting_equipment.append(starting_equipment_choice)
+
+    equipment_choice_3 = starting_equipment.starting_equipment_choice("Scholar's Pack", "Dungeoneer's Pack")
+    if equipment_choice_3.lower() == "scholar's pack":
+        pack_choice = starting_equipment.starting_equipment("Scholar's Pack")
+    else:
+        pack_choice = starting_equipment.starting_equipment("Dungeoneer's Pack")
+    print(f"One {pack_choice.name} has been added to your starting equipment.")
+    warlock.starting_equipment.append(pack_choice)
+
+    equipment_choice_4 = starting_equipment.select_equipment_from_category("Simple Weapons")
+    print(f"One {equipment_choice_4.name} has been added to your starting equipment.")
+    warlock.starting_equipment.append(equipment_choice_4)
+
+    leather_armor = starting_equipment.starting_equipment("Leather Light Armor")
+    dagger = starting_equipment.starting_equipment("Dagger")
+    print("Leather Armor and Two Daggers have been added to your starting equipment.")
+    warlock.starting_equipment.append(leather_armor)
+    warlock.starting_equipment.append(dagger)
+    warlock.starting_equipment.append(dagger)
 
     return warlock
         

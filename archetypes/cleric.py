@@ -11,17 +11,15 @@
 
 # Do clerics start with all spells and just "prepare" them? How does that work? Figure this out
 
-import modules.equipment as equipment
+import modules.starting_equipment as starting_equipment
+import modules.skills as skills
+import modules.spells as spells
+import modules.cantrips as cantrips
 
-displayed_cleric_cantrips = ["Guidance", "Light", "Mending", "Resistance", "Sacred Flame", "Spare the Dying", "Thaumaturgy"]
-cleric_cantrips = ["guidance", "light", "mending", "resistance", "sacred flame", "spare the dying", "thaumaturgy"]
-displayed_cleric_spells = ["Bane", "Bless", "Command", "Create or Destroy Water", "Cure Wounds", "Detect Evil and Good", "Detect Magic", "Detect Poison and Disease", "Guiding Bolt", "Healing Word", "Inflict Wounds", "Protection from Evil and Good", "Purify Food and Drink", "Sanctuary", "Shield of Faith"]
-cleric_spells = ["bane", "bless", "command", "create or destroy water", "cure wounds", "detect evil and good", "detect magic", "detect poison and disease", "guiding bolt", "healing word", "inflict wounds", "protection from evil and good", "purify food and drink", "sanctuary", "shield of faith"]
-
-displayed_cleric_skills = ["History", "Insight", "Medicine", "Persuasion", "Religion"]
-cleric_skills = ["history", "insight", "medicine", "persuasion", "religion"]
-
-potential_starting_equipment = ["a Mace or a Warhammer (if proficient)", "Scale Mail, Leather Armor, or Chain Mail (if proficient)", "a Light Crossbow and 20 bolts or any simple weapon", "a Priest's Pack or an Explorer's Pack", "a Shield and a Holy Symbol"]
+displayed_cleric_skills, cleric_skills = skills.get_cleric_skills()
+displayed_cleric_cantrips, cleric_cantrips = cantrips.get_cleric_cantrips()
+displayed_cleric_spells, cleric_spells = spells.get_cleric_spells()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Cleric")
 
 class Cleric:
     def __init__(self):
@@ -80,7 +78,6 @@ class Cleric:
     def sync_level(self, level):
         if level >= 1:
             self.divine_domain = "Life Domain"
-            self.armor_proficiencies.append("Heavy Armor")
             self.special_abilities = ["Spellcasting", "Divine Domain"]
             self.special_abilities.append("Bless")
             self.special_abilities.append("Cure Wounds")
@@ -232,95 +229,45 @@ def define_cleric():
         print(spell)
 
     # Starting Equipment
-    weapon_choice1 = ""
-    armor_choice = ""
-    weapon_choice2 = ""
-    pack_choice = ""
-    print("Clerics are able to choose from the following starting equipment:")
-    for item in potential_starting_equipment:
-        print(item)
-    
-    print("Please choose between a Mace or a Warhammer:")
-    weapon_choice1 = input("> ")
-    while weapon_choice1.lower() not in ["mace", "warhammer"]:
-        print("Please enter a valid weapon choice:")
-        weapon_choice1 = input("> ")
-    if weapon_choice1.lower() == "mace":
-        print("You have chosen a Mace.")
-        print("A Mace has been added to your starting equipment.")
-        cleric.starting_equipment.append(equipment.mace)
-    elif weapon_choice1.lower() == "warhammer":
-        print("You have chosen a Warhammer.")
-        print("A Warhammer has been added to your starting equipment.")
-        cleric.starting_equipment.append(equipment.warhammer)
+    equipment_choice_1 = starting_equipment.starting_equipment_choice("Mace", "Warhammer")
+    if equipment_choice_1.lower() == "mace":
+        starting_weapon = starting_equipment.starting_equipment("Mace")
+    else:
+        starting_weapon = starting_equipment.starting_equipment("Warhammer")
+    print(f"One {starting_weapon.name} has been added to your starting equipment.")
+    cleric.starting_equipment.append(starting_weapon)
 
-    print("Please choose between Scale Mail, Leather Armor, or Chain Mail:")
-    armor_choice = input("> ")
-    while armor_choice.lower() not in ["scale mail", "leather Armor", "chain mail"]:
-        print("Please enter a valid armor choice:")
-        armor_choice = input("> ")
-    if armor_choice.lower() == "scale mail":
-        print("You have chosen Scale Mail.")
-        print("Scale Mail has been added to your starting equipment.")
-        cleric.starting_equipment.append(equipment.scale_mail_medium_armor)
-    elif armor_choice.lower() == "leather armor":
-        print("You have chosen Leather Armor.")
-        print("Leather Armor has been added to your starting equipment.")
-        cleric.starting_equipment.append(equipment.leather_light_armor)
-    elif armor_choice.lower() == "chain mail":
-        print("You have chosen Chain Mail.")
-        print("Chain Mail has been added to your starting equipment.")
-        cleric.starting_equipment.append(equipment.chain_mail_heavy_armor)
-    
-    print("Please choose between a Light Crossbow and 20 bolts or any simple weapon:")
-    print("Please enter either 'Light Crossbow' or 'Other Simple Weapon'")
-    weapon_choice2 = input("> ")
-    while weapon_choice2.lower() not in ["light crossbow", "other simple weapon"]:
-        print("Please enter a valid weapon choice:")
-        weapon_choice2 = input()
-    if weapon_choice2.lower() == "light crossbow":
-        print("You have chosen a Light Crossbow and 20 bolts.")
-        print("A Light Crossbow and 20 bolts have been added to your starting equipment.")
-        cleric.starting_equipment.append(equipment.light_crossbow)
-    elif weapon_choice2.lower() == "other simple weapon":
-        valid_weapons = []
-        print("Please choose a simple weapon from the list below:")
-        for weapon in equipment.simple_weapons:
-            valid_weapons.append(weapon.name.lower())
-            print(weapon.name)
-        other_weapon = input("> ")
-        while other_weapon.lower() not in valid_weapons:
-            print("Please enter a valid weapon choice")
-            other_weapon = input("> ")
-        for weapon in equipment.simple_weapons:
-            if other_weapon.lower() == weapon.name.lower():
-                print(f"You have chosen a {weapon.name}.")
-                print(f"A {weapon.name} has been added to your starting equipment.")
-                cleric.starting_equipment.append(weapon)
-                break
-    
-    print("Please choose between a Priest's Pack or an Explorer's Pack:")
-    pack_choice = input("> ")
-    while pack_choice.lower() not in ["priest's pack", "explorer's pack"]:
-        print("Please enter a valid pack choice:")
-        pack_choice = input("> ")
-    if pack_choice.lower() == "priest's pack":
-        print("You have chosen a Priest's Pack.")
-        print("A Priest's Pack has been added to your starting equipment.")
-        cleric.starting_equipment.append(equipment.priests_pack)
-    elif pack_choice.lower() == "explorer's pack":
-        print("You have chosen an Explorer's Pack.")
-        print("An Explorer's Pack has been added to your starting equipment.")
-        cleric.starting_equipment.append(equipment.explorers_pack)
+    equipment_choice_2 = starting_equipment.starting_equipment_choice_three("Scale Mail", "Leather Armor", "Chain Mail")
+    if equipment_choice_2.lower() == "scale mail":
+        starting_armor = starting_equipment.starting_equipment("Scale Mail Medium Armor")
+    elif equipment_choice_2.lower() == "leather armor":
+        starting_armor = starting_equipment.starting_equipment("Leather Light Armor")
+    else:
+        starting_armor = starting_equipment.starting_equipment("Chain Mail Heavy Armor")
+    print(f"One {starting_armor.name} has been added to your starting equipment.")
+    cleric.starting_equipment.append(starting_armor)
 
-    print("You will also receive a Shield and a Holy Symbol Emblem.")
+    equipment_choice_3 = starting_equipment.starting_equipment_choice("Light Crossbow and 20 bolts", "Any Simple Weapon")
+    if equipment_choice_3.lower() == "light crossbow and 20 bolts":
+        starting_weapon = starting_equipment.starting_equipment("Light Crossbow")
+    else:
+        starting_weapon = starting_equipment.select_equipment_from_category("Simple Weapons")
+    print(f"One {starting_weapon.name} has been added to your starting equipment.")
+    cleric.starting_equipment.append(starting_weapon)
+        
+    equipment_choice_4 = starting_equipment.starting_equipment_choice("Priest's Pack", "Explorer's Pack")
+    if equipment_choice_4.lower() == "priest's pack":
+        starting_pack = starting_equipment.starting_equipment("Priest's Pack")
+    else:
+        starting_pack = starting_equipment.starting_equipment("Explorer's Pack")
+    print(f"One {starting_pack.name} has been added to your starting equipment.")
+    cleric.starting_equipment.append(starting_pack)
+
+    shield = starting_equipment.starting_equipment("Shield")
+    holy_symbol = starting_equipment.starting_equipment("Holy Symbol Emblem")
     print("A Shield and a Holy Symbol Emblem have been added to your starting equipment.")
-    cleric.starting_equipment.append(equipment.shield)
-    cleric.starting_equipment.append(equipment.holy_symbol_emblem)
-
-    print("You will start with the following equipment:")
-    for item in cleric.starting_equipment:
-        print(item.name)
+    cleric.starting_equipment.append(shield)
+    cleric.starting_equipment.append(holy_symbol)
 
     return cleric
 

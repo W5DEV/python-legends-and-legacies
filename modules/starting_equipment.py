@@ -1,10 +1,60 @@
 import modules.equipment as equipment
 
+def get_starting_equipment(archetype):
+    if archetype == "Barbarian":
+        potential_starting_equipment = ["Greataxe or any martial melee weapon", "Two Handaxes or Any Simple Weapon", "Explorer's Pack", "Four Javelins"]
+        return potential_starting_equipment
+    if archetype == "Bard":
+        potential_starting_equipment = ["a rapier, a longsword, or any simple weapon", "a diplomat's pack or an entertainer's pack", "a lute or any other musical instrument", "Lether Armor", "Dagger"]
+        return potential_starting_equipment
+    if archetype == "Cleric":
+        potential_starting_equipment = ["a Mace or a Warhammer (if proficient)", "Scale Mail, Leather Armor, or Chain Mail (if proficient)", "a Light Crossbow and 20 bolts or any simple weapon", "a Priest's Pack or an Explorer's Pack", "a Shield and a Holy Symbol"]
+        return potential_starting_equipment
+    if archetype == "Druid":
+        potential_starting_equipment = ["A Wooden Shield or any Simple Weapon", "Scimitar or any Simple Melee Weapon", "Leather Armor", "Explorer's Pack", "Druidic Focus"]
+        return potential_starting_equipment
+    if archetype == "Fighter":
+        potential_starting_equipment = ["Chain Mail or Leather Armor, Longbow, and 20 Arrows", "Any Martial Weapon and a Shield or Two Martial Weapons", "Light Crossbow and 20 Bolts or Two Handaxes", "Dungeoneer's Pack or Explorer's Pack"]
+        return potential_starting_equipment
+    if archetype == "Monk":
+        potential_starting_equipment = ["A Shortsword or any simple weapon", "A Dungeoneer's Pack or an Explorer's Pack", "10 Darts"]
+        return potential_starting_equipment
+    if archetype == "Paladin":
+        potential_starting_equipment = ["A Martial Weapon and a Shield or Two Martial Weapons", "Five Javelins or Any Simple Melee Weapon", "A Priest's Pack or an Explorer's Pack", "Chain Mail and a Holy Symbol Emblem"]
+        return potential_starting_equipment
+    if archetype == "Ranger":
+        potential_starting_equipment = ["Scale Mail or Leather Armor", "Two Shortswords or Two Simple Melee Weapons" "A Dungeoneer's Pack or an Explorer's Pack", "A Longbow and a quiver of 20 arrows"]
+        return potential_starting_equipment
+    if archetype == "Rogue":
+        potential_starting_equipment = ["A Rapier or a Shortsword", "A Shortbow and Quiver of 20 Arrows or a Shortsword", "A Burglar's Pack, a Dungeoneer's Pack or an Explorer's Pack", "Leather Armor, Two Daggers, and Thieves' Tools"]
+        return potential_starting_equipment
+    if archetype == "Sorcerer":
+        potential_starting_equipment = ["A Light Crossbow and 20 Bolts or Any Simple Weapon", "A Component Pouch or an Arcane Focus", "A Dungeoneer's Pack or an Explorer's Pack", "Two Daggers"]
+        return potential_starting_equipment
+    if archetype == "Warlock":
+        potential_starting_equipment = ["A Light Crossbow and 20 Bolts or Any Simple Weapon", "A Component Pouch or an Arcane Focus", "A Dungeoneer's Pack or a Scholar's Pack", "Leather Armor, Any Simple Weapon, and Two Daggers"]
+        return potential_starting_equipment
+    if archetype == "Wizard":
+        potential_starting_equipment = ["A Quarterstaff or a Dagger", "A Component Pouch or an Arcane Focus", "A Scholar's Pack or and Explorer's Pack", "A Spellbook"]
+        return potential_starting_equipment
+
+
+
 def starting_equipment_choice(choice_1, choice_2):
     print(f"Please choose one of either {choice_1} or {choice_2}.")
     print("> ", end="")
     choice = input()
     while choice.lower() not in [choice_1.lower(), choice_2.lower()]:
+        print("Sorry, that is not a valid choice. Please try again.")
+        print("> ", end="")
+        choice = input()
+    return choice
+
+def starting_equipment_choice_three(choice_1, choice_2, choice_3):
+    print(f"Please choose one of either {choice_1}, {choice_2}, or {choice_3}.")
+    print("> ", end="")
+    choice = input()
+    while choice.lower() not in [choice_1.lower(), choice_2.lower(), choice_3.lower()]:
         print("Sorry, that is not a valid choice. Please try again.")
         print("> ", end="")
         choice = input()
@@ -16,87 +66,87 @@ def select_equipment_from_category(category):
     print(f"Please choose one {category}:")
     if category == "Simple Melee Weapons":
         for weapon in equipment.simple_melee_weapons:
-            print(weapon)
+            print(weapon.name)
             valid_choices.append(weapon.name.lower())
         equipment_category = equipment.simple_melee_weapons
     if category == "Simple Ranged Weapons":
         for weapon in equipment.simple_ranged_weapons:
-            print(weapon)
+            print(weapon.name)
             valid_choices.append(weapon.name.lower())
         equipment_category = equipment.simple_ranged_weapons
     if category == "Simple Weapons":
         for weapon in equipment.simple_weapons:
-            print(weapon)
+            print(weapon.name)
             valid_choices.append(weapon.name.lower())
         equipment_category = equipment.simple_weapons
     if category == "Martial Melee Weapons":
         for weapon in equipment.martial_melee_weapons:
-            print(weapon)
+            print(weapon.name)
             valid_choices.append(weapon.name.lower())
         equipment_category = equipment.martial_melee_weapons
     if category == "Martial Ranged Weapons":
         for weapon in equipment.martial_ranged_weapons:
-            print(weapon)
+            print(weapon.name)
             valid_choices.append(weapon.name.lower())
         equipment_category = equipment.martial_ranged_weapons
     if category == "Martial Weapons":
         for weapon in equipment.martial_weapons:
-            print(weapon)
+            print(weapon.name)
             valid_choices.append(weapon.name.lower())
         equipment_category = equipment.martial_weapons
     if category == "Light Armor":
         for armor in equipment.light_armor:
-            print(armor)
+            print(armor.name)
             valid_choices.append(armor.name.lower())
         equipment_category = equipment.light_armor
     if category == "Medium Armor":
         for armor in equipment.medium_armor:
-            print(armor)
+            print(armor.name)
             valid_choices.append(armor.name.lower())
         equipment_category = equipment.medium_armor
     if category == "Heavy Armor":
         for armor in equipment.heavy_armor:
-            print(armor)
+            print(armor.name)
             valid_choices.append(armor.name.lower())
         equipment_category = equipment.heavy_armor
     if category == "Shield":
         for shield in equipment.shields:
-            print(shield)
+            print(shield.name)
             valid_choices.append(shield.name.lower())
         equipment_category = equipment.shields
     if category == "Instruments":
         for instrument in equipment.instruments:
-            print(instrument)
+            print(instrument.name)
             valid_choices.append(instrument.name.lower())
         equipment_category = equipment.instruments
     if category == "Packs":
         for pack in equipment.packs:
-            print(pack)
+            print(pack.name)
             valid_choices.append(pack.name.lower())
         equipment_category = equipment.packs
     if category == "Instruments":
         for instrument in equipment.instruments:
-            print(instrument)
+            print(instrument.name)
             valid_choices.append(instrument.name.lower())
         equipment_category = equipment.instruments
     if category == "Holy Symbols":
         for symbol in equipment.holy_symbols:
-            print(symbol)
+            print(symbol.name)
             valid_choices.append(symbol.name.lower())
         equipment_category = equipment.holy_symbols
     if category == "Artisan's Tools":
-        for tool in equipment.artisan_tools:
-            print(tool)
+        for tool in equipment.artisans_tools:
+            print(tool.name)
             valid_choices.append(tool.name.lower())
-        equipment_category = equipment.artisan_tools
+        equipment_category = equipment.artisans_tools
     if category == "Other Tools":
         for tool in equipment.other_tools:
-            print(tool)
+            print(tool.name)
             valid_choices.append(tool.name.lower())
         equipment_category = equipment.other_tools
     if category == "Class Equipment":
         for item in equipment.class_equipment:
-            print(item)
+            print(item.name)
             valid_choices.append(item.name.lower())
         equipment_category = equipment.class_equipment
     user_choice = input("> ")

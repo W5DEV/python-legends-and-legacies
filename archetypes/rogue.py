@@ -1,10 +1,9 @@
-import modules.equipment as equipment
+import modules.starting_equipment as starting_equipment
+import modules.skills as skills
 
-displayed_rogue_skills = ["Acrobatics", "Athletics", "Deception", "Insight", "Intimidation", "Investigation", "Perception", "Performance", "Persuasion", "Sleight of Hand", "Stealth"]
-rogue_skills = ["acrobatics", "athletics", "deception", "insight", "intimidation", "investigation", "perception", "performance", "persuasion", "sleight of hand", "stealth"]
-
-potential_starting_equipment = ["A Rapier or a Shortsword", "A Shortbow and Quiver of 20 Arrows or a Shortsword", "A Burglar's Pack, a Dungeoneer's Pack or an Explorer's Pack", "Leather Armor, Two Daggers, and Thieves' Tools"]
-        
+displayed_rogue_skills, rogue_skills = skills.get_rogue_skills()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Rogue")
+      
 class Rogue:
     
     def __init__(self):
@@ -133,69 +132,41 @@ def define_rogue():
         print(skill)
 
     # Starting Equipment
-    equipment_choice1 = ""
-    equipment_choice2 = ""
-    equipment_choice3 = ""
-    print("Choose your starting equipment:")
-    for item in potential_starting_equipment:
-        print(item)
-
-    print("Please enter your choice of a 'Rapier' or a 'Shortsword':")
-    equipment_choice1 = input("> ")
-    while equipment_choice1.lower() not in ["rapier", "shortsword"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice1 = input("> ")
-    if equipment_choice1.lower() == "rapier":
-        print("You have chosen a Rapier.")
-        print("One Rapier has been added to your starting equipment.")
-        rogue.starting_equipment.append(equipment.rapier)
+    equipment_choice_1 = starting_equipment.starting_equipment_choice("Rapier", "Shortsword")
+    if equipment_choice_1.lower() == "rapier":
+        weapon_choice = starting_equipment.starting_equipment("Rapier")
     else:
-        print("You have chosen a Shortsword.")
-        print("One Shortsword has been added to your starting equipment.")
-        rogue.starting_equipment.append(equipment.short_sword)
+        weapon_choice = starting_equipment.starting_equipment("Short Sword") 
+    print(f"One {weapon_choice.name} has been added to your starting equipment.") 
+    rogue.starting_equipment.append(weapon_choice)
 
-    print("Please enter your choice of a 'Shortbow and Quiver of 20 Arrows' or a 'Shortsword':")
-    equipment_choice2 = input("> ")
-    while equipment_choice2.lower() not in ["shortbow and quiver of 20 arrows", "shortsword"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice2 = input("> ")
-    if equipment_choice2.lower() == "shortbow and quiver of 20 arrows":
-        print("You have chosen a Shortbow and Quiver of 20 Arrows.")
-        print("One Shortbow has been added to your starting equipment, along with a Quiver of 20 Arrows.")
-        rogue.starting_equipment.append(equipment.short_bow)
+    equipment_choice_2 = starting_equipment.starting_equipment_choice("Shortbow and Quiver of 20 Arrows", "Shortsword")
+    if equipment_choice_2.lower() == "shortbow and quiver of 20 arrows":
+        weapon_choice = starting_equipment.starting_equipment("Short Bow")
+        print(f"One {weapon_choice.name} has been added to your starting equipment.")
+        rogue.starting_equipment.append(weapon_choice)
+        print("A Quiver of 20 Arrows has been added to your starting equipment.")
         # Add a Quiver of 20 Arrows to the starting equipment
     else:
-        print("You have chosen a Shortsword.")
-        print("One Shortsword has been added to your starting equipment.")
-        rogue.starting_equipment.append(equipment.short_sword)
+        weapon_choice = starting_equipment.starting_equipment("Short Sword")
 
-    print("Please enter your choice of a 'Burglar's Pack', 'Dungeoneer's Pack' or an 'Explorer's Pack':")
-    equipment_choice3 = input("> ")
-    while equipment_choice3.lower() not in ["burglar's pack", "dungeoneer's pack", "explorer's pack"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice3 = input("> ")
-    if equipment_choice3.lower() == "burglar's pack":
-        print("You have chosen a Burglar's Pack.")
-        print("A Burglar's Pack has been added to your starting equipment.")
-        rogue.starting_equipment.append(equipment.burglars_pack)
-    elif equipment_choice3.lower() == "dungeoneer's pack":
-        print("You have chosen a Dungeoneer's Pack.")
-        print("A Dungeoneer's Pack has been added to your starting equipment.")
-        rogue.starting_equipment.append(equipment.dungeoneers_pack)
-    elif equipment_choice3.lower() == "explorer's pack":
-        print("You have chosen an Explorer's Pack.")
-        print("An Explorer's Pack has been added to your starting equipment.")
-        rogue.starting_equipment.append(equipment.explorers_pack)
+    equipment_choice_3 = starting_equipment.starting_equipment_choice_three("Burglar's Pack", "Dungeoneer's Pack", "Explorer's Pack")
+    if equipment_choice_3.lower() == "burglar's pack":
+        pack_choice = starting_equipment.starting_equipment("Burglar's Pack")
+    elif equipment_choice_3.lower() == "dungeoneer's pack":
+        pack_choice = starting_equipment.starting_equipment("Dungeoneer's Pack")
+    else:
+        pack_choice = starting_equipment.starting_equipment("Explorer's Pack")
+    print(f"One {pack_choice.name} has been added to your starting equipment.")
+    rogue.starting_equipment.append(pack_choice)
 
-    print("You also start with Leather Armor, Two Daggers, and Thieves' Tools.")
+    leather_armor = starting_equipment.starting_equipment("Leather Light Armor")
+    dagger = starting_equipment.starting_equipment("Dagger")
+    thieves_tools = starting_equipment.starting_equipment("Thieves' Tools")
     print("Leather Armor, Two Daggers, and Thieves' Tools have been added to your starting equipment.")
-    rogue.starting_equipment.append(equipment.leather_light_armor)
-    rogue.starting_equipment.append(equipment.dagger)
-    rogue.starting_equipment.append(equipment.dagger)
-    rogue.starting_equipment.append(equipment.thieves_tools)
+    rogue.starting_equipment.append(leather_armor)
+    rogue.starting_equipment.append(dagger)
+    rogue.starting_equipment.append(dagger)
+    rogue.starting_equipment.append(thieves_tools)
 
-    print(f"You have chosen the following starting equipment:")
-    for item in rogue.starting_equipment:
-        print(item.name)
-    
     return rogue

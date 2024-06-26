@@ -1,11 +1,9 @@
 import modules.starting_equipment as starting_equipment
 import modules.skills as skills
 
-displayed_barbarian_skills = skills.get_barbarian_skills("displayed")
-barbarian_skills = skills.get_barbarian_skills("logical")
-
-potential_starting_equipment = ["Greataxe or any martial melee weapon", "Two Handaxes or Any Simple Weapon", "Explorer's Pack", "Four Javelins"]
-        
+displayed_barbarian_skills, barbarian_skills = skills.get_barbarian_skills()
+potential_starting_equipment = starting_equipment.get_starting_equipment("Barbarian")
+   
 class Barbarian:
     
     def __init__(self):
@@ -139,16 +137,16 @@ def define_barbarian():
     barbarian.skill_proficiencies = selected_skill_proficiencies
     
     # Starting Equipment
-    weapon_choice_1 = starting_equipment.starting_equipment_choice("Greataxe", "Any Martial Melee Weapon")
-    if weapon_choice_1.lower() == "greataxe":
+    equipment_choice_1 = starting_equipment.starting_equipment_choice("Greataxe", "Any Martial Melee Weapon")
+    if equipment_choice_1.lower() == "greataxe":
         starting_weapon = starting_equipment.starting_equipment("Great Axe")
     else:
         starting_weapon = starting_equipment.select_equipment_from_category("Martial Melee Weapons")
     print(f"One {starting_weapon.name} has been added to your starting equipment.")
     barbarian.starting_equipment.append(starting_weapon)
 
-    weapon_choice_2 = starting_equipment.starting_equipment_choice("Two Handaxes", "Any Simple Weapon")
-    if weapon_choice_2.lower() == "two handaxes":
+    equipment_choice_2 = starting_equipment.starting_equipment_choice("Two Handaxes", "Any Simple Weapon")
+    if equipment_choice_2.lower() == "two handaxes":
         starting_weapon = starting_equipment.starting_equipment("Hand Axe")
         print(f"Two {starting_weapon.name}'s have been added to your starting equipment.")
         barbarian.starting_equipment.append(starting_weapon)
