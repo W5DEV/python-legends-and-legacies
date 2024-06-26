@@ -263,9 +263,11 @@ def define_cleric():
     print(f"One {starting_pack.name} has been added to your starting equipment.")
     cleric.starting_equipment.append(starting_pack)
 
+    shield = starting_equipment.starting_equipment("Shield")
+    holy_symbol = starting_equipment.starting_equipment("Holy Symbol Emblem")
     print("A Shield and a Holy Symbol Emblem have been added to your starting equipment.")
-    cleric.starting_equipment.append(starting_equipment.starting_equipment("Shield"))
-    cleric.starting_equipment.append(starting_equipment.starting_equipment("Holy Symbol Emblem"))
+    cleric.starting_equipment.append(shield)
+    cleric.starting_equipment.append(holy_symbol)
 
     return cleric
 

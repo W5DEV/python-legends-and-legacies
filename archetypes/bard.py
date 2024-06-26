@@ -289,7 +289,7 @@ def define_bard():
 
     leather_armor = starting_equipment.starting_equipment("Leather Light Armor")
     dagger = starting_equipment.starting_equipment("Dagger")
-    print(f"One {leather_armor.name} and one {dagger.name} has been added to your starting equipment.")
+    print(f"Leather Armor and One Dagger has been added to your starting equipment.")
     bard.starting_equipment.append(leather_armor)
     bard.starting_equipment.append(dagger)
 

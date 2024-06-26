@@ -193,7 +193,6 @@ def define_fighter():
         starting_pack = starting_equipment.starting_equipment("Dungeoneer's Pack")
     else:
         starting_pack = starting_equipment.starting_equipment("Explorer's Pack")
-    
     print(f"{starting_pack.name} has been added to your starting equipment.")
     fighter.starting_equipment.append(starting_pack)
 
