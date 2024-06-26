@@ -67,7 +67,7 @@ class Warlock:
         print(f"Special Abilities:")
         for ability in self.special_abilities:
             print(ability)
-        return self
+        return
     
     def sync_level(self, level):
         if level >= 1:
