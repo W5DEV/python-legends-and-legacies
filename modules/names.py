@@ -71,6 +71,7 @@ def get_elf_name(gender):
                 print("Please choose a name from the list.")
                 name = input("> ")
 
+        family_name = random.choice(elf_family_names)
     print(f"Your elf's name is {name} of the family {family_name}.")
     return name + " " + family_name
             
