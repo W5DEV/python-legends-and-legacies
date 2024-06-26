@@ -172,61 +172,29 @@ def define_paladin():
             break
 
     # Starting Equipment
-    equipment_choice1 = ""
-    equipment_choice2 = ""
-    print("Choose your starting equipment:")
-    for item in potential_starting_equipment:
-        print(item)
-
-    print("Please enter your choice of a 'Shortsword' or 'any Simple Weapon':")
-    equipment_choice1 = input("> ")
-    while equipment_choice1.lower() not in ["shortsword", "any simple weapon"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice1 = input("> ")
-    if equipment_choice1.lower() == "shortsword":
-        print("You have chosen Shortsword.")
-        print("One Shortsword has been added to your starting equipment.")
-        paladin.starting_equipment.append(equipment.short_sword)
+    equipment_choice_1 = starting_equipment.starting_equipment_choice("Shortsword", "Any Simple Weapon")
+    if equipment_choice_1.lower() == "shortsword":
+        weapon_choice = starting_equipment.starting_equipment("Short Sword")
     else:
-        for weapon in equipment.simple_weapons:
-            print(weapon.name)
-        print("Please enter your choice of simple weapon:")
-        weapon_choice = input("> ")
-        while weapon_choice.lower() not in [weapon.name.lower() for weapon in equipment.simple_weapons]:
-            print("That is not a valid choice. Please choose from the list.")
-            weapon_choice = input("> ")
-        for weapon in equipment.simple_weapons:
-            if weapon_choice.lower() == weapon.name.lower():
-                print(f"You have chosen {weapon.name}.")
-                print(f"{weapon.name} has been added to your starting equipment.")
-                paladin.starting_equipment.append(weapon)
-                break
+        weapon_choice = starting_equipment.select_equipment_from_category("Simple Weapons")
+    print(f"One {weapon_choice.name} has been added to your starting equipment.")
+    paladin.starting_equipment.append(weapon_choice)
 
-    print("Please enter your choice of a 'Priest's Pack' or an 'Explorer's Pack':")
-    equipment_choice2 = input("> ")
-    while equipment_choice2.lower() not in ["priest's pack", "explorer's pack"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice2 = input("> ")
-    if equipment_choice2.lower() == "priest's pack":
-        print("You have chosen a Priest's Pack.")
-        print("A priest's Pack has been added to your starting equipment.")
-        paladin.starting_equipment.append(equipment.priests_pack)
-    elif equipment_choice2.lower() == "explorer's pack":
-        print("You have chosen an Explorer's Pack.")
-        print("An Explorer's Pack has been added to your starting equipment.")
-        paladin.starting_equipment.append(equipment.explorers_pack)
+    equipment_choice_2 = starting_equipment.starting_equipment_choice("Priest's Pack", "Explorer's Pack")
+    if equipment_choice_2.lower() == "priest's pack":
+        pack_choice = starting_equipment.starting_equipment("Priest's Pack")
+    else:
+        pack_choice = starting_equipment.starting_equipment("Explorer's Pack")
+    print(f"One {pack_choice.name} has been added to your starting equipment.")
+    paladin.starting_equipment.append(pack_choice)   
 
-    print("You also start with 10 Darts.")
     print("10 Darts have been added to your starting equipment.")
     # Add darts to starting equipment
 
-    print("You also start with Chain Mail and a Holy Symbol Emblem.")
+    chain_mail = starting_equipment.starting_equipment("Chain Mail Heavy Armor")
+    holy_symbol = starting_equipment.starting_equipment("Holy Symbol Emblem")
     print("Chain Mail and a Holy Symbol Emblem have been added to your starting equipment.")
-    paladin.starting_equipment.append(equipment.chain_mail_heavy_armor)
-    paladin.starting_equipment.append(equipment.holy_symbol_emblem)
-    
-    print(f"You have chosen the following starting equipment:")
-    for item in paladin.starting_equipment:
-        print(item.name)
+    paladin.starting_equipment.append(chain_mail)
+    paladin.starting_equipment.append(holy_symbol)
 
     return paladin

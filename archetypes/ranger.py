@@ -162,88 +162,39 @@ def define_ranger():
         print(skill)
 
     # Starting Equipment
-    equipment_choice1 = ""
-    equipment_choice2 = ""
-    equipment_choice3 = ""
-    print("Choose your starting equipment:")
-    for item in potential_starting_equipment:
-        print(item)
+    equipment_choice_1 = starting_equipment.starting_equipment_choice("Scale Mail", "Leather Armor")
+    if equipment_choice_1.lower() == "scale mail":
+        armor_choice = starting_equipment.starting_equipment("Scale Mail Medium Armor")
+    elif equipment_choice_1.lower() == "leather armor":
+        armor_choice = starting_equipment.starting_equipment("Leather Light Armor")
+    print(f"{armor_choice.name} has been added to your starting equipment.")
+    ranger.starting_equipment.append(armor_choice)
 
-    print("Please enter your choice of a 'Scale Mail' or 'Leather Armor':")
-    equipment_choice1 = input("> ")
-    while equipment_choice1.lower() not in ["scale mail", "leather armor"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice1 = input("> ")
-    if equipment_choice1.lower() == "scale mail":
-        print("You have chosen Scale Mail.")
-        print("Scale Mail has been added to your starting equipment.")
-        ranger.starting_equipment.append(equipment.scale_mail_medium_armor)
-    elif equipment_choice1.lower() == "leather armor":
-        print("You have chosen Leather Armor.")
-        print("Leather Armor has been added to your starting equipment.")
-        ranger.starting_equipment.append(equipment.leather_light_armor)
+    equipment_choice_2 = starting_equipment.starting_equipment_choice("Two Shortswords", "Two Simple Melee Weapons")
+    if equipment_choice_2.lower() == "two shortswords":
+        weapon_choice = starting_equipment.starting_equipment("Short Sword")
+        print(f"Two {weapon_choice.name}'s have been added to your starting equipment.")
+        ranger.starting_equipment.append(weapon_choice)
+        ranger.starting_equipment.append(weapon_choice)
+    else:
+        weapon_choice = starting_equipment.select_equipment_from_category("Simple Melee Weapons")
+        print(f"One {weapon_choice.name}'s have been added to your starting equipment.")
+        ranger.starting_equipment.append(weapon_choice)
+        weapon_choice = starting_equipment.select_equipment_from_category("Simple Melee Weapons")
+        print(f"One {weapon_choice.name}'s have been added to your starting equipment.")
+        ranger.starting_equipment.append(weapon_choice)
 
-    print("Please enter your choice of a 'Two Shortswords' or 'Two Simple Melee Weapons':")
-    equipment_choice2 = input("> ")
-    while equipment_choice2.lower() not in ["two shortswords", "two simple melee weapons"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice2 = input("> ")
-    if equipment_choice2.lower() == "two shortswords":
-        print("You have chosen Two Shortswords.")
-        print("Two Shortswords has been added to your starting equipment.")
-        ranger.starting_equipment.append(equipment.short_sword)
-        ranger.starting_equipment.append(equipment.short_sword)
-    elif equipment_choice2.lower() == "two simple melee weapons":
-        print("You have chosen Two Simple Melee Weapons.")
-        print("Please choose two Simple Melee Weapons from the following list:")
-        valid_choices = []
-        for weapon in equipment.simple_melee_weapons:
-            valid_choices.append(weapon.name.lower())
-            print(weapon.name)
-        print("Please enter your first choice:")
-        chosen_weapon1 = input("> ")
-        while chosen_weapon1.lower() not in valid_choices:
-            print("That is not a valid choice. Please choose from the list.")
-            chosen_weapon1 = input("> ")
-        for weapon in equipment.simple_melee_weapons:
-            if chosen_weapon1.lower() == weapon.name.lower():
-                print(f"You have chosen {weapon.name}.")
-                print(f"{weapon.name} has been added to your starting equipment.")
-                ranger.starting_equipment.append(weapon)
-                break
-        print("Please enter your second choice:")
-        chosen_weapon2 = input("> ")
-        while chosen_weapon2.lower() not in valid_choices:
-            print("That is not a valid choice. Please choose from the list.")
-            chosen_weapon2 = input("> ")
-        for weapon in equipment.simple_melee_weapons:
-            if chosen_weapon2.lower() == weapon.name.lower():
-                print(f"You have chosen {weapon.name}.")
-                print(f"{weapon.name} has been added to your starting equipment.")
-                ranger.starting_equipment.append(weapon)
-                break
+    equipment_choice_3 = starting_equipment.starting_equipment_choice("Dungeoneer's Pack", "Explorer's Pack")
+    if equipment_choice_3.lower() == "dungeoneer's pack":
+        pack_choice = starting_equipment.starting_equipment("Dungeoneer's Pack")
+    else:
+        pack_choice = starting_equipment.starting_equipment("Explorer's Pack")
+    print(f"One {pack_choice.name} has been added to your starting equipment.")
+    ranger.starting_equipment.append(pack_choice)
 
-    print("Please enter your choice of a 'Dungeoneer's Pack' or an 'Explorer's Pack':")
-    equipment_choice3 = input("> ")
-    while equipment_choice3.lower() not in ["dungeoneer's pack", "explorer's pack"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice3 = input("> ")
-    if equipment_choice3.lower() == "dungeoneer's pack":
-        print("You have chosen a Dungeoneer's Pack.")
-        print("A Dungeoneer's Pack has been added to your starting equipment.")
-        ranger.starting_equipment.append(equipment.dungeoneers_pack)
-    elif equipment_choice3.lower() == "explorer's pack":
-        print("You have chosen an Explorer's Pack.")
-        print("An Explorer's Pack has been added to your starting equipment.")
-        ranger.starting_equipment.append(equipment.explorers_pack)
-
-    print("You also start with a Longbow and a quiver of 20 arrows.")
+    longbow = starting_equipment.starting_equipment("Longbow")
     print("A Longbow and a quiver of 20 arrows. have been added to your starting equipment.")
-    ranger.starting_equipment.append(equipment.longbow)
+    ranger.starting_equipment.append(longbow)
     # Add quiver of 20 arrows to starting equipment
-    
-    print(f"You have chosen the following starting equipment:")
-    for item in ranger.starting_equipment:
-        print(item.name)
-    
+
     return ranger

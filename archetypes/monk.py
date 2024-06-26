@@ -155,101 +155,33 @@ def define_monk():
         print(skill)
 
     # Starting Equipment
-    equipment_choice1 = ""
-    equipment_choice2 = ""
-    print("Choose your starting equipment:")
-    for item in potential_starting_equipment:
-        print(item)
-
-    print("Please enter your choice of a 'Shortsword' or 'any Simple Weapon':")
-    equipment_choice1 = input("> ")
-    while equipment_choice1.lower() not in ["shortsword", "any simple weapon"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice1 = input("> ")
-    if equipment_choice1.lower() == "shortsword":
-        print("You have chosen Shortsword.")
-        print("One Shortsword has been added to your starting equipment.")
-        monk.starting_equipment.append(equipment.short_sword)
+    equipment_choice_1 = starting_equipment.starting_equipment_choice("Shortsword", "Any Simple Weapon")
+    if equipment_choice_1.lower() == "shortsword":
+        weapon_choice = starting_equipment.starting_equipment("Short Sword")
     else:
-        for weapon in equipment.simple_weapons:
-            print(weapon.name)
-        print("Please enter your choice of simple weapon:")
-        weapon_choice = input("> ")
-        while weapon_choice.lower() not in [weapon.name.lower() for weapon in equipment.simple_weapons]:
-            print("That is not a valid choice. Please choose from the list.")
-            weapon_choice = input("> ")
-        for weapon in equipment.simple_weapons:
-            if weapon_choice.lower() == weapon.name.lower():
-                print(f"You have chosen {weapon.name}.")
-                print(f"{weapon.name} has been added to your starting equipment.")
-                monk.starting_equipment.append(weapon)
-                break
+        weapon_choice = starting_equipment.select_equipment_from_category("Simple Weapons")
+    print(f"One {weapon_choice.name} has been added to your starting equipment.")
+    monk.starting_equipment.append(weapon_choice)
 
-    print("Please enter your choice of a 'Dungeoneer's Pack' or an 'Explorer's Pack':")
-    equipment_choice2 = input("> ")
-    while equipment_choice2.lower() not in ["dungeoneer's pack", "explorer's pack"]:
-        print("That is not a valid choice. Please choose from the list.")
-        equipment_choice2 = input("> ")
-    if equipment_choice2.lower() == "dungeoneer's pack":
-        print("You have chosen a Dungeoneer's Pack.")
-        print("A Dungeoneer's Pack has been added to your starting equipment.")
-        monk.starting_equipment.append(equipment.dungeoneers_pack)
-    elif equipment_choice2.lower() == "explorer's pack":
-        print("You have chosen an Explorer's Pack.")
-        print("An Explorer's Pack has been added to your starting equipment.")
-        monk.starting_equipment.append(equipment.explorers_pack)
+    equipment_choice_2 = starting_equipment.starting_equipment_choice("Dungeoneer's Pack", "Explorer's Pack")
+    if equipment_choice_2.lower() == "dungeoneer's pack":
+        pack_choice = starting_equipment.starting_equipment("Dungeoneer's Pack")
+    else:
+        pack_choice = starting_equipment.starting_equipment("Explorer's Pack")
+    print(f"One {pack_choice.name} has been added to your starting equipment.")
+    monk.starting_equipment.append(pack_choice)
 
-    print("You also start with 10 Darts.")
     print("10 Darts have been added to your starting equipment.")
     # Add darts to starting equipment
 
     # Tool Proficiencies
-    tool_choice = ""
     print("You can choose proficiency in one type of artisan's tools or one musical instrument.")
-    print("Please enter either 'Artisan's Tools' or 'Musical Instrument':")
-    tool_choice= input("> ")
-    while tool_choice.lower() not in ["artisan's tools", "musical instrument"]:
-        print("That is not a valid choice. Please choose from the list.")
-        tool_choice = input("> ")
-    if tool_choice.lower() == "artisan's tools":
-        print("You have chosen Artisan's Tools.")
-        print("Please choose one type of Artisan's Tools from the following list:")
-        valid_choices = []
-        for tool in equipment.artisans_tools:
-            valid_choices.append(tool.name.lower())
-            print(tool.name)
-        print("Please enter your choice:")
-        chosen_tool = input("> ")
-        while chosen_tool.lower() not in valid_choices:
-            print("That is not a valid choice. Please choose from the list.")
-            chosen_tool = input("> ")
-        for tool in equipment.artisans_tools:
-            if chosen_tool.lower() == tool.name.lower():
-                print(f"You have chosen {tool.name}.")
-                print(f"You are now proficient with {tool.name}.")
-                monk.tool_proficiencies.append(tool)
-                break
-    elif tool_choice.lower() == "musical instrument":
-        print("You have chosen a musical instrument.")
-        print("Please choose one musical instrument from the following list:")
-        valid_choices = []
-        for instrument in equipment.musical_instruments:
-            valid_choices.append(instrument.name.lower())
-            print(instrument.name)
-        print("Please enter your choice:")
-        chosen_instrument = input("> ")
-        while chosen_instrument.lower() not in valid_choices:
-            print("That is not a valid choice. Please choose from the list.")
-            chosen_instrument = input("> ")
-        for instrument in equipment.musical_instruments:
-            if chosen_instrument.lower() == instrument.name.lower():
-                print(f"You have chosen {instrument.name}.")
-                print(f"You are now proficient with {instrument.name}.")
-                monk.tool_proficiencies.append(instrument)
-                break
-    
-    print(f"You have chosen the following starting equipment:")
-    for item in monk.starting_equipment:
-        print(item.name)
+    tool_proficiency = starting_equipment.starting_equipment_choice("Artisan's Tools", "Musical Instrument")
+    if tool_proficiency.lower() == "artisan's tools":
+        tool_choice = starting_equipment.select_equipment_from_category("Artisan's Tools")
+    else:
+        tool_choice = starting_equipment.select_equipment_from_category("Instruments")
+    print(f"You have chosen proficiency in {tool_choice.name}.")
+    monk.tool_proficiencies.append(tool_choice.name)
     
     return monk
