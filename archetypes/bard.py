@@ -288,11 +288,9 @@ def define_bard():
     bard.starting_equipment.append(starting_instrument)
 
     leather_armor = starting_equipment.starting_equipment("Leather Light Armor")
-    print(f"One {leather_armor.name} has been added to your starting equipment.")
-    bard.starting_equipment.append(leather_armor)
-
     dagger = starting_equipment.starting_equipment("Dagger")
-    print(f"One {dagger.name} has been added to your starting equipment.")
+    print(f"One {leather_armor.name} and one {dagger.name} has been added to your starting equipment.")
+    bard.starting_equipment.append(leather_armor)
     bard.starting_equipment.append(dagger)
 
     # Starting Cantrips
