@@ -5,6 +5,8 @@ player = character.Character()
 
 player.name = "PLAYER NAME"
 
+player.equipment = []
+
 player.gp = 1500
 
 equipment_shop.equipment_shop(player)

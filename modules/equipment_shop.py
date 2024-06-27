@@ -47,7 +47,7 @@ def equipment_shop(player):
             if buy_weapon_confirm.lower() == 'yes':
                 print("Please enter the name of the weapon you would like to buy:")
                 weapon_to_buy = input()
-                while weapon_to_buy not in valid_simple_melee_weapons:
+                while weapon_to_buy.lower() not in valid_simple_melee_weapons:
                     print("Invalid weapon name. Please enter a valid weapon name:")
                     weapon_to_buy = input()
                 for weapon in equipment.simple_melee_weapons:
@@ -77,7 +77,7 @@ def equipment_shop(player):
             if buy_weapon_confirm.lower() == 'yes':
                 print("Please enter the name of the weapon you would like to buy:")
                 weapon_to_buy = input()
-                while weapon_to_buy not in valid_simple_ranged_weapons:
+                while weapon_to_buy.lower() not in valid_simple_ranged_weapons:
                     print("Invalid weapon name. Please enter a valid weapon name:")
                     weapon_to_buy = input()
                 for weapon in equipment.simple_ranged_weapons:
@@ -107,7 +107,7 @@ def equipment_shop(player):
             if buy_weapon_confirm.lower() == 'yes':
                 print("Please enter the name of the weapon you would like to buy:")
                 weapon_to_buy = input()
-                while weapon_to_buy not in valid_martial_melee_weapons:
+                while weapon_to_buy.lower() not in valid_martial_melee_weapons:
                     print("Invalid weapon name. Please enter a valid weapon name:")
                     weapon_to_buy = input()
                 for weapon in equipment.martial_melee_weapons:
@@ -137,7 +137,7 @@ def equipment_shop(player):
             if buy_weapon_confirm.lower() == 'yes':
                 print("Please enter the name of the weapon you would like to buy:")
                 weapon_to_buy = input()
-                while weapon_to_buy not in valid_martial_ranged_weapons:
+                while weapon_to_buy.lower() not in valid_martial_ranged_weapons:
                     print("Invalid weapon name. Please enter a valid weapon name:")
                     weapon_to_buy = input()
                 for weapon in equipment.martial_ranged_weapons:
