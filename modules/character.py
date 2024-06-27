@@ -2,16 +2,12 @@ import modules.utils as utils
 import modules.dice_rolls as dice_rolls
 import modules.equipment as equipment
 class Character:
-    def __init__(self, name, race, archetype, bio, equipment, abilities, xp, gp, hp=0, max_hp=0, equipped_armor=None, equipped_weapon=None, readied_weapon=None):
+    def __init__(self, name, race, archetype, bio, equipment, abilities, xp, gp, hp=0, max_base_hp=0, equipped_armor=None, equipped_weapon=None, readied_weapon=None):
         self.name = name
         self.race = race
         self.archetype = archetype
         self.bio = bio
         self.equipment = equipment
-        self.xp = xp
-        self.gp = gp
-        self.hp = hp
-        self.max_hp = max_hp
         self.level = 0
         self.equipped_armor = equipped_armor
         self.equippped_weapon = equipped_weapon
@@ -33,11 +29,18 @@ class Character:
         self.equipped_weapon = []
         self.readied_weapon = None
         self.equipped_shield = None
+        self.xp = xp
+        self.gp = gp
+        self.hp = hp
+        self.max_base_hp = max_base_hp
+        self.max_hp = 0
 
     def initialize_player(self):
         self.calculate_level()
         self.calculate_modifiers()
-        self.sync_max_hp()
+        self.sync_max_base_hp()
+        self.calculate_max_hp()
+        self.hp = self.max_hp
         self.calculate_proficiency_bonus()
         return
 
@@ -47,8 +50,8 @@ class Character:
         self.calculate_level()
         if current_level < self.level:
             self.sync_level()
-            self.sync_max_hp()
-            self.hp = self.max_hp
+            self.sync_max_base_hp()
+            self.calculate_max_hp()
             self.calculate_proficiency_bonus()
         return
     
@@ -61,18 +64,22 @@ class Character:
         self.charisma_mod = (self.charisma - 10) // 2
         return
 
-    def sync_max_hp(self):
+    def sync_max_base_hp(self):
         if self.level == 1:
-            self.max_hp = self.archetype.base_hp + self.constitution_mod
+            self.max_base_hp = self.archetype.base_hp
         else:
             if self.archetype.hit_die == "1d6":
-                self.max_hp += dice_rolls.roll_6_sided_dice() + self.constitution_mod
+                self.max_base_hpp += dice_rolls.roll_6_sided_dice()
             elif self.archetype.hit_die == "1d8":
-                self.max_hp += dice_rolls.roll_8_sided_dice() + self.constitution_mod
+                self.max_base_hp += dice_rolls.roll_8_sided_dice()
             elif self.archetype.hit_die == "1d10":
-                self.max_hp += dice_rolls.roll_10_sided_dice() + self.constitution_mod
+                self.max_base_hp += dice_rolls.roll_10_sided_dice()
             elif self.archetype.hit_die == "1d12":
-                self.max_hp += dice_rolls.roll_12_sided_dice() + self.constitution_mod
+                self.max_base_hp += dice_rolls.roll_12_sided_dice()
+        return
+    
+    def calculate_max_hp(self):
+        self.max_hp = self.max_base_hp + (self.constitution_mod * self.level)
         return
 
     def calculate_level(self):
@@ -269,4 +276,5 @@ class Character:
                 self.charisma += 1
             ability_points -= 1
         self.calculate_modifiers()
+        return
 
