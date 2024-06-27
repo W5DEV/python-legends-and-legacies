@@ -25,7 +25,7 @@ class Ranger:
         self.tool_proficiencies = []
         self.skill_proficiencies = []
         self.starting_equipment = []
-        self.fighting_style = ""
+        self.fighting_style = []
         self.ranger_archetype = ""
         self.special_abilities = []
         self.spells_known = 0
