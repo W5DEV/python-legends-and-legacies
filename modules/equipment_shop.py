@@ -32,7 +32,8 @@ def equipment_shop(player):
             if category_selection.lower() == 'exit':
                 shopping = False
                 break
-        if category_selection == 'simple melee weapons':
+
+        if category_selection.lower() == 'simple melee weapons':
             print("Simple Melee Weapons:")
             valid_simple_melee_weapons = []
             for weapon in equipment.simple_melee_weapons:
@@ -62,7 +63,7 @@ def equipment_shop(player):
                             print("You do not have enough gp to purchase this item.")
                             break
 
-        elif category_selection == 'simple ranged weapons':
+        elif category_selection.lower() == 'simple ranged weapons':
             print("Simple Ranged Weapons:")
             valid_simple_ranged_weapons = []
             for weapon in equipment.simple_ranged_weapons:
@@ -92,7 +93,7 @@ def equipment_shop(player):
                             print("You do not have enough gp to purchase this item.")
                             break
         
-        elif category_selection == 'martial melee weapons':
+        elif category_selection.lower() == 'martial melee weapons':
             print("Martial Melee Weapons:")
             valid_martial_melee_weapons = []
             for weapon in equipment.martial_melee_weapons:
@@ -122,7 +123,7 @@ def equipment_shop(player):
                             print("You do not have enough gp to purchase this item.")
                             break
 
-        elif category_selection == 'martial ranged weapons':
+        elif category_selection.lower() == 'martial ranged weapons':
             print("Martial Ranged Weapons:")
             valid_martial_ranged_weapons = []
             for weapon in equipment.martial_ranged_weapons:
@@ -152,7 +153,7 @@ def equipment_shop(player):
                             print("You do not have enough gp to purchase this item.")
                             break
         
-        elif category_selection == 'light armor':
+        elif category_selection.lower() == 'light armor':
             print("Light Armor:")
             valid_light_armor = []
             for armor in equipment.light_armor:
@@ -182,7 +183,7 @@ def equipment_shop(player):
                             print("You do not have enough gp to purchase this item.")
                             break
 
-        elif category_selection == 'medium armor':
+        elif category_selection.lower() == 'medium armor':
             print("Medium Armor:")
             valid_medium_armor = []
             for armor in equipment.medium_armor:
@@ -212,7 +213,7 @@ def equipment_shop(player):
                             print("You do not have enough gp to purchase this item.")
                             break
         
-        elif category_selection == 'heavy armor':
+        elif category_selection.lower() == 'heavy armor':
             print("Heavy Armor:")
             valid_heavy_armor = []
             for armor in equipment.heavy_armor:
@@ -242,7 +243,7 @@ def equipment_shop(player):
                             print("You do not have enough gp to purchase this item.")
                             break
         
-        elif category_selection == 'shields':
+        elif category_selection.lower() == 'shields':
             print("Shields:")
             valid_shields = []
             for shield in equipment.shields:
@@ -272,7 +273,7 @@ def equipment_shop(player):
                             print("You do not have enough gp to purchase this item.")
                             break
         
-        elif category_selection == 'packs':
+        elif category_selection.lower() == 'packs':
             print("Packs:")
             valid_packs = []
             for pack in equipment.packs:
@@ -302,7 +303,7 @@ def equipment_shop(player):
                             print("You do not have enough gp to purchase this item.")
                             break
 
-        elif category_selection == 'instruments':
+        elif category_selection.lower() == 'instruments':
             print("Instruments:")
             valid_instruments = []
             for instrument in equipment.instruments:
@@ -332,7 +333,7 @@ def equipment_shop(player):
                             print("You do not have enough gp to purchase this item.")
                             break
 
-        elif category_selection == 'holy symbols':
+        elif category_selection.lower() == 'holy symbols':
             print("Holy Symbols:")
             valid_holy_symbols = []
             for symbol in equipment.holy_symbols:
@@ -362,7 +363,7 @@ def equipment_shop(player):
                             print("You do not have enough gp to purchase this item.")
                             break
         
-        elif category_selection == "artisan's tools":
+        elif category_selection.lower() == "artisan's tools":
             print("Artisan's Tools:")
             valid_artisans_tools = []
             for tool in equipment.artisans_tools:
@@ -392,7 +393,7 @@ def equipment_shop(player):
                             print("You do not have enough gp to purchase this item.")
                             break
 
-        elif category_selection == 'other tools':
+        elif category_selection.lower() == 'other tools':
             print("Other Tools:")
             valid_other_tools = []
             for tool in equipment.other_tools:
@@ -422,7 +423,7 @@ def equipment_shop(player):
                             print("You do not have enough gp to purchase this item.")
                             break
 
-        elif category_selection == 'class equipment':
+        elif category_selection.lower() == 'class equipment':
             print("Class Equipment:")
             valid_class_equipment = []
             for item in equipment.class_equipment:
