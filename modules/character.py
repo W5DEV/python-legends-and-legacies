@@ -2,16 +2,16 @@ import modules.utils as utils
 import modules.dice_rolls as dice_rolls
 import modules.equipment as equipment
 class Character:
-    def __init__(self, name, race, archetype, bio, equipment, abilities, xp, gp, hp=0, max_base_hp=0, equipped_armor=None, equipped_weapon=None, readied_weapon=None):
-        self.name = name
-        self.race = race
-        self.archetype = archetype
-        self.bio = bio
-        self.equipment = equipment
+    def __init__(self):
+        self.name = ""
+        self.race = None
+        self.archetype = None
+        self.bio = None
+        self.equipment = None
         self.level = 0
-        self.equipped_armor = equipped_armor
-        self.equippped_weapon = equipped_weapon
-        self.readied_weapon = readied_weapon
+        self.equipped_armor = None
+        self.equippped_weapon = None
+        self.readied_weapon = None
         self.proficincy_bonus = 0
         self.strength = 0
         self.strength_mod = 0
@@ -29,10 +29,10 @@ class Character:
         self.equipped_weapon = []
         self.readied_weapon = None
         self.equipped_shield = None
-        self.xp = xp
-        self.gp = gp
-        self.hp = hp
-        self.max_base_hp = max_base_hp
+        self.xp = 0
+        self.gp = 0
+        self.hp = 0
+        self.max_base_hp = 0
         self.max_hp = 0
 
     def initialize_player(self):

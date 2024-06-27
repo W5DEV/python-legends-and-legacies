@@ -86,7 +86,7 @@ def greeting():
     print("You are walking through the woods, when suddenly a giant figure steps out from behind a tree.")
     print("The figure is unlike any you have ever seen before. They have 4 heads and 6 arms. They look at you and say in a bellowing voice:")
     print("'I am the mighty Character Creation Boss! To defeat me, you must create your character without any errors or mistakes!'")
-    player = character.Character("", "", "", "", [], [], 0, 0)
+    player = character.Character()
     return player
 
 def character_race(player):

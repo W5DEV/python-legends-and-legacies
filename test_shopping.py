@@ -1,7 +1,9 @@
 import modules.character as character
 import modules.equipment_shop as equipment_shop
 
-player = character.Character("PLAYER NAME", "", "", "", [], [], 0, 1500)
+player = character.Character()
+
+player.gp = 1500
 
 equipment_shop.equipment_shop(player)
 
