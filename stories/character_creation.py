@@ -26,11 +26,62 @@ def character_creation():
         print(f"You have {player.gp} gold pieces to spend on additional equipment.")
         equipment_shop.equipment_shop(player)
 
+    print(f"And so {player.name} finally defeated the Character Creation boss! {player.name} has emerged victorious, with a character sheet that is complete and error-free!")
+    print(f"{player.name} has faired well for the Character Creation boss battle, but how will he fair against the menacing 'Biography Synposis Boogeyman'??")
+    print(f"The Biography Synopsis Boogeyman is a fearsome creature that will only be defeated if {player.name} can sit through a detailed summary of his character sheet without falling asleep!")
+    print(f"Only true Legends can defeat the Biography Synposis Boogeyman! Will you emerge victorious and leave your Legacy behind? Or will your character falter and end with a sad, depressing error?")
+    print("The Biographical Synopsis Boogeyman laughs maniacally then proceeds to read your character sheet:")
+    print(f"{player.name} is a {player.race.subrace} {player.archetype.name}.")
+    print(f"{player.name}'s bio is as follows:")
+    print(player.bio)
+    print(f"{player.name} has the following starting equipment:")
+    for item in player.equipment:
+        print(item.name)
+    print(f"{player.name}'s ability scores are as follows:")
+    print(f"Strength: {player.strength}")
+    print(f"Dexterity: {player.dexterity}")
+    print(f"Constitution: {player.constitution}")
+    print(f"Intelligence: {player.intelligence}")
+    print(f"Wisdom: {player.wisdom}")
+    print(f"Charisma: {player.charisma}")
+    print(f"{player.name} has {player.max_hp} hit points.")
+    print(f"{player.name} has {player.gp} gold pieces.")
+    print(f"{player.name} has {player.xp} xp and is level {player.level}. This means they have a proficiency bonus of {player.proficiency_bonus}.")
+    print(f"{player.name} needs {player.xp_needed_for_next_level()} xp to level up.")
+    print(player.xp_needed_for_next_level())
+
+    ac = player.calculate_armor_class()
+    print(f"{player.name}'s Armor Class is {ac}.")
+
+    print(f"{player.name} has successfully defeated the Biography Synopsis Boogeyman! {player.name} has emerged victorious, with a character sheet that is complete and error-free!")
+
+    print(f"{player.name} has been awarded 300xp for defeating the Biography Synopsis Boogeyman!")
+    player.award_xp(300)
+    print(f"{player.name} is level {player.level}. They have a max of {player.max_hp} hit points. Their proficiency bonus is {player.proficiency_bonus}. They have {player.xp}xp need {player.xp_needed_for_next_level()}xp to level up.")
+
+    print(f"{player.name} can now equip, ready and unequip items from their inventory!")
+    player.equip_armor()
+    player.equip_weapon()
+    player.ready_weapon()
+    player.equip_shield()
+    player.unequip_armor()
+    player.unequip_weapon()
+    player.unequip_shield()
+
+    print(f"{player.name} has successfully completed the demonstration of their equipment! They have been awarded 600xp!")
+    player.award_xp(600)
+    print(f"{player.name} is level {player.level}. They have a max of {player.max_hp} hit points. Their proficiency bonus is {player.proficiency_bonus}. They have {player.xp}xp need {player.xp_needed_for_next_level()}xp to level up.")
+
+    print(f"{player.name} has emerged a Legend and has most assuredly left behind a Legacy! Congratulations on completing the Daunting Trials of Character Creation!")
     return player
 
 
 def greeting():
     print("Greetings traveler! Welcome to the magical world of Legends & Legacies!")
+    print("Embark on a journey with us through the magical story of 'The Daunting Trials of Character Creation'!")
+    print("You are walking through the woods, when suddenly a giant figure steps out from behind a tree.")
+    print("The figure is unlike any you have ever seen before. They have 4 heads and 6 arms. They look at you and say in a bellowing voice:")
+    print("'I am the mighty Character Creation Boss! To defeat me, you must create your character without any errors or mistakes!'")
     player = character.Character("", "", "", "", [], [], 0, 0)
     return player
 

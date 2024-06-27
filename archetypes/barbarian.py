@@ -61,7 +61,7 @@ class Barbarian:
             self.special_abilities.append("Reckless Attack")
             self.special_abilities.append("Danger Sense")
         if level == 3:
-            print("You have reached level 3 and can now choose your Primal Path: Path of the Berserker")
+            print("You have reached level 3 and now embark on your Primal Path: Path of the Berserker.")
             self.primal_path = "Path of the Berserker"
             self.special_abilities.append("Frenzy")
             self.rages = 3
