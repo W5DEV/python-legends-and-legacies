@@ -54,7 +54,7 @@ class Ranger:
             print(ability)
         return
     
-    def sync_level(self, level):
+    def sync_level(self, level, player):
         if level == 1:
             self.special_abilities.append("Favored Enemy")
             self.special_abilities.append("Natural Explorer")
@@ -82,6 +82,7 @@ class Ranger:
             self.spell_slots_level_1 = 3
         if level == 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
+            player.increase_ability_score(2)
         if level == 5:
             self.special_abilities.append("Extra Attack")
             self.spells_known = 4
@@ -96,6 +97,7 @@ class Ranger:
             self.spell_slots_level_3 = 3
         if level == 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
+            player.increase_ability_score(2)
             self.special_abilities.append("Land's Stride")
         if level == 9:
             self.spells_known = 6
@@ -109,6 +111,7 @@ class Ranger:
             self.spell_slots_level_3 = 3
         if level == 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
+            player.increase_ability_score(2)
         if level == 13:
             self.spells_known = 8
             self.spell_slots_level_4 = 1
@@ -121,6 +124,7 @@ class Ranger:
             self.spell_slots_level_4 = 2
         if level == 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
+            player.increase_ability_score(2)
         if level == 17:
             self.spells_known = 10
             self.spell_slots_level_4 = 3
@@ -129,6 +133,7 @@ class Ranger:
             self.special_abilities.append("Fereal Senses")
         if level == 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
+            player.increase_ability_score(2)
             self.spells_known = 11
             self.spell_slots_level_5 = 2
         if level == 20:

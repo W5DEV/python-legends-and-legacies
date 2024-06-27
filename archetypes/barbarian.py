@@ -51,7 +51,7 @@ class Barbarian:
             print(ability)
         return
     
-    def sync_level(self, level):
+    def sync_level(self, level, player):
         if level == 1:
             self.special_abilities.append("Rage")
             self.special_abilities.append("Unarmored Defense")
@@ -67,6 +67,7 @@ class Barbarian:
             self.rages = 3
         if level == 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
+            player.increase_ability_score(2)
         if level == 5:
             self.special_abilities.append("Extra Attack")
             self.special_abilities.append("Fast Movement")
@@ -77,6 +78,7 @@ class Barbarian:
             self.special_abilities.append("Feral Instinct")
         if level == 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
+            player.increase_ability_score(2)
         if level == 9:
             self.special_abilities.append("Brutal Critical")
             self.rage_damage_bonus = 3
@@ -87,6 +89,7 @@ class Barbarian:
             self.special_abilities.append("Relentless Rage")
         if level == 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
+            player.increase_ability_score(2)
             self.rages = 5
         if level == 13:
             self.special_abilities.append("Bear Totem")
@@ -96,6 +99,7 @@ class Barbarian:
             self.special_abilities.append("Persistent Rage")
         if level == 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
+            player.increase_ability_score(2)
             self.rage_damage_bonus = 4
         if level == 17:
             self.rages = 6
@@ -103,6 +107,7 @@ class Barbarian:
             self.special_abilities.append("Indomitable Might")
         if level == 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
+            player.increase_ability_score(2)
         if level == 20:
             self.special_abilities.append("Primal Champion")
             self.rages = 9999

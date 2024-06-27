@@ -75,7 +75,7 @@ class Cleric:
             print(ability)
         return
 
-    def sync_level(self, level):
+    def sync_level(self, level, player):
         if level == 1:
             self.divine_domain = "Life Domain"
             self.special_abilities = ["Spellcasting", "Divine Domain"]
@@ -93,6 +93,7 @@ class Cleric:
             self.spell_slots_level_2 = 2
         if level == 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
+            player.increase_ability_score(2)
             self.cantrips_known = 4
             self.spell_slots_level_2 = 3
         if level == 5:
@@ -109,6 +110,7 @@ class Cleric:
             self.spell_slots_level_4 = 1
         if level == 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
+            player.increase_ability_score(2)
             self.special_abilities.append("Destroy Undead (CR 1)")
             self.special_abilities.append("Divine Strike (1d8)")
             self.spell_slots_level_4 = 2
@@ -125,6 +127,7 @@ class Cleric:
             self.spell_slots_level_6 = 1
         if level == 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
+            player.increase_ability_score(2)
         if level == 13:
             self.spell_slots_level_7 = 1
         if level == 14:
@@ -134,6 +137,7 @@ class Cleric:
             self.spell_slots_level_8 = 1
         if level == 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
+            player.increase_ability_score(2)
         if level == 17:
             self.special_abilities.append("Destroy Undead (CR 4)")
             self.special_abilities.append("Supreme Healing")
@@ -143,6 +147,7 @@ class Cleric:
             self.spell_slots_level_5 = 3
         if level == 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
+            player.increase_ability_score(2)
             self.spell_slots_level_6 = 2
         if level == 20:
             self.special_abilities.append("Divine Intervention Improvement")

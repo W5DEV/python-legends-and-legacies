@@ -57,7 +57,7 @@ class Paladin:
             print(ability)
         return
     
-    def sync_level(self, level):
+    def sync_level(self, level, player):
         if level == 1:
             self.special_abilities.append("Divine Sense")
             self.special_abilities.append("Lay on Hands")
@@ -77,6 +77,7 @@ class Paladin:
             self.spell_slots_level_1 = 3
         if level == 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
+            player.increase_ability_score(2)
         if level == 5:
             self.special_abilities.append("Extra Attack")
             self.oath_of_devotion_spells.append("Lesser Restoration")
@@ -90,6 +91,7 @@ class Paladin:
             self.spell_slots_level_2 = 3
         if level == 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
+            player.increase_ability_score(2)
         if level == 9:
             self.oath_of_devotion_spells.append("Beacon of Hope")
             self.oath_of_devotion_spells.append("Dispel Magic")
@@ -101,6 +103,7 @@ class Paladin:
             self.spell_slots_level_3 = 3
         if level == 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
+            player.increase_ability_score(2)
         if level == 13:
             self.oath_of_devotion_spells.append("Freedom of Movement")
             self.oath_of_devotion_spells.append("Guardian of Faith")
@@ -112,6 +115,7 @@ class Paladin:
             self.spell_slots_level_4 = 2
         if level == 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
+            player.increase_ability_score(2)
         if level == 17:
             self.oath_of_devotion_spells.append("Commune")
             self.oath_of_devotion_spells.append("Flame Strike")
@@ -122,6 +126,7 @@ class Paladin:
             self.special_abilities.append("Aura of Devotion (30 ft)")
         if level == 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
+            player.increase_ability_score(2)
             self.spell_slots_level_5 = 2
         if level == 20:
             self.special_abilities.append("Holy Nimbus")

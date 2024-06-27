@@ -49,7 +49,7 @@ class Rogue:
             print(ability)
         return
     
-    def sync_level(self, level):
+    def sync_level(self, level, player):
         if level == 1:
             self.special_abilities.append("Expertise")
             self.special_abilities.append("Sneak Attack")
@@ -63,6 +63,7 @@ class Rogue:
             self.sneak_attack_die = "2d6"
         if level == 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
+            player.increase_ability_score(2)
         if level == 5:
             self.special_abilities.append("Uncanny Dodge")
             self.sneak_attack_die = "3d6"
@@ -73,16 +74,19 @@ class Rogue:
             self.sneak_attack_die = "4d6"
         if level == 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
+            player.increase_ability_score(2)
         if level == 9:
             self.special_abilities.append("Supreme Sneak")
             self.sneak_attack_die = "5d6"
         if level == 10:
             self.special_abilities.append("Ability Score Improvement 10th Level")
+            player.increase_ability_score(2)
         if level == 11:
             self.special_abilities.append("Reliable Talent")
             self.sneak_attack_die = "6d6"
         if level == 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
+            player.increase_ability_score(2)
         if level == 13:
             self.special_abilities.append("Use Magic Device")
             self.sneak_attack_die = "7d6"
@@ -93,6 +97,7 @@ class Rogue:
             self.sneak_attack_die = "8d6"
         if level == 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
+            player.increase_ability_score(2)
         if level == 17:
             self.special_abilities.append("Thief's Reflexes")
             self.sneak_attack_die = "9d6"
@@ -100,6 +105,7 @@ class Rogue:
             self.special_abilities.append("Elusive")
         if level == 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
+            player.increase_ability_score(2)
             self.sneak_attack_die = "10d6"
         if level == 20:
             self.special_abilities.append("Stroke of Luck")

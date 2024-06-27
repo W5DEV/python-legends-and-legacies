@@ -234,7 +234,7 @@ class Character:
 
     def sync_level(self):
         self.calculate_level()
-        self.archetype.sync_level(self.level)
+        self.archetype.sync_level(self.level, self)
         return
 
     def sync_equipment(self):
@@ -244,4 +244,29 @@ class Character:
     def xp_needed_for_next_level(self):
         xp_needed = utils.calculate_xp_needed(self.xp)
         return xp_needed
+    
+    def increase_ability_score(self, number):
+        ability_points = number
+        while ability_points > 0:
+            print("Please choose an ability score to increase:")
+            for ability in ("Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"):
+                print(ability)
+            ability_choice = input("> ")
+            while ability_choice.lower() not in ("strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"):
+                print("That is not a valid choice. Please choose from the list.")
+                ability_choice = input("> ")
+            if ability_choice.lower() == "strength":
+                self.strength += 1
+            elif ability_choice.lower() == "dexterity":
+                self.dexterity += 1
+            elif ability_choice.lower() == "constitution":
+                self.constitution += 1
+            elif ability_choice.lower() == "intelligence":
+                self.intelligence += 1
+            elif ability_choice.lower() == "wisdom":
+                self.wisdom += 1
+            elif ability_choice.lower() == "charisma":
+                self.charisma += 1
+            ability_points -= 1
+        self.calculate_modifiers()
 
