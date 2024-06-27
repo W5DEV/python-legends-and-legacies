@@ -72,7 +72,7 @@ class Character:
                 roll = dice_rolls.roll_6_sided_dice()
                 if roll < 3:
                     roll = dice_rolls.roll_6_sided_dice()
-                self.max_base_hpp += roll
+                self.max_base_hp += roll
             elif self.archetype.hit_die == "1d8":
                 roll = dice_rolls.roll_8_sided_dice()
                 if roll < 3:
