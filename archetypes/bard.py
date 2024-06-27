@@ -272,7 +272,7 @@ def define_bard():
     elif equipment_choice_1.lower() == "longsword":
         starting_weapon = starting_equipment.starting_equipment("Longsword")
     else:
-        starting_weapon = starting_equipment.starting_equipment_from_category("Simple Weapons")
+        starting_weapon = starting_equipment.select_equipment_from_category("Simple Weapons")
     print(f"One {starting_weapon.name} has been added to your starting equipment.")
     bard.starting_equipment.append(starting_weapon)
 

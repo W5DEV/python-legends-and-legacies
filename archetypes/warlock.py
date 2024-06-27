@@ -229,7 +229,7 @@ def define_warlock():
     if equipment_choice_2.lower() == "component pouch":
         starting_equipment_choice = starting_equipment.starting_equipment("Component Pouch")
     else:
-        starting_equipment_choice = starting_equipment.starting_equipment("Arcane Focus")
+        starting_equipment_choice = starting_equipment.starting_equipment("Arcane Focus Crystal")
     print(f"One {starting_equipment_choice.name} has been added to your starting equipment.")
     warlock.starting_equipment.append(starting_equipment_choice)
 
