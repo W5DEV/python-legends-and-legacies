@@ -461,4 +461,5 @@ def equipment_shop(player):
     for item in player.equipment:
         print(item.name)
     print("Good luck on your adventures! Goodbye!")
+    return
     
