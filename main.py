@@ -26,6 +26,14 @@ def main():
     print("Simulating a level up...")
     player.award_xp(300)
     print(f"{player.name} is level {player.level}. They have a max of {player.max_hp} hit points. Their proficiency bonus is {player.proficiency_bonus}. They need {player.xp_needed_for_next_level()} to level up.")
+
+    player.equip_armor()
+    player.equip_weapon()
+    player.ready_weapon()
+    player.equip_shield()
+    player.unequip_armor()
+    player.unequip_weapon()
+    player.unequip_shield()
     
     return
 main()

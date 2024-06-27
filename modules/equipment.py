@@ -98,6 +98,11 @@ chain_mail_heavy_armor = Armor("Chain Mail Heavy Armor", 75, 16, 13, -1, 55, 5, 
 splint_heavy_armor = Armor("Splint Heavy Armor", 200, 17, 15, -1, 60, 5, 10)
 plate_heavy_armor = Armor("Plate Heavy Armor", 1500, 18, 15, -1, 65, 5, 10)
 
+light_armor = [padded_light_armor, leather_light_armor, studded_light_armor]
+medium_armor = [hide_medium_armor, chain_shirt_medium_armor, scale_mail_medium_armor, breastplate_medium_armor, half_plate_medium_armor]
+heavy_armor = [ring_mail_heavy_armor, chain_mail_heavy_armor, splint_heavy_armor, plate_heavy_armor]
+
+
 shield = Armor("Shield", 10, 2, 0, 0, 6, 1, 1)
 
 simple_melee_weapons = [club, dagger, great_club, hand_axe, javelin, light_hammer, mace, quarter_staff, sickle, spear]
@@ -106,9 +111,13 @@ simple_weapons = simple_melee_weapons + simple_ranged_weapons
 martial_melee_weapons = [battleaxe, flail, glaive, great_axe, great_sword, halberd, lance, long_sword, maul, morningstar, pike, rapier, scimitar, short_sword, trident, war_pick, war_hammer, whip]
 martial_ranged_weapons = [blowgun, hand_crossbow, heavy_crossbow, longbow, net]
 martial_weapons = martial_melee_weapons + martial_ranged_weapons
+weapons = simple_weapons + martial_weapons
+
 light_armor = [padded_light_armor, leather_light_armor, studded_light_armor]
 medium_armor = [hide_medium_armor, chain_shirt_medium_armor, scale_mail_medium_armor, breastplate_medium_armor, half_plate_medium_armor]
 heavy_armor = [ring_mail_heavy_armor, chain_mail_heavy_armor, splint_heavy_armor, plate_heavy_armor]
+armor = light_armor + medium_armor + heavy_armor
+
 shields = [shield]
 
 explorers_pack = Equipment("Explorer's Pack", 10, 59, "Includes a backpack, a bedroll, a mess kit, a tinderbox, 10 torches, 10 days of rations, and a waterskin")

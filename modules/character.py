@@ -1,5 +1,6 @@
 import modules.utils as utils
 import modules.dice_rolls as dice_rolls
+import modules.equipment as equipment
 class Character:
     def __init__(self, name, race, archetype, bio, equipment, abilities, xp, gp, hp=0, max_hp=0, equipped_armor=None, equipped_weapon=None, readied_weapon=None):
         self.name = name
@@ -29,8 +30,9 @@ class Character:
         self.charisma = 0
         self.charisma_mod = 0
         self.equipped_armor = None
-        self.equipped_weapon = None
+        self.equipped_weapon = []
         self.readied_weapon = None
+        self.equipped_shield = None
 
     def initialize_player(self):
         self.calculate_level()
@@ -77,6 +79,138 @@ class Character:
         level = utils.calculate_level(self.xp)
         self.level = level
         return 
+    
+    def equip_armor(self):
+        selected_item = ""
+        valid_choices = []
+        if self.equipped_armor == None:
+            print("You do not have any armor to equip.")
+            return
+        print("Please choose an armor type from the following list:")
+        for item in self.equipment:
+            if item in equipment.armor:
+                print(item.name)
+                valid_choices.append(item.name.lower())
+        selected_item = input("> ")
+        while selected_item.lower() not in valid_choices:
+            print("Sorry, that is not a valid choice. Please try again.")
+            print("Please choose an armor type from the following list:")
+            for item in self.equipment:
+                if item in equipment.armor:
+                    print(item.name)
+            selected_item = input("> ")
+        for item in self.equipment:
+            if item.name.lower() == selected_item.lower():
+                self.equipped_armor = item
+                print(f"You have equipped {self.equipped_armor.name}.")
+                return
+        print("You do not have any armor equipped.")
+        return
+    
+    def unequip_armor(self):
+        if self.equipped_armor == None:
+            print("You do not have any armor equipped.")
+            return
+        self.equipped_armor = None
+        print("You have unequipped your armor.")
+        return
+    
+    def equip_weapon(self):
+        selected_item = ""
+        valid_choices = []
+        if self.equipped_weapon == None:
+            print("You do not have any weapons to equip.")
+            return
+        print("Please choose a weapon from the following list:")
+        for item in self.equipment:
+            if item in equipment.weapons:
+                print(item.name)
+                valid_choices.append(item.name.lower())
+        selected_item = input("> ")
+        while selected_item.lower() not in valid_choices:
+            print("Sorry, that is not a valid choice. Please try again.")
+            print("Please choose a weapon from the following list:")
+            for item in self.equipment:
+                if item in equipment.weapons:
+                    print(item.name)
+            selected_item = input("> ")
+        for item in self.equipment:
+            if item.name.lower() == selected_item.lower():
+                self.equipped_weapon.append(item)
+                print(f"You have equipped {item.name}.")
+                print("You have the following weapons equipped:")
+                for weapon in self.equipped_weapon:
+                    print(weapon.name)
+                return
+        print("You have not equipped any weapons.")
+        return
+    
+    def unequip_weapon(self):
+        if self.equipped_weapon == []:
+            print("You do not have any weapons equipped.")
+            return
+        print("Please choose a weapon to unequip from the following list:")
+        valid_choices = []
+        for weapon in self.equipped_weapon:
+            print(weapon.name)
+            valid_choices.append(weapon.name.lower())
+        selected_item = input("> ")
+        while selected_item.lower() not in valid_choices:
+            print("Sorry, that is not a valid choice. Please try again.")
+            print("Please choose a weapon to unequip from the following list:")
+            for weapon in self.equipped_weapon:
+                print(weapon.name)
+            selected_item = input("> ")
+        for weapon in self.equipped_weapon:
+            if weapon.name.lower() == selected_item.lower():
+                self.equipped_weapon.remove(weapon)
+                print(f"You have unequipped {weapon.name}.")
+                return
+        print("You have not uneqiupped any weapons.")
+        return
+    
+    def equip_shield(self):
+        equipped_items = []
+        for item in self.equipment:
+            equipped_items.append(item.name)
+        if "Shield" not in equipped_items:
+            print("You do not have a shield to equip.")
+            return
+        self.equipped_shield = True
+        print("You have equipped a shield.")
+        return
+    
+    def unequip_shield(self):
+        if self.equipped_shield == None:
+            print("You do not have a shield equipped.")
+            return
+        self.equipped_shield = None
+        print("You have unequipped your shield.")
+        return
+    
+    def ready_weapon(self):
+        if self.equipped_weapon == []:
+            print("You do not have any weapons equipped. Please equip a weapon before readying it.")
+            return
+        print("Please choose a weapon to ready from the following list:")
+        valid_choices = []
+        for weapon in self.equipped_weapon:
+            print(weapon.name)
+            valid_choices.append(weapon.name.lower())
+        selected_item = input("> ")
+        while selected_item.lower() not in valid_choices:
+            print("Sorry, that is not a valid choice. Please try again.")
+            print("Please choose a weapon to ready from the following list:")
+            for weapon in self.equipped_weapon:
+                print(weapon.name)
+            selected_item = input("> ")
+        for weapon in self.equipped_weapon:
+            if weapon.name.lower() == selected_item.lower():
+                self.readied_weapon = weapon
+                print(f"You have readied {weapon.name}.")
+                return
+        print("You have not readied any weapons.")    
+        return
 
     def calculate_proficiency_bonus(self):
         self.calculate_level()
