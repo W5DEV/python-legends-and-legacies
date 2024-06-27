@@ -457,9 +457,12 @@ def equipment_shop(player):
     print("You have purchased the following items:")
     for item in receipt:
         print(item)
-    print("You currently have the following items in your inventory:")
-    for item in player.equipment:
-        print(item.name)
+    if player.equipment == [] or player.equipment == None:
+        print("You do not have any items.")
+    else:
+        print("You currently have the following items in your inventory:")
+        for item in player.equipment:
+            print(item.name)
     print("Good luck on your adventures! Goodbye!")
     return
     
