@@ -19,7 +19,7 @@ def define_hill_dwarf(tool_proficiency):
         print("What is your dwarf's gender? (male/female)")
         gender = input("> ")
     name = names.get_dwarf_name(gender)
-    hill_dwarf = Race(name, gender, "Dwarf", "Hill Dwarf", "Medium", 25, "Common, Dwarvish", "Constitution: 2, Wisdom: 1", "Darkvision, Dwarven Resilience, Dwarven Combat Training, Stonecunning, Tool Proficiency, Dwarven Toughness", "Battleaxe, Handaxe, Light Hammer, Warhammer")
+    hill_dwarf = Race(name, gender, "Dwarf", "Hill Dwarf", "Medium", 25, "Common, Dwarvish", [2, 0, 0, 0, 1, 0], "Darkvision, Dwarven Resilience, Dwarven Combat Training, Stonecunning, Tool Proficiency, Dwarven Toughness", "Battleaxe, Handaxe, Light Hammer, Warhammer")
     hill_dwarf.proficiencies += f", {tool_proficiency}"
     return hill_dwarf
 
@@ -31,7 +31,7 @@ def define_mountain_dwarf(tool_proficiency):
         print("What is your dwarf's gender? (male/female)")
         gender = input("> ")
     name = names.get_dwarf_name(gender)
-    mountain_dwarf = Race(name, gender, "Dwarf", "Mountain Dwarf", "Medium", 25, "Common, Dwarvish", "Constitution: 2, Strength: 2", "Darkvision, Dwarven Resilience, Dwarven Combat Training, Stonecunning, Tool Proficiency, Dwarven Armor Training", "Battleaxe, Handaxe, Light Hammer, Warhammer, Light Armor, Medium Armor")
+    mountain_dwarf = Race(name, gender, "Dwarf", "Mountain Dwarf", "Medium", 25, "Common, Dwarvish", [2, 2, 0, 0, 0, 0], "Darkvision, Dwarven Resilience, Dwarven Combat Training, Stonecunning, Tool Proficiency, Dwarven Armor Training", "Battleaxe, Handaxe, Light Hammer, Warhammer, Light Armor, Medium Armor")
     mountain_dwarf.proficiencies += f", {tool_proficiency}"
     return mountain_dwarf
 
@@ -43,7 +43,7 @@ def define_high_elf(language):
         print("What is your elf's gender? (male/female)")
         gender = input("> ")
     name = names.get_elf_name(gender)
-    high_elf = Race(name, gender, "Elf", "High Elf", "Medium", 30, "Common, Elvish", "Dexterity: 2, Intelligence: 1", "Darkvision, Keen Senses, Fey Ancestry, Trance, Elf Weapon Training, Cantrip, Extra Language", "Longsword, Shortsword, Longbow, Shortbow")
+    high_elf = Race(name, gender, "Elf", "High Elf", "Medium", 30, "Common, Elvish", [0, 0, 2, 1, 0, 0], "Darkvision, Keen Senses, Fey Ancestry, Trance, Elf Weapon Training, Cantrip, Extra Language", "Longsword, Shortsword, Longbow, Shortbow")
     high_elf.languages += f", {language}"
     return high_elf
 
@@ -55,7 +55,7 @@ def define_wood_elf():
         print("What is your elf's gender? (male/female)")
         gender = input("> ")
     name = names.get_elf_name(gender)
-    wood_elf = Race(name, gender, "Elf", "Wood Elf", "Medium", 35, "Common, Elvish", "Dexterity: 2, Wisdom: 1", "Darkvision, Keen Senses, Fey Ancestry, Trance, Elf Weapon Training, Fleet of Foot, Mask of the Wild", "Longsword, Shortsword, Longbow, Shortbow")
+    wood_elf = Race(name, gender, "Elf", "Wood Elf", "Medium", 35, "Common, Elvish", [0, 0, 2, 0, 1, 0], "Darkvision, Keen Senses, Fey Ancestry, Trance, Elf Weapon Training, Fleet of Foot, Mask of the Wild", "Longsword, Shortsword, Longbow, Shortbow")
     return wood_elf
 
 def define_lightfoot_halfling():
@@ -66,7 +66,7 @@ def define_lightfoot_halfling():
         print("What is your halfling's gender? (male/female)")
         gender = input("> ")
     name = names.get_halfling_name(gender)
-    lightfoot_halfling = Race(name, gender, "Halfling", "Lightfoot Halfling", "Small", 25, "Common, Halfling", "Dexterity: 2, Charisma: 1", "Lucky, Brave, Halfling Nimbleness, Naturally Stealthy", "None")
+    lightfoot_halfling = Race(name, gender, "Halfling", "Lightfoot Halfling", "Small", 25, "Common, Halfling", [0, 0, 2, 0, 0, 1], "Lucky, Brave, Halfling Nimbleness, Naturally Stealthy", "None")
     return lightfoot_halfling
 
 def define_stout_halfling():
@@ -77,7 +77,7 @@ def define_stout_halfling():
         print("What is your halfling's gender? (male/female)")
         gender = input("> ")
     name = names.get_halfling_name(gender)
-    stout_halfling = Race(name, gender, "Halfling", "Stout Halfling", "Small", 25, "Common, Halfling", "Dexterity: 2, Constitution: 1", "Lucky, Brave, Halfling Nimbleness, Stout Resilience", "None")
+    stout_halfling = Race(name, gender, "Halfling", "Stout Halfling", "Small", 25, "Common, Halfling", [1, 0, 2, 0, 0, 0], "Lucky, Brave, Halfling Nimbleness, Stout Resilience", "None")
     return stout_halfling
 
 def define_human():
@@ -88,7 +88,7 @@ def define_human():
         print("What is your human's gender? (male/female)")
         gender = input("> ")
     name = names.get_human_name()
-    human = Race(name, gender, "Human", "Human", "Medium", 30, "Common", "All ability scores: 1", "None", "None")
+    human = Race(name, gender, "Human", "Human", "Medium", 30, "Common", [1, 1, 1, 1, 1, 1], "None", "None")
     return human
 
 def test_races():
@@ -128,7 +128,12 @@ class Race:
         self.size = size
         self.speed = speed
         self.languages = languages
-        self.ability_score_increase = ability_score_increase
+        self.constitution_increase = ability_score_increase[0]
+        self.strength_increase = ability_score_increase[1]
+        self.dexterity_increase = ability_score_increase[2]
+        self.intelligence_increase = ability_score_increase[3]
+        self.wisdom_increase = ability_score_increase[4]
+        self.charisma_increase = ability_score_increase[5]
         self.traits = traits
         self.proficiencies = proficiencies
     

@@ -189,4 +189,22 @@ def character_bio(player):
 
 def character_abilities(player):
     player.strength, player.dexterity, player.constitution, player.intelligence, player.wisdom, player.charisma = utils.calculate_abilities()
+    if player.race.constitution_increase > 0:
+        print(f"{player.name} has a racial bonus to Constitution.")
+        player.constitution += player.race.constitution_increase
+    if player.race.strength_increase > 0:
+        print(f"{player.name} has a racial bonus to Strength.")
+        player.strength += player.race.strength_increase
+    if player.race.dexterity_increase > 0:
+        print(f"{player.name} has a racial bonus to Dexterity.")
+        player.dexterity += player.race.dexterity_increase
+    if player.race.intelligence_increase > 0:
+        print(f"{player.name} has a racial bonus to Intelligence.")
+        player.intelligence += player.race.intelligence_increase
+    if player.race.wisdom_increase > 0:
+        print(f"{player.name} has a racial bonus to Wisdom.")
+        player.wisdom += player.race.wisdom_increase
+    if player.race.charisma_increase > 0:
+        print(f"{player.name} has a racial bonus to Charisma.")
+        player.charisma += player.race.charisma_increase
     return
