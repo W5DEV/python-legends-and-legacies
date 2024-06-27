@@ -22,7 +22,7 @@ The project development is being broken up in phases:
 
 Each phase will be broken down into smaller tasks, which will be tracked in the project board. To see the current status of the project, please visit the [Official Legends and Legacies Asana Board](https://app.asana.com/0/1207330598140022/1207330707711688)
 
-Current phase ***Phase 1: Character Creation***.
+Current phase ***Phase 2: Storytelling***.
 
 ## Features
 
@@ -45,27 +45,27 @@ Currently, the game is in the early stages of development, with the basic framew
 - ~~Determine ability modifiers~~
 - ~~Create an option to take equipment based on class and background~~
 - ~~Flesh out equipment options other than weapons and armor~~
-- Allow player to equip/ready weapons, equipment and armor
-- Calculate armor class based on currently equipped armor
-- Calculate weight based on current equipment and implement encumbrance
+- ~~Allow player to equip/ready weapons, equipment and armor~~
+- ~~Calculate armor class based on currently equipped armor~~
+- ~~Add a system for leveling up based on experience points~~
+- ~~Add a system for calculating hit points and health~~
 
 ### Phase 2: Storytelling
 
-- Create a basic story that allows a player to make choices
+- Create a basic story and story engine that allows a player to make choices
 - Add branching paths based on player choices
 - Add random encounters
 
-### Phase 3: Combat
+### Phase 3: Combat and Mechanics
 
 - Create a basic combat system which allows the player to make moves based on their class, race, equipment, and abilities
 - Make combat turn-based, which accounts for player and enemy actions
 - Add a system for calculating damage based on weapons, abilities, and armor
-- ~~Add a system for calculating hit points and health~~
+- Calculate weight based on current equipment and implement encumbrance
 
 ### Phase 4: Leveling Up
 
 - Create a system for gaining experience points for key moments in the story, or for key events
-- ~~Add a system for leveling up based on experience points~~
 - Add a system for gaining new abilities, spells, or feats based on level
 
 ### Phase 5: Testing
