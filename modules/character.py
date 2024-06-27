@@ -69,13 +69,25 @@ class Character:
             self.max_base_hp = self.archetype.base_hp
         else:
             if self.archetype.hit_die == "1d6":
-                self.max_base_hpp += dice_rolls.roll_6_sided_dice()
+                roll = dice_rolls.roll_6_sided_dice()
+                if roll < 3:
+                    roll = dice_rolls.roll_6_sided_dice()
+                self.max_base_hpp += roll
             elif self.archetype.hit_die == "1d8":
-                self.max_base_hp += dice_rolls.roll_8_sided_dice()
+                roll = dice_rolls.roll_8_sided_dice()
+                if roll < 3:
+                    roll = dice_rolls.roll_8_sided_dice()
+                self.max_base_hp += roll
             elif self.archetype.hit_die == "1d10":
-                self.max_base_hp += dice_rolls.roll_10_sided_dice()
+                roll = dice_rolls.roll_10_sided_dice()
+                if roll < 3:
+                    roll = dice_rolls.roll_10_sided_dice()
+                self.max_base_hp += roll
             elif self.archetype.hit_die == "1d12":
-                self.max_base_hp += dice_rolls.roll_12_sided_dice()
+                roll = dice_rolls.roll_12_sided_dice()
+                if roll < 3:
+                    roll = dice_rolls.roll_12_sided_dice()
+                self.max_base_hp += roll
         return
     
     def calculate_max_hp(self):
