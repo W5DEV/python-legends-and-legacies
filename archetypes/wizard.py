@@ -215,11 +215,11 @@ def define_wizard():
     print(f"One {weapon_choice.name} has been added to your starting equipment.")
     wizard.starting_equipment.append(weapon_choice)
 
-    equipment_choice_2 = starting_equipment.starting_equipment_choice("Component Pouch", "Arcane Focus")
+    equipment_choice_2 = starting_equipment.starting_equipment_choice("Component Pouch", "Arcane Focus Crystal")
     if equipment_choice_2.lower() == "component pouch":
         focus_choice = starting_equipment.starting_equipment("Component Pouch")
     else:
-        focus_choice = starting_equipment.starting_equipment("Arcane Focus")
+        focus_choice = starting_equipment.starting_equipment("Arcane Focus Crystal")
     print(f"One {focus_choice.name} has been added to your starting equipment.")
     wizard.starting_equipment.append(focus_choice)
 

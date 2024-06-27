@@ -258,7 +258,7 @@ def define_sorcerer():
         print(f"One {weapon_choice.name} has been added to your starting equipment.")
         sorcerer.starting_equipment.append(weapon_choice)
 
-    equipment_choice_2 = starting_equipment.starting_equipment_choice("Component Pouch", "Arcane Focus")
+    equipment_choice_2 = starting_equipment.starting_equipment_choice("Component Pouch", "Arcane Focus Crystal")
     if equipment_choice_2.lower() == "component pouch":
         equipment_choice = starting_equipment.starting_equipment("Component Pouch")
     else:
