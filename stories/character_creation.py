@@ -57,7 +57,7 @@ def character_creation():
 
     print(f"{player.name} has been awarded 300xp for defeating the Biography Synopsis Boogeyman!")
     player.award_xp(300)
-    print(f"{player.name} is level {player.level}. They have a max of {player.max_hp} hit points. Their proficiency bonus is {player.proficiency_bonus}. They have {player.xp}xp need {player.xp_needed_for_next_level()}xp to level up.")
+    print(f"{player.name} is level {player.level}. They have a max of {player.max_hp} hit points. Their proficiency bonus is {player.proficiency_bonus}. They have {player.xp}xp and need an additional {player.xp_needed_for_next_level()}xp to level up.")
 
     print(f"{player.name} can now equip, ready and unequip items from their inventory!")
     player.equip_armor()
@@ -68,9 +68,13 @@ def character_creation():
     player.unequip_weapon()
     player.unequip_shield()
 
+    ac = player.calculate_armor_class()
+    print(f"{player.name}'s Armor Class is {ac}.")
+    print(f"Expected ac: {player.dexterity_mod + 10}")
+
     print(f"{player.name} has successfully completed the demonstration of their equipment! They have been awarded 600xp!")
     player.award_xp(600)
-    print(f"{player.name} is level {player.level}. They have a max of {player.max_hp} hit points. Their proficiency bonus is {player.proficiency_bonus}. They have {player.xp}xp need {player.xp_needed_for_next_level()}xp to level up.")
+    print(f"{player.name} is level {player.level}. They have a max of {player.max_hp} hit points. Their proficiency bonus is {player.proficiency_bonus}. They have {player.xp}xp and need an additional {player.xp_needed_for_next_level()}xp to level up.")
 
     print(f"{player.name} has emerged a Legend and has most assuredly left behind a Legacy! Congratulations on completing the Daunting Trials of Character Creation!")
     return player

@@ -52,7 +52,7 @@ Currently, the game is in the early stages of development, with the basic framew
 
 ### Phase 2: Storytelling
 
-- Create a basic story and story engine that allows a player to make choices
+- ~~Create a basic story and story engine that allows a player to make choices~~
 - Add branching paths based on player choices
 - Add random encounters
 
