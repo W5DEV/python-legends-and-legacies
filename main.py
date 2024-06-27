@@ -34,6 +34,9 @@ def main():
     player.unequip_armor()
     player.unequip_weapon()
     player.unequip_shield()
-    
+
+    ac = player.calculate_armor_class()
+    print(f"{player.name}'s Armor Class is {ac}.")
+
     return
 main()

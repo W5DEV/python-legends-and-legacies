@@ -211,6 +211,20 @@ class Character:
                 return
         print("You have not readied any weapons.")    
         return
+    
+    def calculate_armor_class(self):
+        base_ac = 10
+        dex_mod = self.dexterity_mod
+        if self.equipped_armor == None:
+            armor_bonus = 0
+        else:
+            armor_bonus = self.equipped_armor.ac
+        if self.equipped_shield == None:
+            shield_bonus = 0
+        else:
+            shield_bonus = self.equipped_shield.ac
+        armor_class = base_ac + dex_mod + armor_bonus + shield_bonus
+        return armor_class
 
     def calculate_proficiency_bonus(self):
         self.calculate_level()
