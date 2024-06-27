@@ -80,15 +80,15 @@ class Bard:
         return
     
     def sync_level(self, level):
-        if level >= 1:
+        if level == 1:
             self.special_abilities.append("Spellcasting")
             self.special_abilities.append("Bardic Inspiration (d6)")
-        if level >= 2:
+        if level == 2:
             self.special_abilities.append("Jack of All Trades")
             self.special_abilities.append("Song of Rest (d6)")
             self.spell_slots_level_1 = 3
             self.spells_known = 5
-        if level >= 3:
+        if level == 3:
             print("You have reached level 3 and can now choose two skills to gain expertise in.")
             print("Please choose two skills from the following list:")
             for skill in self.skill_proficiencies:
@@ -105,33 +105,33 @@ class Bard:
             self.spells_known = 6
             self.spell_slots_level_1 = 4
             self.spell_slots_level_2 = 2
-        if level >= 4:
+        if level == 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
             self.spells_known = 7
             self.spell_slots_level_2 = 3
-        if level >= 5:
+        if level == 5:
             self.special_abilities.append("Bardic Inspiration (d8)")
             self.special_abilities.append("Font of Inspiration")
             self.spells_known = 8
             self.spell_slots_level_3 = 2
-        if level >= 6:
+        if level == 6:
             self.special_abilities.append("Countercharm")
             self.special_abilities.append("Additional Magical Secrets")
             self.spells_known = 9
             self.spell_slots_level_3 = 3
-        if level >= 7:
+        if level == 7:
             self.spells_known = 10
             self.spell_slots_level_4 = 1
-        if level >= 8:
+        if level == 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
             self.spells_known = 11
             self.spell_slots_level_4 = 2
-        if level >= 9:
+        if level == 9:
             self.special_abilities.append("Song of Rest (d8)")
             self.spells_known = 12
             self.spell_slots_level_4 = 3
             self.spell_slots_level_5 = 1
-        if level >= 10:
+        if level == 10:
             self.special_abilities.append("Bardic Inspiration (d10)")
             print("You have reached level 10 and can now choose two skills to gain expertise in.")
             print("Please choose two skills from the following list:")
@@ -154,16 +154,16 @@ class Bard:
             self.bard_spells.append(bard_spell_choice2)
             self.spells_known = 14
             self.spell_slots_level_5 = 2
-        if level >= 11:
+        if level == 11:
             self.spells_known = 15
             self.spell_slots_level_6 = 1
-        if level >= 12:
+        if level == 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
-        if level >= 13:
+        if level == 13:
             self.special_abilities.append("Song of Rest (d10)")
             self.spells_known = 16
             self.spell_slots_level_7 = 1
-        if level >= 14:
+        if level == 14:
             print("You have reached level 14 and can choose two spells or cantrips to count as bard spells.")
             print("Please choose two spells from the bard table below.")
             print("Insert spell table here.")
@@ -175,17 +175,17 @@ class Bard:
             self.bard_spells.append(bard_spell_choice2)
             self.special_abilities.append("Peerless Skill")
             self.spells_known = 18
-        if level >= 15:
+        if level == 15:
             self.special_abilities.append("Bardic Inspiration (d12)")
             self.spells_known = 19
             self.spell_slots_level_8 = 1
-        if level >= 16:
+        if level == 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
-        if level >= 17:
+        if level == 17:
             self.special_abilities.append("Song of Rest (d12)")
             self.spells_known = 20
             self.spell_slots_level_9 = 1
-        if level >= 18:
+        if level == 18:
             print("You have reached level 18 and can choose two spells or cantrips to count as bard spells.")
             print("Please choose two spells from the bard table below.")
             print("Insert spell table here.")
@@ -197,10 +197,10 @@ class Bard:
             self.bard_spells.append(bard_spell_choice2)
             self.spells_known = 22
             self.spell_slots_level_5 = 3
-        if level >= 19:
+        if level == 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
             self.spell_slots_level_6 = 2
-        if level >= 20:
+        if level == 20:
             self.special_abilities.append("Superior Inspiration")
             self.spell_slots_level_7 = 2
         print(f"Special Abilities for level {level}:")

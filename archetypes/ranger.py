@@ -55,10 +55,10 @@ class Ranger:
         return
     
     def sync_level(self, level):
-        if level >= 1:
+        if level == 1:
             self.special_abilities.append("Favored Enemy")
             self.special_abilities.append("Natural Explorer")
-        if level >= 2:
+        if level == 2:
             print("You have reached level 1 and now have the following fighting styles:")
             for style in ["Archery", "Defense", "Dueling", "Two-Weapon Fighting"]:
                 print(style)
@@ -74,64 +74,64 @@ class Ranger:
             self.special_abilities.append("Spellcasting")
             self.spells_known = 2
             self.spell_slots_level_1 = 2
-        if level >= 3:
+        if level == 3:
             self.ranger_archetype = "Hunter"
             self.special_abilities.append("Hunter's Prey")
             self.special_abilities.append("Primeval Awareness")
             self.spells_known = 3
             self.spell_slots_level_1 = 3
-        if level >= 4:
+        if level == 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
-        if level >= 5:
+        if level == 5:
             self.special_abilities.append("Extra Attack")
             self.spells_known = 4
             self.spell_slots_level_1 = 4
             self.spell_slots_level_2 = 2
-        if level >= 6:
+        if level == 6:
             self.special_abilities.append("Favorite Enemy Improvement")
             self.special_abilities.append("Natural Explorer Improvement")
-        if level >= 7:
+        if level == 7:
             self.special_abilities.append("Defensive Tactics")
             self.spells_known = 5
             self.spell_slots_level_3 = 3
-        if level >= 8:
+        if level == 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
             self.special_abilities.append("Land's Stride")
-        if level >= 9:
+        if level == 9:
             self.spells_known = 6
             self.spell_slots_level_3 = 2
-        if level >= 10:
+        if level == 10:
             self.special_abilities.append("Natural Explorer Improvement")
             self.special_abilities.append("Hide in Plain Sight")
-        if level >= 11:
+        if level == 11:
             self.special_abilities.append("Multiattack")
             self.spells_known = 7
             self.spell_slots_level_3 = 3
-        if level >= 12:
+        if level == 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
-        if level >= 13:
+        if level == 13:
             self.spells_known = 8
             self.spell_slots_level_4 = 1
-        if level >= 14:
+        if level == 14:
             self.special_abilities.append("Favored Enemy Improvement")
             self.special_abilities.append("Vanish")
-        if level >= 15:
+        if level == 15:
             self.special_abilities.append("Superior Hunter's Defense")
             self.spells_known = 9
             self.spell_slots_level_4 = 2
-        if level >= 16:
+        if level == 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
-        if level >= 17:
+        if level == 17:
             self.spells_known = 10
             self.spell_slots_level_4 = 3
             self.spell_slots_level_5 = 1
-        if level >= 18:
+        if level == 18:
             self.special_abilities.append("Fereal Senses")
-        if level >= 19:
+        if level == 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
             self.spells_known = 11
             self.spell_slots_level_5 = 2
-        if level >= 20:
+        if level == 20:
             self.special_abilities.append("Foe Slayer")
 
 def define_ranger():

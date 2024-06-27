@@ -21,6 +21,11 @@ def main():
     print(f"{player.name} has {player.max_hp} hit points.")
     print(f"{player.name} has {player.gp} gold pieces.")
     print(f"{player.name} has {player.xp} xp and is level {player.level}. This means they have a proficiency bonus of {player.proficiency_bonus}.")
+    print(f"{player.name} needs {player.xp_needed_for_next_level()} xp to level up.")
     print(player.xp_needed_for_next_level())
-
+    print("Simulating a level up...")
+    player.award_xp(300)
+    print(f"{player.name} is level {player.level}. They have a max of {player.max_hp} hit points. Their proficiency bonus is {player.proficiency_bonus}. They need {player.xp_needed_for_next_level()} to level up.")
+    
+    return
 main()

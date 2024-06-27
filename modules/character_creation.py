@@ -124,7 +124,7 @@ def character_archetype(player):
     
     archetype = archetypes.create_archetype(archetype.lower())
     player.archetype = archetype
-    player.sync_level(1)
+    player.sync_level()
     return 
 
 def character_bio(player):

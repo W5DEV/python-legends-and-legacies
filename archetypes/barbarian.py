@@ -52,58 +52,58 @@ class Barbarian:
         return
     
     def sync_level(self, level):
-        if level >= 1:
+        if level == 1:
             self.special_abilities.append("Rage")
             self.special_abilities.append("Unarmored Defense")
             self.rages = 1
             self.rage_damage_bonus = 2
-        if level >= 2:
+        if level == 2:
             self.special_abilities.append("Reckless Attack")
             self.special_abilities.append("Danger Sense")
-        if level >= 3:
+        if level == 3:
             print("You have reached level 3 and can now choose your Primal Path: Path of the Berserker")
             self.primal_path = "Path of the Berserker"
             self.special_abilities.append("Frenzy")
             self.rages = 3
-        if level >= 4:
+        if level == 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
-        if level >= 5:
+        if level == 5:
             self.special_abilities.append("Extra Attack")
             self.special_abilities.append("Fast Movement")
-        if level >= 6:
+        if level == 6:
             self.special_abilities.append("Mindless Rage")
             self.rages = 4
-        if level >= 7:
+        if level == 7:
             self.special_abilities.append("Feral Instinct")
-        if level >= 8:
+        if level == 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
-        if level >= 9:
+        if level == 9:
             self.special_abilities.append("Brutal Critical")
             self.rage_damage_bonus = 3
-        if level >= 10:
+        if level == 10:
             self.special_abilities.append("Intimidating Presence")
-        if level >= 11:
+        if level == 11:
             self.special_abilities.append("Reliable Talent")
             self.special_abilities.append("Relentless Rage")
-        if level >= 12:
+        if level == 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
             self.rages = 5
-        if level >= 13:
+        if level == 13:
             self.special_abilities.append("Bear Totem")
-        if level >= 14:
+        if level == 14:
             self.special_abilities.append("Retaliation")
-        if level >= 15:
+        if level == 15:
             self.special_abilities.append("Persistent Rage")
-        if level >= 16:
+        if level == 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
             self.rage_damage_bonus = 4
-        if level >= 17:
+        if level == 17:
             self.rages = 6
-        if level >= 18:
+        if level == 18:
             self.special_abilities.append("Indomitable Might")
-        if level >= 19:
+        if level == 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
-        if level >= 20:
+        if level == 20:
             self.special_abilities.append("Primal Champion")
             self.rages = 9999
         print(f"Special Abilities for level {level}:")
@@ -111,7 +111,7 @@ class Barbarian:
         for ability in self.special_abilities:
             print(f"{i}: {ability}")
             i += 1
-        return self
+        return
 
 def define_barbarian():
     barbarian = Barbarian()

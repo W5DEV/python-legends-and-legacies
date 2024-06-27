@@ -58,15 +58,15 @@ class Paladin:
         return
     
     def sync_level(self, level):
-        if level >= 1:
+        if level == 1:
             self.special_abilities.append("Divine Sense")
             self.special_abilities.append("Lay on Hands")
-        if level >= 2:
+        if level == 2:
             self.special_abilities.append("Fighting Style")
             self.special_abilities.append("Spellcasting")
             self.special_abilities.append("Divine Smite")
             self.spell_slots_level_1 = 2
-        if level >= 3:
+        if level == 3:
             self.sacred_oath = "Oath of Devotion"
             self.channel_divinity_options.append("Sacred Weapon")
             self.channel_divinity_options.append("Turn the Unholy")
@@ -75,55 +75,55 @@ class Paladin:
             self.oath_of_devotion_spells.append("Protection from Evil and Good")
             self.oath_of_devotion_spells.append("Sanctuary")
             self.spell_slots_level_1 = 3
-        if level >= 4:
+        if level == 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
-        if level >= 5:
+        if level == 5:
             self.special_abilities.append("Extra Attack")
             self.oath_of_devotion_spells.append("Lesser Restoration")
             self.oath_of_devotion_spells.append("Zone of Truth")
             self.spell_slots_level_1 = 4
             self.spell_slots_level_2 = 2
-        if level >= 6:
+        if level == 6:
             self.special_abilities.append("Aura of Protection")
-        if level >= 7:
+        if level == 7:
             self.special_abilities.append("Aura of Devotion (10 ft)")
             self.spell_slots_level_2 = 3
-        if level >= 8:
+        if level == 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
-        if level >= 9:
+        if level == 9:
             self.oath_of_devotion_spells.append("Beacon of Hope")
             self.oath_of_devotion_spells.append("Dispel Magic")
             self.spell_slots_level_3 = 2
-        if level >= 10:
+        if level == 10:
             self.special_abilities.append("Aura of Courage")
-        if level >= 11:
+        if level == 11:
             self.special_abilities.append("Improved Divine Smite")
             self.spell_slots_level_3 = 3
-        if level >= 12:
+        if level == 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
-        if level >= 13:
+        if level == 13:
             self.oath_of_devotion_spells.append("Freedom of Movement")
             self.oath_of_devotion_spells.append("Guardian of Faith")
             self.spell_slots_level_4 = 1
-        if level >= 14:
+        if level == 14:
             self.special_abilities.append("Cleansing Touch")
-        if level >= 15:
+        if level == 15:
             self.special_abilities.append("Purity of Spirit")
             self.spell_slots_level_4 = 2
-        if level >= 16:
+        if level == 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
-        if level >= 17:
+        if level == 17:
             self.oath_of_devotion_spells.append("Commune")
             self.oath_of_devotion_spells.append("Flame Strike")
             self.spell_slots_level_4 = 3
             self.spell_slots_level_5 = 1
-        if level >= 18:
+        if level == 18:
             self.special_abilities.append("Aura Improvements")
             self.special_abilities.append("Aura of Devotion (30 ft)")
-        if level >= 19:
+        if level == 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
             self.spell_slots_level_5 = 2
-        if level >= 20:
+        if level == 20:
             self.special_abilities.append("Holy Nimbus")
 
 

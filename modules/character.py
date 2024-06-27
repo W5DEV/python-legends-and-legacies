@@ -28,21 +28,27 @@ class Character:
         self.wisdom_mod = 0
         self.charisma = 0
         self.charisma_mod = 0
+        self.equipped_armor = None
+        self.equipped_weapon = None
+        self.readied_weapon = None
 
     def initialize_player(self):
         self.calculate_level()
         self.calculate_modifiers()
         self.sync_max_hp()
         self.calculate_proficiency_bonus()
-        return self
+        return
 
-    def level_up(self):
-        self.level += 1
-        self.sync_level(self.level)
-        self.sync_max_hp()
-        self.hp = self.max_hp
-        self.calculate_proficiency_bonus()
-        return f"{self.name} has leveled up to level {self.level}!"
+    def award_xp(self, xp):
+        self.xp += xp
+        current_level = self.level
+        self.calculate_level()
+        if current_level < self.level:
+            self.sync_level()
+            self.sync_max_hp()
+            self.hp = self.max_hp
+            self.calculate_proficiency_bonus()
+        return
     
     def calculate_modifiers(self):
         self.strength_mod = (self.strength - 10) // 2
@@ -57,14 +63,15 @@ class Character:
         if self.level == 1:
             self.max_hp = self.archetype.base_hp + self.constitution_mod
         else:
-            if self.archetype.hit_die == "d6":
+            if self.archetype.hit_die == "1d6":
                 self.max_hp += dice_rolls.roll_6_sided_dice() + self.constitution_mod
-            elif self.archetype.hit_die == "d8":
+            elif self.archetype.hit_die == "1d8":
                 self.max_hp += dice_rolls.roll_8_sided_dice() + self.constitution_mod
-            elif self.archetype.hit_die == "d10":
+            elif self.archetype.hit_die == "1d10":
                 self.max_hp += dice_rolls.roll_10_sided_dice() + self.constitution_mod
-            elif self.archetype.hit_die == "d12":
+            elif self.archetype.hit_die == "1d12":
                 self.max_hp += dice_rolls.roll_12_sided_dice() + self.constitution_mod
+        return
 
     def calculate_level(self):
         level = utils.calculate_level(self.xp)
@@ -74,32 +81,19 @@ class Character:
     def calculate_proficiency_bonus(self):
         self.calculate_level()
         level = self.level
-        proficiency_bonus = (-(-level // 4)) + 1
-        self.proficiency_bonus = proficiency_bonus
+        self.proficiency_bonus = (-(-level // 4)) + 1
         return
-    
-    def get_level(self):
-        return self.level
-    
-    def get_proficiency_bonus(self):
-        return self.proficiency_bonus
 
-    def sync_level(self, level):
-        self.archetype.sync_level(level)
+    def sync_level(self):
+        self.calculate_level()
+        self.archetype.sync_level(self.level)
+        return
 
     def sync_equipment(self):
         self.equipment = self.archetype.starting_equipment
-
-    def award_xp(self, xp):
-        self.xp += xp
-        level = utils.calculate_level(self.xp)
-        return f"{self.name} has received {xp} XP and now has a total of {self.xp} XP, making them level {level}."
+        return
     
     def xp_needed_for_next_level(self):
         xp_needed = utils.calculate_xp_needed(self.xp)
-        return f"{self.name} needs {xp_needed} XP to reach the next level."
-    
-    def calculate_max_hp(self, hp):
-        self.max_hp = hp
-        return f"{self.name} has a max HP of {self.max_hp}."
+        return xp_needed
 

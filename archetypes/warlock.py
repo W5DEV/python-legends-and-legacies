@@ -70,77 +70,77 @@ class Warlock:
         return
     
     def sync_level(self, level):
-        if level >= 1:
+        if level == 1:
             self.otherworldly_patrons = "The Fiend"
             self.special_abilities.append("Fiend Expanded Spells Level 1")
             self.special_abilities.append("Pact Magic")
             self.special_abilities.append("Dark One's Blessing")
-        if level >= 2:
+        if level == 2:
             self.special_abilities.append("Eldritch Invocations")
             self.special_abilities.append("Fiend Expanded Spells Level 2")
             self.spells_known = 3
             self.spell_slots = 2
             self.invocations_known = 2
-        if level >= 3:
+        if level == 3:
             self.special_abilities.append("Pact Boom")
             self.special_abilities.append("Fiend Expanded Spells Level 3")
             self.spells_known = 4
             self.spell_slot_level = 2
-        if level >= 4:
+        if level == 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
             self.special_abilities.append("Fiend Expanded Spells Level 4")
             self.cantrips_known = 3
             self.spells_known = 5
-        if level >= 5:
+        if level == 5:
             self.special_abilities.append("Fiend Expanded Spells Level 5")
             self.spells_known = 6
             self.spell_slot_level = 3
             self.invocations_known = 3
-        if level >= 6:
+        if level == 6:
             self.special_abilities.append("Dark One's Own Luck")
             self.spells_known = 7
-        if level >= 7:
+        if level == 7:
             self.spells_known = 8
             self.spell_slot_level = 4
             self.invocations_known = 4
-        if level >= 8:
+        if level == 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
             self.spells_known = 9
-        if level >= 9:
+        if level == 9:
             self.spells_known = 10
             self.spell_slot_level = 5
             self.invocations_known = 5
-        if level >= 10:
+        if level == 10:
             self.special_abilities.append("Fiendish Resilience")
             self.cantrips_known = 4
-        if level >= 11:
+        if level == 11:
             self.special_abilities.append("Mystic Arcanum 6th Level")
             self.spells_known = 11
             self.spell_slots = 3
-        if level >= 12:
+        if level == 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
             self.invocations_known = 6
-        if level >= 13:
+        if level == 13:
             self.special_abilities.append("Mystic Arcanum 7th Level")
             self.spells_known = 12
-        if level >= 14:
+        if level == 14:
             self.special_abilities.append("Hurl Through Hell")
-        if level >= 15:
+        if level == 15:
             self.special_abilities.append("Mystic Arcanum 8th Level")
             self.spells_known = 13
             self.invocations_known = 7
-        if level >= 16:
+        if level == 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
-        if level >= 17:
+        if level == 17:
             self.special_abilities.append("Mythic Arcanum 9th Level")
             self.spells_known = 14
             self.spell_slots = 4
-        if level >= 18:
+        if level == 18:
             self.invocations_known = 8
-        if level >= 19:
+        if level == 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
             self.spells_known = 15
-        if level >= 20:
+        if level == 20:
             self.special_abilities.append("Eldritch Master")
 
 def define_warlock():

@@ -50,58 +50,58 @@ class Rogue:
         return
     
     def sync_level(self, level):
-        if level >= 1:
+        if level == 1:
             self.special_abilities.append("Expertise")
             self.special_abilities.append("Sneak Attack")
             self.special_abilities.append("Thieves' Cant")
-        if level >= 2:
+        if level == 2:
             self.special_abilities.append("Cunning Action")
-        if level >= 3:
+        if level == 3:
             self.roguish_archetype = "Thief"
             self.special_abilities.append("Fast Hands")
             self.special_abilities.append("Second-Story Work")
             self.sneak_attack_die = "2d6"
-        if level >= 4:
+        if level == 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
-        if level >= 5:
+        if level == 5:
             self.special_abilities.append("Uncanny Dodge")
             self.sneak_attack_die = "3d6"
-        if level >= 6:
+        if level == 6:
             self.special_abilities.append("Expertise")
-        if level >= 7:
+        if level == 7:
             self.special_abilities.append("Evasion")
             self.sneak_attack_die = "4d6"
-        if level >= 8:
+        if level == 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
-        if level >= 9:
+        if level == 9:
             self.special_abilities.append("Supreme Sneak")
             self.sneak_attack_die = "5d6"
-        if level >= 10:
+        if level == 10:
             self.special_abilities.append("Ability Score Improvement 10th Level")
-        if level >= 11:
+        if level == 11:
             self.special_abilities.append("Reliable Talent")
             self.sneak_attack_die = "6d6"
-        if level >= 12:
+        if level == 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
-        if level >= 13:
+        if level == 13:
             self.special_abilities.append("Use Magic Device")
             self.sneak_attack_die = "7d6"
-        if level >= 14:
+        if level == 14:
             self.special_abilities.append("Blindsense")
-        if level >= 15:
+        if level == 15:
             self.special_abilities.append("Slippery Mind")
             self.sneak_attack_die = "8d6"
-        if level >= 16:
+        if level == 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
-        if level >= 17:
+        if level == 17:
             self.special_abilities.append("Thief's Reflexes")
             self.sneak_attack_die = "9d6"
-        if level >= 18:
+        if level == 18:
             self.special_abilities.append("Elusive")
-        if level >= 19:
+        if level == 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
             self.sneak_attack_die = "10d6"
-        if level >= 20:
+        if level == 20:
             self.special_abilities.append("Stroke of Luck")
 
 def define_rogue():
