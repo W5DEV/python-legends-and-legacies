@@ -13,16 +13,16 @@ Any contributions are welcome, and can be made by forking the repository and sub
 The project development is being broken up in phases:
 
 - Phase 1: Character Creation
-- Phase 2: Storytelling
+- Phase 2: Basic Storytelling/UI Implementation
 - Phase 3: Combat
 - Phase 4: Leveling Up
 - Phase 5: Testing
-- Phase 6: UI Implementation
+- Phase 6: Advanced Storytelling/Logic
 - Phase 7: Modularity and Customization
 
 Each phase will be broken down into smaller tasks, which will be tracked in the project board. To see the current status of the project, please visit the [Official Legends and Legacies Asana Board](https://app.asana.com/0/1207330598140022/1207330707711688)
 
-Current phase ***Phase 2: Storytelling***.
+Current phase ***Phase 2: Basic Storytelling/UI Implementation***.
 
 ## Features
 
@@ -50,11 +50,15 @@ Currently, the game is in the early stages of development, with the basic framew
 - ~~Add a system for leveling up based on experience points~~
 - ~~Add a system for calculating hit points and health~~
 
-### Phase 2: Storytelling
+### Phase 2: Basic Storytelling/UI Implementation
 
 - ~~Create a basic story and story engine that allows a player to make choices~~
-- Add branching paths based on player choices
-- Add random encounters
+- Convert game from console-based to GUI-based
+- Create user-selectable options based on the current state of the game, equipment, and abilities
+- Add a system for displaying character stats, abilities, and equipment
+- Add a system for displaying the current story, choices, and outcomes
+- Add a system for displaying combat stats, health, and damage
+- Add a system for displaying experience points, level, and abilities
 
 ### Phase 3: Combat and Mechanics
 
@@ -74,14 +78,10 @@ Currently, the game is in the early stages of development, with the basic framew
 - Gather feedback from players and make necessary changes
 - Optimize the game for performance and stability
 
-### Phase 6: UI Implementation
+### Phase 6: Advanced Storytelling/Logic
 
-- Convert game from console-based to GUI-based
-- Create user-selectable options based on the current state of the game, equipment, and abilities
-- Add a system for displaying character stats, abilities, and equipment
-- Add a system for displaying the current story, choices, and outcomes
-- Add a system for displaying combat stats, health, and damage
-- Add a system for displaying experience points, level, and abilities
+- Add branching paths based on player choices
+- Add random encounters
 
 ### Phase 7: Modularity and Customization
 
