@@ -3,6 +3,7 @@ import sys
 import gui.text_display as text_display
 import gui.buttons as buttons
 import gui.constants as constants
+import gui_utils.select_starting_equipment as select_starting_equipment
 
 # Initialize pygame
 pygame.init()
@@ -111,4 +112,29 @@ class Barbarian:
     
 def define_barbarian():
     barbarian = Barbarian()
+
+    ### Equipment Choices ###
+
+    first_equipment_choice = select_starting_equipment.weapon_choices(["Great Axe", "Martial Melee Weapons"])
+    second_equipment_choice = select_starting_equipment.weapon_choices(["Hand Axe", "Simple Weapons"])
+    third_equipment_choice = select_starting_equipment.weapon_choices(["Explorer's Pack"])
+    fourth_equipment_choice = select_starting_equipment.weapon_choices(["Javelin"])
+
+    barbarian.starting_equipment.append(first_equipment_choice)
+    if second_equipment_choice == "Hand Axe":
+        barbarian.starting_equipment.append(second_equipment_choice)
+        barbarian.starting_equipment.append(second_equipment_choice)
+    else:
+        barbarian.starting_equipment.append(second_equipment_choice)
+    
+    barbarian.starting_equipment.append(third_equipment_choice)
+
+    barbarian.starting_equipment.append(fourth_equipment_choice)
+    barbarian.starting_equipment.append(fourth_equipment_choice)
+    barbarian.starting_equipment.append(fourth_equipment_choice)
+    barbarian.starting_equipment.append(fourth_equipment_choice)
+
+
+    ### Skill Choices ###
+
     return barbarian
