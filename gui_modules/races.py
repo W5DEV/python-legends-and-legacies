@@ -431,3 +431,125 @@ def choose_languages():
         buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
 
         pygame.display.update()
+
+def define_lightfoot_halfling():
+    name = ""
+    gender = ""
+    race = "Halfling"
+    subrace = "Lightfoot Halfling"
+    size = "Small"
+    speed = 25
+    languages = ["Common", "Halfling"]
+    ability_score_increase = [0, 0, 2, 0, 0, 1]
+    traits = ["Lucky", "Brave", "Halfling Nimbleness", "Naturally Stealthy"]
+    proficiencies = ["None"]
+
+    gender = define_gender()
+    name = define_halfling_name(gender)
+
+    lightfoot_halfling = Race(name, gender, race, subrace, size , speed, languages, ability_score_increase, traits, proficiencies)
+    return lightfoot_halfling
+
+def define_stout_halfling():
+    name = ""
+    gender = ""
+    race = "Halfling"
+    subrace = "Stout Halfling"
+    size = "Small"
+    speed = 25
+    languages = ["Common", "Halfling"]
+    ability_score_increase = [1, 0, 2, 0, 0, 0]
+    traits = ["Lucky", "Brave", "Halfling Nimbleness", "Stout Resilience"]
+    proficiencies = ["None"]
+
+    gender = define_gender()
+    name = define_halfling_name(gender)
+
+    stout_halfling = Race(name, gender, race, subrace, size , speed, languages, ability_score_increase, traits, proficiencies)
+    return stout_halfling
+
+def define_halfling_name(gender):
+    name = ""
+    first_name = ""
+    family_name = ""
+    nickname = ""
+    random_chance = random.randint(0, 1)
+    halfling_male_names = ["Alton", "Ander", "Cade", "Corrin", "Eldon", "Errich", "Finnan", "Garret", "Lindal", "Lyle", "Merric", "Milo", "Osborn", "Perrin", "Reed", "Roscoe", "Wellby"]
+    halfling_female_names = ["Andry", "Bree", "Callie", "Cora", "Euphemia", "Jillian", "Kithri", "Lavinia", "Lidda", "Merla", "Nedda", "Paela", "Portia", "Seraphina", "Shaena", "Trym", "Vani", "Verna"]
+    halfling_family_names = ["Brushgather", "Goodbarrel", "Greenbottle", "High-hill", "Hilltopple", "Leagallow", "Tealeaf", "Thorngage", "Tosscobble", "Underbough"]
+
+    if gender == "Male":
+        first_name = random.choice(halfling_male_names)
+    else:
+        first_name = random.choice(halfling_female_names)
+
+    family_name = random.choice(halfling_family_names)
+
+    if random_chance == 1:
+        nickname = get_halfling_nickname()
+        name = first_name + " '" + nickname + "' " + family_name
+    else :
+        nickname = "None"
+        name = first_name + " " + family_name
+
+    button_texts = ["Click to Continue..."]
+    button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
+    text_position = (MARGIN, MARGIN)
+
+    animate_flag = True
+
+    while True:
+        mouse_pos = pygame.mouse.get_pos()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                for i, rect in enumerate(button_rects):
+                    if rect.collidepoint(mouse_pos):
+                        return name
+                    
+        screen.fill(BG_COLOR)
+
+        if nickname == "None":
+            if animate_flag:
+                text_display.animate_text(screen, f'Your halfling\'s name is {first_name} of the family {family_name}.', text_position, TEXT_AREA_WIDTH)
+                animate_flag = False
+            else:
+                text_display.draw_text(screen, f'Your halfling\'s name is {first_name} of the family {family_name}.', text_position, TEXT_AREA_WIDTH)
+        else:
+            if animate_flag:
+                text_display.animate_text(screen, f'Your halfling\'s name is {first_name} of the family {family_name}, but you prefer to go by {nickname}', text_position, TEXT_AREA_WIDTH)
+                animate_flag = False
+            else:
+                text_display.draw_text(screen, f'Your halfling\'s name is {first_name} of the family {family_name}, but you prefer to go by {nickname}', text_position, TEXT_AREA_WIDTH)
+        buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+
+        pygame.display.update()
+
+def get_halfling_nickname():
+    return "JimBob"
+    
+def define_human():
+    name = ""
+    gender = ""
+    race = "Human"
+    subrace = "Human"
+    size = "Medium"
+    speed = 30
+    languages = ["Common"]
+    ability_score_increase = [1, 1, 1, 1, 1, 1]
+    traits = ["None"]
+    proficiencies = ["None"]
+
+    gender = define_gender()
+    name = define_human_name(gender)
+
+    human = Race(name, gender, race, subrace, size , speed, languages, ability_score_increase, traits, proficiencies)
+    return human
+
+def define_human_name(gender):
+    if gender == "Male":
+        return "Jon Snow"
+    else:
+        return "Daenerys Targaryen"
