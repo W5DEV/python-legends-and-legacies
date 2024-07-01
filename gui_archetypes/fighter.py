@@ -1,25 +1,7 @@
-import pygame
-import sys
-import gui.text_display as text_display
-import gui.buttons as buttons
-import gui.constants as constants
-
-# Initialize pygame
-pygame.init()
-
-# Constants
-SCREEN_WIDTH, SCREEN_HEIGHT = constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT
-BG_COLOR = constants.BG_COLOR
-TEXT_COLOR = constants.TEXT_COLOR
-FONT_SIZE = constants.FONT_SIZE
-MARGIN = constants.MARGIN
-TEXT_AREA_WIDTH = constants.TEXT_AREA_WIDTH
-TEXT_AREA_HEIGHT = constants.TEXT_AREA_HEIGHT
-
-# Setup screen
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption('UI Example')
-font = pygame.font.SysFont(None, FONT_SIZE)
+import gui_modules.equipment as equipment
+import gui_modules.skills as skills
+import gui_modules.spells as spells
+import gui_modules.cantrips as cantrips
 
 class Fighter:
     
@@ -126,4 +108,39 @@ class Fighter:
     
 def define_fighter():
     fighter = Fighter()
+
+    ### Equipment Choices ###
+    first_equipment_choice = equipment.weapon_choices(["Chain Mail", "Leather Armor and Longbow"])
+    if first_equipment_choice == "Chain Mail":
+        fighter.starting_equipment.append(equipment.chain_mail_heavy_armor)
+    else:
+        fighter.starting_equipment.append(equipment.leather_light_armor)
+        fighter.starting_equipment.append(equipment.longbow)
+
+    second_equipment_choice = equipment.weapon_choices(["Martial Weapon and Shield", "Two Martial Weapons"])
+    if second_equipment_choice == "Martial Weapon and Shield":
+        fighter.starting_equipment.append(equipment.shield)
+        fighter.starting_equipment.append(equipment.get_weapons_from_category("Martial Weapons"))
+    else:
+        fighter.starting_equipment.append(equipment.get_weapons_from_category("Martial Weapons"))
+        fighter.starting_equipment.append(equipment.get_weapons_from_category("Martial Weapons"))
+
+    third_equipment_choice = equipment.weapon_choices(["Light Crossbow", "Two Handaxes"])
+    if third_equipment_choice == "Light Crossbow":
+        fighter.starting_equipment.append(equipment.light_crossbow)
+    else:
+        fighter.starting_equipment.append(equipment.hand_axe)
+        fighter.starting_equipment.append(equipment.hand_axe)
+
+        third_equipment_choice = equipment.weapon_choices(["Dungeoneer's Pack", "Explorer's Pack"])
+    if third_equipment_choice == "Priest's Pack":
+        fighter.starting_equipment.append(equipment.dungeoneers_pack)
+    else:
+        fighter.starting_equipment.append(equipment.explorers_pack)
+
+    ### Skill Choices ###
+    for i in range(2):
+        skill = skills.select_skill_proficiencies("fighter")
+        fighter.skill_proficiencies.append(skill)
+
     return fighter

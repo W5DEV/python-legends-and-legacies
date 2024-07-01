@@ -1,25 +1,7 @@
-import pygame
-import sys
-import gui.text_display as text_display
-import gui.buttons as buttons
-import gui.constants as constants
-
-# Initialize pygame
-pygame.init()
-
-# Constants
-SCREEN_WIDTH, SCREEN_HEIGHT = constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT
-BG_COLOR = constants.BG_COLOR
-TEXT_COLOR = constants.TEXT_COLOR
-FONT_SIZE = constants.FONT_SIZE
-MARGIN = constants.MARGIN
-TEXT_AREA_WIDTH = constants.TEXT_AREA_WIDTH
-TEXT_AREA_HEIGHT = constants.TEXT_AREA_HEIGHT
-
-# Setup screen
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption('UI Example')
-font = pygame.font.SysFont(None, FONT_SIZE)
+import gui_modules.equipment as equipment
+import gui_modules.skills as skills
+import gui_modules.spells as spells
+import gui_modules.cantrips as cantrips
 
 class Bard:
 
@@ -195,4 +177,44 @@ class Bard:
     
 def define_bard():
     bard = Bard()
+
+    ### Equipment Choices ###
+    first_equipment_choice = equipment.weapon_choices(["Rapier", "Longsword", "Any Simple Weapon"])
+    if first_equipment_choice == "Rapier":
+        bard.starting_equipment.append(equipment.rapier)
+    elif first_equipment_choice == "Longsword":
+        bard.starting_equipment.append(equipment.long_sword)
+    else:
+        bard.starting_equipment.append(equipment.get_weapons_from_category("Simple Weapons"))
+
+    second_equipment_choice = equipment.weapon_choices(["Diplomat's Pack", "Entertainer's Pack"])
+    if second_equipment_choice == "Diplomat's Pack":
+        bard.starting_equipment.append(equipment.diplomats_pack)
+    else:
+        bard.starting_equipment.append(equipment.entertainers_pack)
+
+    third_equipment_choice = equipment.weapon_choices(["Lute", "Any Musical Instrument"])
+    if third_equipment_choice == "Lute":
+        bard.starting_equipment.append(equipment.lute)
+    else:
+        bard.starting_equipment.append(equipment.get_weapons_from_category("Instruments"))
+
+    bard.starting_equipment.append(equipment.leather_light_armor)
+    bard.starting_equipment.append(equipment.dagger)
+
+    ### Skill Choices ###
+    for i in range(3):
+        skill = skills.select_skill_proficiencies("Bard")
+        bard.skill_proficiencies.append(skill)
+
+    ### Spell Choices ###
+    for i in range(4):
+        spell = spells.select_spells("Bard")
+        bard.spells.append(spell)
+
+    ### Cantrip Choices ###
+    for i in range(2):
+        cantrip = cantrips.select_cantrips("Bard")
+        bard.cantrips.append(cantrip)
+
     return bard

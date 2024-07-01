@@ -1,27 +1,7 @@
-import pygame
-import sys
-import gui.text_display as text_display
-import gui.buttons as buttons
-import gui.constants as constants
-import gui_utils.select_starting_equipment as select_starting_equipment
-import gui_utils.equipment as equipment
-
-# Initialize pygame
-pygame.init()
-
-# Constants
-SCREEN_WIDTH, SCREEN_HEIGHT = constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT
-BG_COLOR = constants.BG_COLOR
-TEXT_COLOR = constants.TEXT_COLOR
-FONT_SIZE = constants.FONT_SIZE
-MARGIN = constants.MARGIN
-TEXT_AREA_WIDTH = constants.TEXT_AREA_WIDTH
-TEXT_AREA_HEIGHT = constants.TEXT_AREA_HEIGHT
-
-# Setup screen
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption('UI Example')
-font = pygame.font.SysFont(None, FONT_SIZE)
+import gui_modules.equipment as equipment
+import gui_modules.skills as skills
+import gui_modules.spells as spells
+import gui_modules.cantrips as cantrips
 
 class Barbarian:
     
@@ -115,18 +95,18 @@ def define_barbarian():
     barbarian = Barbarian()
 
     ### Equipment Choices ###
-    first_equipment_choice = select_starting_equipment.weapon_choices(["Great Axe", "Any Martial Melee Weapon"])
+    first_equipment_choice = equipment.weapon_choices(["Great Axe", "Any Martial Melee Weapon"])
     if first_equipment_choice == "Great Axe":
         barbarian.starting_equipment.append(equipment.great_axe)
     else:
-        barbarian.starting_equipment.append(select_starting_equipment.get_weapons_from_category("Martial Melee Weapons"))
+        barbarian.starting_equipment.append(equipment.get_weapons_from_category("Martial Melee Weapons"))
 
-    second_equipment_choice = select_starting_equipment.weapon_choices(["Two Hand Axes", "Any Simple Weapon"])
+    second_equipment_choice = equipment.weapon_choices(["Two Hand Axes", "Any Simple Weapon"])
     if second_equipment_choice == "Two Hand Axes":
         barbarian.starting_equipment.append(equipment.hand_axe)
         barbarian.starting_equipment.append(equipment.hand_axe)
     else:
-        barbarian.starting_equipment.append(select_starting_equipment.get_weapons_from_category("Simple Weapons"))
+        barbarian.starting_equipment.append(equipment.get_weapons_from_category("Simple Weapons"))
     
     barbarian.starting_equipment.append(equipment.explorers_pack)
 
@@ -136,5 +116,8 @@ def define_barbarian():
     barbarian.starting_equipment.append(equipment.javelin)
 
     ### Skill Choices ###
+    for i in range(2):
+        skill = skills.select_skill_proficiencies("Barbarian")
+        barbarian.skill_proficiencies.append(skill)
 
     return barbarian

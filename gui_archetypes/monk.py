@@ -1,25 +1,7 @@
-import pygame
-import sys
-import gui.text_display as text_display
-import gui.buttons as buttons
-import gui.constants as constants
-
-# Initialize pygame
-pygame.init()
-
-# Constants
-SCREEN_WIDTH, SCREEN_HEIGHT = constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT
-BG_COLOR = constants.BG_COLOR
-TEXT_COLOR = constants.TEXT_COLOR
-FONT_SIZE = constants.FONT_SIZE
-MARGIN = constants.MARGIN
-TEXT_AREA_WIDTH = constants.TEXT_AREA_WIDTH
-TEXT_AREA_HEIGHT = constants.TEXT_AREA_HEIGHT
-
-# Setup screen
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption('UI Example')
-font = pygame.font.SysFont(None, FONT_SIZE)
+import gui_modules.equipment as equipment
+import gui_modules.skills as skills
+import gui_modules.spells as spells
+import gui_modules.cantrips as cantrips
 
 class Monk:
     
@@ -133,4 +115,50 @@ class Monk:
 
 def define_monk():
     monk = Monk()
+
+    ### Equipment Choices ###
+    first_equipment_choice = equipment.weapon_choices(["Mace", "Warhammer"])
+    if first_equipment_choice == "Mace":
+        monk.starting_equipment.append(equipment.mace)
+    elif first_equipment_choice == "Warhammer":
+        monk.starting_equipment.append(equipment.war_hammer)
+
+    second_equipment_choice = equipment.weapon_choices(["Scale Mail", "Leather Armor", "Chain Mail"])
+    if second_equipment_choice == "Scale Mail":
+        monk.starting_equipment.append(equipment.scale_mail_medium_armor)
+    elif second_equipment_choice == "Leather Armor":
+        monk.starting_equipment.append(equipment.leather_light_armor)
+    elif second_equipment_choice == "Chain Mail":
+        monk.starting_equipment.append(equipment.chain_mail_heavy_armor)
+
+    third_equipment_choice = equipment.weapon_choices(["Light Crossbow", "Any Simple Weapon"])
+    if third_equipment_choice == "Light Crossbow":
+        monk.starting_equipment.append(equipment.light_crossbow)
+    else:
+        monk.starting_equipment.append(equipment.get_weapons_from_category("Simple Weapons"))
+
+        third_equipment_choice = equipment.weapon_choices(["Priest's Pack", "Explorer's Pack"])
+    if third_equipment_choice == "Priest's Pack":
+        monk.starting_equipment.append(equipment.priests_pack)
+    else:
+        monk.starting_equipment.append(equipment.explorers_pack)
+
+    monk.starting_equipment.append(equipment.shield)
+    monk.starting_equipment.append(equipment.holy_symbol_emblem)
+
+    ### Skill Choices ###
+    for i in range(2):
+        skill = skills.select_skill_proficiencies("monk")
+        monk.skill_proficiencies.append(skill)
+
+    ### Spell Choices ###
+    for i in range(1):
+        spell = spells.select_spells("monk")
+        monk.spells.append(spell)
+
+    ### Cantrip Choices ###
+    for i in range(3):
+        cantrip = cantrips.select_cantrips("monk")
+        monk.cantrips.append(cantrip)
+
     return monk
