@@ -122,7 +122,6 @@ def define_gender():
 
 
 def define_hill_dwarf():
-    animate_flag = True
     name = ""
     gender = ""
     race = "Dwarf"
@@ -142,6 +141,27 @@ def define_hill_dwarf():
 
     hill_dwarf = Race(name, gender, race, subrace, size , speed, languages, ability_score_increase, traits, proficiencies)
     return hill_dwarf
+
+def define_mountain_dwarf():
+    name = ""
+    gender = ""
+    race = "Dwarf"
+    subrace = "Mountain Dwarf"
+    size = "Medium"
+    speed = 25
+    languages = ["Common", "Dwarvish"]
+    ability_score_increase = [2, 2, 0, 0, 0, 0]
+    traits = ["Darkvision", "Dwarven Resilience", "Dwarven Combat Training", "Stonecunning", "Tool Proficiency", "Dwarven Armor Training"]
+    proficiencies = ["Battleaxe", "Handaxe", "Light Hammer", "Warhammer", "Light Armor", "Medium Armor"]
+
+    gender = define_gender()
+    name = define_dwarf_name(gender)
+    tool_proficiency = get_dwarf_tool_proficiency()
+
+    proficiencies.append(tool_proficiency)
+
+    mountain_dwarf = Race(name, gender, race, subrace, size , speed, languages, ability_score_increase, traits, proficiencies)
+    return mountain_dwarf
 
 def define_dwarf_name(gender):
     button_texts = ["Click to Continue"]

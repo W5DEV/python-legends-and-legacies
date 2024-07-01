@@ -10,7 +10,7 @@ def main():
     player_race = races.choose_race()
     player.race = player_race
     player.name = player.race.name
-    print(f"{player.name} the {player.race.subrace} has been created!")
+    player.announce_character()
     
 
 if __name__ == '__main__':
