@@ -38,18 +38,16 @@ def weapon_choices(choices):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 for i, rect in enumerate(button_rects):
                     if rect.collidepoint(mouse_pos):
-                        if choices[i] in equipment.equipment_types:
-                            return get_weapons_from_category(choices[i])
-                        else:
-                            return equipment.starting_equipment(choices[i])
+                        if rect.collidepoint(mouse_pos):
+                            return choices[i]
 
         screen.fill(BG_COLOR)
 
         if animate_flag:
-            text_display.animate_text(screen, 'Choose your starting equipment from the items below...', text_position, TEXT_AREA_WIDTH)
+            text_display.animate_text(screen, 'Choose from the starting equipment items below...', text_position, TEXT_AREA_WIDTH)
             animate_flag = False
         else:
-            text_display.draw_text(screen, 'Choose your starting equipment from the items below...', text_position, TEXT_AREA_WIDTH)
+            text_display.draw_text(screen, 'Choose from the starting equipment items below...', text_position, TEXT_AREA_WIDTH)
 
         buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
 
@@ -114,10 +112,10 @@ def select_weapon_from_category(weapons):
         screen.fill(BG_COLOR)
 
         if animate_flag:
-            text_display.animate_text(screen, 'Choose your starting equipment from the items below...', text_position, TEXT_AREA_WIDTH)
+            text_display.animate_text(screen, 'Choose an item from the equipment category below...', text_position, TEXT_AREA_WIDTH)
             animate_flag = False
         else:
-            text_display.draw_text(screen, 'Choose your starting equipment from the items below...', text_position, TEXT_AREA_WIDTH)
+            text_display.draw_text(screen, 'Choose an item from the equipment category below...', text_position, TEXT_AREA_WIDTH)
 
         buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
 

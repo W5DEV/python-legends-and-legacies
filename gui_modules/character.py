@@ -60,8 +60,12 @@ class Character:
         button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
         text_position = (MARGIN, MARGIN)
         player_equipment_names = ""
+        i = 0
         for equipment in self.archetype.starting_equipment:
-            player_equipment_names += f'{equipment.name}, '
+            if i == 0:
+                player_equipment_names += f'{equipment.name}'
+            player_equipment_names += f', {equipment.name}'
+            i += 1
 
         animate_flag = True
 

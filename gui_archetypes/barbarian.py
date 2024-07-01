@@ -4,6 +4,7 @@ import gui.text_display as text_display
 import gui.buttons as buttons
 import gui.constants as constants
 import gui_utils.select_starting_equipment as select_starting_equipment
+import gui_utils.equipment as equipment
 
 # Initialize pygame
 pygame.init()
@@ -114,26 +115,25 @@ def define_barbarian():
     barbarian = Barbarian()
 
     ### Equipment Choices ###
-
-    first_equipment_choice = select_starting_equipment.weapon_choices(["Great Axe", "Martial Melee Weapons"])
-    second_equipment_choice = select_starting_equipment.weapon_choices(["Hand Axe", "Simple Weapons"])
-    third_equipment_choice = select_starting_equipment.weapon_choices(["Explorer's Pack"])
-    fourth_equipment_choice = select_starting_equipment.weapon_choices(["Javelin"])
-
-    barbarian.starting_equipment.append(first_equipment_choice)
-    if second_equipment_choice == "Hand Axe":
-        barbarian.starting_equipment.append(second_equipment_choice)
-        barbarian.starting_equipment.append(second_equipment_choice)
+    first_equipment_choice = select_starting_equipment.weapon_choices(["Great Axe", "Any Martial Melee Weapon"])
+    if first_equipment_choice == "Great Axe":
+        barbarian.starting_equipment.append(equipment.great_axe)
     else:
-        barbarian.starting_equipment.append(second_equipment_choice)
+        barbarian.starting_equipment.append(select_starting_equipment.get_weapons_from_category("Martial Melee Weapons"))
+
+    second_equipment_choice = select_starting_equipment.weapon_choices(["Two Hand Axes", "Any Simple Weapon"])
+    if second_equipment_choice == "Two Hand Axes":
+        barbarian.starting_equipment.append(equipment.hand_axe)
+        barbarian.starting_equipment.append(equipment.hand_axe)
+    else:
+        barbarian.starting_equipment.append(select_starting_equipment.get_weapons_from_category("Simple Weapons"))
     
-    barbarian.starting_equipment.append(third_equipment_choice)
+    barbarian.starting_equipment.append(equipment.explorers_pack)
 
-    barbarian.starting_equipment.append(fourth_equipment_choice)
-    barbarian.starting_equipment.append(fourth_equipment_choice)
-    barbarian.starting_equipment.append(fourth_equipment_choice)
-    barbarian.starting_equipment.append(fourth_equipment_choice)
-
+    barbarian.starting_equipment.append(equipment.javelin)
+    barbarian.starting_equipment.append(equipment.javelin)
+    barbarian.starting_equipment.append(equipment.javelin)
+    barbarian.starting_equipment.append(equipment.javelin)
 
     ### Skill Choices ###
 
