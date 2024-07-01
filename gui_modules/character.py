@@ -76,10 +76,10 @@ class Character:
             screen.fill(BG_COLOR)
 
             if animate_flag:
-                text_display.animate_text(screen, f'{self.name} is a {self.race.subrace}.', text_position, TEXT_AREA_WIDTH)
+                text_display.animate_text(screen, f'{self.name} is a {self.race.subrace} {self.archetype.name}.', text_position, TEXT_AREA_WIDTH)
                 animate_flag = False
             else:
-                text_display.draw_text(screen, f'{self.name} is a {self.race.subrace}.', text_position, TEXT_AREA_WIDTH)
+                text_display.draw_text(screen, f'{self.name} is a {self.race.subrace} {self.archetype.name}.', text_position, TEXT_AREA_WIDTH)
 
             buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
 
