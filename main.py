@@ -1,9 +1,7 @@
-import gui.constants as constants  # Import the constants module
-import gui.text_display as text_display  # Import the text_display module
-import gui.buttons as buttons  # Import the buttons module
 import modules.character as character
 import modules.races as races
 import modules.archetypes as archetypes
+import modules.abilities as abilities
 
 def main():
     player = character.Character()
@@ -11,6 +9,7 @@ def main():
     player.race = player_race
     player.name = player.race.name
     player.archetype = archetypes.select_archetype()
+    abilities.calculate_abilities(player)
     player.announce_character()
     
 
