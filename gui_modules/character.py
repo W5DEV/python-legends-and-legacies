@@ -64,7 +64,8 @@ class Character:
         for equipment in self.archetype.starting_equipment:
             if i == 0:
                 player_equipment_names += f'{equipment.name}'
-            player_equipment_names += f', {equipment.name}'
+            else:
+                player_equipment_names += f', {equipment.name}'
             i += 1
 
         animate_flag = True
