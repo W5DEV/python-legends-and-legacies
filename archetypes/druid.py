@@ -132,17 +132,17 @@ def define_druid():
 
     ### Skill Choices ###
     for i in range(2):
-        skill = skills.select_skill_proficiencies("druid")
+        skill = skills.select_skill_proficiencies("Druid")
         druid.skill_proficiencies.append(skill)
 
     ### Spell Choices ###
     for i in range(1):
-        spell = spells.select_spells("druid")
+        spell = spells.select_spells("Druid")
         druid.spells.append(spell)
 
     ### Cantrip Choices ###
     for i in range(2):
-        cantrip = cantrips.select_cantrips("druid")
+        cantrip = cantrips.select_cantrips("Druid")
         druid.cantrips.append(cantrip)
 
     return druid

@@ -144,17 +144,17 @@ def define_warlock():
 
     ### Skill Choices ###
     for i in range(2):
-        skill = skills.select_skill_proficiencies("warlock")
+        skill = skills.select_skill_proficiencies("Warlock")
         warlock.skill_proficiencies.append(skill)
 
     ### Spell Choices ###
     for i in range(2):
-        spell = spells.select_spells("warlock")
+        spell = spells.select_spells("Warlock")
         warlock.spells.append(spell)
 
     ### Cantrip Choices ###
     for i in range(1):
-        cantrip = cantrips.select_cantrips("warlock")
+        cantrip = cantrips.select_cantrips("Warlock")
         warlock.cantrips.append(cantrip)
 
     return warlock

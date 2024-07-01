@@ -153,17 +153,17 @@ def define_cleric():
 
     ### Skill Choices ###
     for i in range(2):
-        skill = skills.select_skill_proficiencies("cleric")
+        skill = skills.select_skill_proficiencies("Cleric")
         cleric.skill_proficiencies.append(skill)
 
     ### Spell Choices ###
     for i in range(1):
-        spell = spells.select_spells("cleric")
+        spell = spells.select_spells("Cleric")
         cleric.spells.append(spell)
 
     ### Cantrip Choices ###
     for i in range(3):
-        cantrip = cantrips.select_cantrips("cleric")
+        cantrip = cantrips.select_cantrips("Cleric")
         cleric.cantrips.append(cantrip)
 
     return cleric

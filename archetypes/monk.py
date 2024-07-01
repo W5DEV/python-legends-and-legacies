@@ -137,7 +137,7 @@ def define_monk():
 
     ### Skill Choices ###
     for i in range(2):
-        skill = skills.select_skill_proficiencies("monk")
+        skill = skills.select_skill_proficiencies("Monk")
         monk.skill_proficiencies.append(skill)
 
     return monk

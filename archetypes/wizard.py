@@ -129,17 +129,17 @@ def define_wizard():
 
     ### Skill Choices ###
     for i in range(2):
-        skill = skills.select_skill_proficiencies("wizard")
+        skill = skills.select_skill_proficiencies("Wizard")
         wizard.skill_proficiencies.append(skill)
 
     ### Spell Choices ###
     for i in range(2):
-        spell = spells.select_spells("wizard")
+        spell = spells.select_spells("Wizard")
         wizard.spells.append(spell)
 
     ### Cantrip Choices ###
     for i in range(3):
-        cantrip = cantrips.select_cantrips("wizard")
+        cantrip = cantrips.select_cantrips("Wizard")
         wizard.cantrips.append(cantrip)
 
     return wizard

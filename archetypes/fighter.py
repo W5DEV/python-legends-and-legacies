@@ -138,7 +138,7 @@ def define_fighter():
 
     ### Skill Choices ###
     for i in range(2):
-        skill = skills.select_skill_proficiencies("fighter")
+        skill = skills.select_skill_proficiencies("Fighter")
         fighter.skill_proficiencies.append(skill)
 
     return fighter

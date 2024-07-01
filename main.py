@@ -10,6 +10,14 @@ def main():
     player.name = player.race.name
     player.archetype = archetypes.select_archetype()
     abilities.calculate_abilities(player)
+    player.initialize_player()
+    player.award_xp(300)
+    player.award_xp(600)
+    player.award_xp(1800)
+    player.award_xp(3800)
+    player.award_xp(7500)
+    player.award_xp(9000)
+    player.award_xp(11000)
     player.announce_character()
     
 

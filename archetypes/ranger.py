@@ -146,7 +146,7 @@ def define_ranger():
 
     ### Skill Choices ###
     for i in range(2):
-        skill = skills.select_skill_proficiencies("ranger")
+        skill = skills.select_skill_proficiencies("Ranger")
         ranger.skill_proficiencies.append(skill)
 
     return ranger

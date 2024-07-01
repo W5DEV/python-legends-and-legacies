@@ -167,17 +167,17 @@ def define_sorcerer():
 
     ### Skill Choices ###
     for i in range(2):
-        skill = skills.select_skill_proficiencies("sorcerer")
+        skill = skills.select_skill_proficiencies("Sorcerer")
         sorcerer.skill_proficiencies.append(skill)
 
     ### Spell Choices ###
     for i in range(2):
-        spell = spells.select_spells("sorcerer")
+        spell = spells.select_spells("Sorcerer")
         sorcerer.spells.append(spell)
 
     ### Cantrip Choices ###
     for i in range(4):
-        cantrip = cantrips.select_cantrips("sorcerer")
+        cantrip = cantrips.select_cantrips("Sorcerer")
         sorcerer.cantrips.append(cantrip)
 
     return sorcerer

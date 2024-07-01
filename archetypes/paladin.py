@@ -132,12 +132,12 @@ def define_paladin():
 
     ### Skill Choices ###
     for i in range(2):
-        skill = skills.select_skill_proficiencies("paladin")
+        skill = skills.select_skill_proficiencies("Paladin")
         paladin.skill_proficiencies.append(skill)
 
     ### Spell Choices ###
     for i in range(1):
-        spell = spells.select_spells("paladin")
+        spell = spells.select_spells("Paladin")
         paladin.spells.append(spell)
 
     return paladin

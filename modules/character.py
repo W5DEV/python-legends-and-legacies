@@ -68,13 +68,20 @@ class Character:
 
     def award_xp(self, xp):
         self.xp += xp
+        print(f'{self.name} has been awarded {xp} experience points.')
         current_level = self.level
+        print(f'{self.name} is currently level {current_level}.')
         self.calculate_level()
+        print(f'{self.name} is now level {self.level}.')
         if current_level < self.level:
             self.sync_level()
+            print(f'{self.name} has leveled up!')
             self.sync_max_base_hp()
+            print(f'{self.name} has {self.max_base_hp} base hit points.')
             self.calculate_max_hp()
+            print(f'{self.name} has {self.max_hp} hit points.')
             self.calculate_proficiency_bonus()
+            print(f'{self.name} has a proficiency bonus of {self.proficiency_bonus}.')
         return
     
     def calculate_modifiers(self):
@@ -242,10 +249,10 @@ class Character:
             screen.fill(BG_COLOR)
 
             if animate_flag:
-                text_display.animate_text(screen, f'{self.name} is a {self.race.subrace} {self.archetype.name}. They currently have a {player_equipment_names}.', text_position, TEXT_AREA_WIDTH)
+                text_display.animate_text(screen, f'{self.name} is a level {self.level} {self.race.subrace} {self.archetype.name} with a total of {self.xp} Experience Points. They currently have a {player_equipment_names}.', text_position, TEXT_AREA_WIDTH)
                 animate_flag = False
             else:
-                text_display.draw_text(screen, f'{self.name} is a {self.race.subrace} {self.archetype.name}. They currently have a {player_equipment_names}.', text_position, TEXT_AREA_WIDTH)
+                text_display.draw_text(screen, f'{self.name} is a level {self.level} {self.race.subrace} {self.archetype.name} with a total of {self.xp} Experience Points. They currently have a {player_equipment_names}.', text_position, TEXT_AREA_WIDTH)
 
             buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
 

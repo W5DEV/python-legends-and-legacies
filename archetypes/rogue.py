@@ -120,7 +120,7 @@ def define_rogue():
 
     ### Skill Choices ###
     for i in range(2):
-        skill = skills.select_skill_proficiencies("rogue")
+        skill = skills.select_skill_proficiencies("Rogue")
         rogue.skill_proficiencies.append(skill)
 
     return rogue
