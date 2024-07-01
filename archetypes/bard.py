@@ -1,26 +1,10 @@
-# We still need to create methods for Bards for the following:
-# - update_spells_known
-# - update_cantrips_known
-# - update_spell_slots
-# - level_up
-# - proficiency_bonus
-# - spell_save_dc
-# - spell_attack_bonus
-# - ritual_casting
-# - spellcasting_focus
-
-import modules.starting_equipment as starting_equipment
+import modules.equipment as equipment
 import modules.skills as skills
 import modules.spells as spells
 import modules.cantrips as cantrips
-import modules.instruments as instruments
-
-displayed_bard_skills, bard_skills = skills.get_bard_skills()
-displayed_bard_spells, bard_spells = spells.get_bard_spells()
-displayed_bard_cantrips, bard_cantrips = cantrips.get_bard_cantrips()
-potential_starting_equipment = starting_equipment.get_starting_equipment("Bard")
 
 class Bard:
+
     def __init__(self):
         name = "Bard"
         bio = "An inspiring magician whose power echoes the music of creation."
@@ -59,26 +43,7 @@ class Bard:
         self.spell_slots_level_7 = 0
         self.spell_slots_level_8 = 0
         self.spell_slots_level_9 = 0
-    
-    def get_info(self):
-        print(f"The {self.name}: {self.bio}")
-        print(f"Hit Die: {self.hit_die}")
-        print(f"Primary Ability: {self.primary_ability}")
-        print(f"Saving Throw Proficiencies: {self.saving_throw_proficiencies}")
-        print(f"Armor Proficiencies: {self.armor_proficiencies}")
-        print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
-        print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies:")
-        for skill in self.skill_proficiencies:
-            print(skill)
-        print(f"Starting Equipment:")
-        for item in self.starting_equipment:
-            print(item.name)
-        print(f"Special Abilities:")
-        for ability in self.special_abilities:
-            print(ability)
-        return
-    
+
     def sync_level(self, level, player):
         if level == 1:
             self.special_abilities.append("Spellcasting")
@@ -208,153 +173,48 @@ class Bard:
         if level == 20:
             self.special_abilities.append("Superior Inspiration")
             self.spell_slots_level_7 = 2
-        print(f"Special Abilities for level {level}:")
-        i = 1
-        for ability in self.special_abilities:
-            print(f"{i}: {ability}")
-            i += 1
         return self
-
+    
 def define_bard():
     bard = Bard()
-    print(f'You have chosen the Bard class.')
-    print(bard.bio)
 
-    # Skill Proficiencies
-    print("Choose 3 skills from the following list, which you will be proficient in:")
-    for skill in displayed_bard_skills:
-        print(skill)
-    print("Please enter your first skill choice:")
-    skill_choice1 = input("> ")
-    while skill_choice1.lower() not in bard_skills:
-        print("That is not a valid choice. Please choose from the list.")
-        skill_choice1 = input("> ")
-    print("Please enter your second skill choice:")
-    skill_choice2 = input("> ")
-    while skill_choice2.lower() not in bard_skills:
-        print("That is not a valid choice. Please choose from the list.")
-        skill_choice2 = input("> ")
-    print("Please enter your third skill choice:")
-    skill_choice3 = input("> ")
-    while skill_choice3.lower() not in bard_skills:
-        print("That is not a valid choice. Please choose from the list.")
-        skill_choice3 = input("> ")
-    selected_skill_proficiencies = [skill_choice1, skill_choice2, skill_choice3]
-    print(f"You have chosen {selected_skill_proficiencies[0]}, {selected_skill_proficiencies[1]}, and {selected_skill_proficiencies[2]} as your skill proficiencies.")
-    bard.skill_proficiencies = selected_skill_proficiencies
-
-    # Instrument Proficiencies
-    print("Choose 3 musical instruments from the following list, which you will be proficient in:")
-    instruments.display_instruments()
-    print("Please enter your first instrument choice:")
-    instrument_choice1 = input("> ")
-    while instrument_choice1.lower() not in instruments.instruments:
-        print("That is not a valid choice. Please choose from the list.")
-        instrument_choice1 = input("> ")
-    print("Please enter your second instrument choice:")
-    instrument_choice2 = input("> ")
-    while instrument_choice2.lower() not in instruments.instruments:
-        print("That is not a valid choice. Please choose from the list.")
-        instrument_choice2 = input("> ")
-    print("Please enter your third instrument choice:")
-    instrument_choice3 = input("> ")
-    while instrument_choice3.lower() not in instruments.instruments:
-        print("That is not a valid choice. Please choose from the list.")
-        instrument_choice3 = input("> ")
-    selected_instrument_proficiencies = [instrument_choice1, instrument_choice2, instrument_choice3]    
-    print(f"You have chosen {selected_instrument_proficiencies[0]}, {selected_instrument_proficiencies[1]}, and {selected_instrument_proficiencies[2]} as your instrument proficiencies.")
-    bard.instrument_proficiencies = selected_instrument_proficiencies
-    
-    # Starting Equipment
-    equipment_choice_1 = starting_equipment.starting_equipment_choice_three("Rapier", "Longsword", "Any Other Simple Weapon")
-    if equipment_choice_1.lower() == "rapier":
-        starting_weapon = starting_equipment.starting_equipment("Rapier")
-    elif equipment_choice_1.lower() == "longsword":
-        starting_weapon = starting_equipment.starting_equipment("Longsword")
+    ### Equipment Choices ###
+    first_equipment_choice = equipment.weapon_choices(["Rapier", "Longsword", "Any Simple Weapon"])
+    if first_equipment_choice == "Rapier":
+        bard.starting_equipment.append(equipment.rapier)
+    elif first_equipment_choice == "Longsword":
+        bard.starting_equipment.append(equipment.long_sword)
     else:
-        starting_weapon = starting_equipment.select_equipment_from_category("Simple Weapons")
-    print(f"One {starting_weapon.name} has been added to your starting equipment.")
-    bard.starting_equipment.append(starting_weapon)
+        bard.starting_equipment.append(equipment.get_weapons_from_category("Simple Weapons"))
 
-    equipment_choice_2 = starting_equipment.starting_equipment_choice("Diplomat's Pack", "Entertainer's Pack")
-    if equipment_choice_2.lower() == "diplomat's pack":
-        starting_pack = starting_equipment.starting_equipment("Diplomat's Pack")
+    second_equipment_choice = equipment.weapon_choices(["Diplomat's Pack", "Entertainer's Pack"])
+    if second_equipment_choice == "Diplomat's Pack":
+        bard.starting_equipment.append(equipment.diplomats_pack)
     else:
-        starting_pack = starting_equipment.starting_equipment("Entertainer's Pack")
-    print(f"One {starting_pack.name} has been added to your starting equipment.")
-    bard.starting_equipment.append(starting_pack)
+        bard.starting_equipment.append(equipment.entertainers_pack)
 
-    equipment_choice_3 = starting_equipment.starting_equipment_choice("Lute", "Any Other Musical Instrument")
-    if equipment_choice_3.lower() == "lute":
-        starting_instrument = starting_equipment.starting_equipment("Lute")
+    third_equipment_choice = equipment.weapon_choices(["Lute", "Any Musical Instrument"])
+    if third_equipment_choice == "Lute":
+        bard.starting_equipment.append(equipment.lute)
     else:
-        starting_instrument = starting_equipment.select_equipment_from_category("Musical Instruments")
-    print(f"One {starting_instrument.name} has been added to your starting equipment.")
-    bard.starting_equipment.append(starting_instrument)
+        bard.starting_equipment.append(equipment.get_weapons_from_category("Instruments"))
 
-    leather_armor = starting_equipment.starting_equipment("Leather Light Armor")
-    dagger = starting_equipment.starting_equipment("Dagger")
-    print(f"Leather Armor and One Dagger has been added to your starting equipment.")
-    bard.starting_equipment.append(leather_armor)
-    bard.starting_equipment.append(dagger)
+    bard.starting_equipment.append(equipment.leather_light_armor)
+    bard.starting_equipment.append(equipment.dagger)
 
-    # Starting Cantrips
-    print("You have reached level 1 and can now choose 2 cantrips from the bard spell list.")
-    print("Please choose two cantrips from the following list:")
-    for cantrip in displayed_bard_cantrips:
-        print(cantrip)
-    print("Please enter your first cantrip choice:")
-    cantrip_choice1 = input("> ")
-    while cantrip_choice1.lower() not in bard_cantrips:
-        print("That is not a valid choice. Please choose from the list.")
-        cantrip_choice1 = input("> ")
-    print("Please enter your second cantrip choice:")
-    cantrip_choice2 = input("> ")
-    while cantrip_choice2.lower() not in bard_cantrips:
-        print("That is not a valid choice. Please choose from the list.")
-        cantrip_choice2 = input("> ")
-    selected_cantrips = [cantrip_choice1, cantrip_choice2]
-    print(f"You have chosen {selected_cantrips[0]} and {selected_cantrips[1]} as your cantrips.")
-    bard.cantrips = selected_cantrips
+    ### Skill Choices ###
+    for i in range(3):
+        skill = skills.select_skill_proficiencies("Bard")
+        bard.skill_proficiencies.append(skill)
 
-    # Starting Spells
-    print("You have reached level 1 and can now choose 4 spells from the bard spell list.")
-    print("Please choose four spells from the following list:")
-    for spell in displayed_bard_spells:
-        print(spell)
-    print("Please enter your first spell choice:")
-    spell_choice1 = input("> ")
-    while (spell_choice1.lower() not in bard_spells) or (spell_choice1.lower() in bard.cantrips):
-        print("That is not a valid choice. Please choose from the list.")
-        print("Hint: You should chose a spell that was not chosen as a cantrip.")
-        print("Please enter your first spell choice:")
-        spell_choice1 = input("> ")
-    print("Please enter your second spell choice:")
-    spell_choice2 = input("> ")
-    while (spell_choice2.lower() not in bard_spells) or (spell_choice2.lower() in bard.cantrips):
-        print("That is not a valid choice. Please choose from the list.")
-        print("Hint: You should chose a spell that was not chosen as a cantrip.")
-        print("Please enter your second spell choice:")
-        spell_choice2 = input("> ")
-    print("Please enter your third spell choice:")
-    spell_choice3 = input("> ")
-    while (spell_choice3.lower() not in bard_spells) or (spell_choice3.lower() in bard.cantrips):
-        print("That is not a valid choice. Please choose from the list.")
-        print("Hint: You should chose a spell that was not chosen as a cantrip.")
-        print("Please enter your third spell choice:")
-        spell_choice3 = input("> ")
-    print("Please enter your fourth spell choice:")
-    spell_choice4 = input("> ")
-    while (spell_choice4.lower() not in bard_spells) or (spell_choice4.lower() in bard.cantrips):
-        print("That is not a valid choice. Please choose from the list.")
-        print("Hint: You should chose a spell that was not chosen as a cantrip.")
-        print("Please enter your fourth spell choice:")
-        spell_choice4 = input("> ")
-    selected_spells = [spell_choice1, spell_choice2, spell_choice3, spell_choice4]
-    print(f"You have chosen {selected_spells[0]}, {selected_spells[1]}, {selected_spells[2]}, and {selected_spells[3]} as your spells.")
-    bard.spells = selected_spells
+    ### Spell Choices ###
+    for i in range(4):
+        spell = spells.select_spells("Bard")
+        bard.spells.append(spell)
+
+    ### Cantrip Choices ###
+    for i in range(2):
+        cantrip = cantrips.select_cantrips("Bard")
+        bard.cantrips.append(cantrip)
 
     return bard
-        
-
-

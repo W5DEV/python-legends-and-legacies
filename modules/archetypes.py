@@ -1,107 +1,91 @@
-# This module contains a list of all the classes DndBeyond has for character creation.
-# Since the word "class" is reserved in Python, we will use the term "archetype" to refer to the D&D classes.
+import pygame
+import sys
+import gui.text_display as text_display
+import gui.buttons as buttons
+import gui.constants as constants
+import gui_archetypes.barbarian as barbarian
+import gui_archetypes.bard as bard
+import gui_archetypes.cleric as cleric
+import gui_archetypes.druid as druid
+import gui_archetypes.fighter as fighter
+import gui_archetypes.monk as monk
+import gui_archetypes.paladin as paladin
+import gui_archetypes.ranger as ranger
+import gui_archetypes.rogue as rogue
+import gui_archetypes.sorcerer as sorcerer
+import gui_archetypes.warlock as warlock
+import gui_archetypes.wizard as wizard
 
-import archetypes.barbarian as Barbarian
-import archetypes.bard as Bard
-import archetypes.cleric as Cleric
-import archetypes.druid as Druid
-import archetypes.fighter as Fighter
-import archetypes.monk as Monk
-import archetypes.paladin as Paladin
-import archetypes.ranger as Ranger
-import archetypes.rogue as Rogue
-import archetypes.sorcerer as Sorcerer
-import archetypes.warlock as Warlock
-import archetypes.wizard as Wizard
+# Initialize pygame
+pygame.init()
 
-displayed_archetypes = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"]
+# Constants
+SCREEN_WIDTH, SCREEN_HEIGHT = constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT
+BG_COLOR = constants.BG_COLOR
+TEXT_COLOR = constants.TEXT_COLOR
+FONT_SIZE = constants.FONT_SIZE
+MARGIN = constants.MARGIN
+TEXT_AREA_WIDTH = constants.TEXT_AREA_WIDTH
+TEXT_AREA_HEIGHT = constants.TEXT_AREA_HEIGHT
 
-archetypes = ["barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "warlock", "wizard"]
+# Setup screen
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption('UI Example')
+font = pygame.font.SysFont(None, FONT_SIZE)
 
-def display_archetypes():
-    for archetype in displayed_archetypes:
-        print(archetype)
+archetypes = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"]
 
-def create_archetype(archetype_name):
-    if archetype_name == "barbarian":
-        barbarian = Barbarian.define_barbarian()
-        return barbarian
-    elif archetype_name == "bard":
-        bard = Bard.define_bard()
-        return bard
-    elif archetype_name == "cleric":
-        cleric = Cleric.define_cleric()
-        return cleric
-    elif archetype_name == "druid":
-        druid = Druid.define_druid()
-        return druid
-    elif archetype_name == "fighter":
-        fighter = Fighter.define_fighter()
-        return fighter
-    elif archetype_name == "monk":
-        monk = Monk.define_monk()
-        return monk
-    elif archetype_name == "paladin":
-        paladin = Paladin.define_paladin()
-        return paladin
-    elif archetype_name == "ranger":
-        ranger = Ranger.define_ranger()
-        return ranger
-    elif archetype_name == "rogue":
-        rogue = Rogue.define_rogue()
-        return rogue
-    elif archetype_name == "sorcerer":
-        sorcerer = Sorcerer.define_sorcerer()
-        return sorcerer
-    elif archetype_name == "warlock":
-        warlock = Warlock.define_warlock()
-        return warlock
-    elif archetype_name == "wizard":
-        wizard = Wizard.define_wizard()
-        return wizard
-    else: 
-        return "archetype_name not found"
+def select_archetype():
+    button_texts = archetypes
+    button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
+    text_position = (MARGIN, MARGIN)
     
-def test_archetypes():
-    print("Testing Classes...")
-    display_archetypes()
-    print("Testing Barbarian... ")
-    barbarian_test = create_archetype("barbarian")
-    barbarian_test.get_info()
-    print("Testing Bard... ")
-    bard_test = create_archetype("bard")
-    bard_test.get_info()
-    print("Testing Cleric... ")
-    cleric_test = create_archetype("cleric")
-    cleric_test.get_info()
-    print("Testing Druid... ")
-    druid_test = create_archetype("druid")
-    druid_test.get_info()
-    print("Testing Fighter... ")
-    fighter_test = create_archetype("fighter")
-    fighter_test.get_info()
-    print("Testing Monk... ")
-    monk_test = create_archetype("monk")
-    monk_test.get_info()
-    print("Testing Paladin... ")
-    paladin_test = create_archetype("paladin")
-    paladin_test.get_info()
-    print("Testing Ranger... ")
-    ranger_test = create_archetype("ranger")
-    ranger_test.get_info()
-    print("Testing Rogue... ")
-    rogue_test = create_archetype("rogue")
-    rogue_test.get_info()
-    print("Testing Sorcerer... ")
-    sorcerer_test = create_archetype("sorcerer")
-    sorcerer_test.get_info()
-    print("Testing Warlock... ")
-    warlock_test = create_archetype("warlock")
-    warlock_test.get_info()
-    print("Testing Wizard... ")
-    wizard_test = create_archetype("wizard")
-    wizard_test.get_info()
-    print("Class Tests Completed...")
-    print("Please Report Any Bugs or Errors.")
-    return
-   
+    animate_flag = True  # Flag to control text animation
+    
+    while True:
+        mouse_pos = pygame.mouse.get_pos()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                for i, rect in enumerate(button_rects):
+                    if rect.collidepoint(mouse_pos):
+                        text_display.animate_text(screen, f'You chose {button_texts[i]}!', text_position, TEXT_AREA_WIDTH)
+                        if button_texts[i] == "Barbarian":
+                            return barbarian.define_barbarian()
+                        elif button_texts[i] == "Bard":
+                            return bard.define_bard()
+                        elif button_texts[i] == "Cleric":
+                            return cleric.define_cleric()
+                        elif button_texts[i] == "Druid":
+                            return druid.define_druid()
+                        elif button_texts[i] == "Fighter":
+                            return fighter.define_fighter()
+                        elif button_texts[i] == "Monk":
+                            return monk.define_monk()
+                        elif button_texts[i] == "Paladin":
+                            return paladin.define_paladin()
+                        elif button_texts[i] == "Ranger":
+                            return ranger.define_ranger()
+                        elif button_texts[i] == "Rogue":
+                            return rogue.define_rogue()
+                        elif button_texts[i] == "Sorcerer":
+                            return sorcerer.define_sorcerer()
+                        elif button_texts[i] == "Warlock":
+                            return warlock.define_warlock()
+                        elif button_texts[i] == "Wizard":
+                            return wizard.define_wizard()
+                    
+
+        screen.fill(BG_COLOR)
+
+        if animate_flag:
+            text_display.animate_text(screen, 'Choose your character\'s class!', text_position, TEXT_AREA_WIDTH)
+            animate_flag = False
+        else:
+            text_display.draw_text(screen, 'Choose your character\'s class!', text_position, TEXT_AREA_WIDTH)
+
+        buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+
+        pygame.display.update()

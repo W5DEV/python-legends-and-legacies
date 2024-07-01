@@ -1,8 +1,5 @@
-import modules.starting_equipment as starting_equipment
+import modules.equipment as equipment
 import modules.skills as skills
-
-displayed_monk_skills, monk_skills = skills.get_monk_skills()
-potential_starting_equipment = starting_equipment.get_starting_equipment("Monk")
 
 class Monk:
     
@@ -31,25 +28,6 @@ class Monk:
         self.ki_points = 0
         self.unarmored_movement = 0
 
-    def get_info(self):
-        print(f"The {self.name}: {self.bio}")
-        print(f"Hit Die: {self.hit_die}")
-        print(f"Primary Ability: {self.primary_ability}")
-        print(f"Saving Throw Proficiencies: {self.saving_throw_proficiencies}")
-        print(f"Armor Proficiencies: {self.armor_proficiencies}")
-        print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
-        print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies:")
-        for skill in self.skill_proficiencies:
-            print(skill)
-        print(f"Starting Equipment:")
-        for item in self.starting_equipment:
-            print(item.name)
-        print(f"Special Abilities:")
-        for ability in self.special_abilities:
-            print(ability)
-        return
-    
     def sync_level(self, level, player):
         if level == 1:
             self.special_abilities.append("Unarmored Defense")
@@ -131,62 +109,35 @@ class Monk:
         if level == 20:
             self.special_abilities.append("Perfect Self")
             self.ki_points = 20
+        return self
 
 def define_monk():
     monk = Monk()
-    print("You have chosen the Monk class.")
-    print(monk.bio)
 
-    # Skill Proficiencies
-    print("Choose two skills from the following list:")
-    for skill in displayed_monk_skills:
-        print(skill)
-    print("Please enter your first skill choice:")
-    skill_choice1 = input("> ")
-    while skill_choice1.lower() not in monk_skills:
-        print("That is not a valid choice. Please choose from the list.")
-        skill_choice1 = input("> ")
-    monk.skill_proficiencies.append(skill_choice1)
+    ### Equipment Choices ###
+    first_equipment_choice = equipment.weapon_choices(["Short Sword", "Any Simple Weapon"])
+    if first_equipment_choice == "Short Sword":
+        monk.starting_equipment.append(equipment.mace)
+    elif first_equipment_choice == "Any Simple Weapon":
+        monk.starting_equipment.append(equipment.get_weapons_from_category("Simple Weapons"))
 
-    print("Please enter your second skill choice:")
-    skill_choice2 = input("> ")
-    while skill_choice2.lower() not in monk_skills:
-        print("That is not a valid choice. Please choose from the list.")
-        skill_choice2 = input("> ")
-    monk.skill_proficiencies.append(skill_choice2)
+    second_equipment_choice = equipment.weapon_choices(["Dungeoneer's Pack", "Explorer's Pack"])
+    if second_equipment_choice == "Dungeoneer's Pack":
+        monk.starting_equipment.append(equipment.dungeoneers_pack)
+    elif second_equipment_choice == "Explorer's Pack":
+        monk.starting_equipment.append(equipment.explorers_pack)
 
-    print("You have chosen the following skills:")
-    for skill in monk.skill_proficiencies:
-        print(skill)
+    # Add 10 Darts
 
-    # Starting Equipment
-    equipment_choice_1 = starting_equipment.starting_equipment_choice("Shortsword", "Any Simple Weapon")
-    if equipment_choice_1.lower() == "shortsword":
-        weapon_choice = starting_equipment.starting_equipment("Short Sword")
+    third_equipment_choice = equipment.weapon_choices(["Artisan's Tools", "Musical Instrument"])
+    if third_equipment_choice == "Artisan's Tools":
+        monk.starting_equipment.append(equipment.get_weapons_from_category("Artisan's Tools"))
     else:
-        weapon_choice = starting_equipment.select_equipment_from_category("Simple Weapons")
-    print(f"One {weapon_choice.name} has been added to your starting equipment.")
-    monk.starting_equipment.append(weapon_choice)
+        monk.starting_equipment.append(equipment.get_weapons_from_category("Instruments"))
 
-    equipment_choice_2 = starting_equipment.starting_equipment_choice("Dungeoneer's Pack", "Explorer's Pack")
-    if equipment_choice_2.lower() == "dungeoneer's pack":
-        pack_choice = starting_equipment.starting_equipment("Dungeoneer's Pack")
-    else:
-        pack_choice = starting_equipment.starting_equipment("Explorer's Pack")
-    print(f"One {pack_choice.name} has been added to your starting equipment.")
-    monk.starting_equipment.append(pack_choice)
+    ### Skill Choices ###
+    for i in range(2):
+        skill = skills.select_skill_proficiencies("monk")
+        monk.skill_proficiencies.append(skill)
 
-    print("10 Darts have been added to your starting equipment.")
-    # Add darts to starting equipment
-
-    # Tool Proficiencies
-    print("You can choose proficiency in one type of artisan's tools or one musical instrument.")
-    tool_proficiency = starting_equipment.starting_equipment_choice("Artisan's Tools", "Musical Instrument")
-    if tool_proficiency.lower() == "artisan's tools":
-        tool_choice = starting_equipment.select_equipment_from_category("Artisan's Tools")
-    else:
-        tool_choice = starting_equipment.select_equipment_from_category("Instruments")
-    print(f"You have chosen proficiency in {tool_choice.name}.")
-    monk.tool_proficiencies.append(tool_choice.name)
-    
     return monk

@@ -1,25 +1,10 @@
-# We still need to create methods for druids for the following:
-# - update_spells_known
-# - update_cantrips_known
-# - update_spell_slots
-# - level_up
-# - proficiency_bonus
-# - spell_save_dc
-# - spell_attack_bonus
-# - ritual_casting
-# - spellcasting_focus
-
-import modules.starting_equipment as starting_equipment
+import modules.equipment as equipment
 import modules.skills as skills
 import modules.spells as spells
 import modules.cantrips as cantrips
 
-displayed_druid_skills, druid_skills = skills.get_druid_skills()
-displayed_druid_spells, druid_spells = spells.get_druid_spells()
-displayed_druid_cantrips, druid_cantrips = cantrips.get_druid_cantrips()
-potential_starting_equipment = starting_equipment.get_starting_equipment("Druid")
-
 class Druid:
+
     def __init__(self):
         name = "Druid"
         bio = "A priest of the Old Faith, wielding the powers of nature — moonlight and plant growth, fire and lightning — and adopting animal forms."
@@ -54,25 +39,6 @@ class Druid:
         self.spell_slots_level_7 = 0
         self.spell_slots_level_8 = 0
         self.spell_slots_level_9 = 0
-
-    def get_info(self):
-        print(f"The {self.name}: {self.bio}")
-        print(f"Hit Die: {self.hit_die}")
-        print(f"Primary Ability: {self.primary_ability}")
-        print(f"Saving Throw Proficiencies: {self.saving_throw_proficiencies}")
-        print(f"Armor Proficiencies: {self.armor_proficiencies}")
-        print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
-        print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies:")
-        for skill in self.skill_proficiencies:
-            print(skill)
-        print(f"Starting Equipment:")
-        for item in self.starting_equipment:
-            print(item.name)
-        print(f"Special Abilities:")
-        for ability in self.special_abilities:
-            print(ability)
-        return
     
     def sync_level(self, level, player):
         if level == 1:
@@ -145,96 +111,38 @@ class Druid:
     
 def define_druid():
     druid = Druid()
-    print("You have chosen the Druid class.")
-    print(druid.bio)
 
-    # Skill Proficiencies
-    print("Choose two skills from the following:")
-    for skill in displayed_druid_skills:
-        print(skill)
-    print("Please enter your first skill choice:")
-    skill_choice_1 = input("> ")
-    while skill_choice_1.lower() not in druid_skills:
-        print("Please enter a valid skill choice:")
-        skill_choice_1 = input("> ")
-
-    print("Please enter your second skill choice:")
-    skill_choice_2 = input("> ")
-    while skill_choice_2.lower() not in druid_skills:
-        print("Please enter a valid skill choice:")
-        skill_choice_2 = input("> ")
     
-    selected_skills = [skill_choice_1, skill_choice_2]
-    print(f"You have chosen proficiency in {selected_skills[0]} and {selected_skills[1]}.")
-    druid.skill_proficiencies = selected_skills
+    ### Equipment Choices ###
+    first_equipment_choice = equipment.weapon_choices(["Shield", "Any Simple Weapon"])
+    if first_equipment_choice == "Shield":
+        druid.starting_equipment.append(equipment.shield)
+    elif first_equipment_choice == "Any Simple Weapon":
+        druid.starting_equipment.append(equipment.get_weapons_from_category("Simple Weapons"))
 
-     # Starting Cantrips
-    print("Druids start with 2 Cantrips. Choose 2 Cantrips from the following list:")
-    for cantrip in displayed_druid_cantrips:
-        print(cantrip)
-    print("Please choose your first Cantrip:")
-    cantrip_choice1 = input("> ")
-    while (cantrip_choice1.lower() not in druid_cantrips):
-        print("Please enter a valid Cantrip choice:")
-        cantrip_choice1 = input("> ")
-    for cantrip in displayed_druid_cantrips:
-        if cantrip.lower() == cantrip_choice1.lower():
-            druid.cantrips.append(cantrip)
-            break
-    print("Please choose your second Cantrip:")
-    cantrip_choice2 = input("> ")
-    while (cantrip_choice2.lower() not in druid_cantrips) or (cantrip_choice2.lower() in [cantrip_choice1.lower()]):
-        print("You should not choose the same Cantrip twice.")
-        print("Please enter a valid Cantrip choice:")
-        cantrip_choice2 = input("> ")
-    for cantrip in displayed_druid_cantrips:
-        if cantrip.lower() == cantrip_choice2.lower():
-            druid.cantrips.append(cantrip)
-            break
-    print(f"You have chosen the following Cantrips:")
-    for cantrip in druid.cantrips:
-        print(cantrip)
+    second_equipment_choice = equipment.weapon_choices(["Scimitar", "Any Simple Melee Weapon"])
+    if second_equipment_choice == "Scimitar":
+        druid.starting_equipment.append(equipment.scimitar)
+    elif second_equipment_choice == "Any Simple Melee Weapon":
+        druid.starting_equipment.append(equipment.get_weapons_from_category("Simple Melee Weapons"))
 
-    # Starting Spells
-    print("Druids can prepare 1 spell. Choose 1 spell from the following list:")
-    for spell in displayed_druid_spells:
-        print(spell)
-    print("Please choose your spell:")
-    spell_choice = input("> ")
-    while spell_choice.lower() not in druid_spells:
-        print("Please enter a valid spell choice:")
-        spell_choice = input("> ")
-    for spell in displayed_druid_spells:
-        if spell.lower() == spell_choice.lower():
-            druid.spells.append(spell)
-            break
-    print(f"You have chosen the following Spell:")
-    for spell in druid.spells:
-        print(spell)
+    druid.starting_equipment.append(equipment.leather_light_armor)
+    druid.starting_equipment.append(equipment.explorers_pack)
+    druid.starting_equipment.append(equipment.druidic_focus)
 
-    # Starting Equipment
-    equipment_choice_1 = starting_equipment.starting_equipment_choice("Shield", "Any Simple Weapon")
-    if equipment_choice_1.lower() == "shield":
-        starting_weapon = starting_equipment.starting_equipment("Shield")
-    else:
-        starting_weapon = starting_equipment.select_equipment_from_category("Simple Weapons")
-    print(f"One {starting_weapon.name} has been added to your starting equipment.")
-    druid.starting_equipment.append(starting_weapon)
+    ### Skill Choices ###
+    for i in range(2):
+        skill = skills.select_skill_proficiencies("druid")
+        druid.skill_proficiencies.append(skill)
 
-    equipment_choice_2 = starting_equipment.starting_equipment_choice("Scimitar", "Any Simple Melee Weapon")
-    if equipment_choice_2.lower() == "scimitar":
-        starting_weapon = starting_equipment.starting_equipment("Scimitar")
-    else:
-        starting_weapon = starting_equipment.select_equipment_from_category("Simple Melee Weapons")
-    print(f"One {starting_weapon.name} has been added to your starting equipment.")
-    druid.starting_equipment.append(starting_weapon)
+    ### Spell Choices ###
+    for i in range(1):
+        spell = spells.select_spells("druid")
+        druid.spells.append(spell)
 
-    leather_armor = starting_equipment.starting_equipment("Leather Light Armor")
-    explorers_pack = starting_equipment.starting_equipment("Explorer's Pack")
-    druidic_focus = starting_equipment.starting_equipment("Druidic Focus")
-    print("Leather Armor, an Explorer's Pack, and a Druidic Focus have been added to your starting equipment.")
-    druid.starting_equipment.append(leather_armor)
-    druid.starting_equipment.append(explorers_pack)
-    druid.starting_equipment.append(druidic_focus)
+    ### Cantrip Choices ###
+    for i in range(2):
+        cantrip = cantrips.select_cantrips("druid")
+        druid.cantrips.append(cantrip)
 
     return druid

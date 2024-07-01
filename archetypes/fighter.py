@@ -1,9 +1,6 @@
-import modules.starting_equipment as starting_equipment
+import modules.equipment as equipment
 import modules.skills as skills
 
-displayed_fighter_skills, fighter_skills = skills.get_fighter_skills()
-potential_starting_equipment = starting_equipment.get_starting_equipment("Fighter")
-     
 class Fighter:
     
     def __init__(self):
@@ -29,25 +26,6 @@ class Fighter:
         self.fighting_style = []
         self.marital_archetype = ""
         self.special_abilities = []
-
-    def get_info(self):
-        print(f"The {self.name}: {self.bio}")
-        print(f"Hit Die: {self.hit_die}")
-        print(f"Primary Ability: {self.primary_ability}")
-        print(f"Saving Throw Proficiencies: {self.saving_throw_proficiencies}")
-        print(f"Armor Proficiencies: {self.armor_proficiencies}")
-        print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
-        print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies:")
-        for skill in self.skill_proficiencies:
-            print(skill)
-        print(f"Starting Equipment:")
-        for item in self.starting_equipment:
-            print(item.name)
-        print(f"Special Abilities:")
-        for ability in self.special_abilities:
-            print(ability)
-        return
     
     def sync_level(self, level, player):
         if level == 1:
@@ -124,83 +102,43 @@ class Fighter:
             player.increase_ability_score(2)
         if level == 20:
             self.special_abilities.append("Extra Attack (3 extra attacks)")
-
+        return self
+    
 def define_fighter():
     fighter = Fighter()
-    print("You have chosen the Fighter class.")
-    print(fighter.bio)
 
-    # Skill Proficiencies
-    print("Choose two skills from the following list:")
-    for skill in displayed_fighter_skills:
-        print(skill)
-    print("Please enter your first skill choice:")
-    skill_choice1 = input("> ")
-    while skill_choice1.lower() not in fighter_skills:
-        print("That is not a valid choice. Please choose from the list.")
-        skill_choice1 = input("> ")
-    fighter.skill_proficiencies.append(skill_choice1)
-
-    print("Please enter your second skill choice:")
-    skill_choice2 = input("> ")
-    while skill_choice2.lower() not in fighter_skills:
-        print("That is not a valid choice. Please choose from the list.")
-        skill_choice2 = input("> ")
-    fighter.skill_proficiencies.append(skill_choice2)
-
-    print("You have chosen the following skills:")
-    for skill in fighter.skill_proficiencies:
-        print(skill)
-
-    # Starting Equipment
-    equipment_choice_1 = starting_equipment.starting_equipment_choice("Chain Mail", "Leather Armor, Longbow, and 20 Arrows")
-    if equipment_choice_1.lower() == "chain mail":
-        starting_weapon = starting_equipment.starting_equipment("Chain Mail Heavy Armor")
-        print(f"{starting_weapon.name} has been added to your starting equipment.")
-        fighter.starting_equipment.append(starting_weapon)
+    ### Equipment Choices ###
+    first_equipment_choice = equipment.weapon_choices(["Chain Mail", "Leather Armor and Longbow"])
+    if first_equipment_choice == "Chain Mail":
+        fighter.starting_equipment.append(equipment.chain_mail_heavy_armor)
     else:
-        starting_weapon = starting_equipment.starting_equipment("Leather Light Armor")
-        print(f"{starting_weapon.name} has been added to your starting equipment.")
-        fighter.starting_equipment.append(starting_weapon)
-        starting_weapon = starting_equipment.starting_equipment("Longbow")
-        print(f"{starting_weapon.name} has been added to your starting equipment.")
-        fighter.starting_equipment.append(starting_weapon)
-        # Add 20 arrows here.
+        fighter.starting_equipment.append(equipment.leather_light_armor)
+        fighter.starting_equipment.append(equipment.longbow)
 
-    equipment_choice_2 = starting_equipment.starting_equipment_choice("Any Martial Weapon and a Shield", "Two Martial Weapons")
-    if equipment_choice_2.lower() == "any martial weapon and a shield":
-        starting_weapon = starting_equipment.select_equipment_from_category("Martial Weapons")
-        print(f"{starting_weapon.name} has been added to your starting equipment.")
-        fighter.starting_equipment.append(starting_weapon)
-        starting_weapon = starting_equipment.starting_equipment("Shield")
-        print(f"{starting_weapon.name} has been added to your starting equipment.")
-        fighter.starting_equipment.append(starting_weapon)
+    second_equipment_choice = equipment.weapon_choices(["Martial Weapon and Shield", "Two Martial Weapons"])
+    if second_equipment_choice == "Martial Weapon and Shield":
+        fighter.starting_equipment.append(equipment.shield)
+        fighter.starting_equipment.append(equipment.get_weapons_from_category("Martial Weapons"))
     else:
-        starting_weapon = starting_equipment.select_equipment_from_category("Martial Weapons")
-        print(f"{starting_weapon.name} has been added to your starting equipment.")
-        fighter.starting_equipment.append(starting_weapon)
-        starting_weapon = starting_equipment.select_equipment_from_category("Martial Weapons")
-        print(f"{starting_weapon.name} has been added to your starting equipment.")
-        fighter.starting_equipment.append(starting_weapon)
+        fighter.starting_equipment.append(equipment.get_weapons_from_category("Martial Weapons"))
+        fighter.starting_equipment.append(equipment.get_weapons_from_category("Martial Weapons"))
 
-    equipment_choice_3 = starting_equipment.starting_equipment_choice("Light Crossbow and 20 Bolts", "Two Handaxes")
-    if equipment_choice_3.lower() == "light crossbow and 20 bolts":
-        starting_weapon = starting_equipment.starting_equipment("Light Crossbow")
-        print(f"{starting_weapon.name} has been added to your starting equipment.")
-        fighter.starting_equipment.append(starting_weapon)
-        # Add 20 bolts here.
+    third_equipment_choice = equipment.weapon_choices(["Light Crossbow", "Two Handaxes"])
+    if third_equipment_choice == "Light Crossbow":
+        fighter.starting_equipment.append(equipment.light_crossbow)
     else:
-        starting_weapon = starting_equipment.starting_equipment("Hand Axe")
-        print(f"Two {starting_weapon.name}'s have been added to your starting equipment.")
-        fighter.starting_equipment.append(starting_weapon)
-        fighter.starting_equipment.append(starting_weapon)
+        fighter.starting_equipment.append(equipment.hand_axe)
+        fighter.starting_equipment.append(equipment.hand_axe)
 
-    equipment_choice_3 = starting_equipment.starting_equipment_choice("Dungeoneer's Pack", "Explorer's Pack")
-    if equipment_choice_3.lower() == "dungeoneer's pack":
-        starting_pack = starting_equipment.starting_equipment("Dungeoneer's Pack")
+    fourth_equipment_choice = equipment.weapon_choices(["Dungeoneer's Pack", "Explorer's Pack"])
+    if fourth_equipment_choice == "Priest's Pack":
+        fighter.starting_equipment.append(equipment.dungeoneers_pack)
     else:
-        starting_pack = starting_equipment.starting_equipment("Explorer's Pack")
-    print(f"{starting_pack.name} has been added to your starting equipment.")
-    fighter.starting_equipment.append(starting_pack)
+        fighter.starting_equipment.append(equipment.explorers_pack)
+
+    ### Skill Choices ###
+    for i in range(2):
+        skill = skills.select_skill_proficiencies("fighter")
+        fighter.skill_proficiencies.append(skill)
 
     return fighter

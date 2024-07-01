@@ -1,11 +1,7 @@
-import modules.starting_equipment as starting_equipment
+import modules.equipment as equipment
 import modules.skills as skills
 import modules.spells as spells
 
-displayed_paladin_skills, paladin_skills = skills.get_paladin_skills()
-displayed_paladin_spells, paladin_spells = spells.get_paladin_spells()
-potential_starting_equipment = starting_equipment.get_starting_equipment("Paladin")
-    
 class Paladin:
     
     def __init__(self):
@@ -38,25 +34,6 @@ class Paladin:
         self.spell_slots_level_4 = 0
         self.spell_slots_level_5 = 0
 
-    def get_info(self):
-        print(f"The {self.name}: {self.bio}")
-        print(f"Hit Die: {self.hit_die}")
-        print(f"Primary Ability: {self.primary_ability}")
-        print(f"Saving Throw Proficiencies: {self.saving_throw_proficiencies}")
-        print(f"Armor Proficiencies: {self.armor_proficiencies}")
-        print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
-        print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies:")
-        for skill in self.skill_proficiencies:
-            print(skill)
-        print(f"Starting Equipment:")
-        for item in self.starting_equipment:
-            print(item.name)
-        print(f"Special Abilities:")
-        for ability in self.special_abilities:
-            print(ability)
-        return
-    
     def sync_level(self, level, player):
         if level == 1:
             self.special_abilities.append("Divine Sense")
@@ -130,76 +107,38 @@ class Paladin:
             self.spell_slots_level_5 = 2
         if level == 20:
             self.special_abilities.append("Holy Nimbus")
-
-
+        return self
+    
 def define_paladin():
     paladin = Paladin()
-    print("You have chosen the paladin class.")
-    print(paladin.bio)
 
-    # Skill Proficiencies
-    print("Choose two skills from the following list:")
-    for skill in displayed_paladin_skills:
-        print(skill)
-    print("Please enter your first skill choice:")
-    skill_choice1 = input("> ")
-    while skill_choice1.lower() not in paladin_skills:
-        print("That is not a valid choice. Please choose from the list.")
-        skill_choice1 = input("> ")
-    paladin.skill_proficiencies.append(skill_choice1)
+    ### Equipment Choices ###
+    first_equipment_choice = equipment.weapon_choices(["Short Sword", "Simple Weapon"])
+    if first_equipment_choice == "Short Sword":
+        paladin.starting_equipment.append(equipment.short_sword)
+    elif first_equipment_choice == "Simple Weapon":
+        paladin.starting_equipment.append(equipment.get_weapons_from_category("Simple Weapons"))
 
-    print("Please enter your second skill choice:")
-    skill_choice2 = input("> ")
-    while skill_choice2.lower() not in paladin_skills:
-        print("That is not a valid choice. Please choose from the list.")
-        skill_choice2 = input("> ")
-    paladin.skill_proficiencies.append(skill_choice2)
+    second_equipment_choice = equipment.weapon_choices(["Priest's Pack", "Explorer's Pack"])
+    if second_equipment_choice == "Priest's Pack":
+        paladin.starting_equipment.append(equipment.priests_pack)
+    elif second_equipment_choice == "Explorer's Pack":
+        paladin.starting_equipment.append(equipment.explorers_pack)
 
-    print("You have chosen the following skills:")
-    for skill in paladin.skill_proficiencies:
-        print(skill)
+    # Add 10 Darts
 
-    # Starting Spells
-    spell_choice = ""
-    print("Choose your starting spell:")
-    for spell in displayed_paladin_spells:
-        print(spell)
-    print("Please enter your choice:")
-    spell_choice = input("> ")
-    while spell_choice.lower() not in paladin_spells:
-        print("That is not a valid choice. Please choose from the list.")
-        spell_choice = input("> ")
-    for spell in displayed_paladin_spells:
-        if spell_choice.lower() == spell.lower():
-            print(f"You have chosen {spell}.")
-            print(f"{spell} has been added to your starting spells.")
-            paladin.oath_of_devotion_spells.append(spell)
-            break
+    paladin.starting_equipment.append(equipment.chain_mail_heavy_armor)
+    paladin.starting_equipment.append(equipment.holy_symbol_emblem)
 
-    # Starting Equipment
-    equipment_choice_1 = starting_equipment.starting_equipment_choice("Shortsword", "Any Simple Weapon")
-    if equipment_choice_1.lower() == "shortsword":
-        weapon_choice = starting_equipment.starting_equipment("Short Sword")
-    else:
-        weapon_choice = starting_equipment.select_equipment_from_category("Simple Weapons")
-    print(f"One {weapon_choice.name} has been added to your starting equipment.")
-    paladin.starting_equipment.append(weapon_choice)
+    ### Skill Choices ###
+    for i in range(2):
+        skill = skills.select_skill_proficiencies("paladin")
+        paladin.skill_proficiencies.append(skill)
 
-    equipment_choice_2 = starting_equipment.starting_equipment_choice("Priest's Pack", "Explorer's Pack")
-    if equipment_choice_2.lower() == "priest's pack":
-        pack_choice = starting_equipment.starting_equipment("Priest's Pack")
-    else:
-        pack_choice = starting_equipment.starting_equipment("Explorer's Pack")
-    print(f"One {pack_choice.name} has been added to your starting equipment.")
-    paladin.starting_equipment.append(pack_choice)   
-
-    print("10 Darts have been added to your starting equipment.")
-    # Add darts to starting equipment
-
-    chain_mail = starting_equipment.starting_equipment("Chain Mail Heavy Armor")
-    holy_symbol = starting_equipment.starting_equipment("Holy Symbol Emblem")
-    print("Chain Mail and a Holy Symbol Emblem have been added to your starting equipment.")
-    paladin.starting_equipment.append(chain_mail)
-    paladin.starting_equipment.append(holy_symbol)
+    ### Spell Choices ###
+    for i in range(1):
+        spell = spells.select_spells("paladin")
+        paladin.spells.append(spell)
 
     return paladin
+ 

@@ -1,59 +1,93 @@
-def get_barbarian_skills():
-    displayed_barbarian_skills = ["Animal Handling", "Athletics", "Intimidation", "Nature", "Perception", "Survival"]
-    barbarian_skills = ["animal handling", "athletics", "intimidation", "nature", "perception", "survival"]
-    return displayed_barbarian_skills, barbarian_skills
-    
-def get_bard_skills():
-    displayed_bard_skills = ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
-    bard_skills = ["acrobatics", "animal handling", "arcana", "athletics", "deception", "history", "insight", "intimidation", "investigation", "medicine", "nature", "perception", "performance", "persuasion", "religion", "sleight of hand", "stealth", "survival"]
-    return displayed_bard_skills, bard_skills
-    
-def get_cleric_skills():
-    displayed_cleric_skills = ["History", "Insight", "Medicine", "Persuasion", "Religion"]
-    cleric_skills = ["history", "insight", "medicine", "persuasion", "religion"]
-    return displayed_cleric_skills, cleric_skills
-    
-def get_druid_skills():
-    displayed_druid_skills = ["Arcana", "Animal Handling", "Insight", "Medicine", "Nature", "Perception", "Religion", "Survival"]
-    druid_skills = ["arcana", "animal handling", "insight", "medicine", "nature", "perception", "religion", "survival"]
-    return displayed_druid_skills, druid_skills
+import pygame
+import sys
+import gui.text_display as text_display
+import gui.buttons as buttons
+import gui.constants as constants
 
-def get_fighter_skills():
-    displayed_fighter_skills = ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"]
-    fighter_skills = ["acrobatics", "animal handling", "athletics", "history", "insight", "intimidation", "perception", "survival"]
-    return displayed_fighter_skills, fighter_skills
+# Initialize pygame
+pygame.init()
 
-def get_monk_skills():
-    displayed_monk_skills = ["Acrobatics", "Athletics", "History", "Insight", "Religion", "Stealth"]
-    monk_skills = ["acrobatics", "athletics", "history", "insight", "religion", "stealth"]
-    return displayed_monk_skills, monk_skills
+# Constants
+SCREEN_WIDTH, SCREEN_HEIGHT = constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT
+BG_COLOR = constants.BG_COLOR
+TEXT_COLOR = constants.TEXT_COLOR
+FONT_SIZE = constants.FONT_SIZE
+MARGIN = constants.MARGIN
+TEXT_AREA_WIDTH = constants.TEXT_AREA_WIDTH
+TEXT_AREA_HEIGHT = constants.TEXT_AREA_HEIGHT
 
-def get_paladin_skills():
-    displayed_paladin_skills = ["Athletics", "Insight", "Intimidation", "Medicine", "Persuasion", "Religion"]
-    paladin_skills = ["athletics", "insight", "intimidation", "medicine", "persuasion", "religion"]
-    return displayed_paladin_skills, paladin_skills
+# Setup screen
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption('UI Example')
+font = pygame.font.SysFont(None, FONT_SIZE)
 
-def get_ranger_skills():
-    displayed_ranger_skills = ["Animal Handling", "Athletics", "Insight", "Investigation", "Nature", "Perception", "Stealth", "Survival"]
-    ranger_skills = ["animal handling", "athletics", "insight", "investigation", "nature", "perception", "stealth", "survival"]
-    return displayed_ranger_skills, ranger_skills
+def skill_choices(archetype):
+    if archetype == "Barbarian":
+        return barbarian_skills
+    if archetype == "Bard":
+        return bard_skills
+    if archetype == "Cleric":
+        return cleric_skills
+    if archetype == "Druid":
+        return druid_skills
+    if archetype == "Fighter":
+        return fighter_skills
+    if archetype == "Monk":
+        return monk_skills
+    if archetype == "Paladin":
+        return paladin_skills
+    if archetype == "Ranger":
+        return ranger_skills
+    if archetype == "Rogue":
+        return rogue_skills
+    if archetype == "Sorcerer":
+        return sorcerer_skills
+    if archetype == "Warlock":
+        return warlock_skills
+    if archetype == "Wizard":
+        return wizard_skills
 
-def get_rogue_skills():
-    displayed_rogue_skills = ["Acrobatics", "Athletics", "Deception", "Insight", "Intimidation", "Investigation", "Perception", "Performance", "Persuasion", "Sleight of Hand", "Stealth"]
-    rogue_skills = ["acrobatics", "athletics", "deception", "insight", "intimidation", "investigation", "perception", "performance", "persuasion", "sleight of hand", "stealth"]
-    return displayed_rogue_skills, rogue_skills
+def select_skill_proficiencies(archetype):
+    button_texts = skill_choices(archetype)
+    button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
+    text_position = (MARGIN, MARGIN)
 
-def get_sorcerer_skills():
-    displayed_sorcerer_skills = ["Arcana", "Deception", "Insight", "Intimidation", "Persuasion", "Religion"]
-    sorcerer_skills = ["arcana", "deception", "insight", "intimidation", "persuasion", "religion"]
-    return displayed_sorcerer_skills, sorcerer_skills
+    animate_flag = True  # Flag to control text animation
 
-def get_warlock_skills():
-    displayed_warlock_skills = ["Arcana", "Deception", "History", "Intimidation", "Investigation", "Nature", "Religion"]
-    warlock_skills = ["arcana", "deception", "history", "intimidation", "investigation", "nature", "religion"]
-    return displayed_warlock_skills, warlock_skills
+    while True:
+        mouse_pos = pygame.mouse.get_pos()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                for i, rect in enumerate(button_rects):
+                    if rect.collidepoint(mouse_pos):
+                        if rect.collidepoint(mouse_pos):
+                            return button_texts[i]
 
-def get_wizard_skills():
-    displayed_wizard_skills = ["Arcana", "History", "Insight", "Investigation", "Medicine", "Religion"]
-    wizard_skills = ["arcana", "history", "insight", "investigation", "medicine", "religion"]
-    return displayed_wizard_skills, wizard_skills
+        screen.fill(BG_COLOR)
+
+        if animate_flag:
+            text_display.animate_text(screen, 'Choose a skill proficiency below...', text_position, TEXT_AREA_WIDTH)
+            animate_flag = False
+        else:
+            text_display.draw_text(screen, 'Choose a skill proficiency below...', text_position, TEXT_AREA_WIDTH)
+
+        buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+
+        pygame.display.update()
+
+
+barbarian_skills = ["Animal Handling", "Athletics", "Intimidation", "Nature", "Perception", "Survival"]
+bard_skills = ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
+cleric_skills = ["History", "Insight", "Medicine", "Persuasion", "Religion"]
+druid_skills = ["Arcana", "Animal Handling", "Insight", "Medicine", "Nature", "Perception", "Religion", "Survival"]
+fighter_skills = ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"]
+monk_skills = ["Acrobatics", "Athletics", "History", "Insight", "Religion", "Stealth"]
+paladin_skills = ["Athletics", "Insight", "Intimidation", "Medicine", "Persuasion", "Religion"]
+ranger_skills = ["Animal Handling", "Athletics", "Insight", "Investigation", "Nature", "Perception", "Stealth", "Survival"]
+rogue_skills = ["Acrobatics", "Athletics", "Deception", "Insight", "Intimidation", "Investigation", "Perception", "Performance", "Persuasion", "Sleight of Hand", "Stealth"]
+sorcerer_skills = ["Arcana", "Deception", "Insight", "Intimidation", "Persuasion", "Religion"]
+warlock_skills = ["Arcana", "Deception", "History", "Intimidation", "Investigation", "Nature", "Religion"]
+wizard_skills = ["Arcana", "History", "Insight", "Investigation", "Medicine", "Religion"]

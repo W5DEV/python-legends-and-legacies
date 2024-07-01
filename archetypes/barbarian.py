@@ -1,9 +1,8 @@
-import modules.starting_equipment as starting_equipment
+import modules.equipment as equipment
 import modules.skills as skills
+import modules.spells as spells
+import modules.cantrips as cantrips
 
-displayed_barbarian_skills, barbarian_skills = skills.get_barbarian_skills()
-potential_starting_equipment = starting_equipment.get_starting_equipment("Barbarian")
-   
 class Barbarian:
     
     def __init__(self):
@@ -31,26 +30,6 @@ class Barbarian:
         self.rages = 0
         self.rage_damage_bonus = 0
 
-    
-    def get_info(self):
-        print(f"The {self.name}: {self.bio}")
-        print(f"Hit Die: {self.hit_die}")
-        print(f"Primary Ability: {self.primary_ability}")
-        print(f"Saving Throw Proficiencies: {self.saving_throw_proficiencies}")
-        print(f"Armor Proficiencies: {self.armor_proficiencies}")
-        print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
-        print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies:")
-        for skill in self.skill_proficiencies:
-            print(skill)
-        print(f"Starting Equipment:")
-        for item in self.starting_equipment:
-            print(item.name)
-        print(f"Special Abilities:")
-        for ability in self.special_abilities:
-            print(ability)
-        return
-    
     def sync_level(self, level, player):
         if level == 1:
             self.special_abilities.append("Rage")
@@ -61,7 +40,6 @@ class Barbarian:
             self.special_abilities.append("Reckless Attack")
             self.special_abilities.append("Danger Sense")
         if level == 3:
-            print("You have reached level 3 and now embark on your Primal Path: Path of the Berserker.")
             self.primal_path = "Path of the Berserker"
             self.special_abilities.append("Frenzy")
             self.rages = 3
@@ -111,67 +89,35 @@ class Barbarian:
         if level == 20:
             self.special_abilities.append("Primal Champion")
             self.rages = 9999
-        print(f"Special Abilities for level {level}:")
-        i = 1
-        for ability in self.special_abilities:
-            print(f"{i}: {ability}")
-            i += 1
         return
-
+    
 def define_barbarian():
     barbarian = Barbarian()
-    print(f'You have chosen the Barbarian class.')
-    print(barbarian.bio)
 
-    # Skill Proficiencies
-    print("Choose 2 skills from the following list, which you will be proficient in:")
-    for skill in displayed_barbarian_skills:
-        print(skill)
-    print("Please enter your first skill choice:")
-    skill_choice1 = input("> ")
-    while skill_choice1.lower() not in barbarian_skills:
-        print("That is not a valid choice. Please choose from the list.")
-        skill_choice1 = input("> ")
-    print("Please enter your second skill choice:")
-    skill_choice2 = input("> ")
-    while skill_choice2.lower() not in barbarian_skills:
-        print("That is not a valid choice. Please choose from the list.")
-        skill_choice2 = input("> ")
-    selected_skill_proficiencies = [skill_choice1, skill_choice2]
-    print(f"You have chosen {selected_skill_proficiencies[0]} and {selected_skill_proficiencies[1]} as your skill proficiencies.")
-    barbarian.skill_proficiencies = selected_skill_proficiencies
-    
-    # Starting Equipment
-    equipment_choice_1 = starting_equipment.starting_equipment_choice("Greataxe", "Any Martial Melee Weapon")
-    if equipment_choice_1.lower() == "greataxe":
-        starting_weapon = starting_equipment.starting_equipment("Great Axe")
+    ### Equipment Choices ###
+    first_equipment_choice = equipment.weapon_choices(["Great Axe", "Any Martial Melee Weapon"])
+    if first_equipment_choice == "Great Axe":
+        barbarian.starting_equipment.append(equipment.great_axe)
     else:
-        starting_weapon = starting_equipment.select_equipment_from_category("Martial Melee Weapons")
-    print(f"One {starting_weapon.name} has been added to your starting equipment.")
-    barbarian.starting_equipment.append(starting_weapon)
+        barbarian.starting_equipment.append(equipment.get_weapons_from_category("Martial Melee Weapons"))
 
-    equipment_choice_2 = starting_equipment.starting_equipment_choice("Two Handaxes", "Any Simple Weapon")
-    if equipment_choice_2.lower() == "two handaxes":
-        starting_weapon = starting_equipment.starting_equipment("Hand Axe")
-        print(f"Two {starting_weapon.name}'s have been added to your starting equipment.")
-        barbarian.starting_equipment.append(starting_weapon)
-        barbarian.starting_equipment.append(starting_weapon)
+    second_equipment_choice = equipment.weapon_choices(["Two Hand Axes", "Any Simple Weapon"])
+    if second_equipment_choice == "Two Hand Axes":
+        barbarian.starting_equipment.append(equipment.hand_axe)
+        barbarian.starting_equipment.append(equipment.hand_axe)
     else:
-        starting_weapon = starting_equipment.select_equipment_from_category("Simple Weapons")
-        print(f"One {starting_weapon.name} has been added to your starting equipment.")
-        barbarian.starting_equipment.append(starting_weapon)
+        barbarian.starting_equipment.append(equipment.get_weapons_from_category("Simple Weapons"))
     
-    explorer_pack = starting_equipment.starting_equipment("Explorer's Pack")
-    print(f"An {explorer_pack.name} has been added to your starting equipment.")
-    barbarian.starting_equipment.append(explorer_pack)
+    barbarian.starting_equipment.append(equipment.explorers_pack)
 
-    javelin = starting_equipment.starting_equipment("Javelin")
-    print(f"Four {javelin.name}'s have been added to your starting equipment.")
-    barbarian.starting_equipment.append(javelin)
-    barbarian.starting_equipment.append(javelin)
-    barbarian.starting_equipment.append(javelin)
-    barbarian.starting_equipment.append(javelin)
+    barbarian.starting_equipment.append(equipment.javelin)
+    barbarian.starting_equipment.append(equipment.javelin)
+    barbarian.starting_equipment.append(equipment.javelin)
+    barbarian.starting_equipment.append(equipment.javelin)
+
+    ### Skill Choices ###
+    for i in range(2):
+        skill = skills.select_skill_proficiencies("Barbarian")
+        barbarian.skill_proficiencies.append(skill)
+
     return barbarian
-        
-
-

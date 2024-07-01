@@ -1,8 +1,5 @@
-import modules.starting_equipment as starting_equipment
+import modules.equipment as equipment
 import modules.skills as skills
-
-displayed_ranger_skills, ranger_skills = skills.get_ranger_skills()
-potential_starting_equipment = starting_equipment.get_starting_equipment("Ranger")       
 
 class Ranger:
     
@@ -34,25 +31,6 @@ class Ranger:
         self.spell_slots_level_3 = 0
         self.spell_slots_level_4 = 0
         self.spell_slots_level_5 = 0
-
-    def get_info(self):
-        print(f"The {self.name}: {self.bio}")
-        print(f"Hit Die: {self.hit_die}")
-        print(f"Primary Ability: {self.primary_ability}")
-        print(f"Saving Throw Proficiencies: {self.saving_throw_proficiencies}")
-        print(f"Armor Proficiencies: {self.armor_proficiencies}")
-        print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
-        print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies:")
-        for skill in self.skill_proficiencies:
-            print(skill)
-        print(f"Starting Equipment:")
-        for item in self.starting_equipment:
-            print(item.name)
-        print(f"Special Abilities:")
-        for ability in self.special_abilities:
-            print(ability)
-        return
     
     def sync_level(self, level, player):
         if level == 1:
@@ -138,68 +116,37 @@ class Ranger:
             self.spell_slots_level_5 = 2
         if level == 20:
             self.special_abilities.append("Foe Slayer")
-
+        return self
+    
 def define_ranger():
     ranger = Ranger()
-    print("You have chosen the ranger class.")
-    print(ranger.bio)
 
-    # Skill Proficiencies
-    print("Choose two skills from the following list:")
-    for skill in displayed_ranger_skills:
-        print(skill)
-    print("Please enter your first skill choice:")
-    skill_choice1 = input("> ")
-    while skill_choice1.lower() not in ranger_skills:
-        print("That is not a valid choice. Please choose from the list.")
-        skill_choice1 = input("> ")
-    ranger.skill_proficiencies.append(skill_choice1)
+    ### Equipment Choices ###
+    first_equipment_choice = equipment.weapon_choices(["Scale Mail", "Leather Armor"])
+    if first_equipment_choice == "Scale Mail":
+        ranger.starting_equipment.append(equipment.scale_mail_medium_armor)
+    elif first_equipment_choice == "Leather Armor":
+        ranger.starting_equipment.append(equipment.leather_light_armor)
 
-    print("Please enter your second skill choice:")
-    skill_choice2 = input("> ")
-    while skill_choice2.lower() not in ranger_skills:
-        print("That is not a valid choice. Please choose from the list.")
-        skill_choice2 = input("> ")
-    ranger.skill_proficiencies.append(skill_choice2)
-
-    print("You have chosen the following skills:")
-    for skill in ranger.skill_proficiencies:
-        print(skill)
-
-    # Starting Equipment
-    equipment_choice_1 = starting_equipment.starting_equipment_choice("Scale Mail", "Leather Armor")
-    if equipment_choice_1.lower() == "scale mail":
-        armor_choice = starting_equipment.starting_equipment("Scale Mail Medium Armor")
-    elif equipment_choice_1.lower() == "leather armor":
-        armor_choice = starting_equipment.starting_equipment("Leather Light Armor")
-    print(f"{armor_choice.name} has been added to your starting equipment.")
-    ranger.starting_equipment.append(armor_choice)
-
-    equipment_choice_2 = starting_equipment.starting_equipment_choice("Two Shortswords", "Two Simple Melee Weapons")
-    if equipment_choice_2.lower() == "two shortswords":
-        weapon_choice = starting_equipment.starting_equipment("Short Sword")
-        print(f"Two {weapon_choice.name}'s have been added to your starting equipment.")
-        ranger.starting_equipment.append(weapon_choice)
-        ranger.starting_equipment.append(weapon_choice)
+    second_equipment_choice = equipment.weapon_choices(["Two Short Swords", "Two Simple Melee Weapons"])
+    if second_equipment_choice == "Two Short Swords":
+        ranger.starting_equipment.append(equipment.short_sword)
+        ranger.starting_equipment.append(equipment.short_sword)
     else:
-        weapon_choice = starting_equipment.select_equipment_from_category("Simple Melee Weapons")
-        print(f"One {weapon_choice.name}'s have been added to your starting equipment.")
-        ranger.starting_equipment.append(weapon_choice)
-        weapon_choice = starting_equipment.select_equipment_from_category("Simple Melee Weapons")
-        print(f"One {weapon_choice.name}'s have been added to your starting equipment.")
-        ranger.starting_equipment.append(weapon_choice)
+        ranger.starting_equipment.append(equipment.get_weapons_from_category("Simple Weapons"))
+        ranger.starting_equipment.append(equipment.get_weapons_from_category("Simple Weapons"))
 
-    equipment_choice_3 = starting_equipment.starting_equipment_choice("Dungeoneer's Pack", "Explorer's Pack")
-    if equipment_choice_3.lower() == "dungeoneer's pack":
-        pack_choice = starting_equipment.starting_equipment("Dungeoneer's Pack")
+    third_equipment_choice = equipment.weapon_choices(["Dungeoneer's Pack", "Explorer's Pack"])
+    if third_equipment_choice == "Dungeoneer's Pack":
+        ranger.starting_equipment.append(equipment.dungeoneers_pack)
     else:
-        pack_choice = starting_equipment.starting_equipment("Explorer's Pack")
-    print(f"One {pack_choice.name} has been added to your starting equipment.")
-    ranger.starting_equipment.append(pack_choice)
+        ranger.starting_equipment.append(equipment.explorers_pack)
 
-    longbow = starting_equipment.starting_equipment("Longbow")
-    print("A Longbow and a quiver of 20 arrows. have been added to your starting equipment.")
-    ranger.starting_equipment.append(longbow)
-    # Add quiver of 20 arrows to starting equipment
+    ranger.starting_equipment.append(equipment.longbow)
+
+    ### Skill Choices ###
+    for i in range(2):
+        skill = skills.select_skill_proficiencies("ranger")
+        ranger.skill_proficiencies.append(skill)
 
     return ranger

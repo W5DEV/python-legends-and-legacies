@@ -1,9 +1,6 @@
-import modules.starting_equipment as starting_equipment
+import modules.equipment as equipment
 import modules.skills as skills
 
-displayed_rogue_skills, rogue_skills = skills.get_rogue_skills()
-potential_starting_equipment = starting_equipment.get_starting_equipment("Rogue")
-      
 class Rogue:
     
     def __init__(self):
@@ -30,25 +27,6 @@ class Rogue:
         self.special_abilities = []
         self.sneak_attack_die = "1d6"
 
-    def get_info(self):
-        print(f"The {self.name}: {self.bio}")
-        print(f"Hit Die: {self.hit_die}")
-        print(f"Primary Ability: {self.primary_ability}")
-        print(f"Saving Throw Proficiencies: {self.saving_throw_proficiencies}")
-        print(f"Armor Proficiencies: {self.armor_proficiencies}")
-        print(f"Weapon Proficiencies: {self.weapon_proficiencies}")
-        print(f"Tool Proficiencies: {self.tool_proficiencies}")
-        print(f"Skill Proficiencies:")
-        for skill in self.skill_proficiencies:
-            print(skill)
-        print(f"Starting Equipment:")
-        for item in self.starting_equipment:
-            print(item.name)
-        print(f"Special Abilities:")
-        for ability in self.special_abilities:
-            print(ability)
-        return
-    
     def sync_level(self, level, player):
         if level == 1:
             self.special_abilities.append("Expertise")
@@ -109,70 +87,40 @@ class Rogue:
             self.sneak_attack_die = "10d6"
         if level == 20:
             self.special_abilities.append("Stroke of Luck")
-
+        return self
+    
 def define_rogue():
     rogue = Rogue()
-    print("You have chosen the rogue class.")
-    print(rogue.bio)
 
-    # Skill Proficiencies
-    print("Choose two skills from the following list:")
-    for skill in displayed_rogue_skills:
-        print(skill)
-    print("Please enter your first skill choice:")
-    skill_choice1 = input("> ")
-    while skill_choice1.lower() not in rogue_skills:
-        print("That is not a valid choice. Please choose from the list.")
-        skill_choice1 = input("> ")
-    rogue.skill_proficiencies.append(skill_choice1)
+    ### Equipment Choices ###
+    first_equipment_choice = equipment.weapon_choices(["Rapier", "Short Sword"])
+    if first_equipment_choice == "Rapier":
+        rogue.starting_equipment.append(equipment.rapier)
+    elif first_equipment_choice == "Short Sword":
+        rogue.starting_equipment.append(equipment.short_sword)
 
-    print("Please enter your second skill choice:")
-    skill_choice2 = input("> ")
-    while skill_choice2.lower() not in rogue_skills:
-        print("That is not a valid choice. Please choose from the list.")
-        skill_choice2 = input("> ")
-    rogue.skill_proficiencies.append(skill_choice2)
+    second_equipment_choice = equipment.weapon_choices(["Short Bow", "Short Sword"])
+    if second_equipment_choice == "Short Bow":
+        rogue.starting_equipment.append(equipment.short_bow)
+    elif second_equipment_choice == "Short Sword":
+        rogue.starting_equipment.append(equipment.short_sword)
 
-    print("You have chosen the following skills:")
-    for skill in rogue.skill_proficiencies:
-        print(skill)
+    third_equipment_choice = equipment.weapon_choices(["Burglar's Pack", "Dungeoneer's Pack", "Explorer's Pack"])
+    if third_equipment_choice == "Burglar's Pack":
+        rogue.starting_equipment.append(equipment.burglars_pack)
+    elif third_equipment_choice == "Dungeoneer's Pack":
+        rogue.starting_equipment.append(equipment.dungeoneers_pack)
+    elif third_equipment_choice == "Explorer's Pack":
+        rogue.starting_equipment.append(equipment.explorers_pack)
 
-    # Starting Equipment
-    equipment_choice_1 = starting_equipment.starting_equipment_choice("Rapier", "Shortsword")
-    if equipment_choice_1.lower() == "rapier":
-        weapon_choice = starting_equipment.starting_equipment("Rapier")
-    else:
-        weapon_choice = starting_equipment.starting_equipment("Short Sword") 
-    print(f"One {weapon_choice.name} has been added to your starting equipment.") 
-    rogue.starting_equipment.append(weapon_choice)
+    rogue.starting_equipment.append(equipment.leather_light_armor)
+    rogue.starting_equipment.append(equipment.dagger)
+    rogue.starting_equipment.append(equipment.dagger)
+    rogue.starting_equipment.append(equipment.thieves_tools)
 
-    equipment_choice_2 = starting_equipment.starting_equipment_choice("Shortbow and Quiver of 20 Arrows", "Shortsword")
-    if equipment_choice_2.lower() == "shortbow and quiver of 20 arrows":
-        weapon_choice = starting_equipment.starting_equipment("Short Bow")
-        print(f"One {weapon_choice.name} has been added to your starting equipment.")
-        rogue.starting_equipment.append(weapon_choice)
-        print("A Quiver of 20 Arrows has been added to your starting equipment.")
-        # Add a Quiver of 20 Arrows to the starting equipment
-    else:
-        weapon_choice = starting_equipment.starting_equipment("Short Sword")
-
-    equipment_choice_3 = starting_equipment.starting_equipment_choice_three("Burglar's Pack", "Dungeoneer's Pack", "Explorer's Pack")
-    if equipment_choice_3.lower() == "burglar's pack":
-        pack_choice = starting_equipment.starting_equipment("Burglar's Pack")
-    elif equipment_choice_3.lower() == "dungeoneer's pack":
-        pack_choice = starting_equipment.starting_equipment("Dungeoneer's Pack")
-    else:
-        pack_choice = starting_equipment.starting_equipment("Explorer's Pack")
-    print(f"One {pack_choice.name} has been added to your starting equipment.")
-    rogue.starting_equipment.append(pack_choice)
-
-    leather_armor = starting_equipment.starting_equipment("Leather Light Armor")
-    dagger = starting_equipment.starting_equipment("Dagger")
-    thieves_tools = starting_equipment.starting_equipment("Thieves' Tools")
-    print("Leather Armor, Two Daggers, and Thieves' Tools have been added to your starting equipment.")
-    rogue.starting_equipment.append(leather_armor)
-    rogue.starting_equipment.append(dagger)
-    rogue.starting_equipment.append(dagger)
-    rogue.starting_equipment.append(thieves_tools)
+    ### Skill Choices ###
+    for i in range(2):
+        skill = skills.select_skill_proficiencies("rogue")
+        rogue.skill_proficiencies.append(skill)
 
     return rogue
