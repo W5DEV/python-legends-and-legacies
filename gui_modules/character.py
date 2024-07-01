@@ -59,6 +59,9 @@ class Character:
         button_texts = ["Click to Continue..."]
         button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
         text_position = (MARGIN, MARGIN)
+        player_equipment_names = ""
+        for equipment in self.archetype.starting_equipment:
+            player_equipment_names += f'{equipment.name}, '
 
         animate_flag = True
 
@@ -76,10 +79,10 @@ class Character:
             screen.fill(BG_COLOR)
 
             if animate_flag:
-                text_display.animate_text(screen, f'{self.name} is a {self.race.subrace}.', text_position, TEXT_AREA_WIDTH)
+                text_display.animate_text(screen, f'{self.name} is a {self.race.subrace} {self.archetype.name}. They currently have {player_equipment_names}.', text_position, TEXT_AREA_WIDTH)
                 animate_flag = False
             else:
-                text_display.draw_text(screen, f'{self.name} is a {self.race.subrace}.', text_position, TEXT_AREA_WIDTH)
+                text_display.draw_text(screen, f'{self.name} is a {self.race.subrace} {self.archetype.name}. They currently have {player_equipment_names}.', text_position, TEXT_AREA_WIDTH)
 
             buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
 
