@@ -53,12 +53,11 @@ Currently, the game is in the early stages of development, with the basic framew
 ### Phase 2: Basic Storytelling/UI Implementation
 
 - ~~Create a basic story and story engine that allows a player to make choices~~
-- Convert game from console-based to GUI-based
+- ~~Convert game from console-based to GUI-based~~
 - Create user-selectable options based on the current state of the game, equipment, and abilities
-- Add a system for displaying character stats, abilities, and equipment
-- Add a system for displaying the current story, choices, and outcomes
-- Add a system for displaying combat stats, health, and damage
-- Add a system for displaying experience points, level, and abilities
+- Add a HUD for character stats, abilities, and equipment
+- Add handlers for current story progress, choices, and outcomes
+- Add HUD for experience points, level, and abilities
 
 ### Phase 3: Combat and Mechanics
 
@@ -66,6 +65,7 @@ Currently, the game is in the early stages of development, with the basic framew
 - Make combat turn-based, which accounts for player and enemy actions
 - Add a system for calculating damage based on weapons, abilities, and armor
 - Calculate weight based on current equipment and implement encumbrance
+- Add a system for displaying combat stats, health, and damage
 
 ### Phase 4: Leveling Up
 
