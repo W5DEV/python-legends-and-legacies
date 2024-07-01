@@ -3,18 +3,18 @@ import sys
 import gui.text_display as text_display
 import gui.buttons as buttons
 import gui.constants as constants
-import gui_archetypes.barbarian as barbarian
-import gui_archetypes.bard as bard
-import gui_archetypes.cleric as cleric
-import gui_archetypes.druid as druid
-import gui_archetypes.fighter as fighter
-import gui_archetypes.monk as monk
-import gui_archetypes.paladin as paladin
-import gui_archetypes.ranger as ranger
-import gui_archetypes.rogue as rogue
-import gui_archetypes.sorcerer as sorcerer
-import gui_archetypes.warlock as warlock
-import gui_archetypes.wizard as wizard
+import archetypes.barbarian as barbarian
+import archetypes.bard as bard
+import archetypes.cleric as cleric
+import archetypes.druid as druid
+import archetypes.fighter as fighter
+import archetypes.monk as monk
+import archetypes.paladin as paladin
+import archetypes.ranger as ranger
+import archetypes.rogue as rogue
+import archetypes.sorcerer as sorcerer
+import archetypes.warlock as warlock
+import archetypes.wizard as wizard
 
 # Initialize pygame
 pygame.init()
