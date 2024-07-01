@@ -49,17 +49,17 @@ class Fighter:
             self.special_abilities.append("Improved Critical (crit range 19-20)")
         if level == 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
         if level == 5:
             self.special_abilities.append("Extra Attack (1 extra attack)")
         if level == 6:
             self.special_abilities.append("Ability Score Improvement 6th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
         if level == 7:
             self.special_abilities.append("Remarkable Athlete")
         if level == 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
         if level == 9:
             self.special_abilities.append("Indomitable (1/rest)")
         if level == 10:
@@ -81,17 +81,17 @@ class Fighter:
             self.special_abilities.append("Extra Attack (2 extra attacks)")
         if level == 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
         if level == 13:
             self.special_abilities.append("Indomitable (2/rest)")
         if level == 14:
             self.special_abilities.append("Ability Score Improvement 14th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
         if level == 15:
             self.special_abilities.append("Superior Critical (crit range 18-20)")
         if level == 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
         if level == 17:
             self.special_abilities.append("Action Surge (2/rest)")
             self.special_abilities.append("Indomitable (3/rest)")
@@ -99,7 +99,7 @@ class Fighter:
             self.special_abilities.append("Survivor")
         if level == 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
         if level == 20:
             self.special_abilities.append("Extra Attack (3 extra attacks)")
         return self

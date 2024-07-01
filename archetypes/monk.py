@@ -44,7 +44,7 @@ class Monk:
             self.ki_points = 3
         if level == 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.special_abilities.append("Slow Fall")
             self.ki_points = 4
         if level == 5:
@@ -63,7 +63,7 @@ class Monk:
             self.ki_points = 7
         if level == 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.ki_points = 8
         if level == 9:
             self.special_abilities.append("Unarmored Movement Improvement")
@@ -78,7 +78,7 @@ class Monk:
             self.martial_arts_die = "1d8"
         if level == 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.ki_points = 12
         if level == 13:
             self.special_abilities.append("Tongue of the Sun and Moon")
@@ -92,7 +92,7 @@ class Monk:
             self.ki_points = 15
         if level == 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.ki_points = 16
         if level == 17:
             self.special_abilities.append("Quivering Palm")
@@ -104,7 +104,7 @@ class Monk:
             self.unarmored_movement = 30
         if level == 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.ki_points = 19
         if level == 20:
             self.special_abilities.append("Perfect Self")

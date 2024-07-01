@@ -54,7 +54,7 @@ class Warlock:
             self.spell_slot_level = 2
         if level == 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.special_abilities.append("Fiend Expanded Spells Level 4")
             self.cantrips_known = 3
             self.spells_known = 5
@@ -72,7 +72,7 @@ class Warlock:
             self.invocations_known = 4
         if level == 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.spells_known = 9
         if level == 9:
             self.spells_known = 10
@@ -87,7 +87,7 @@ class Warlock:
             self.spell_slots = 3
         if level == 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.invocations_known = 6
         if level == 13:
             self.special_abilities.append("Mystic Arcanum 7th Level")
@@ -100,7 +100,7 @@ class Warlock:
             self.invocations_known = 7
         if level == 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
         if level == 17:
             self.special_abilities.append("Mythic Arcanum 9th Level")
             self.spells_known = 14
@@ -109,7 +109,7 @@ class Warlock:
             self.invocations_known = 8
         if level == 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.spells_known = 15
         if level == 20:
             self.special_abilities.append("Eldritch Master")

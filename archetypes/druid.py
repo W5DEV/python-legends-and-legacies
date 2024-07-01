@@ -57,7 +57,7 @@ class Druid:
         if level == 4:
             self.special_abilities.append("Wild Shape Improvement 4th Level - No flying speed (1/2 CR)")
             self.special_abilities.append("Ability Score Improvement 4th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.spell_slots_level_2 = 3
         if level == 5:
             self.special_abilities.append("5th Level Circle Spells")
@@ -71,7 +71,7 @@ class Druid:
         if level == 8:
             self.special_abilities.append("Wild Shape Improvement 8th Level (1 CR)")
             self.special_abilities.append("Ability Score Improvement 8th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.spell_slots_level_4 = 2
         if level == 9:
             self.special_abilities.append("9th Level Circle Spells")
@@ -84,7 +84,7 @@ class Druid:
             self.spell_slots_level_6 = 1
         if level == 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
         if level == 13:
             self.spell_slots_level_7 = 1
         if level == 14:
@@ -93,7 +93,7 @@ class Druid:
             self.spell_slots_level_8 = 1
         if level == 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
         if level == 17:
             self.spell_slots_level_9 = 1
         if level == 18:
@@ -102,7 +102,7 @@ class Druid:
             self.spell_slots_level_5 = 3
         if level == 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.spell_slots_level_6 = 2
         if level == 20:
             self.special_abilities.append("Archdruid")

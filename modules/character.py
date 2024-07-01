@@ -5,7 +5,6 @@ import gui.buttons as buttons
 import gui.constants as constants
 import modules.dice_rolls as dice_rolls
 import modules.utils as utils
-import modules.equipment as equipment
 
 # Initialize pygame
 pygame.init()
@@ -122,138 +121,6 @@ class Character:
         self.level = level
         return 
     
-    def equip_armor(self):
-        selected_item = ""
-        valid_choices = []
-        if self.equipped_armor == None:
-            print("You do not have any armor to equip.")
-            return
-        print("Please choose an armor type from the following list:")
-        for item in self.equipment:
-            if item in equipment.armor:
-                print(item.name)
-                valid_choices.append(item.name.lower())
-        selected_item = input("> ")
-        while selected_item.lower() not in valid_choices:
-            print("Sorry, that is not a valid choice. Please try again.")
-            print("Please choose an armor type from the following list:")
-            for item in self.equipment:
-                if item in equipment.armor:
-                    print(item.name)
-            selected_item = input("> ")
-        for item in self.equipment:
-            if item.name.lower() == selected_item.lower():
-                self.equipped_armor = item
-                print(f"You have equipped {self.equipped_armor.name}.")
-                return
-        print("You do not have any armor equipped.")
-        return
-    
-    def unequip_armor(self):
-        if self.equipped_armor == None:
-            print("You do not have any armor equipped.")
-            return
-        self.equipped_armor = None
-        print("You have unequipped your armor.")
-        return
-    
-    def equip_weapon(self):
-        selected_item = ""
-        valid_choices = []
-        if self.equipped_weapon == None:
-            print("You do not have any weapons to equip.")
-            return
-        print("Please choose a weapon from the following list:")
-        for item in self.equipment:
-            if item in equipment.weapons:
-                print(item.name)
-                valid_choices.append(item.name.lower())
-        selected_item = input("> ")
-        while selected_item.lower() not in valid_choices:
-            print("Sorry, that is not a valid choice. Please try again.")
-            print("Please choose a weapon from the following list:")
-            for item in self.equipment:
-                if item in equipment.weapons:
-                    print(item.name)
-            selected_item = input("> ")
-        for item in self.equipment:
-            if item.name.lower() == selected_item.lower():
-                self.equipped_weapon.append(item)
-                print(f"You have equipped {item.name}.")
-                print("You have the following weapons equipped:")
-                for weapon in self.equipped_weapon:
-                    print(weapon.name)
-                return
-        print("You have not equipped any weapons.")
-        return
-    
-    def unequip_weapon(self):
-        if self.equipped_weapon == []:
-            print("You do not have any weapons equipped.")
-            return
-        print("Please choose a weapon to unequip from the following list:")
-        valid_choices = []
-        for weapon in self.equipped_weapon:
-            print(weapon.name)
-            valid_choices.append(weapon.name.lower())
-        selected_item = input("> ")
-        while selected_item.lower() not in valid_choices:
-            print("Sorry, that is not a valid choice. Please try again.")
-            print("Please choose a weapon to unequip from the following list:")
-            for weapon in self.equipped_weapon:
-                print(weapon.name)
-            selected_item = input("> ")
-        for weapon in self.equipped_weapon:
-            if weapon.name.lower() == selected_item.lower():
-                self.equipped_weapon.remove(weapon)
-                print(f"You have unequipped {weapon.name}.")
-                return
-        print("You have not uneqiupped any weapons.")
-        return
-    
-    def equip_shield(self):
-        equipped_items = []
-        for item in self.equipment:
-            equipped_items.append(item.name)
-        if "Shield" not in equipped_items:
-            print("You do not have a shield to equip.")
-            return
-        self.equipped_shield = True
-        print("You have equipped a shield.")
-        return
-    
-    def unequip_shield(self):
-        if self.equipped_shield == None:
-            print("You do not have a shield equipped.")
-            return
-        self.equipped_shield = None
-        print("You have unequipped your shield.")
-        return
-    
-    def ready_weapon(self):
-        if self.equipped_weapon == []:
-            print("You do not have any weapons equipped. Please equip a weapon before readying it.")
-            return
-        print("Please choose a weapon to ready from the following list:")
-        valid_choices = []
-        for weapon in self.equipped_weapon:
-            print(weapon.name)
-            valid_choices.append(weapon.name.lower())
-        selected_item = input("> ")
-        while selected_item.lower() not in valid_choices:
-            print("Sorry, that is not a valid choice. Please try again.")
-            print("Please choose a weapon to ready from the following list:")
-            for weapon in self.equipped_weapon:
-                print(weapon.name)
-            selected_item = input("> ")
-        for weapon in self.equipped_weapon:
-            if weapon.name.lower() == selected_item.lower():
-                self.readied_weapon = weapon
-                print(f"You have readied {weapon.name}.")
-                return
-        print("You have not readied any weapons.")    
-        return
-    
     def calculate_armor_class(self):
         base_ac = 10
         dex_mod = self.dexterity_mod
@@ -287,30 +154,62 @@ class Character:
         xp_needed = utils.calculate_xp_needed(self.xp)
         return xp_needed
     
-    def increase_ability_score(self, number):
-        ability_points = number
-        while ability_points > 0:
-            print("Please choose an ability score to increase:")
-            for ability in ("Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"):
-                print(ability)
-            ability_choice = input("> ")
-            while ability_choice.lower() not in ("strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"):
-                print("That is not a valid choice. Please choose from the list.")
-                ability_choice = input("> ")
-            if ability_choice.lower() == "strength":
-                self.strength += 1
-            elif ability_choice.lower() == "dexterity":
-                self.dexterity += 1
-            elif ability_choice.lower() == "constitution":
-                self.constitution += 1
-            elif ability_choice.lower() == "intelligence":
-                self.intelligence += 1
-            elif ability_choice.lower() == "wisdom":
-                self.wisdom += 1
-            elif ability_choice.lower() == "charisma":
-                self.charisma += 1
-            ability_points -= 1
-        self.calculate_modifiers()
+    def increase_ability_score(self):
+        button_texts = [f"Strength: {self.strength}", f"Dexterity:{self.dexterity}", f"Constitution: {self.constitution}", f"Intelligence: {self.intelligence}", f"Wisdom: {self.wisdom}", f"Charisma: {self.charisma}"]
+        button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
+        text_position = (MARGIN, MARGIN)
+
+        animate_flag = True
+
+        while True:
+            mouse_pos = pygame.mouse.get_pos()
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    for i, rect in enumerate(button_rects):
+                        if rect.collidepoint(mouse_pos):
+                            if button_texts[i] == f"Strength: {self.strength}":
+                                self.strength += 1
+                                self.calculate_modifiers()
+                                return
+                            elif button_texts[i] == f"Dexterity:{self.dexterity}":
+                                self.dexterity += 1
+                                self.calculate_modifiers()
+                                return
+                            elif button_texts[i] == f"Constitution: {self.constitution}":
+                                self.constitution += 1
+                                self.calculate_modifiers()
+                                return
+                            elif button_texts[i] == f"Intelligence: {self.intelligence}":
+                                self.intelligence += 1
+                                self.calculate_modifiers()
+                                return
+                            elif button_texts[i] == f"Wisdom: {self.wisdom}":
+                                self.wisdom += 1
+                                self.calculate_modifiers()
+                                return
+                            elif button_texts[i] == f"Charisma: {self.charisma}":
+                                self.charisma += 1
+                                self.calculate_modifiers()
+                                return
+
+            screen.fill(BG_COLOR)
+
+            if animate_flag:
+                text_display.animate_text(screen, f'Choose which ability to increase by 1...', text_position, TEXT_AREA_WIDTH)
+                animate_flag = False
+            else:
+                text_display.draw_text(screen, f'Choose which ability to increase by 1...', text_position, TEXT_AREA_WIDTH)
+
+            buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+
+            pygame.display.update()
+
+    def update_ability_points(self, number):
+        for i in range(number):
+            self.increase_ability_score()
         return
 
 

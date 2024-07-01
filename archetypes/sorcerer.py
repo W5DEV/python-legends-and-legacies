@@ -61,7 +61,7 @@ class Sorcerer:
             self.spell_slots_level_2 = 2
         if level == 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.sorcery_points = 4
             self.cantrips_known = 5
             self.spell_slots_level_2 = 3
@@ -80,7 +80,7 @@ class Sorcerer:
             self.spell_slots_level_4 = 1
         if level == 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.sorcery_points = 8
             self.spells_known = 9
             self.spell_slots_level_4 = 2
@@ -101,7 +101,7 @@ class Sorcerer:
             self.spell_slots_level_6 = 1
         if level == 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.sorcery_points = 12
         if level == 13:
             self.sorcery_points = 13
@@ -116,7 +116,7 @@ class Sorcerer:
             self.spell_slots_level_8 = 1
         if level == 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.sorcery_points = 16
         if level == 17:
             self.special_abilities.append("Metamagic")
@@ -129,7 +129,7 @@ class Sorcerer:
             self.spell_slots_level_5 = 3
         if level == 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.sorcery_points = 19
             self.spell_slots_level_6 = 2
         if level == 20:

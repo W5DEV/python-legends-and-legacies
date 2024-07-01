@@ -54,7 +54,7 @@ class Wizard:
             self.spell_slots_level_2 = 2
         if level == 4:
             self.special_abilities.append("Ability Score Improvement 4th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.cantrips_known = 4
             self.spell_slots_level_2 = 3
         if level == 5:
@@ -66,7 +66,7 @@ class Wizard:
             self.spell_slots_level_4 = 1
         if level == 8:
             self.special_abilities.append("Ability Score Improvement 8th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.spell_slots_level_4 = 2
         if level == 9:
             self.spell_slots_level_4 = 3
@@ -79,7 +79,7 @@ class Wizard:
             self.spell_slots_level_6 = 1
         if level == 12:
             self.special_abilities.append("Ability Score Improvement 12th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
         if level == 13:
             self.spell_slots_level_7 = 1
         if level == 14:
@@ -88,7 +88,7 @@ class Wizard:
             self.spell_slots_level_8 = 1
         if level == 16:
             self.special_abilities.append("Ability Score Improvement 16th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
         if level == 17:
             self.spell_slots_level_9 = 1
         if level == 18:
@@ -96,7 +96,7 @@ class Wizard:
             self.spell_slots_level_5 = 3
         if level == 19:
             self.special_abilities.append("Ability Score Improvement 19th Level")
-            player.increase_ability_score(2)
+            player.update_ability_points(2)
             self.spell_slots_level_6 = 2
         if level == 20:
             self.special_abilities.append("Signature Spells")
