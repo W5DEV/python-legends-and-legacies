@@ -244,6 +244,7 @@ class Character:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     for i, rect in enumerate(button_rects):
                         if rect.collidepoint(mouse_pos):
+                            print(f'Game over! Thanks for playing!')
                             return
 
             screen.fill(BG_COLOR)

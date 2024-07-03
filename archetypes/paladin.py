@@ -24,6 +24,7 @@ class Paladin:
         self.tool_proficiencies = tool_proficiencies
         self.skill_proficiencies = []
         self.starting_equipment = []
+        self.spells = []
         self.sacred_oath = ""
         self.channel_divinity_options = []
         self.oath_of_devotion_spells = []

@@ -62,7 +62,8 @@ class Cleric:
             self.spell_slots_level_2 = 3
         if level == 5:
             self.special_abilities.append("Destroy Undead (CR 1/2)")
-            self.special_abilities.append("Beacon of Hope", "Revivify")
+            self.special_abilities.append("Beacon of Hope")
+            self.special_abilities.append("Revivify")
             self.spell_slots_level_3 = 2
         if level == 6:
             self.special_abilities.append("Channel Divinity 2/rest")
