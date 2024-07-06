@@ -2,7 +2,7 @@ import pygame
 import sys
 import gui.text_display as text_display
 import gui.buttons as buttons
-import gui.constants as constants
+import gui.constants as const
 import archetypes.barbarian as barbarian
 import archetypes.bard as bard
 import archetypes.cleric as cleric
@@ -19,26 +19,15 @@ import archetypes.wizard as wizard
 # Initialize pygame
 pygame.init()
 
-# Constants
-SCREEN_WIDTH, SCREEN_HEIGHT = constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT
-BG_COLOR = constants.BG_COLOR
-TEXT_COLOR = constants.TEXT_COLOR
-FONT_SIZE = constants.FONT_SIZE
-MARGIN = constants.MARGIN
-TEXT_AREA_WIDTH = constants.TEXT_AREA_WIDTH
-TEXT_AREA_HEIGHT = constants.TEXT_AREA_HEIGHT
-
 # Setup screen
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption('UI Example')
-font = pygame.font.SysFont(None, FONT_SIZE)
+surface = pygame.display.set_mode((const.SCREEN_WIDTH, const.SCREEN_HEIGHT))
+pygame.display.set_caption('Class Selection')
 
 archetypes = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"]
 
 def select_archetype():
     button_texts = archetypes
-    button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
-    text_position = (MARGIN, MARGIN)
+    button_rects = buttons.create_button_rects(len(button_texts))
     
     animate_flag = True  # Flag to control text animation
     
@@ -51,7 +40,7 @@ def select_archetype():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 for i, rect in enumerate(button_rects):
                     if rect.collidepoint(mouse_pos):
-                        text_display.animate_text(screen, f'You chose {button_texts[i]}!', text_position, TEXT_AREA_WIDTH)
+                        text_display.animate_text(surface, f'You chose {button_texts[i]}!')
                         if button_texts[i] == "Barbarian":
                             return barbarian.define_barbarian()
                         elif button_texts[i] == "Bard":
@@ -78,14 +67,14 @@ def select_archetype():
                             return wizard.define_wizard()
                     
 
-        screen.fill(BG_COLOR)
+        surface.fill(const.BG_COLOR)
 
         if animate_flag:
-            text_display.animate_text(screen, 'Choose your character\'s class!', text_position, TEXT_AREA_WIDTH)
+            text_display.animate_text(surface, 'Choose your character\'s class!')
             animate_flag = False
         else:
-            text_display.draw_text(screen, 'Choose your character\'s class!', text_position, TEXT_AREA_WIDTH)
+            text_display.draw_text(surface, 'Choose your character\'s class!')
 
-        buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+        buttons.draw_buttons(surface, button_texts, button_rects, mouse_pos)
 
         pygame.display.update()

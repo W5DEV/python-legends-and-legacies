@@ -1,18 +1,10 @@
-# buttons.py
-
 import pygame
-import gui.constants as constants
+import gui.constants as const
 
-BUTTON_COLOR = constants.BUTTON_COLOR
-BUTTON_COLOR_HOVER = constants.BUTTON_COLOR_HOVER
-BORDER_COLOR = constants.BORDER_COLOR
-FONT_SIZE = constants.FONT_SIZE
-MARGIN = constants.MARGIN
-TEXT_COLOR = constants.TEXT_COLOR
 
 # Initialize the font module
 pygame.font.init()
-font = pygame.font.SysFont(None, FONT_SIZE)
+font = pygame.font.SysFont(None, const.FONT_SIZE)
 
 def draw_fantasy_button(surface, rect, color, border_color, hover=False):
     # Draw button background
@@ -42,16 +34,16 @@ def draw_fantasy_button(surface, rect, color, border_color, hover=False):
 def draw_buttons(surface, button_texts, button_rects, mouse_pos):
     for text, rect in zip(button_texts, button_rects):
         hover = rect.collidepoint(mouse_pos)
-        draw_fantasy_button(surface, rect, BUTTON_COLOR, BORDER_COLOR, hover=hover)
-        text_surface = font.render(text, True, TEXT_COLOR)
+        draw_fantasy_button(surface, rect, const.BUTTON_COLOR, const.BORDER_COLOR, hover=hover)
+        text_surface = font.render(text, True, const.TEXT_COLOR)
         text_rect = text_surface.get_rect(center=rect.center)
         surface.blit(text_surface, text_rect)
 
-def create_button_rects(screen_width, screen_height, num_buttons):
+def create_button_rects(num_buttons):
     button_width = 350
     button_height = 50
     margin = 20
-    cols = (screen_width - margin) // (button_width + margin)
+    cols = (const.SCREEN_WIDTH - margin) // (button_width + margin)
     rows = (num_buttons + cols - 1) // cols  # Ceiling division
     button_rects = []
 
@@ -60,7 +52,7 @@ def create_button_rects(screen_width, screen_height, num_buttons):
             if len(button_rects) >= num_buttons:
                 break
             x = margin + col * (button_width + margin)
-            y = screen_height - margin - (rows - row) * (button_height + margin)
+            y = const.SCREEN_HEIGHT - margin - (rows - row) * (button_height + margin)
             button_rects.append(pygame.Rect(x, y, button_width, button_height))
     
     return button_rects

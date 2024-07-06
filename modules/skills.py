@@ -2,24 +2,14 @@ import pygame
 import sys
 import gui.text_display as text_display
 import gui.buttons as buttons
-import gui.constants as constants
+import gui.constants as const
 
 # Initialize pygame
 pygame.init()
 
-# Constants
-SCREEN_WIDTH, SCREEN_HEIGHT = constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT
-BG_COLOR = constants.BG_COLOR
-TEXT_COLOR = constants.TEXT_COLOR
-FONT_SIZE = constants.FONT_SIZE
-MARGIN = constants.MARGIN
-TEXT_AREA_WIDTH = constants.TEXT_AREA_WIDTH
-TEXT_AREA_HEIGHT = constants.TEXT_AREA_HEIGHT
-
 # Setup screen
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption('UI Example')
-font = pygame.font.SysFont(None, FONT_SIZE)
+surface = pygame.display.set_mode((const.SCREEN_WIDTH, const.SCREEN_HEIGHT))
+pygame.display.set_caption('Skill Selection')
 
 def skill_choices(archetype):
     if archetype == "Barbarian":
@@ -49,8 +39,7 @@ def skill_choices(archetype):
 
 def select_skill_proficiencies(archetype):
     button_texts = skill_choices(archetype)
-    button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
-    text_position = (MARGIN, MARGIN)
+    button_rects = buttons.create_button_rects(len(button_texts))
 
     animate_flag = True  # Flag to control text animation
 
@@ -66,15 +55,15 @@ def select_skill_proficiencies(archetype):
                         if rect.collidepoint(mouse_pos):
                             return button_texts[i]
 
-        screen.fill(BG_COLOR)
+        surface.fill(const.BG_COLOR)
 
         if animate_flag:
-            text_display.animate_text(screen, 'Choose a skill proficiency below...', text_position, TEXT_AREA_WIDTH)
+            text_display.animate_text(surface, 'Choose a skill proficiency below...')
             animate_flag = False
         else:
-            text_display.draw_text(screen, 'Choose a skill proficiency below...', text_position, TEXT_AREA_WIDTH)
+            text_display.draw_text(surface, 'Choose a skill proficiency below...')
 
-        buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+        buttons.draw_buttons(surface, button_texts, button_rects, mouse_pos)
 
         pygame.display.update()
 

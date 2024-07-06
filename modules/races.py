@@ -1,26 +1,17 @@
 import pygame
 import sys
 import random
-import gui.constants as constants  # Import the constants module
+import gui.constants as const  # Import the constants module
 import gui.text_display as text_display  # Import the text_display module
 import gui.buttons as buttons  # Import the buttons module
 
 # Initialize pygame
 pygame.init()
 
-# Constants
-SCREEN_WIDTH, SCREEN_HEIGHT = constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT
-BG_COLOR = constants.BG_COLOR
-TEXT_COLOR = constants.TEXT_COLOR
-FONT_SIZE = constants.FONT_SIZE
-MARGIN = constants.MARGIN
-TEXT_AREA_WIDTH = constants.TEXT_AREA_WIDTH
-TEXT_AREA_HEIGHT = constants.TEXT_AREA_HEIGHT
 
 # Setup screen
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption('UI Example')
-font = pygame.font.SysFont(None, FONT_SIZE)
+surface = pygame.display.set_mode((const.SCREEN_WIDTH, const.SCREEN_HEIGHT))
+pygame.display.set_caption('Race Selection')
 
 class Race:
     def __init__(self, name, gender, race, subrace, size, speed, languages, ability_score_increase, traits, proficiencies):
@@ -42,8 +33,7 @@ class Race:
 
 def choose_race():
     button_texts = ["Hill Dwarf", "Mountain Dwarf", "High Elf", "Wood Elf", "Lightfoot Halfling", "Stout Halfling", "Human"]
-    button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
-    text_position = (MARGIN, MARGIN)
+    button_rects = buttons.create_button_rects(len(button_texts))
     
     animate_flag = True  # Flag to control text animation
     
@@ -56,19 +46,19 @@ def choose_race():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 for i, rect in enumerate(button_rects):
                     if rect.collidepoint(mouse_pos):
-                        text_display.animate_text(screen, f'You chose {button_texts[i]}!', text_position, TEXT_AREA_WIDTH)
+                        text_display.animate_text(surface, f'You chose {button_texts[i]}!')
                         return define_race(button_texts[i])
                     
 
-        screen.fill(BG_COLOR)
+        surface.fill(const.BG_COLOR)
 
         if animate_flag:
-            text_display.animate_text(screen, 'Choose your character\'s race!', text_position, TEXT_AREA_WIDTH)
+            text_display.animate_text(surface, 'Choose your character\'s race!')
             animate_flag = False
         else:
-            text_display.draw_text(screen, 'Choose your character\'s race!', text_position, TEXT_AREA_WIDTH)
+            text_display.draw_text(surface, 'Choose your character\'s race!')
 
-        buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+        buttons.draw_buttons(surface, button_texts, button_rects, mouse_pos)
 
         pygame.display.update()
 
@@ -91,8 +81,7 @@ def define_race(race_name):
 
 def define_gender():
     button_texts = ["Male", "Female"]
-    button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
-    text_position = (MARGIN, MARGIN)
+    button_rects = buttons.create_button_rects(len(button_texts))
     
     animate_flag = True  # Flag to control text animation
     
@@ -108,15 +97,15 @@ def define_gender():
                         return button_texts[i]
                     
 
-        screen.fill(BG_COLOR)
+        surface.fill(const.BG_COLOR)
 
         if animate_flag:
-            text_display.animate_text(screen, 'Choose your character\'s gender!', text_position, TEXT_AREA_WIDTH)
+            text_display.animate_text(surface, 'Choose your character\'s gender!')
             animate_flag = False
         else:
-            text_display.draw_text(screen, 'Choose your character\'s gender!', text_position, TEXT_AREA_WIDTH)
+            text_display.draw_text(surface, 'Choose your character\'s gender!')
 
-        buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+        buttons.draw_buttons(surface, button_texts, button_rects, mouse_pos)
 
         pygame.display.update()
 
@@ -164,7 +153,7 @@ def define_mountain_dwarf():
 
 def define_dwarf_name(gender):
     button_texts = ["Click to Continue"]
-    button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
+    button_rects = buttons.create_button_rects(len(button_texts))
     
     dwarf_male_names = ["Adrik", "Alberich", "Baern", "Barendd", "Brottor", "Bruenor", "Dain", "Darrak", "Delg", "Eberk", "Einkil", "Fargrim", "Flint", "Gardain", "Harbek", "Kildrak", "Morgran", "Orsik", "Oskar", "Rangrim", "Rurik", "Taklinn", "Thoradin", "Thorin", "Tordek", "Traubon", "Travok", "Ulfgar", "Veit", "Vondal"]
     dwarf_female_names = ["Amber", "Artin", "Audhild", "Bardryn", "Dagnal", "Diesa", "Eldeth", "Falkrunn", "Finellen", "Gunnloda", "Gurdis", "Helja", "Hlin", "Kathra", "Kristryd", "Ilde", "Liftrasa", "Mardred", "Riswynn", "Sannl", "Torbera", "Torgga", "Vistra"]
@@ -183,7 +172,6 @@ def define_dwarf_name(gender):
 
     name = first_name + " " + clan_name
 
-    text_position = (MARGIN, MARGIN)
     
     animate_flag = True  # Flag to control text animation
     
@@ -198,23 +186,22 @@ def define_dwarf_name(gender):
                     if rect.collidepoint(mouse_pos):
                         return name
                     
-        screen.fill(BG_COLOR)
+        surface.fill(const.BG_COLOR)
 
         if animate_flag:
-            text_display.animate_text(screen, f'Dwarves have a first name and a clan name. A dwarf\'s name is granted by a clan elder in accordance with tradition! Your name is {first_name} of clan {clan_name}', text_position, TEXT_AREA_WIDTH)
+            text_display.animate_text(surface, f'Dwarves have a first name and a clan name. A dwarf\'s name is granted by a clan elder in accordance with tradition! Your name is {first_name} of clan {clan_name}')
             animate_flag = False
         else:
-            text_display.draw_text(screen, f'Dwarves have a first name and a clan name. A dwarf\'s name is granted by a clan elder in accordance with tradition! Your name is {first_name} of clan {clan_name}', text_position, TEXT_AREA_WIDTH)
+            text_display.draw_text(surface, f'Dwarves have a first name and a clan name. A dwarf\'s name is granted by a clan elder in accordance with tradition! Your name is {first_name} of clan {clan_name}')
 
-        buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+        buttons.draw_buttons(surface, button_texts, button_rects, mouse_pos)
 
         pygame.display.update()
 
 def get_dwarf_tool_proficiency():
     tool_proficiency_options = ["Smith's Tools", "Brewer's Supplies", "Mason's Tools"]
     button_texts = tool_proficiency_options
-    button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
-    text_position = (MARGIN, MARGIN)
+    button_rects = buttons.create_button_rects(len(button_texts))
 
     animate_flag = True
 
@@ -229,15 +216,15 @@ def get_dwarf_tool_proficiency():
                     if rect.collidepoint(mouse_pos):
                         return button_texts[i]
 
-        screen.fill(BG_COLOR)
+        surface.fill(const.BG_COLOR)
 
         if animate_flag:
-            text_display.animate_text(screen, 'Choose a tool proficiency!', text_position, TEXT_AREA_WIDTH)
+            text_display.animate_text(surface, 'Choose a tool proficiency!')
             animate_flag = False
         else:
-            text_display.draw_text(screen, 'Choose a tool proficiency!', text_position, TEXT_AREA_WIDTH)
+            text_display.draw_text(surface, 'Choose a tool proficiency!')
 
-        buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+        buttons.draw_buttons(surface, button_texts, button_rects, mouse_pos)
 
         pygame.display.update()
 
@@ -281,7 +268,7 @@ def define_wood_elf():
 
 def define_elf_name(gender):
     button_texts = ["Click to Continue..."]
-    button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
+    button_rects = buttons.create_button_rects(len(button_texts))
     
     elf_child_names = ["Ara", "Bryn", "Del", "Eryn", "Faen", "Innil", "Lael", "Mella", "Naill", "Naeris", "Phann", "Rael", "Rinn", "Sai", "Syllin", "Thia", "Vall"]
     elf_male_names = ["Adran", "Aelar", "Aramil", "Arannis", "Aust", "Beiro", "Berrian", "Carric", "Enialis", "Erdan", "Erevan", "Galinndan", "Hadarai", "Heian", "Himo", "Immeral", "Ivellios", "Laucian", "Mindartis", "Paelias", "Peren", "Quarion", "Riardon", "Rolen", "Soveliss", "Thamior", "Tharivol", "Theren", "Varis"]
@@ -298,7 +285,6 @@ def define_elf_name(gender):
 
     family_name = random.choice(family_names)
 
-    text_position = (MARGIN, MARGIN)
     
     animate_flag = True  # Flag to control text animation
 
@@ -320,22 +306,21 @@ def define_elf_name(gender):
                     if rect.collidepoint(mouse_pos):
                         return name
                     
-        screen.fill(BG_COLOR)
+        surface.fill(const.BG_COLOR)
 
         if animate_flag:
-            text_display.animate_text(screen, f'Your name is {first_name} of clan {family_name}', text_position, TEXT_AREA_WIDTH)
+            text_display.animate_text(surface, f'Your name is {first_name} of clan {family_name}')
             animate_flag = False
         else:
-            text_display.draw_text(screen, f'Your name is {first_name} of clan {family_name}', text_position, TEXT_AREA_WIDTH)
+            text_display.draw_text(surface, f'Your name is {first_name} of clan {family_name}')
 
-        buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+        buttons.draw_buttons(surface, button_texts, button_rects, mouse_pos)
 
         pygame.display.update()
 
 def choose_elf_first_name(first_names):
     button_texts = first_names
-    button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
-    text_position = (MARGIN, MARGIN)
+    button_rects = buttons.create_button_rects(len(button_texts))
     
     animate_flag = True  # Flag to control text animation
 
@@ -353,22 +338,21 @@ def choose_elf_first_name(first_names):
                         first_name = button_texts[i]
                         return first_name
                     
-        screen.fill(BG_COLOR)
+        surface.fill(const.BG_COLOR)
 
         if animate_flag:
-            text_display.animate_text(screen, 'Choose your elf\'s first name!', text_position, TEXT_AREA_WIDTH)
+            text_display.animate_text(surface, 'Choose your elf\'s first name!')
             animate_flag = False
         else:
-            text_display.draw_text(screen, 'Choose your elf\'s first name!', text_position, TEXT_AREA_WIDTH)
+            text_display.draw_text(surface, 'Choose your elf\'s first name!')
 
-        buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+        buttons.draw_buttons(surface, button_texts, button_rects, mouse_pos)
 
         pygame.display.update()
 
 def is_elf_child():
     button_texts = ["Yes", "No"]
-    button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
-    text_position = (MARGIN, MARGIN)
+    button_rects = buttons.create_button_rects(len(button_texts))
     
     animate_flag = True  # Flag to control text animation
 
@@ -389,23 +373,22 @@ def is_elf_child():
                             is_child = False
                         return is_child
                     
-        screen.fill(BG_COLOR)
+        surface.fill(const.BG_COLOR)
 
         if animate_flag:
-            text_display.animate_text(screen, 'Is your elf a child?', text_position, TEXT_AREA_WIDTH)
+            text_display.animate_text(surface, 'Is your elf a child?')
             animate_flag = False
         else:
-            text_display.draw_text(screen, 'Is your elf a child?', text_position, TEXT_AREA_WIDTH)
+            text_display.draw_text(surface, 'Is your elf a child?')
 
-        buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+        buttons.draw_buttons(surface, button_texts, button_rects, mouse_pos)
 
         pygame.display.update()
 
 def choose_languages():
     languages = ["Arakora", "Abyssal/Infernal", "Aquan", "Auran", "Celestial", "Deep Speech", "Draconic", "Druidic", "Dwarvish", "Giant/Jotun", "Gith", "Gnoll", "Gnomish", "Goblin", "Halfling", "Orcish", "Primordial", "Sylvan", "Terran", "Undercommon"]
     button_texts = languages
-    button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
-    text_position = (MARGIN, MARGIN)
+    button_rects = buttons.create_button_rects(len(button_texts))
 
     animate_flag = True
 
@@ -420,15 +403,15 @@ def choose_languages():
                     if rect.collidepoint(mouse_pos):
                         return button_texts[i]
 
-        screen.fill(BG_COLOR)
+        surface.fill(const.BG_COLOR)
 
         if animate_flag:
-            text_display.animate_text(screen, 'Choose an additional language to be proficient in...', text_position, TEXT_AREA_WIDTH)
+            text_display.animate_text(surface, 'Choose an additional language to be proficient in...')
             animate_flag = False
         else:
-            text_display.draw_text(screen, 'Choose an additional language to be proficient in...', text_position, TEXT_AREA_WIDTH)
+            text_display.draw_text(surface, 'Choose an additional language to be proficient in...')
 
-        buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+        buttons.draw_buttons(surface, button_texts, button_rects, mouse_pos)
 
         pygame.display.update()
 
@@ -493,8 +476,7 @@ def define_halfling_name(gender):
         name = first_name + " " + family_name
 
     button_texts = ["Click to Continue..."]
-    button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
-    text_position = (MARGIN, MARGIN)
+    button_rects = buttons.create_button_rects(len(button_texts))
 
     animate_flag = True
 
@@ -509,21 +491,21 @@ def define_halfling_name(gender):
                     if rect.collidepoint(mouse_pos):
                         return name
                     
-        screen.fill(BG_COLOR)
+        surface.fill(const.BG_COLOR)
 
         if nickname == "None":
             if animate_flag:
-                text_display.animate_text(screen, f'Your halfling\'s name is {first_name} of the family {family_name}.', text_position, TEXT_AREA_WIDTH)
+                text_display.animate_text(surface, f'Your halfling\'s name is {first_name} of the family {family_name}.')
                 animate_flag = False
             else:
-                text_display.draw_text(screen, f'Your halfling\'s name is {first_name} of the family {family_name}.', text_position, TEXT_AREA_WIDTH)
+                text_display.draw_text(surface, f'Your halfling\'s name is {first_name} of the family {family_name}.')
         else:
             if animate_flag:
-                text_display.animate_text(screen, f'Your halfling\'s name is {first_name} of the family {family_name}, but you prefer to go by {nickname}', text_position, TEXT_AREA_WIDTH)
+                text_display.animate_text(surface, f'Your halfling\'s name is {first_name} of the family {family_name}, but you prefer to go by {nickname}')
                 animate_flag = False
             else:
-                text_display.draw_text(screen, f'Your halfling\'s name is {first_name} of the family {family_name}, but you prefer to go by {nickname}', text_position, TEXT_AREA_WIDTH)
-        buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+                text_display.draw_text(surface, f'Your halfling\'s name is {first_name} of the family {family_name}, but you prefer to go by {nickname}')
+        buttons.draw_buttons(surface, button_texts, button_rects, mouse_pos)
 
         pygame.display.update()
 

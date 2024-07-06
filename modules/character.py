@@ -2,26 +2,16 @@ import pygame
 import sys
 import gui.text_display as text_display
 import gui.buttons as buttons
-import gui.constants as constants
+import gui.constants as const
 import modules.dice_rolls as dice_rolls
 import modules.utils as utils
 
 # Initialize pygame
 pygame.init()
 
-# Constants
-SCREEN_WIDTH, SCREEN_HEIGHT = constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT
-BG_COLOR = constants.BG_COLOR
-TEXT_COLOR = constants.TEXT_COLOR
-FONT_SIZE = constants.FONT_SIZE
-MARGIN = constants.MARGIN
-TEXT_AREA_WIDTH = constants.TEXT_AREA_WIDTH
-TEXT_AREA_HEIGHT = constants.TEXT_AREA_HEIGHT
-
 # Setup screen
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption('UI Example')
-font = pygame.font.SysFont(None, FONT_SIZE)
+surface = pygame.display.set_mode((const.SCREEN_WIDTH, const.SCREEN_HEIGHT))
+pygame.display.set_caption('Character Profile')
 
 class Character:
     def __init__(self):
@@ -163,8 +153,7 @@ class Character:
     
     def increase_ability_score(self):
         button_texts = [f"Strength: {self.strength}", f"Dexterity:{self.dexterity}", f"Constitution: {self.constitution}", f"Intelligence: {self.intelligence}", f"Wisdom: {self.wisdom}", f"Charisma: {self.charisma}"]
-        button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
-        text_position = (MARGIN, MARGIN)
+        button_rects = buttons.create_button_rects(len(button_texts))
 
         animate_flag = True
 
@@ -202,15 +191,15 @@ class Character:
                                 self.calculate_modifiers()
                                 return
 
-            screen.fill(BG_COLOR)
+            surface.fill(const.BG_COLOR)
 
             if animate_flag:
-                text_display.animate_text(screen, f'Choose which ability to increase by 1...', text_position, TEXT_AREA_WIDTH)
+                text_display.animate_text(surface, f'Choose which ability to increase by 1...')
                 animate_flag = False
             else:
-                text_display.draw_text(screen, f'Choose which ability to increase by 1...', text_position, TEXT_AREA_WIDTH)
+                text_display.draw_text(surface, f'Choose which ability to increase by 1...')
 
-            buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+            buttons.draw_buttons(surface, button_texts, button_rects, mouse_pos)
 
             pygame.display.update()
 
@@ -222,8 +211,7 @@ class Character:
 
     def announce_character(self):
         button_texts = ["Click to Continue..."]
-        button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
-        text_position = (MARGIN, MARGIN)
+        button_rects = buttons.create_button_rects(len(button_texts))
         player_equipment_names = ""
         i = 0
         for equipment in self.archetype.starting_equipment:
@@ -247,14 +235,14 @@ class Character:
                             print(f'Game over! Thanks for playing!')
                             return
 
-            screen.fill(BG_COLOR)
+            surface.fill(const.BG_COLOR)
 
             if animate_flag:
-                text_display.animate_text(screen, f'{self.name} is a level {self.level} {self.race.subrace} {self.archetype.name} with a total of {self.xp} Experience Points. They currently have a {player_equipment_names}.', text_position, TEXT_AREA_WIDTH)
+                text_display.animate_text(surface, f'{self.name} is a level {self.level} {self.race.subrace} {self.archetype.name} with a total of {self.xp} Experience Points. They currently have a {player_equipment_names}.')
                 animate_flag = False
             else:
-                text_display.draw_text(screen, f'{self.name} is a level {self.level} {self.race.subrace} {self.archetype.name} with a total of {self.xp} Experience Points. They currently have a {player_equipment_names}.', text_position, TEXT_AREA_WIDTH)
+                text_display.draw_text(surface, f'{self.name} is a level {self.level} {self.race.subrace} {self.archetype.name} with a total of {self.xp} Experience Points. They currently have a {player_equipment_names}.')
 
-            buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+            buttons.draw_buttons(surface, button_texts, button_rects, mouse_pos)
 
             pygame.display.update()

@@ -2,29 +2,18 @@ import pygame
 import sys
 import gui.text_display as text_display
 import gui.buttons as buttons
-import gui.constants as constants
+import gui.constants as const
 
 # Initialize pygame
 pygame.init()
 
-# Constants
-SCREEN_WIDTH, SCREEN_HEIGHT = constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT
-BG_COLOR = constants.BG_COLOR
-TEXT_COLOR = constants.TEXT_COLOR
-FONT_SIZE = constants.FONT_SIZE
-MARGIN = constants.MARGIN
-TEXT_AREA_WIDTH = constants.TEXT_AREA_WIDTH
-TEXT_AREA_HEIGHT = constants.TEXT_AREA_HEIGHT
-
 # Setup screen
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption('UI Example')
-font = pygame.font.SysFont(None, FONT_SIZE)
+surface = pygame.display.set_mode((const.SCREEN_WIDTH, const.SCREEN_HEIGHT))
+pygame.display.set_caption('Equipment Selection')
 
 def weapon_choices(choices):
     button_texts = choices
-    button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
-    text_position = (MARGIN, MARGIN)
+    button_rects = buttons.create_button_rects(len(button_texts))
     
     animate_flag = True  # Flag to control text animation
 
@@ -40,15 +29,15 @@ def weapon_choices(choices):
                         if rect.collidepoint(mouse_pos):
                             return choices[i]
 
-        screen.fill(BG_COLOR)
+        surface.fill(const.BG_COLOR)
 
         if animate_flag:
-            text_display.animate_text(screen, 'Choose from the starting equipment items below...', text_position, TEXT_AREA_WIDTH)
+            text_display.animate_text(surface, 'Choose from the starting equipment items below...')
             animate_flag = False
         else:
-            text_display.draw_text(screen, 'Choose from the starting equipment items below...', text_position, TEXT_AREA_WIDTH)
+            text_display.draw_text(surface, 'Choose from the starting equipment items below...')
 
-        buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+        buttons.draw_buttons(surface, button_texts, button_rects, mouse_pos)
 
         pygame.display.update()
 
@@ -92,8 +81,7 @@ def select_weapon_from_category(weapons):
         weapon_names.append(weapon.name)
     
     button_texts = weapon_names
-    button_rects = buttons.create_button_rects(SCREEN_WIDTH, SCREEN_HEIGHT, len(button_texts))
-    text_position = (MARGIN, MARGIN)
+    button_rects = buttons.create_button_rects(len(button_texts))
 
     animate_flag = True  # Flag to control text animation
 
@@ -108,15 +96,15 @@ def select_weapon_from_category(weapons):
                     if rect.collidepoint(mouse_pos):
                         return weapons[i]
                         
-        screen.fill(BG_COLOR)
+        surface.fill(const.BG_COLOR)
 
         if animate_flag:
-            text_display.animate_text(screen, 'Choose an item from the equipment category below...', text_position, TEXT_AREA_WIDTH)
+            text_display.animate_text(surface, 'Choose an item from the equipment category below...')
             animate_flag = False
         else:
-            text_display.draw_text(screen, 'Choose an item from the equipment category below...', text_position, TEXT_AREA_WIDTH)
+            text_display.draw_text(surface, 'Choose an item from the equipment category below...')
 
-        buttons.draw_buttons(screen, button_texts, button_rects, mouse_pos)
+        buttons.draw_buttons(surface, button_texts, button_rects, mouse_pos)
 
         pygame.display.update()
 
