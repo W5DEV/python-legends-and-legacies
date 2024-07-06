@@ -4,10 +4,11 @@ import gui.text_display as text_display  # Import the text_display module
 import gui.buttons as buttons  # Import the buttons module
 import modules.dice_rolls as dice_rolls
 import gui.constants as const
+import gui.surface as pygame_surface
 
 # Initialize pygame
 pygame.init()
-surface = pygame.display.set_mode((const.SCREEN_WIDTH, const.SCREEN_HEIGHT))
+surface = pygame_surface.surface
 pygame.display.set_caption('Roll Abilities')
 
 # This function will roll 4 six-sided dice, drop the lowest value, and return the sum of the remaining 3 dice
